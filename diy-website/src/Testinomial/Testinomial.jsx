@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Navigate from '../Navigate';
+import Footer from '../Footer';
 
 const Testinomial = () => {
    const [user, setUser] = useState([]);
@@ -37,8 +39,10 @@ const Testinomial = () => {
   };
 
   return (
-    <div className='bg-amber-300 min-h-screen flex flex-col justify-center items-center p-10 space-y-8'>
-      <h2 className='text-2xl text-indigo-900 font-semibold text-center'>
+    <div className='bg-amber-300 min-h-screen '>
+      <Navigate/>
+      <div className='flex flex-col justify-center items-center p-10 space-y-8'>
+        <h2 className='text-2xl text-indigo-900 font-semibold text-center'>
         If you have any queries or comments, kindly fill the form
       </h2>
 
@@ -88,6 +92,9 @@ const Testinomial = () => {
           Submit
         </button>
       </form>
+      </div>
+      
+      <Footer/>
     </div>
   );
 };
