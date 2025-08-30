@@ -12,7 +12,7 @@ const Bags = () => {
     <div className="p-6">
       <h2 className="text-center font-bold text-3xl mb-6">Bags</h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 w-300 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-300 gap-6">
         {bags.map((item, index) => (
           <div
             key={index}

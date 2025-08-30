@@ -14,7 +14,7 @@ const Clock = () => {
       <h2 className="text-center font-bold text-3xl mb-6">Clocks</h2>
 
       {/* Responsive Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-300">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-300">
         {clocks.map((item, index) => (
           <div
             key={index}

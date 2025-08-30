@@ -3,19 +3,23 @@ import anime from '../assets/phone case/anime-case.jpeg'
 import bird from '../assets/phone case/bird-design-case.jpg'
 import dot from '../assets/phone case/dot-case.jpeg'
 import glitter from '../assets/phone case/Gilter-case.jpeg'
+import name from '../assets/phone case/Name Customized phone case.png'
+import sea from '../assets/phone case/sea blue phone case.png'
 const PhoneCase = () => {
  const bags = [
     { product: anime, product_name: "Amine Phone Case", price: 200 },
     { product: bird, product_name: "Bird Design Phone Case", price: 200 },
     { product: glitter, product_name: "Glitter Phone Case", price: 200 },
-    { product: dot, product_name: "Dot Design Phone Case", price: 200 }
+    { product: dot, product_name: "Dot Design Phone Case", price: 200 },
+    { product: sea, product_name: "sea blue Phone Case", price: 200 },
+    { product: name, product_name: "Name Customization Phone Case", price: 200 }
   ]
 
   return (
     <div className="p-6">
       <h2 className="text-center font-bold text-3xl mb-6">Phone Case</h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-300">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-300">
         {bags.map((item, index) => (
           <div
             key={index}

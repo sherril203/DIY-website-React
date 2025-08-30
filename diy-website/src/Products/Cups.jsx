@@ -17,7 +17,7 @@ const Cups = () => {
 
       <h2 className="text-center font-bold text-3xl mb-6">Cups</h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-300">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-300">
         {cups.map((item, index) => (
           <div
             key={index}

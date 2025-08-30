@@ -42,7 +42,7 @@ const Testinomial = () => {
     <div className='bg-amber-300 min-h-screen '>
       <Navigate/>
       <div className='flex flex-col justify-center items-center p-10 space-y-8'>
-        <h2 className='text-2xl text-indigo-900 font-semibold text-center'>
+        <h2 className='text-2xl text-indigo-900 font-semibold text-center mt-15'>
         If you have any queries or comments, kindly fill the form
       </h2>
 

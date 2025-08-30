@@ -22,12 +22,12 @@ const Footer = () => {
         <div>
           <h2 className="font-bold text-xl mb-4">Products</h2>
           <ul className="space-y-2">
+             <li>Bags</li>
             <li>Cups</li>
-            <li>Frames</li>
+            <li>Phone Cases</li>
+            <li>Geometric design wall hang</li>
             <li>Clocks</li>
             <li>Kits for Kids</li>
-            <li>Bags</li>
-            <li>Phone Cases</li>
           </ul>
         </div>
 

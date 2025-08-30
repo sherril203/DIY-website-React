@@ -6,6 +6,7 @@ import Clock from './Clock';
 import PhoneCase from './PhoneCase';
 import Kits from './Kits';
 import Footer from '../Footer';
+import Geometric from './geometric';
 
 const ProductsPage = () => {
   return (
@@ -16,8 +17,9 @@ const ProductsPage = () => {
       </h2>
           <Bags />
           <Cups />
-          <Clock />
           <PhoneCase />
+          <Clock />
+          <Geometric/>
           <Kits/>
           <Footer/>
     </div>

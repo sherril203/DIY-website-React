@@ -1,20 +1,24 @@
 import React from 'react'
 import Butterfly from '../assets/cups/Butterfly Design Cup.png'
 import glitter from '../assets/phone case/Gilter-case.jpeg'
-import flower from '../assets/bags/flower_design_bag.png'
+import flower_bag from '../assets/bags/flower_design_bag.png'
+import flower from '../assets/clock/flower design clock.png'
+import love from '../assets/geometric design/geometric_love_heart_wall_art.jpg'
 import {Link } from 'react-router'
 const ProductHome = () => {
     const products=[
-        { product: flower, product_name: "Flower Design Bag", price: 200 },
+        { product: flower_bag, product_name: "Flower Design Bag", price: 200 },
         { product: Butterfly, product_name: "Butterfly Design Cup", price: 200 },
         { product: glitter, product_name: "Glitter Phone Case", price: 200 },
+        { product: flower, product_name: "Flower Design Clock", price: 200 },
+        { product: love, product_name: "love heart wall art", price: 200 },
     ]
    return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
       <h2 className="text-center font-bold text-3xl mt-22 p-4 text-teal-600">
         Products
       </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 w-300">
         {products.map((item, index) => (
           <div
             key={index}
@@ -23,7 +27,7 @@ const ProductHome = () => {
             <img
               src={item.product}
               alt={item.product_name}
-              className="w-full h-56 object-cover"
+              className="w-56 h-56 object-contain"
             />
             <h3 className="text-lg font-semibold text-gray-800 text-center">
               {item.product_name}
