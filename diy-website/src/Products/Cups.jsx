@@ -9,7 +9,7 @@ const Cups = () => {
     { product: white, product_name: "Name Customization Cup", price: 300 },
     { product: Butterfly, product_name: "Butterfly Design Cup", price: 200 },
     { product: kids, product_name: "Kids Cup", price: 200 },
-    { product: thought, product_name: "Thought Customization Design Cup", price: 200 }
+    { product: thought, product_name: "Thought Customization  Cup", price: 200 }
   ]
 
   return (
@@ -17,7 +17,7 @@ const Cups = () => {
 
       <h2 className="text-center font-bold text-3xl mb-6">Cups</h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-300">
         {cups.map((item, index) => (
           <div
             key={index}
@@ -26,7 +26,7 @@ const Cups = () => {
             <img
               src={item.product}
               alt={item.product_name}
-              className="w-60 h-60 object-cover"
+              className="w-full h-56 object-contain"
             />
 
             <h3 className="text-lg font-semibold text-gray-800 text-center">

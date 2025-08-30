@@ -23,7 +23,7 @@ const ProductHome = () => {
             <img
               src={item.product}
               alt={item.product_name}
-              className="w-60 h-60 object-cover"
+              className="w-full h-56 object-cover"
             />
             <h3 className="text-lg font-semibold text-gray-800 text-center">
               {item.product_name}

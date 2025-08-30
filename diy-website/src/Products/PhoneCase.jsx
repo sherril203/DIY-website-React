@@ -15,7 +15,7 @@ const PhoneCase = () => {
     <div className="p-6">
       <h2 className="text-center font-bold text-3xl mb-6">Phone Case</h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-300">
         {bags.map((item, index) => (
           <div
             key={index}
@@ -24,7 +24,7 @@ const PhoneCase = () => {
             <img
               src={item.product}
               alt={item.product_name}
-              className="w-60 h-60 object-cover"
+              className="w-56 h-56 object-contain"
             />
             <h3 className="text-lg font-semibold text-gray-800 text-center">
               {item.product_name}
