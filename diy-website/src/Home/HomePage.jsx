@@ -6,7 +6,7 @@ import Footer from '../Footer'
 
 const HomePage = () => {
   return (
-    <div>
+    <div className=''>
       <Navigate/>
       <ProductHome/>
       <Services/>

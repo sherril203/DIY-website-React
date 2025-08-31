@@ -13,7 +13,7 @@ const Navigate = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="bg-gradient-to-r from-fuchsia-600 to-fuchsia-500 shadow-md fixed top-0 left-0 w-full z-50">
+    <div className="fixed top-0 w-full z-30 bg-gradient-to-r from-fuchsia-600 to-pink-500 shadow-lg">
       <nav className="flex justify-between items-center p-4">
         <div className="font-extrabold text-white text-2xl">Arts Worlds</div>
         <div className="hidden lg:block">

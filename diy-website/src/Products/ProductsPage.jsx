@@ -1,18 +1,18 @@
 import React from 'react';
 import Navigate from '../Navigate';
-import Bags from './Bags';
-import Cups from './Cups';
-import Clock from './Clock';
-import PhoneCase from './PhoneCase';
-import Kits from './Kits';
+import Bags from './Categories/Bags';
+import Cups from './Categories/Cups';
+import Clock from './Categories/Clock';
+import PhoneCase from './Categories/PhoneCase';
+import Kits from './Categories/Kits';
 import Footer from '../Footer';
-import Geometric from './geometric';
+import Geometric from './Categories/Geometric';
 
 const ProductsPage = () => {
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800">
+    <div className="  bg-rose-50 pt-0.5">
       <Navigate />
-      <h2 className="text-center font-bold text-3xl mt-8 text-teal-600">
+      <h2 className="text-center font-bold text-3xl mt-23 text-rose-800 ">
         Products
       </h2>
           <Bags />

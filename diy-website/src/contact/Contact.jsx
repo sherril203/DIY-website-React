@@ -10,11 +10,11 @@ import { IoCall } from "react-icons/io5";
 
 const Contact = () => {
   return (
-    <div className="bg-amber-300 min-h-screen">
+    <div className="bg-amber-300">
       <Navigate />
 
      <h2 className="text-center font-bold text-4xl text-teal-700 mt-18 p-4 mb-6">Contact Us</h2>
-      <div className="flex flex-col lg:flex-row justify-center items-center gap-10 px-6">
+      <div className="flex flex-col lg:flex-row justify-center items-center gap-10 p-6">
         <div className="space-y-8 w-full max-w-md">
           <div className="bg-white rounded-lg px-8 py-6 shadow-md text-black">
             <div className="flex items-center gap-2 mb-2">

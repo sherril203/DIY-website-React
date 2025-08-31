@@ -1,32 +1,40 @@
 import React from 'react';
+import { FaLeaf, FaCogs, FaTruck } from 'react-icons/fa'; 
 
 const Services = () => {
   const services = [
     {
-      Title: "Eco Friendly Materials",
-      description: "We are providing eco friendly products without chemicals"
+      title: "Eco Friendly Materials",
+      description: "We are providing eco friendly products without chemicals",
+      icon: <FaLeaf />,
     },
     {
-      Title: "Product Customization",
-      description: "We are providing product customization as per customer need"
+      title: "Product Customization",
+      description: "We are providing product customization as per customer need",
+      icon: <FaCogs />,
     },
     {
-      Title: "Delivery Process",
-      description: "We ensure timely delivery of every product, so you can enjoy your order without delay"
-    }
+      title: "Delivery Process",
+      description: "We ensure timely delivery of every product, so you can enjoy your order without delay",
+      icon: <FaTruck />,
+    },
   ];
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen mt-15">
-        <h2 className='text-center font-bold text-2xl p-3'>Services</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {services.map((items, index) => (
+    <div className="bg-gradient-to-br from-pink-200 to-fuchsia-300 py-12 px-4">
+      <h2 className="text-center font-bold text-3xl text-fuchsia-900 mb-10">Services</h2>
+      {/* Service Cards */}
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {services.map((item, index) => (
           <div
             key={index}
-            className="bg-white shadow-xl rounded-lg p-6 text-black hover:shadow-2xl transition"
+            className="bg-white shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-300 rounded-2xl p-6 text-center"
           >
-            <h2 className="text-xl font-bold mb-2">{items.Title}</h2>
-            <p className="text-gray-700">{items.description}</p>
+            <div className="text-4xl text-fuchsia-600 mb-4 flex justify-center items-center">{item.icon}</div>
+            <h3 className="text-xl font-bold text-fuchsia-700 mb-2">{item.title}</h3>
+
+            {/* Description */}
+            <p className="text-gray-700">{item.description}</p>
           </div>
         ))}
       </div>
