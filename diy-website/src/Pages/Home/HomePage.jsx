@@ -1,8 +1,8 @@
 import React from 'react'
-import Navigate from '../Navigate'
+import Navigate from '../../common/Navigate'
 import ProductHome from '../../Products/ProductHome'
 import Services from '../Services/Services'
-import Footer from '../Footer'
+import Footer from '../../common/Footer'
 
 const HomePage = () => {
   return (

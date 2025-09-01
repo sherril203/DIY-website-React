@@ -1,7 +1,7 @@
 import React from 'react'
-import Navigate from '../Navigate'
+import Navigate from '../../common/Navigate'
 import Services from './Services'
-import Footer from '../Footer'
+import Footer from '../../common/Footer'
 
 const ServicePage = () => {
   return (

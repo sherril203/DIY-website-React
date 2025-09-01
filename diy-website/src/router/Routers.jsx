@@ -1,11 +1,11 @@
 import { Routes, Route} from "react-router";
-import HomePage from "../Home/HomePage";
-import Contact from "../contact/Contact";
+import HomePage from "../Pages/Home/HomePage";
+import Contact from "../Pages/contact/Contact";
 import ProductsPage from "../Products/ProductsPage";
-import ServicePage from "../Services/ServicePage";
-import Testinomial from "../Testinomial/Testinomial";
-import Signup from "../Sign_up/Signup";
-import Login from "../Login/Login";
+import ServicePage from "../Pages/Services/ServicePage";
+import Testinomial from "../Pages/Testinomial/Testinomial";
+import Signup from "../Pages/Sign_up/Signup";
+import Login from "../Pages/Login/Login";
 
 const Routers = () => {
   return (

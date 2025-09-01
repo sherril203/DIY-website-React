@@ -1,11 +1,11 @@
 import React from 'react';
-import Navigate from '../Navigate';
+import Navigate from '../common/Navigate';
 import Bags from './Categories/Bags';
 import Cups from './Categories/Cups';
 import Clock from './Categories/Clock';
 import PhoneCase from './Categories/PhoneCase';
 import Kits from './Categories/Kits';
-import Footer from '../Footer';
+import Footer from '../common/Footer';
 import Geometric from './Categories/Geometric';
 
 const ProductsPage = () => {

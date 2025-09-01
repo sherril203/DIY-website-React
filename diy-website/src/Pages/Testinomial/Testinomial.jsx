@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Navigate from '../Navigate';
-import Footer from '../Footer';
+import Navigate from '../../common/Navigate';
+import Footer from '../../common/Footer';
 
 const Testinomial = () => {
    const [user, setUser] = useState([]);

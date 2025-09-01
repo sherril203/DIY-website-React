@@ -2,9 +2,9 @@ import React from 'react';
 import { SiInstagram } from "react-icons/si";
 import { FaTwitter, FaYoutube } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa6";
-import Navigate from '../Navigate';
-import Footer from '../Footer';
-import map from '../assets/map.jpg';
+import Navigate from '../../common/Navigate';
+import Footer from '../../common/Footer';
+import map from '../../assets/map.jpg';
 import { IoIosMailUnread } from "react-icons/io";
 import { IoCall } from "react-icons/io5";
 
