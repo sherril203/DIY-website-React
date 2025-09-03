@@ -35,7 +35,7 @@ const Login = () => {
 
       // Optionally store token
       // localStorage.setItem("token", response.data.token);
-
+     useNavigate('/users')
 
     } catch (err) {
       console.error('Login failed:', err.response?.data || err.message);

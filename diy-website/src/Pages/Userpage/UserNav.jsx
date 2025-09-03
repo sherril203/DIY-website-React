@@ -6,7 +6,10 @@ import { IoIosCall } from "react-icons/io";
 import { IoCloseOutline } from "react-icons/io5";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { BiLogOut } from "react-icons/bi";
+import { FaCartArrowDown } from "react-icons/fa6";
+import { LuPackageCheck } from "react-icons/lu";
 import { MdMiscellaneousServices } from "react-icons/md";
+import { MdOutlineFeed } from "react-icons/md";
 const UserNav = () => {
  const [open, setOpen] = useState(false);
  
@@ -29,7 +32,7 @@ const UserNav = () => {
                <Link to="/contact" className="flex gap-2 items-center"><IoIosCall /> Contact</Link>
              </li>
              <li className="hover:text-indigo-200 transition">
-               <Link to="/testinomial" className="flex gap-2 items-center">Testimonial</Link>
+               <Link to="/testinomial" className="flex gap-2 items-center"><MdOutlineFeed />Testimonial</Link>
                </li>
            </ul>
          </div>
@@ -62,10 +65,10 @@ const UserNav = () => {
                <Link to="/homepage" className="flex gap-2 items-center"><TbHomeFilled /> Home</Link>
              </li>
              <li className="hover:text-indigo-200 transition">
-               <Link to="/products" className="flex gap-2 items-center"><FaCartShopping />Added Cart</Link>
+               <Link to="/products" className="flex gap-2 items-center"><FaCartArrowDown />Added Cart</Link>
              </li>
              <li className="hover:text-indigo-200 transition">
-               <Link to="/services" className="flex gap-2 items-center">< MdMiscellaneousServices/>Orders</Link>
+               <Link to="/services" className="flex gap-2 items-center">< LuPackageCheck/>Orders</Link>
              </li>
              <li className="hover:text-indigo-200 transition"> 
                <Link to="/homepage" className="flex gap-2 items-center"> < BiLogOut /> Logout</Link>

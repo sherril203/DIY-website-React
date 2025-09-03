@@ -61,7 +61,7 @@ const Bags = () => {
     <div className="p-6 bg-rose-50 ">
       <h2 className="text-center font-bold text-3xl mb-6 text-rose-800">Bags</h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center">
         {bags.map((item, index) => (
           <div
             key={index}

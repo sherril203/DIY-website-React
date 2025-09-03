@@ -74,7 +74,7 @@ const PhoneCase = () => {
     <div className="p-6 bg-rose-50 ">
       <h2 className="text-center font-bold text-3xl mb-6 text-rose-800">Phone Cases</h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center">
         {bags.map((item, index) => (
           <div
             key={index}

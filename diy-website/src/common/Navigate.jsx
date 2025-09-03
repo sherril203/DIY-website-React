@@ -8,6 +8,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { LuLogIn } from "react-icons/lu";
 import { BiLogOut } from "react-icons/bi";
 import { MdMiscellaneousServices } from "react-icons/md";
+import { MdOutlineFeed } from "react-icons/md";
 
 const Navigate = () => {
   const [open, setOpen] = useState(false);
@@ -31,7 +32,7 @@ const Navigate = () => {
               <Link to="/contact" className="flex gap-2 items-center"><IoIosCall /> Contact</Link>
             </li>
             <li className="hover:text-indigo-200 transition">
-              <Link to="/testinomial" className="flex gap-2 items-center">Testimonial</Link>
+              <Link to="/testinomial" className="flex gap-2 items-center"><MdOutlineFeed />Testimonial</Link>
               </li>
           </ul>
         </div>
@@ -73,7 +74,7 @@ const Navigate = () => {
               <Link to="/contact" className="flex gap-2 items-center"><IoIosCall /> Contact</Link>
             </li>
             <li className="hover:text-indigo-200 transition">
-               <Link  to="/testinomial" className="flex gap-2 items-center">Testimonial</Link></li>
+               <Link  to="/testinomial" className="flex gap-2 items-center"><MdOutlineFeed />Testimonial</Link></li>
             <li className="hover:text-indigo-200 transition"> 
               <Link to="/login" className="flex gap-2 items-center"> <LuLogIn/> Login</Link>
             </li>
