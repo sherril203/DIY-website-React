@@ -21,31 +21,36 @@ const Signup = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-      const response = await axios.post('http://localhost:5000/userregister', formData);
-      console.log('Signup success:', response.data);
+  console.log("Submitting form:", formData);  
 
-      toast.success("Signup successful! Redirecting to login...", {
-        position: "top-right",
-        autoClose: 3000,
-        theme: "colored"
-      });
+  try {
+    const response = await axios.post('http://localhost:5000/userRegister', formData);
+    console.log('Signup success:', response.data);
+
+    toast.success("Signup successful! Redirecting to login...", {
+      position: "top-right",
+      autoClose: 3000,
+      theme: "colored"
+    });
+
+    setTimeout(() => {
+      navigate('/login');
+    }, 3000);
+
+  } catch (err) {
+    console.log('Signup error');  
+    toast.error( 'Signup failed. Try again.', {
+      position: "top-right",
+      autoClose: 3000,
+      theme: "colored"
+    });
+  }
+};
 
 
-  
-
-    } catch (err) {
-      console.error('Signup error:', err.response?.data || err.message);
-      toast.error(err.response?.data?.message || 'Signup failed. Try again.', {
-        position: "top-right",
-        autoClose: 3000,
-        theme: "colored"
-      });
-    }
-  };
 
   return (
     <div className='bg-fuchsia-300 p-6 min-h-screen flex flex-col justify-center items-center'>

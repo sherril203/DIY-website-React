@@ -25,17 +25,19 @@ const Login = () => {
 
     try {
       const response = await axios.post('http://localhost:5000/userlogin', formData);
-      console.log('Login Success:', response.data);
+
+      console.log('Login Success:', response.data); // ✅ Log to confirm structure
 
       toast.success("Login successful!", {
         position: "top-right",
         autoClose: 3000,
         theme: "colored",
       });
+      
+      const token = response.data.data?.token || response.data.token;
+      localStorage.setItem("token", token);
 
-      // Optionally store token
-      // localStorage.setItem("token", response.data.token);
-     useNavigate('/users')
+      navigate('/user');
 
     } catch (err) {
       console.error('Login failed:', err.response?.data || err.message);
@@ -50,13 +52,12 @@ const Login = () => {
 
   return (
     <div className='bg-fuchsia-300 p-6 min-h-screen flex flex-col justify-center items-center'>
-      <ToastContainer /> {/* 🔔 Toast display container */}
+      <ToastContainer />
 
       <div className='bg-white rounded-xl shadow-lg p-10 space-y-6 max-w-md w-full'>
         <h2 className='text-center text-black text-2xl font-bold'>Login</h2>
 
         <form onSubmit={handleSubmit} className='space-y-4'>
-
           <div>
             <label htmlFor="email" className='text-2xl'>Email</label>
             <input
@@ -96,7 +97,7 @@ const Login = () => {
         </form>
 
         <p className='text-center text-lg'>
-          New account?{" "}
+          New account?{' '}
           <Link to="/signup" className='text-blue-600 hover:underline'>
             Sign Up
           </Link>

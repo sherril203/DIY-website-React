@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router';
 import anime from '../../assets/phone case/anime-case.jpeg';
 import Navigate from '../../common/Navigate';
 import Footer from '../../common/Footer';
@@ -34,7 +35,9 @@ const Anime = () => {
             <h2 className='text-xl font-bold'>Total: ₹{totalAmount}</h2>
 
             <div className='flex gap-2 mt-4'>
+              <Link to="/purchase">
               <button className='bg-green-500 text-white px-4 py-2 rounded'>Buy Now</button>
+              </Link>
               <button className='bg-blue-500 text-white px-4 py-2 rounded'>Add to Cart</button>
             </div>
           </div>

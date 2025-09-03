@@ -39,12 +39,14 @@ const Navigate = () => {
 
         <div className="hidden lg:flex gap-2 items-center">
           <Link to="/login">
-            <button className="text-white text-base font-semibold px-4 py-2 border border-white rounded-xl hover:bg-indigo-300 hover:text-fuchsia-800 transition">
+            <button className="text-white text-base font-semibold px-4 py-2 border
+             border-white rounded-xl hover:bg-white hover:text-fuchsia-800 transition">
               Login
             </button>
           </Link>
           <Link to="/signup">
-            <button className="text-white text-base font-semibold px-4 py-2 border border-white rounded-xl hover:bg-indigo-300 hover:text-fuchsia-800 transition">
+            <button className="text-white text-base font-semibold
+             px-4 py-2 border border-white rounded-xl hover:bg-white hover:text-fuchsia-800 transition">
               Sign Up
             </button>
           </Link>

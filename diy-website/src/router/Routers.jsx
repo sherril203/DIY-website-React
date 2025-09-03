@@ -13,6 +13,8 @@ import UniqueClock from "../Products/product_description/UniqueClock";
 import Flower from "../Products/product_description/Flower";
 import UserPage from "../Pages/Userpage/UserPage";
 
+import PurchasePage from "../Pages/Buy products/PurchasePage";
+
 const Routers = () => {
   return (
     <Routes>
@@ -30,6 +32,7 @@ const Routers = () => {
    <Route path="flower" element={<Flower/>}/>
    <Route path="unique_clock-_the_perfect_holiday_gift" element={<UniqueClock/>}/>
   </Route>
+  <Route path="/purchase" element={<PurchasePage/>}/>
   <Route path="/user" element={<UserPage/>}/>
     </Routes>
   );

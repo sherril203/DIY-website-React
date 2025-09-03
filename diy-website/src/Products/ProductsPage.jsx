@@ -1,12 +1,7 @@
 import React from 'react';
 import Navigate from '../common/Navigate';
-import Bags from './Categories/Bags';
-import Cups from './Categories/Cups';
-import Clock from './Categories/Clock';
-import PhoneCase from './Categories/PhoneCase';
-import Kits from './Categories/Kits';
 import Footer from '../common/Footer';
-import Geometric from './Categories/Geometric';
+import Products from './Products';
 
 const ProductsPage = () => {
   return (
@@ -15,12 +10,7 @@ const ProductsPage = () => {
       <h2 className="text-center font-bold text-3xl mt-23 text-rose-800 ">
         Products
       </h2>
-          <Bags />
-          <Cups />
-          <PhoneCase />
-          <Clock />
-          <Geometric/>
-          <Kits/>
+          <Products/>
           <Footer/>
     </div>
   );
