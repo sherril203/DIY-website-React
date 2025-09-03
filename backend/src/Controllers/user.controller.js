@@ -1,36 +1,40 @@
 const tokengenerator = require('../middleware/Auth')
-const registerUser=require('../model/register.model')
+const SignModel=require('../model/Signup.model')
+const  bcrypt=require('bcrypt')
 //register
-const registerUser=async(req,res)=>{
+const UserRegisterController=async(req,res)=>{
     try{
-    const userData=req.body
-    const existingUser=await registerUser(userData).findOne({email:"sherrilkumar2003@gmail,com"})
-    if(existingUser){
-        return res.status(400).send({message:"user already registered"})
+        const userData=req.body
+    const existData= await SignModel.findOne({email:userData.email})
+    if(existData){
+        return res.status(400).send({message:"already registered email"})
     }
-    const hashpassword=await bcrypt.hash(userData.password,10)
-    userData.password=hashpassword
-    const saveduser=await  registerUser(userData).save()
-    res.status(200).send({messge:"user registered successfully"},{data:saveduser})
-}
-catch(err){
-    res.status(500).send({message:"invalid credential error"})
-}
+    const hashedpassword=await bcrypt.hash(userData.password,10)
+    userData.password=hashedpassword
+    const savedUser=await new LoginModel(userData).save()
+    res.status(201).send({message:"user login successfully"})
+    }
+    catch(err){
+        res.status(500).send({message:"invalid user data"})
+    }
 }
 //login
-const loginUser=async(req,res)=>{
+const UserLoginController=async(req,res)=>{
     try{
-    const {email,password}=req.body
-    const existingUser=await registerUser.findOne({email:email})
-    if(!existingUser){
-        return res.status(404).send({message:"user not registered"})
+        const {email,password}=req.body
+      const existData=await SignModel.findOne({email:email})
+      if(!existData){
+         return res.status(404).send({message:"You are not registered"})
+      }
+      const matchedpassword = await bcrypt.compare(password,existData.password)
+      if(!matchedpassword){
+        return res.status(401).send({message:"invalid password"})
+      }
+      const token=tokengenerator(existData._id)
+      res.status(200).send({message:"user Login successfuly",data:{token}})
     }
-   const isMatchpassword=await bcrypt.compare(password,existingUser.password)
-   if(!isMatchpassword){
-    return res.status(404).send({message:"invalid password"})
-   }
-   const token=await tokengenerator(existingUser._id)
-   res.status(200).send({message:"user login successfully"},{token:token})
-}catch(err){   res.status(200).send({message:"invalid login credentials"})}
+ catch(err){
+     res.status(500).send({message:"invalid creditentials"})
+ }
 }
-module.exports={registerUser,loginUser}
+module.exports={UserLoginController,UserRegisterController}

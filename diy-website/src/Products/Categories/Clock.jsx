@@ -52,11 +52,13 @@
 import React from 'react'
 import holiday from '../../assets/clock/unique clock- the perfect holiday gift.jpg'
 import flower from '../../assets/clock/flower design clock.png'
+import { Link } from 'react-router'
 
 const Clock = () => {
   const clocks = [
     { product: flower, product_name: "Flower Design Clock", price: 200 },
-    { product: holiday, product_name: "Unique Clock - The Perfect Holiday Gift", price: 200 }
+    { product: holiday, product_name: "Unique Clock - The Perfect Holiday Gift", price: 200,
+      path:"/products/unique_clock-_the_perfect_holiday_gift"}
   ]
 
   return (
@@ -77,9 +79,9 @@ const Clock = () => {
               className="w-full h-56 object-contain"
             />
 
-            <h3 className="text-lg font-semibold text-indigo-800 text-center">
+            <Link to={item.path} className="text-lg font-semibold text-indigo-800 text-center">
               {item.product_name}
-            </h3>
+            </Link>
 
             <p className="text-gray-700 text-xl font-medium">₹{item.price}</p>
 

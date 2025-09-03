@@ -58,10 +58,11 @@ import dot from '../../assets/phone case/dot-case.jpeg'
 import glitter from '../../assets/phone case/Gilter-case.jpeg'
 import name from '../../assets/phone case/Name Customized phone case.png'
 import sea from '../../assets/phone case/sea blue phone case.png'
+import { Link } from 'react-router'
 
 const PhoneCase = () => {
   const bags = [
-    { product: anime, product_name: "Anime Phone Case", price: 200 },
+    { product: anime, product_name: "Anime Phone Case", price: 200,path:"/products/anime" },
     { product: bird, product_name: "Bird Design Phone Case", price: 200 },
     { product: glitter, product_name: "Glitter Phone Case", price: 200 },
     { product: dot, product_name: "Dot Design Phone Case", price: 200 },
@@ -85,9 +86,9 @@ const PhoneCase = () => {
               className="w-56 h-56 object-contain"
             />
 
-            <h3 className="text-lg font-semibold text-indigo-800 text-center">
+            <Link to="anime" className="text-lg font-semibold text-indigo-800 text-center">
               {item.product_name}
-            </h3>
+            </Link>
 
             <p className="text-gray-700 text-xl font-medium">₹{item.price}</p>
 

@@ -56,10 +56,11 @@ import Butterfly from '../../assets/cups/Butterfly Design Cup.png'
 import kids from '../../assets/cups/kids cup.png'
 import thought from '../../assets/cups/thought customization design cup.png'
 import white from '../../assets/cups/white_cup_with_customization.png'
+import { Link } from 'react-router'
 
 const Cups = () => {
   const cups = [
-    { product: white, product_name: "Name Customization Cup", price: 300 },
+    { product: white, product_name: "Name Customization Cup", price: 300,path:"/products/name" },
     { product: Butterfly, product_name: "Butterfly Design Cup", price: 200 },
     { product: kids, product_name: "Kids Cup", price: 200 },
     { product: thought, product_name: "Thought Customization Cup", price: 200 }
@@ -81,9 +82,9 @@ const Cups = () => {
               className="w-full h-56 object-contain"
             />
 
-            <h3 className="text-lg font-semibold text-indigo-800 text-center">
+            <Link to={item.path} className="text-lg font-semibold text-indigo-800 text-center">
               {item.product_name}
-            </h3>
+            </Link>
 
             <p className="text-gray-700 text-xl font-medium">₹{item.price}</p>
 
