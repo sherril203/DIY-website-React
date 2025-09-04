@@ -12,8 +12,11 @@ import Anime from "../Products/product_description/Anime";
 import UniqueClock from "../Products/product_description/UniqueClock";
 import Flower from "../Products/product_description/Flower";
 import UserPage from "../Pages/Userpage/UserPage";
+import Cart from '../Pages/Cart/Cart'
 
 import PurchasePage from "../Pages/Buy products/PurchasePage";
+import PrivateRouters from "../Pages/Private Routers/PrivateRouters";
+import AdminLayout from "../Pages/Admin Page/AdminLayout";
 
 const Routers = () => {
   return (
@@ -33,7 +36,13 @@ const Routers = () => {
    <Route path="unique_clock-_the_perfect_holiday_gift" element={<UniqueClock/>}/>
   </Route>
   <Route path="/purchase" element={<PurchasePage/>}/>
-  <Route path="/user" element={<UserPage/>}/>
+   <Route path="/cart" element={<Cart/>}/>
+  <Route element={<PrivateRouters/>}>
+      <Route path="/user" element={<UserPage/>}/>
+  </Route>
+  <Route path="/admin" element={<AdminLayout/>}>
+
+  </Route>
     </Routes>
   );
 }

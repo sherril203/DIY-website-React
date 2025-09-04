@@ -138,7 +138,7 @@
 // export default Purchase;
 //2 column
 import React, { useState } from 'react';
-const [customize,setCustomize]=useState(false)
+//const [customize,setCustomize]=useState(false)
 const Purchase = () => {
   return (
     <div className="p-6 mt-18 text-center bg-rose-50 ">
