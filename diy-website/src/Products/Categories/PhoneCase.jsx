@@ -1,7 +1,6 @@
 // import React from 'react'
 // import anime from '../assets/phone case/anime-case.jpeg'
 // import bird from '../assets/phone case/bird-design-case.jpg'
-// import dot from '../assets/phone case/dot-case.jpeg'
 // import glitter from '../assets/phone case/Gilter-case.jpeg'
 // import name from '../assets/phone case/Name Customized phone case.png'
 // import sea from '../assets/phone case/sea blue phone case.png'
@@ -10,7 +9,6 @@
 //     { product: anime, product_name: "Amine Phone Case", price: 200 },
 //     { product: bird, product_name: "Bird Design Phone Case", price: 200 },
 //     { product: glitter, product_name: "Glitter Phone Case", price: 200 },
-//     { product: dot, product_name: "Dot Design Phone Case", price: 200 },
 //     { product: sea, product_name: "sea blue Phone Case", price: 200 },
 //     { product: name, product_name: "Name Customization Phone Case", price: 200 }
 //   ]
@@ -54,27 +52,27 @@
 import React from 'react'
 import anime from '../../assets/phone case/anime-case.jpeg'
 import bird from '../../assets/phone case/bird-design-case.jpg'
-import dot from '../../assets/phone case/dot-case.jpeg'
 import glitter from '../../assets/phone case/Gilter-case.jpeg'
 import name from '../../assets/phone case/Name Customized phone case.png'
 import sea from '../../assets/phone case/sea blue phone case.png'
+import image from '../../assets/phone case/image customization phone case.jpg'
 import { Link } from 'react-router'
 
 const PhoneCase = () => {
   const bags = [
     { product: anime, product_name: "Anime Phone Case", price: 200,path:"/products/anime" },
-    { product: bird, product_name: "Bird Design Phone Case", price: 200 },
-    { product: glitter, product_name: "Glitter Phone Case", price: 200 },
-    { product: dot, product_name: "Dot Design Phone Case", price: 200 },
-    { product: sea, product_name: "Sea Blue Phone Case", price: 200 },
-    { product: name, product_name: "Name Customization Phone Case", price: 200 }
+    { product: bird, product_name: "Bird Design Phone Case", price: 200 ,path:"/products/birdCase"},
+    { product: glitter, product_name: "Glitter Phone Case", price: 200, path:"/products/glitter" },
+    { product: sea, product_name: "Sea Blue Phone Case", price: 200 ,path:"/products/sea_case"},
+    { product: name, product_name: "Name Customization Phone Case", price: 200,path:"/products/customization" },
+    { product: image, product_name: "Image Customization Phone Case", price: 200,path:"/products/image_customization" }
   ]
 
   return (
     <div className="p-6 bg-rose-50 ">
       <h2 className="text-center font-bold text-3xl mb-6 text-rose-800">Phone Cases</h2>
 
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 justify-center">
         {bags.map((item, index) => (
           <div
             key={index}
@@ -86,7 +84,7 @@ const PhoneCase = () => {
               className="w-56 h-56 object-contain"
             />
 
-            <Link to="anime" className="text-lg font-semibold text-indigo-800 text-center">
+            <Link to={item.path} className="text-lg font-semibold text-indigo-800 text-center">
               {item.product_name}
             </Link>
 

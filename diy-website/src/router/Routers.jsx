@@ -11,12 +11,26 @@ import ProductLayout from "../Products/ProductLayout";
 import Anime from "../Products/product_description/Anime";
 import UniqueClock from "../Products/product_description/UniqueClock";
 import Flower from "../Products/product_description/Flower";
+import Glitter from "../Products/product_description/Glitter";
+import Butterfly from "../Products/product_description/Butterfly";
 import UserPage from "../Pages/Userpage/UserPage";
 import Cart from '../Pages/Cart/Cart'
 
 import PurchasePage from "../Pages/Buy products/PurchasePage";
 import PrivateRouters from "../Pages/Private Routers/PrivateRouters";
 import AdminLayout from "../Pages/Admin Page/AdminLayout";
+import Jewellery from "../Products/product_description/Jewellery";
+import Christmas from "../Products/product_description/Christmas";
+import FlowerClock from "../Products/product_description/FlowerClock";
+import Cartoon from "../Products/product_description/Cartoon";
+import PhoneCustomization from "../Products/product_description/PhoneCustomization";
+import WoodenClock from "../Products/product_description/WoodenClock";
+import RoadClock from "../Products/product_description/RoadClock";
+import ThoughtCup from "../Products/product_description/ThoughtCup";
+import ImgCustomized from "../Products/product_description/ImgCustomized";
+import KidsCup from "../Products/product_description/KidsCup";
+import SeaCase from "../Products/product_description/SeaCase";
+import BirdCase from "../Products/product_description/BirdCase";
 
 const Routers = () => {
   return (
@@ -29,11 +43,31 @@ const Routers = () => {
    <Route path="/login" element={<Login/>}/>
   <Route path="/signup" element={<Signup/>}/>
   <Route path="/name" element={<Name/>}/>
+
   <Route path='/products' element={<ProductLayout/>}>
+  /*cups*/
    <Route path="name" element={<Name/>}/>
-   <Route path="anime" element={<Anime/>}/>
+    <Route path="butterfly" element={<Butterfly/>}/>
+    <Route path="thought" element={<ThoughtCup/>}/>
+    <Route path="kids" element={<KidsCup/>}/>
+   /*bags */
    <Route path="flower" element={<Flower/>}/>
+   <Route path="cartoon" element={<Cartoon/>}/>
+   /*clock*/
+   <Route path="flowerclock" element={<FlowerClock/>}/>
    <Route path="unique_clock-_the_perfect_holiday_gift" element={<UniqueClock/>}/>
+   <Route path="woodenclock" element={<WoodenClock/>}/>
+   <Route path="roadclock" element={<RoadClock/>}/>
+   /*phone case */
+    <Route path="anime" element={<Anime/>}/>
+   <Route path="glitter" element={<Glitter/>}/>
+   <Route path="customization" element={<PhoneCustomization/>}/>
+   <Route path="image_customization" element={<ImgCustomized/>}/>
+   <Route path="sea_case" element={<SeaCase/>}/>
+   <Route path="birdCase" element={<BirdCase/>}/>
+   /*kits*/
+   <Route path="jewelery" element={<Jewellery/>}/>
+   <Route path="christmas" element={<Christmas/>}/>
   </Route>
   <Route path="/purchase" element={<PurchasePage/>}/>
    <Route path="/cart" element={<Cart/>}/>

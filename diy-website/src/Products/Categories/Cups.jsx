@@ -61,16 +61,16 @@ import { Link } from 'react-router'
 const Cups = () => {
   const cups = [
     { product: white, product_name: "Name Customization Cup", price: 300,path:"/products/name" },
-    { product: Butterfly, product_name: "Butterfly Design Cup", price: 200 },
-    { product: kids, product_name: "Kids Cup", price: 200 },
-    { product: thought, product_name: "Thought Customization Cup", price: 200 }
+    { product: Butterfly, product_name: "Butterfly Design Cup", price: 200,path:"/products/butterfly" },
+    { product: kids, product_name: "Kids Cup", price: 200,path:"/products/kids" },
+    { product: thought, product_name: "Thought Customization Cup", price: 200,path:"/products/thought" }
   ]
 
   return (
     <div className="p-6 bg-rose-50 ">
       <h2 className="text-center font-bold text-3xl mb-6 text-rose-800">Cups</h2>
 
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 justify-center">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 justify-center">
         {cups.map((item, index) => (
           <div
             key={index}

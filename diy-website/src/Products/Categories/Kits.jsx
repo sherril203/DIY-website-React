@@ -1,12 +1,11 @@
-
 import React from 'react'
 import christmas from '../../assets/kits/Christmas kit for kids.jpg'
 import jewellery from '../../assets/kits/jewelery kit.jpg'
-
+import { Link } from 'react-router'
 const Kits = () => {
   const bags = [
-    { product: christmas, product_name: "Kids Christmas Kit", price: 200 },
-    { product: jewellery, product_name: "Jewellery Kit for Girls", price: 200 },
+    { product: christmas, product_name: "Kids Christmas Kit", price: 200,path:"/products/christmas" },
+    { product: jewellery, product_name: "Jewellery Kit for Girls", price: 200 ,path:"/products/jewelery"},
   ]
 
   return (
@@ -24,9 +23,9 @@ const Kits = () => {
               alt={item.product_name}
               className="w-full h-56 object-contain"
             />
-            <h3 className="text-lg font-semibold text-indigo-800 text-center">
+            <Link to={item.path} className="text-lg font-semibold text-indigo-800 text-center">
               {item.product_name}
-            </h3>
+            </Link>
             <p className="text-gray-700 text-xl font-medium">₹{item.price}</p>
 
             <div className="flex gap-3 mt-2">

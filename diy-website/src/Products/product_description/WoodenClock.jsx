@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import unique from '../../assets/clock/unique clock- the perfect holiday gift.jpg';
+import wooden from '../../assets/clock/Wooden-Kids-Clock.jpg';
 import Navigate from '../../common/Navigate';
 import Footer from '../../common/Footer';
 
-const UniqueClock = () => {
+const WoodenClock = () => {
   const product = [
-    { image: unique, name: "unique clock- the perfect holiday gift", price: 200 }
+    { product: wooden, product_name: "Wooden Clock for kids", price: 200 },
   ];
 
   const [count, setCount] = useState(1); 
@@ -21,9 +21,9 @@ const UniqueClock = () => {
       <div className='p-23'>
         {product.map((item, index) => (
           <div key={index} className='bg-white shadow p-6 rounded max-w-sm mx-auto'>
-            <img src={item.image} alt={item.name} className='w-full h-auto' />
-            <h2 className='text-lg font-semibold mt-2'>{item.name}</h2>
-            <h2 className='text-gray-600'>Unit Price: ₹{item.Price}</h2>
+            <img src={item.product} alt={item.name} className='w-full h-auto' />
+            <h2 className='text-lg font-semibold mt-2'>{item.product_name}</h2>
+            <h2 className='text-gray-600'>Unit Price: ₹{item.price}</h2>
 
             <div className='flex items-center gap-2 my-3'>
               <button onClick={increase} className='bg-amber-400 px-3 py-1 rounded text-white'>+</button>
@@ -45,4 +45,4 @@ const UniqueClock = () => {
   );
 };
 
-export default UniqueClock;
+export default WoodenClock;

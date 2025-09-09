@@ -9,6 +9,7 @@ import { LuLogIn } from "react-icons/lu";
 import { BiLogOut } from "react-icons/bi";
 import { MdMiscellaneousServices } from "react-icons/md";
 import { MdOutlineFeed } from "react-icons/md";
+import logo from '../assets/logo.png'
 
 const Navigate = () => {
   const [open, setOpen] = useState(false);
@@ -16,7 +17,10 @@ const Navigate = () => {
   return (
     <div className="fixed top-0 w-full z-30 bg-gradient-to-r from-fuchsia-600 to-pink-500 shadow-lg">
       <nav className="flex justify-between items-center p-4">
-        <div className="font-extrabold text-white text-2xl">Arts Worlds</div>
+       <div className="font-extrabold text-white text-2xl flex items-center">
+         <img src={logo} alt="Arts Worlds Logo" width="50" className="mr-2" />
+          Arts Worlds
+       </div>
         <div className="hidden lg:block">
           <ul className="flex gap-6 text-lg font-medium text-white">
             <li className="hover:text-indigo-200 transition">

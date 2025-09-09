@@ -52,13 +52,17 @@
 import React from 'react'
 import holiday from '../../assets/clock/unique clock- the perfect holiday gift.jpg'
 import flower from '../../assets/clock/flower design clock.png'
+import wooden from '../../assets/clock/Wooden-Kids-Clock.jpg'
+import road from '../../assets/clock/car road design clock.webp'
 import { Link } from 'react-router'
 
 const Clock = () => {
   const clocks = [
-    { product: flower, product_name: "Flower Design Clock", price: 200 },
+    { product: flower, product_name: "Flower Design Clock", price: 200 , path:"/products/flowerclock"},
     { product: holiday, product_name: "Unique Clock - The Perfect Holiday Gift", price: 200,
-      path:"/products/unique_clock-_the_perfect_holiday_gift"}
+      path:"/products/unique_clock-_the_perfect_holiday_gift"},
+      { product: wooden, product_name: "Wooden Clock for kids", price: 200 , path:"/products/woodenclock"},
+      { product: road, product_name: "Car Road Design Clock", price: 200 , path:"/products/roadclock"},
   ]
 
   return (
@@ -67,7 +71,7 @@ const Clock = () => {
       <h2 className="text-center font-bold text-3xl mb-6 text-rose-800">Clocks</h2>
 
       {/* Responsive Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 justify-center">
         {clocks.map((item, index) => (
           <div
             key={index}

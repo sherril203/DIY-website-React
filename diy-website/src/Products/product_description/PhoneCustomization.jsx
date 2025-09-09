@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import unique from '../../assets/clock/unique clock- the perfect holiday gift.jpg';
+import { Link } from 'react-router';
+import Customized from '../../assets/phone case/Name Customized phone case.png';
 import Navigate from '../../common/Navigate';
 import Footer from '../../common/Footer';
-
-const UniqueClock = () => {
+const PhoneCustomization = () => {
   const product = [
-    { image: unique, name: "unique clock- the perfect holiday gift", price: 200 }
+    { image: Customized, name: "Name Customized phone case", Price: 200 }
   ];
 
   const [count, setCount] = useState(1); 
@@ -13,7 +13,7 @@ const UniqueClock = () => {
   const increase = () => setCount(count + 1);
   const decrease = () => setCount(count > 1 ? count - 1 : 1);
 
-  const totalAmount = product[0].price * count;
+  const totalAmount = product[0].Price * count;
 
   return (
     <div className='  bg-rose-50'>
@@ -24,7 +24,7 @@ const UniqueClock = () => {
             <img src={item.image} alt={item.name} className='w-full h-auto' />
             <h2 className='text-lg font-semibold mt-2'>{item.name}</h2>
             <h2 className='text-gray-600'>Unit Price: ₹{item.Price}</h2>
-
+            <h2 className='text-gray-600'>Customizable</h2>
             <div className='flex items-center gap-2 my-3'>
               <button onClick={increase} className='bg-amber-400 px-3 py-1 rounded text-white'>+</button>
               <span className='font-semibold'>{count}</span>
@@ -32,9 +32,11 @@ const UniqueClock = () => {
             </div>
 
             <h2 className='text-xl font-bold'>Total: ₹{totalAmount}</h2>
-
+        
             <div className='flex gap-2 mt-4'>
+              <Link to="/purchase">
               <button className='bg-green-500 text-white px-4 py-2 rounded'>Buy Now</button>
+              </Link>
               <button className='bg-blue-500 text-white px-4 py-2 rounded'>Add to Cart</button>
             </div>
           </div>
@@ -43,6 +45,6 @@ const UniqueClock = () => {
       <Footer/>
     </div>
   );
-};
+}
 
-export default UniqueClock;
+export default PhoneCustomization

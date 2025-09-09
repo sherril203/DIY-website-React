@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import unique from '../../assets/clock/unique clock- the perfect holiday gift.jpg';
+import Butterfly from '../../assets/cups/Butterfly Design Cup.png'
 import Navigate from '../../common/Navigate';
 import Footer from '../../common/Footer';
 
-const UniqueClock = () => {
+const Flower = () => {
   const product = [
-    { image: unique, name: "unique clock- the perfect holiday gift", price: 200 }
+    { image: Butterfly, name: "Butterfly Design Cup", Price: 200 }
   ];
 
   const [count, setCount] = useState(1); 
@@ -13,7 +13,7 @@ const UniqueClock = () => {
   const increase = () => setCount(count + 1);
   const decrease = () => setCount(count > 1 ? count - 1 : 1);
 
-  const totalAmount = product[0].price * count;
+  const totalAmount = product[0].Price * count;
 
   return (
     <div className='  bg-rose-50'>
@@ -45,4 +45,4 @@ const UniqueClock = () => {
   );
 };
 
-export default UniqueClock;
+export default Flower;

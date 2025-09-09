@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import unique from '../../assets/clock/unique clock- the perfect holiday gift.jpg';
+import React,{useState} from 'react'
+import bird from '../../assets/phone case/bird-design-case.jpg'
+import { Link } from 'react-router'
 import Navigate from '../../common/Navigate';
 import Footer from '../../common/Footer';
 
-const UniqueClock = () => {
+const BirdCase = () => {
   const product = [
-    { image: unique, name: "unique clock- the perfect holiday gift", price: 200 }
+    { product: bird, product_name: "Bird Design Phone Case", price: 200 },
   ];
 
   const [count, setCount] = useState(1); 
@@ -21,10 +22,9 @@ const UniqueClock = () => {
       <div className='p-23'>
         {product.map((item, index) => (
           <div key={index} className='bg-white shadow p-6 rounded max-w-sm mx-auto'>
-            <img src={item.image} alt={item.name} className='w-full h-auto' />
-            <h2 className='text-lg font-semibold mt-2'>{item.name}</h2>
-            <h2 className='text-gray-600'>Unit Price: ₹{item.Price}</h2>
-
+            <img src={item.product} alt={item.product_name} className='w-full h-auto' />
+            <h2 className='text-lg font-semibold mt-2'>{item.product_name}</h2>
+            <h2 className='text-gray-600'>Unit Price: ₹{item.price}</h2>
             <div className='flex items-center gap-2 my-3'>
               <button onClick={increase} className='bg-amber-400 px-3 py-1 rounded text-white'>+</button>
               <span className='font-semibold'>{count}</span>
@@ -32,9 +32,11 @@ const UniqueClock = () => {
             </div>
 
             <h2 className='text-xl font-bold'>Total: ₹{totalAmount}</h2>
-
+        
             <div className='flex gap-2 mt-4'>
+              <Link to="/purchase">
               <button className='bg-green-500 text-white px-4 py-2 rounded'>Buy Now</button>
+              </Link>
               <button className='bg-blue-500 text-white px-4 py-2 rounded'>Add to Cart</button>
             </div>
           </div>
@@ -43,6 +45,6 @@ const UniqueClock = () => {
       <Footer/>
     </div>
   );
-};
+}
 
-export default UniqueClock;
+export default BirdCase

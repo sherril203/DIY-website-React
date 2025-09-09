@@ -4,34 +4,37 @@ import glitter from '../assets/phone case/Gilter-case.jpeg'
 import flower_bag from '../assets/bags/flower_design_bag.png'
 import flower from '../assets/clock/flower design clock.png'
 import love from '../assets/geometric design/geometric_love_heart_wall_art.jpg'
+import christmas from '../assets/kits/Christmas kit for kids.jpg'
 import {Link } from 'react-router'
 const ProductHome = () => {
     const products=[
-        { product: flower_bag, product_name: "Flower Design Bag", price: 200 },
-        { product: Butterfly, product_name: "Butterfly Design Cup", price: 200 },
-        { product: glitter, product_name: "Glitter Phone Case", price: 200 },
-        { product: flower, product_name: "Flower Design Clock", price: 200 },
+        { product: flower_bag, product_name: "Flower Design Bag", price: 200,path:"/products/flower" },
+        { product: Butterfly, product_name: "Butterfly Design Cup", price: 200,path:"/products/butterfly" },
+        { product: glitter, product_name: "Glitter Phone Case", price: 200 ,path:"/products/glitter" },
+         {product: flower, product_name: "Flower Design Clock", price: 200 , path:"/products/flowerclock"},
         { product: love, product_name: "love heart wall art", price: 200 },
+        { product: christmas, product_name: "Kids Christmas Kit", price: 200,path:"/products/christmas" },
     ]
    return (
     <div className=" bg-rose-50 p-3 ">
       <h2 className="text-center font-bold text-3xl mt-22 p-3 text-rose-800">
         Products
       </h2>
-        <div className="flex overflow-x-auto gap-8 px-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-6 px-6 ">
   {products.map((item, index) => (
     <div
       key={index}
-      className="flex-shrink-0 flex flex-col items-center gap-3 bg-white p-6 shadow rounded-2xl hover:scale-105 transition-transform duration-300 w-72"
+      className=" flex-shrink-0 flex flex-col justify-center
+      items-center gap-3 bg-white p-6 shadow rounded-2xl hover:scale-105 transition-transform duration-300 w-72"
     >
       <img
         src={item.product}
         alt={item.product_name}
         className="w-56 h-56 object-contain"
       />
-      <h3 className="text-lg font-semibold text-gray-800 text-center">
+      <Link to={item.path} className="text-lg font-semibold text-gray-800 text-center">
         {item.product_name}
-      </h3>
+      </Link>
       <p className="text-gray-700 text-xl font-medium">₹{item.price}</p>
 
       <div className="flex gap-3 mt-2">

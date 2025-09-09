@@ -8,7 +8,7 @@ const Name = () => {
     { image: name, name: "Name Customization Cup", Price: 200 }
   ];
 
-  const [count, setCount] = useState(2); // Starts from 2 as you requested
+  const [count, setCount] = useState(1); 
 
   const increase = () => setCount(count + 1);
   const decrease = () => setCount(count > 1 ? count - 1 : 1);
@@ -24,7 +24,7 @@ const Name = () => {
             <img src={item.image} alt={item.name} className='w-full h-auto' />
             <h2 className='text-lg font-semibold mt-2'>{item.name}</h2>
             <h2 className='text-gray-600'>Unit Price: ₹{item.Price}</h2>
-
+             <h2 className='text-gray-600'>Customizable</h2>
             <div className='flex items-center gap-2 my-3'>
               <button onClick={increase} className='bg-amber-400 px-3 py-1 rounded text-white'>+</button>
               <span className='font-semibold'>{count}</span>

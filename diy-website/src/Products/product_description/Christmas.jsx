@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import unique from '../../assets/clock/unique clock- the perfect holiday gift.jpg';
+import { Link } from 'react-router';
+import christmas from '../../assets/kits/Christmas kit for kids.jpg';
 import Navigate from '../../common/Navigate';
 import Footer from '../../common/Footer';
-
-const UniqueClock = () => {
-  const product = [
-    { image: unique, name: "unique clock- the perfect holiday gift", price: 200 }
+const Christmas = () => {
+ const product = [
+    { image: christmas, name: "Christmas kit for kids", Price: 200  }
   ];
 
   const [count, setCount] = useState(1); 
@@ -13,7 +13,7 @@ const UniqueClock = () => {
   const increase = () => setCount(count + 1);
   const decrease = () => setCount(count > 1 ? count - 1 : 1);
 
-  const totalAmount = product[0].price * count;
+  const totalAmount = product[0].Price * count;
 
   return (
     <div className='  bg-rose-50'>
@@ -34,7 +34,9 @@ const UniqueClock = () => {
             <h2 className='text-xl font-bold'>Total: ₹{totalAmount}</h2>
 
             <div className='flex gap-2 mt-4'>
+              <Link to="/purchase">
               <button className='bg-green-500 text-white px-4 py-2 rounded'>Buy Now</button>
+              </Link>
               <button className='bg-blue-500 text-white px-4 py-2 rounded'>Add to Cart</button>
             </div>
           </div>
@@ -43,6 +45,6 @@ const UniqueClock = () => {
       <Footer/>
     </div>
   );
-};
+}
 
-export default UniqueClock;
+export default Christmas

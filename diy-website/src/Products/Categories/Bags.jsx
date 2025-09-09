@@ -6,7 +6,7 @@ import { Link } from 'react-router'
 
 const Bags = () => {
   const bags = [
-    { product: cartoon, product_name: "Cartoon Design Bag for Kids", price: 200},
+    { product: cartoon, product_name: "Cartoon Design Bag for Kids", price: 200,path:"/products/cartoon"},
     { product: flower, product_name: "Flower Design Bag", price: 200 ,path:"/products/flower" }
   ]
  
