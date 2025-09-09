@@ -52,13 +52,14 @@ import heart from '../../assets/geometric design/heart-wall-hang.jpg'
 import lotus from '../../assets/geometric design/lotus design wall decor.webp'
 import love from '../../assets/geometric design/geometric_love_heart_wall_art.jpg'
 import modern from '../../assets/geometric design/modern holiday geometry design.jpg'
+import { Link } from 'react-router'
 
 const Geometric = () => {
   const wall = [
-    { product: heart, product_name: "Heart Wall Hang", price: 200 },
-    { product: lotus, product_name: "Lotus Design Wall Hang", price: 200 },
-    { product: love, product_name: "Love Heart Wall Art", price: 200 },
-    { product: modern, product_name: "Modern Holiday", price: 200 }
+    { product: heart, product_name: "Heart Wall Decor", price: 200,path:"/products/heart" },
+    { product: lotus, product_name: "Lotus Design Wall Decor", price: 200,path:"/products/lotus_decor" },
+    { product: love, product_name: "Love Heart Wall Art", price: 200,path:"/products/love_decor" },
+    { product: modern, product_name: "Modern Holiday Decor", price: 200,path:"/products/holiday" }
   ]
 
   return (
@@ -76,9 +77,9 @@ const Geometric = () => {
               alt={item.product_name}
               className="w-56 h-56 object-contain"
             />
-            <h3 className="text-lg font-semibold text-indigo-800 text-center">
+            <Link to={item.path} className="text-lg font-semibold text-indigo-800 text-center">
               {item.product_name}
-            </h3>
+            </Link>
             <p className="text-gray-700 text-xl font-medium">₹{item.price}</p>
 
             <div className="flex gap-3 mt-2">

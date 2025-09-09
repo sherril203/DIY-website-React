@@ -31,6 +31,10 @@ import ImgCustomized from "../Products/product_description/ImgCustomized";
 import KidsCup from "../Products/product_description/KidsCup";
 import SeaCase from "../Products/product_description/SeaCase";
 import BirdCase from "../Products/product_description/BirdCase";
+import LotusWall from "../Products/product_description/LotusWall";
+import LoveHeart from "../Products/product_description/LoveHeart";
+import Holiday from "../Products/product_description/ModernHoliday";
+import Heartwall from "../Products/product_description/Heartwall";
 
 const Routers = () => {
   return (
@@ -68,6 +72,11 @@ const Routers = () => {
    /*kits*/
    <Route path="jewelery" element={<Jewellery/>}/>
    <Route path="christmas" element={<Christmas/>}/>
+   /*wall decor*/ 
+   <Route path="lotus_decor" element={<LotusWall/>}/>
+   <Route path="love_decor" element={<LoveHeart/>}/>
+   <Route path="holiday" element={<Holiday/>}/>
+   <Route path="heart" element={<Heartwall/>}/>
   </Route>
   <Route path="/purchase" element={<PurchasePage/>}/>
    <Route path="/cart" element={<Cart/>}/>
