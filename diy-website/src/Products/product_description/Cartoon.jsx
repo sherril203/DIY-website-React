@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import cartoon from '../../assets/bags/cartoon design bags for kids.png'
 import Navigate from '../../common/Navigate';
 import Footer from '../../common/Footer';
-
+import { Link } from 'react-router';
 const Cartoon = () => {
   const product = [
     { image: cartoon, name: "cartoon design bags for kids", Price: 200 }
@@ -34,7 +34,9 @@ const Cartoon = () => {
             <h2 className='text-xl font-bold'>Total: ₹{totalAmount}</h2>
 
             <div className='flex gap-2 mt-4'>
-              <button className='bg-green-500 text-white px-4 py-2 rounded'>Buy Now</button>
+              <Link to="/purchase">
+                <button className='bg-green-500 text-white px-4 py-2 rounded'>Buy Now</button>
+              </Link>
               <button className='bg-blue-500 text-white px-4 py-2 rounded'>Add to Cart</button>
             </div>
           </div>

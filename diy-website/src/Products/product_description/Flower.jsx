@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import flower from '../../assets/bags/flower_design_bag.png'
 import Navigate from '../../common/Navigate';
 import Footer from '../../common/Footer';
-
+import { Link } from 'react-router';
 const Flower = () => {
   const product = [
     { image: flower, name: "Flower Design Bag", Price: 200 }
@@ -33,8 +33,10 @@ const Flower = () => {
 
             <h2 className='text-xl font-bold'>Total: ₹{totalAmount}</h2>
 
-            <div className='flex gap-2 mt-4'>
-              <button className='bg-green-500 text-white px-4 py-2 rounded'>Buy Now</button>
+            <div className='flex gap-2 mt-4'> 
+               <Link to="/purchase">
+                <button className='bg-green-500 text-white px-4 py-2 rounded'>Buy Now</button>
+              </Link>
               <button className='bg-blue-500 text-white px-4 py-2 rounded'>Add to Cart</button>
             </div>
           </div>
