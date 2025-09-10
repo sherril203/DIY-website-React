@@ -26,7 +26,7 @@ const Login = () => {
     try {
       const response = await axios.post('http://localhost:5000/userlogin', formData);
 
-      console.log('Login Success:', response.data); // ✅ Log to confirm structure
+      console.log('Login Success:', response.data); 
 
       toast.success("Login successful!", {
         position: "top-right",
@@ -51,7 +51,7 @@ const Login = () => {
   };
 
   return (
-    <div className='bg-fuchsia-300 p-6 min-h-screen flex flex-col justify-center items-center'>
+    <div className='bg-gradient-to-l from-fuchsia-400 to-pink-400 p-6 min-h-screen flex flex-col justify-center items-center'>
       <ToastContainer />
 
       <div className='bg-white rounded-xl shadow-lg p-10 space-y-6 max-w-md w-full'>
@@ -89,7 +89,8 @@ const Login = () => {
           <div>
             <button
               type="submit"
-              className='bg-amber-200 text-center p-2 rounded text-2xl w-full hover:bg-amber-300 transition'
+              className='bg-gradient-to-l from-fuchsia-400 to-pink-400 text-center p-2 rounded text-2xl w-full
+              text-white hover:bg-amber-300 transition'
             >
               Login
             </button>
@@ -100,6 +101,12 @@ const Login = () => {
           New account?{' '}
           <Link to="/signup" className='text-blue-600 hover:underline'>
             Sign Up
+          </Link>
+        </p>
+        <p className='text-center text-lg'>
+          Forgotted Password ?{' '}
+          <Link to="/forgot" className='text-blue-600 hover:underline'>
+            Forgot Password 
           </Link>
         </p>
       </div>

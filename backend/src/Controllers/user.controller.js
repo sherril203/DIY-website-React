@@ -55,5 +55,62 @@ const UserLoginController = async (req, res) => {
     return res.status(500).send({ message: "Login failed", error: err.message });
   }
 };
+// Forgot Password - simplified version (no OTP)
+const forgotpassword = async (req, res) => {
+  try {
+    const { email } = req.body;
+    if (!email) {
+      return res.status(400).json({ message: 'Email is required.' });
+    }
+    const user = await SignModel.findOne({ email });
 
-module.exports = { UserLoginController, UserRegisterController };
+    if (!user) {
+      return res.status(200).json({ message: 'If that email exists, we sent instructions.' });
+    }
+
+    console.log(`Password reset requested for: ${email}`);
+    // await mail(email); // Optional: send actual reset email
+
+    return res.status(200).json({ message: 'Password reset instructions sent to your email.' });
+
+  } catch (err) {
+    console.error('Forgot password error:', err);
+    return res.status(500).json({ message: 'Server error.' });
+  }
+};
+
+// Reset Password 
+const Resetpassword = async (req, res) => {
+  try {
+    const { email, Newpassword } = req.body;
+
+    if (!email || !Newpassword) {
+      return res.status(400).json({ message: 'Email and new password are required.' });
+    }
+
+    const user = await SignModel.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found.' });
+    }
+
+    const hashedPassword = await bcrypt.hash(Newpassword, 10);
+    user.password = hashedPassword;
+
+    // Remove any previous OTP fields if they exist
+    user.otp = undefined;
+    user.otpExpiry = undefined;
+
+    await user.save();
+
+    return res.status(200).json({ message: 'Password reset successful.' });
+
+  } catch (err) {
+    console.error('Reset password error:', err);
+    return res.status(500).json({ message: 'Server error.' });
+  }
+};
+
+
+
+module.exports = { UserLoginController, UserRegisterController,forgotpassword,Resetpassword };

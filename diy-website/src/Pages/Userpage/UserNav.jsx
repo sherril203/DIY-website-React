@@ -10,6 +10,7 @@ import { FaCartArrowDown } from "react-icons/fa6";
 import { LuPackageCheck } from "react-icons/lu";
 import { MdMiscellaneousServices } from "react-icons/md";
 import { MdOutlineFeed } from "react-icons/md";
+import logo from '../../assets/logo.png'
 const UserNav = () => {
  const [open, setOpen] = useState(false);
  
@@ -65,10 +66,10 @@ const UserNav = () => {
                <Link to="/homepage" className="flex gap-2 items-center"><TbHomeFilled /> Home</Link>
              </li>
              <li className="hover:text-indigo-200 transition">
-               <Link to="/products" className="flex gap-2 items-center"><FaCartArrowDown />Added Cart</Link>
+               <Link to="/cart" className="flex gap-2 items-center"><FaCartArrowDown />Cart</Link>
              </li>
              <li className="hover:text-indigo-200 transition">
-               <Link to="/services" className="flex gap-2 items-center">< LuPackageCheck/>Orders</Link>
+               <Link to="/orders" className="flex gap-2 items-center">< LuPackageCheck/>Orders</Link>
              </li>
              <li className="hover:text-indigo-200 transition"> 
                <Link to="/homepage" className="flex gap-2 items-center"> < BiLogOut /> Logout</Link>

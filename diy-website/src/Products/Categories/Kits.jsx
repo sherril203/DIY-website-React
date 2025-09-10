@@ -1,19 +1,27 @@
+// Kits.jsx
 import React from 'react'
 import christmas from '../../assets/kits/Christmas kit for kids.jpg'
 import jewellery from '../../assets/kits/jewelery kit.jpg'
 import { Link } from 'react-router'
-const Kits = () => {
-  const bags = [
-    { product: christmas, product_name: "Kids Christmas Kit", price: 200,path:"/products/christmas" },
-    { product: jewellery, product_name: "Jewellery Kit for Girls", price: 200 ,path:"/products/jewelery"},
+
+const Kits = ({ query }) => {
+  const kits = [
+    { product: christmas, product_name: "Kids Christmas Kit", price: 200, path: "/products/christmas" },
+    { product: jewellery, product_name: "Jewellery Kit for Girls", price: 200, path: "/products/jewelery" },
   ]
+
+  const filtered = kits.filter((item) =>
+    item.product_name.toLowerCase().includes(query.toLowerCase())
+  );
+
+  if (filtered.length === 0) return null;
 
   return (
     <div className="p-6 bg-rose-50">
-      <h2 className="text-center font-bold text-3xl mb-6 text-rose-800">Kit for Kids</h2>
+      <h2 className="text-center font-bold text-3xl mb-6 text-rose-800">Kit for kids</h2>
 
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center">
-        {bags.map((item, index) => (
+        {filtered.map((item, index) => (
           <div
             key={index}
             className="flex-shrink-0 flex flex-col items-center gap-3 bg-white border border-rose-200 p-6 shadow-md rounded-2xl hover:scale-105 transition-transform duration-300 w-72"
@@ -21,7 +29,7 @@ const Kits = () => {
             <img
               src={item.product}
               alt={item.product_name}
-              className="w-full h-56 object-contain"
+              className="w-56 h-56 object-contain"
             />
             <Link to={item.path} className="text-lg font-semibold text-indigo-800 text-center">
               {item.product_name}
@@ -40,7 +48,7 @@ const Kits = () => {
         ))}
       </div>
     </div>
-  )
+  );
 }
 
-export default Kits
+export default Kits;

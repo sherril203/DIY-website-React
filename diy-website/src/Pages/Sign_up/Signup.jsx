@@ -53,7 +53,7 @@ const handleSubmit = async (e) => {
 
 
   return (
-    <div className='bg-fuchsia-300 p-6 min-h-screen flex flex-col justify-center items-center'>
+    <div className='bg-gradient-to-l from-fuchsia-400 to-pink-400 p-6 min-h-screen flex flex-col justify-center items-center'>
       <ToastContainer /> 
 
       <div className='bg-white rounded-xl shadow-lg p-10 space-y-6 max-w-md w-full'>
@@ -105,7 +105,8 @@ const handleSubmit = async (e) => {
           <div>
             <button
               type="submit"
-              className='bg-amber-200 text-center p-2 rounded text-2xl w-full hover:bg-amber-300 transition'
+              className='bg-gradient-to-l from-fuchsia-400 to-pink-400 text-white
+              text-center p-2 rounded text-2xl w-full hover:bg-fuchsia-300 transition'
             >
               Sign Up
             </button>

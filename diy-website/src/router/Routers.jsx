@@ -15,6 +15,7 @@ import Glitter from "../Products/product_description/Glitter";
 import Butterfly from "../Products/product_description/Butterfly";
 import UserPage from "../Pages/Userpage/UserPage";
 import Cart from '../Pages/Cart/Cart'
+import Orders from '../Pages/Orders/Orders'
 
 import PurchasePage from "../Pages/Buy products/PurchasePage";
 import PrivateRouters from "../Pages/Private Routers/PrivateRouters";
@@ -35,6 +36,8 @@ import LotusWall from "../Products/product_description/LotusWall";
 import LoveHeart from "../Products/product_description/LoveHeart";
 import Holiday from "../Products/product_description/ModernHoliday";
 import Heartwall from "../Products/product_description/Heartwall";
+import ForgotPassword from "../forgot and Reset/ForgotPassword";
+import ResetPassword from "../forgot and Reset/ResetPassword";
 
 const Routers = () => {
   return (
@@ -46,7 +49,6 @@ const Routers = () => {
   <Route path='/testinomial' element={<Testinomial/>}/>
    <Route path="/login" element={<Login/>}/>
   <Route path="/signup" element={<Signup/>}/>
-  <Route path="/name" element={<Name/>}/>
 
   <Route path='/products' element={<ProductLayout/>}>
   /*cups*/
@@ -79,13 +81,17 @@ const Routers = () => {
    <Route path="heart" element={<Heartwall/>}/>
   </Route>
   <Route path="/purchase" element={<PurchasePage/>}/>
-   <Route path="/cart" element={<Cart/>}/>
+  <Route path="/cart" element={<Cart/>}/>
+  <Route path="/orders" element={<Orders/>}/>
+
   <Route element={<PrivateRouters/>}>
       <Route path="/user" element={<UserPage/>}/>
   </Route>
   <Route path="/admin" element={<AdminLayout/>}>
 
   </Route>
+  <Route path="/forgot" element={<ForgotPassword/>}/>
+  <Route path="/reset" element={<ResetPassword/>}/>
     </Routes>
   );
 }

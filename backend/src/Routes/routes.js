@@ -12,6 +12,10 @@ router.get('/getquery', query.getquery);
 router.post('/userRegister', userController.UserRegisterController);
 // Login
 router.post('/userlogin', userController.UserLoginController);
+// forgot password
+router.post('/userlogin', userController.forgotpassword);
+// Reset password
+router.post('/reset', userController.Resetpassword);
 // Product Routes
 router.post('/productinfo', upload.single("imageUrl"), products.postproduct);
 router.get('/getproducts', products.getproducts);
