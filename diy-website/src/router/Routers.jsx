@@ -4,22 +4,25 @@ import Contact from "../Pages/contact/Contact";
 import ProductsPage from "../Products/ProductsPage";
 import ServicePage from "../Pages/Services/ServicePage";
 import Testinomial from "../Pages/Testinomial/Testinomial";
+//Authentication
 import Signup from "../Pages/Sign_up/Signup";
 import Login from "../Pages/Login/Login";
-import Name from "../Products/product_description/Name";
-import ProductLayout from "../Products/ProductLayout";
-import Anime from "../Products/product_description/Anime";
-import UniqueClock from "../Products/product_description/UniqueClock";
-import Flower from "../Products/product_description/Flower";
-import Glitter from "../Products/product_description/Glitter";
-import Butterfly from "../Products/product_description/Butterfly";
 import UserPage from "../Pages/Userpage/UserPage";
+
+
 import Cart from '../Pages/Cart/Cart'
 import Orders from '../Pages/Orders/Orders'
 
 import PurchasePage from "../Pages/Buy products/PurchasePage";
 import PrivateRouters from "../Pages/Private Routers/PrivateRouters";
-import AdminLayout from "../Pages/Admin Page/AdminLayout";
+import ProductLayout from "../Products/ProductLayout";
+//product description
+import Name from "../Products/product_description/Name";
+import Anime from "../Products/product_description/Anime";
+import UniqueClock from "../Products/product_description/UniqueClock";
+import Flower from "../Products/product_description/Flower";
+import Glitter from "../Products/product_description/Glitter";
+import Butterfly from "../Products/product_description/Butterfly";
 import Jewellery from "../Products/product_description/Jewellery";
 import Christmas from "../Products/product_description/Christmas";
 import FlowerClock from "../Products/product_description/FlowerClock";
@@ -36,8 +39,16 @@ import LotusWall from "../Products/product_description/LotusWall";
 import LoveHeart from "../Products/product_description/LoveHeart";
 import Holiday from "../Products/product_description/ModernHoliday";
 import Heartwall from "../Products/product_description/Heartwall";
+
 import ForgotPassword from "../forgot and Reset/ForgotPassword";
 import ResetPassword from "../forgot and Reset/ResetPassword";
+
+// Admin page
+import AdminSign from "../Pages/Admin Page/AdminSign";
+import AdminLogin from "../Pages/Admin Page/Adminlogin";
+import AdminLayout from "../Pages/Admin Page/AdminLayout";
+import Dashboard from "../Pages/Admin Page/Dashboard";
+import Addproducts from "../Pages/Admin Page/Addproducts";
 
 const Routers = () => {
   return (
@@ -84,14 +95,24 @@ const Routers = () => {
   <Route path="/cart" element={<Cart/>}/>
   <Route path="/orders" element={<Orders/>}/>
 
-  <Route element={<PrivateRouters/>}>
-      <Route path="/user" element={<UserPage/>}/>
+ <Route path="/login" element={<Login />} />
+
+   {/* Protected routes */}
+  <Route element={<PrivateRouters />}>
+    <Route path="/user" element={<UserPage />} />
   </Route>
   <Route path="/admin" element={<AdminLayout/>}>
-
   </Route>
   <Route path="/forgot" element={<ForgotPassword/>}/>
   <Route path="/reset" element={<ResetPassword/>}/>
+  {/* <Route path="/login" element={<Login />} /> */}
+  { /*Admin panel*/ }
+  <Route path="/adminRegister" element={<AdminSign/>}/>
+  <Route path="/adminlogin" element={<AdminLogin/>}/>
+   <Route path="/admin" element={<AdminLayout/>}>
+     <Route path="dashboard" element={<Dashboard/>}/>
+     <Route path="addproducts" element={<Addproducts/>}/>
+   </Route>
     </Routes>
   );
 }

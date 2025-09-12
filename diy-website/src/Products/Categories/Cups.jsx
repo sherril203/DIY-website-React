@@ -14,10 +14,12 @@ const Cups = ({ query }) => {
     { product: thought, product_name: "Thought Customization Cup", price: 200, path: "/products/thought" }
   ]
 
-  const filtered = cups.filter((item) =>
-    item.product_name.toLowerCase().includes(query.toLowerCase())
-  );
-
+  // const filtered = cups.filter((item) =>
+  //   item.product_name.toLowerCase().includes(query.toLowerCase())
+  // );
+  const filtered = cups.filter(item =>
+  (item.product_name || '').toLowerCase().includes((query || '').toLowerCase())
+);
   if (filtered.length === 0) return null;
 
   return (

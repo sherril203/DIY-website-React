@@ -10,9 +10,12 @@ const Kits = ({ query }) => {
     { product: jewellery, product_name: "Jewellery Kit for Girls", price: 200, path: "/products/jewelery" },
   ]
 
-  const filtered = kits.filter((item) =>
-    item.product_name.toLowerCase().includes(query.toLowerCase())
-  );
+  // const filtered = kits.filter((item) =>
+  //   item.product_name.toLowerCase().includes(query.toLowerCase())
+  // );
+    const filtered = kits.filter(item =>
+  (item.product_name || '').toLowerCase().includes((query || '').toLowerCase())
+);
 
   if (filtered.length === 0) return null;
 

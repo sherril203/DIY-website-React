@@ -17,9 +17,12 @@ const PhoneCase = ({ query }) => {
     { product: image, product_name: "Image Customization Phone Case", price: 200, path: "/products/image_customization" }
   ]
 
-  const filtered = cases.filter(item =>
-    item.product_name.toLowerCase().includes(query.toLowerCase())
-  );
+  // const filtered = cases.filter(item =>
+  //   item.product_name.toLowerCase().includes(query.toLowerCase())
+  // );
+    const filtered = cases.filter(item =>
+  (item.product_name || '').toLowerCase().includes((query || '').toLowerCase())
+);
 
   if (filtered.length === 0) return null;
 

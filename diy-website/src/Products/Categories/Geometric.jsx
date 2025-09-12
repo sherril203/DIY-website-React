@@ -13,11 +13,12 @@ const Geometric = ({ query }) => {
     { product: modern, product_name: "Modern Holiday Decor", price: 200, path: "/products/holiday" }
   ];
 
-  const filtered = wall.filter(item =>
-    item.product_name.toLowerCase().includes(query.toLowerCase())
-  );
-
-  // 🔒 Hide whole section if no match
+  // const filtered = wall.filter(item =>
+  //   item.product_name.toLowerCase().includes(query.toLowerCase())
+  // );
+    const filtered = wall.filter(item =>
+  (item.product_name || '').toLowerCase().includes((query || '').toLowerCase())
+);
   if (filtered.length === 0) return null;
 
   return (

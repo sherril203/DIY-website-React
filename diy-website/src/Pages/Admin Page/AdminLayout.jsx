@@ -1,18 +1,28 @@
-import React from 'react'
-import { Outlet } from 'react-router'
-import Sidebar from './Sidebar'
-import Navbar from './Navbar'
+import React from 'react';
+import { Outlet, useLocation } from 'react-router';
+import Sidebar from './Sidebar';
+import Navbar from './Navbar';
 
 const AdminLayout = () => {
-  return (
-    <div className="w-full h-screen">
-      <Navbar/>
-        <div className="w-[80%] h-[calc(100vh-80px)] fixed left-[20%] top-20 overflow-y-auto">
-            <Outlet/>
-            <Sidebar/>
-        </div>
-    </div>
-  )
-}
+  const location = useLocation();
 
-export default AdminLayout
+  const isAdminHome = location.pathname === '/admin';
+
+  return (
+    <div className="w-full h-screen flex">
+      <Sidebar />
+
+      <div className="flex-1 h-full flex flex-col">
+        <Navbar />
+        <div className="p-4 overflow-y-auto h-[calc(100vh-80px)]">
+          {isAdminHome && (
+            <h2 className="text-3xl font-bold mt-22 mx-100">Hi Admin!</h2>
+          )}
+          <Outlet />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AdminLayout;

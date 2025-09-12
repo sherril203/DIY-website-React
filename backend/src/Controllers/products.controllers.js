@@ -1,35 +1,82 @@
 const productModel = require('../model/products.model');
 
+// Create product (with image upload)
 const postproduct = async (req, res) => {
   try {
     const productdata = req.body;
 
     if (req.file) {
-      productdata.imageUrl = req.file.filename; // correct key
-      productdata.path = req.file.path; // optional: store full path
+      productdata.product_img = req.file.filename;
     }
 
     const savedProduct = new productModel(productdata);
     await savedProduct.save();
 
-    res.status(201).send({ message: "Product submitted successfully" });
+    res.status(201).send({
+      message: "Product submitted successfully",
+      data: savedProduct, 
+    });
   } catch (err) {
     console.error("Error submitting product:", err);
     res.status(500).send({ message: "Product submission error" });
   }
 };
 
+// Get all products
 const getproducts = async (req, res) => {
   try {
     const showproducts = await productModel.find().sort({ _id: -1 });
-    return res.status(200).send({ showdata: showproducts });
+    res.status(200).send({ data: showproducts });
   } catch (err) {
     console.error("Error in get data:", err);
-    return res.status(500).send("Error retrieving products");
+    res.status(500).send("Error retrieving products");
+  }
+};
+
+// Update product (with optional image upload)
+const updateproducts = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const updateData = req.body;
+
+    if (req.file) {
+      updateData.product_img = req.file.filename;
+    }
+
+    const updated = await productModel.findByIdAndUpdate(id, {...updateData}, { new: true });
+
+    if (!updated) {
+      return res.status(404).send({ message: "Product not found" });
+    }
+
+    return res.status(200).send({ data: updated });
+  } catch (err) {
+    console.error("Error updating product:", err);
+    return res.status(500).send({ message: "Error updating product" });
+  }
+};
+
+// Delete product
+const deleteproducts = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    const deleted = await productModel.findByIdAndDelete(id);
+
+    if (!deleted) {
+      return res.status(404).send({ message: "Product not found" });
+    }
+
+    res.status(200).send({ message: "Product deleted successfully" });
+  } catch (err) {
+    console.error("Error deleting product:", err);
+    res.status(500).send({ message: "Error deleting product" });
   }
 };
 
 module.exports = {
   postproduct,
   getproducts,
+  updateproducts,
+  deleteproducts
 };

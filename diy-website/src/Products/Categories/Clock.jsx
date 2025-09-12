@@ -13,9 +13,12 @@ const Clock = ({ query }) => {
     { product: road, product_name: "Car Road Design Clock", price: 200, path: "/products/roadclock" },
   ];
 
-  const filtered = clocks.filter(item =>
-    item.product_name.toLowerCase().includes(query.toLowerCase())
-  );
+  // const filtered = clocks.filter(item =>
+  //   item.product_name.toLowerCase().includes(query.toLowerCase())
+  // );
+    const filtered = clocks.filter(item =>
+  (item.product_name || '').toLowerCase().includes((query || '').toLowerCase())
+);
 
   if (filtered.length === 0) return null
 
@@ -23,7 +26,7 @@ const Clock = ({ query }) => {
     <div className="p-6 bg-rose-50">
       <h2 className="text-center font-bold text-3xl mb-6 text-rose-800">Clock</h2>
 
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center">
+      <div className="grid grid-cols-2 sm:grid-cols-1 md:grid-cols-3 gap-6  justify-center">
         {filtered.map((item, index) => (
           <div
             key={index}

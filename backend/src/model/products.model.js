@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 
 // Product Schema
 const productSchema = new mongoose.Schema({
-  imageUrl: { type: String },
+  product_img: { type: String },
   product_name: { type: String },
-  price: { type: Number },
-  path: { type: String },
+  quantity:{type:Number},
+  product_price: { type: Number },
 });
 
 const Product = mongoose.model('Product', productSchema);

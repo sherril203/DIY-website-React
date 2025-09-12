@@ -1,8 +1,9 @@
 const tokengenerator = require('../middleware/Auth');
 const SignModel = require('../model/Signup.model');
+const AdminModel=require('../model/Admin.model')
 const bcrypt = require('bcrypt');
 
-// Register
+// Register for user
 const UserRegisterController = async (req, res) => {
   try {
     const userData = req.body;
@@ -22,7 +23,7 @@ const UserRegisterController = async (req, res) => {
   }
 };
 
-// Login
+// Login for user
 const UserLoginController = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -111,6 +112,62 @@ const Resetpassword = async (req, res) => {
   }
 };
 
+// Register for user
+const AdminRegisterController = async (req, res) => {
+  try {
+    const AdminData = req.body;
+    const existData = await AdminModel.findOne({ email: userData.email });
+    if (existData) {
+      return res.status(400).send({ message: "Email is already registered" });
+    }
+    const hashedPassword = await bcrypt.hash(userData.password, 10);
+    userData.password = hashedPassword;
+    const savedUser = new AdminModel(AdminData)
+    await savedUser.save();
+
+    return res.status(201).send({ message: "User registered successfully" });
+
+  } catch (err) {
+    return res.status(500).send({ message: "Signup failed", error: err.message });
+  }
+};
+
+// Login for user
+const AdminLoginController = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const existData = await AdminModel.findOne({ email });
+    if (!existData) {
+      return res.status(404).send({ message: "You are not registered" });
+    }
+
+    const matchedPassword = await bcrypt.compare(password, existData.password);
+    if (!matchedPassword) {
+      return res.status(401).send({ message: "Invalid password" });
+    }
+
+    const token = tokengenerator(existData._id);
+
+    return res.status(200).send({
+      message: "User login successfully",
+      data: {
+        token,
+        user: {
+          id: existData._id,
+          username: existData.username,
+          email: existData.email
+        }
+      }
+    });
+
+  } catch (err) {
+    return res.status(500).send({ message: "Login failed", error: err.message });
+  }
+};
 
 
-module.exports = { UserLoginController, UserRegisterController,forgotpassword,Resetpassword };
+
+module.exports = { UserLoginController, UserRegisterController,forgotpassword,Resetpassword, 
+  AdminLoginController,AdminRegisterController
+};

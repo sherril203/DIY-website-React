@@ -9,9 +9,13 @@ const Bags = ({ query }) => {
     { product: flower, product_name: "Flower Design Bag", price: 200, path: "/products/flower" }
   ];
 
+  // const filtered = bags.filter(item =>
+  //   item.product_name.toLowerCase().includes(query.toLowerCase())
+  // );
   const filtered = bags.filter(item =>
-    item.product_name.toLowerCase().includes(query.toLowerCase())
-  );
+  (item.product_name || '').toLowerCase().includes((query || '').toLowerCase())
+);
+
 
   if (filtered.length === 0) return null;
 
