@@ -9,7 +9,6 @@ import { LuLogIn } from "react-icons/lu";
 import { BiLogOut } from "react-icons/bi";
 import { MdMiscellaneousServices } from "react-icons/md";
 import { MdOutlineFeed } from "react-icons/md";
-import { FaCartArrowDown } from "react-icons/fa6";
 import logo from '../assets/logo.png'
 
 const Navigate = () => {
@@ -43,13 +42,6 @@ const Navigate = () => {
         </div>
 
         <div className="hidden lg:flex gap-2 items-center">
-          <Link to="/cart">
-            <button className=" flex items-center gap-3 text-white text-l
-              font-semibold px-4 py-2 border border-white rounded-xl
-               hover:bg-white hover:text-fuchsia-800 transition">
-              <FaCartArrowDown /> Cart
-            </button>
-           </Link>
           <Link to="/login">
             <button className="text-white text-base font-semibold px-4 py-2 border
              border-white rounded-xl hover:bg-white hover:text-fuchsia-800 transition">
@@ -86,9 +78,6 @@ const Navigate = () => {
             </li>
             <li className="hover:text-indigo-200 transition">
               <Link to="/contact" className="flex gap-2 items-center"><IoIosCall /> Contact</Link>
-            </li>
-            <li className="hover:text-indigo-200 transition">
-              <Link to="/cart" className="flex gap-2 items-center"><FaCartArrowDown />Cart</Link>
             </li>
             <li className="hover:text-indigo-200 transition">
                <Link  to="/testinomial" className="flex gap-2 items-center"><MdOutlineFeed />Testimonial</Link></li>

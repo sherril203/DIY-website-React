@@ -41,13 +41,17 @@ const Geometric = ({ query }) => {
             </Link>
             <p className="text-gray-700 text-xl font-medium">₹{item.price}</p>
 
-            <div className="flex gap-3 mt-2">
-              <button className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition">
-                Add to Cart
-              </button>
+             <div className="flex gap-3 mt-2">
+              <Link to="/cart">
+                <button className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition">
+                  Add to Cart
+                </button>
+            </Link>
+            <Link to="/purchase">
               <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
-                Buy Now
+               Buy Now
               </button>
+            </Link>
             </div>
           </div>
         ))}

@@ -6,6 +6,7 @@ import flower from '../assets/clock/flower design clock.png'
 import love from '../assets/geometric design/geometric_love_heart_wall_art.jpg'
 import christmas from '../assets/kits/Christmas kit for kids.jpg'
 import {Link } from 'react-router'
+ 
 const ProductHome = () => {
     const products=[
         { product: flower_bag, product_name: "Flower Design Bag", price: 200,path:"/products/flower" },
@@ -15,8 +16,9 @@ const ProductHome = () => {
         { product: love, product_name: "love heart wall art", price: 200 },
         { product: christmas, product_name: "Kids Christmas Kit", price: 200,path:"/products/christmas" },
     ]
+
    return (
-    <div className=" bg-rose-50 p-3 ">
+    <div className=" bg-rose-50 p-3 " data-aos="fade-right">
       <h2 className="text-center font-bold text-3xl mt-22 p-3 text-rose-800">
         Products
       </h2>

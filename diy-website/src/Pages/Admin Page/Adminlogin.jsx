@@ -98,7 +98,7 @@ const AdminLogin = () => {
 
         <p className='text-center text-lg'>
           New account?{' '}
-          <Link to="/signup" className='text-blue-600 hover:underline'>
+          <Link to="/adminRegister" className='text-blue-600 hover:underline'>
             Sign Up
           </Link>
         </p>

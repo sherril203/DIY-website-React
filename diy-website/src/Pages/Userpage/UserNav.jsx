@@ -10,6 +10,7 @@ import { FaCartArrowDown } from "react-icons/fa6";
 import { LuPackageCheck } from "react-icons/lu";
 import { MdMiscellaneousServices } from "react-icons/md";
 import { MdOutlineFeed } from "react-icons/md";
+import { MdAccountCircle } from "react-icons/md";
 import logo from '../../assets/logo.png'
 const UserNav = () => {
  const [open, setOpen] = useState(false);
@@ -49,6 +50,12 @@ const UserNav = () => {
                <FaCartArrowDown /> Cart
              </button>
            </Link>
+           <Link to="/profile"
+            className=" flex items-center gap-3 text-white text-l
+              font-semibold px-4 py-2 border border-white rounded-xl
+               hover:bg-white hover:text-fuchsia-800 transition">
+           <MdAccountCircle size={25}/>
+          </Link>
          </div>
  
          <button 
@@ -62,8 +69,11 @@ const UserNav = () => {
        {open && (
          <div className="lg:hidden bg-fuchsia-600/95 text-white px-4 py-6">
            <ul className="flex flex-col gap-4 text-lg">
-             <li className="hover:text-indigo-200 transition">
+            {/* <li className="hover:text-indigo-200 transition">
                <Link to="/homepage" className="flex gap-2 items-center"><TbHomeFilled /> Home</Link>
+             </li> */}
+             <li className="hover:text-indigo-200 transition">
+               <Link to="/profile" className="flex gap-2 items-center"><MdAccountCircle /> Profile</Link>
              </li>
              <li className="hover:text-indigo-200 transition">
                <Link to="/cart" className="flex gap-2 items-center"><FaCartArrowDown />Cart</Link>

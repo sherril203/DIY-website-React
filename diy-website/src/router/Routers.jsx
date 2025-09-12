@@ -49,6 +49,7 @@ import AdminLogin from "../Pages/Admin Page/Adminlogin";
 import AdminLayout from "../Pages/Admin Page/AdminLayout";
 import Dashboard from "../Pages/Admin Page/Dashboard";
 import Addproducts from "../Pages/Admin Page/Addproducts";
+import Profile from "../Pages/Userpage/Profile";
 
 const Routers = () => {
   return (
@@ -99,7 +100,8 @@ const Routers = () => {
 
    {/* Protected routes */}
   <Route element={<PrivateRouters />}>
-    <Route path="/user" element={<UserPage />} />
+    <Route path="user" element={<UserPage />} />
+    <Route path="profile" element={<Profile/>}/>
   </Route>
   <Route path="/admin" element={<AdminLayout/>}>
   </Route>
@@ -113,6 +115,7 @@ const Routers = () => {
      <Route path="dashboard" element={<Dashboard/>}/>
      <Route path="addproducts" element={<Addproducts/>}/>
    </Route>
+   
     </Routes>
   );
 }
