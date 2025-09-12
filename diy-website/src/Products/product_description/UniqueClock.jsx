@@ -5,7 +5,7 @@ import Footer from '../../common/Footer';
 import { Link } from 'react-router';
 const UniqueClock = () => {
   const product = [
-    { image: unique, name: "unique clock- the perfect holiday gift", price: 200 }
+    { product: unique, product_name: "unique clock- the perfect holiday gift", price: 200 }
   ];
 
   const [count, setCount] = useState(1); 
