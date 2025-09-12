@@ -1,7 +1,7 @@
 const purchaseModel=require('../model/Purchase.model')
 const { purchaseMail } = require('../utils/mailService')
-const PostPurchase=async(req,res)=>{
-try {
+const PostPurchase = async (req, res) => {
+  try {
     const purchasedata = req.body;
 
     // Save to DB
@@ -9,15 +9,20 @@ try {
     await stored.save();
 
     // Extract fields for email
-    const { customer_name, customer_email, ...restData } = purchasedata;
+    const {
+      customer_name,
+      customer_email,
+      ...restData
+    } = purchasedata;
+
     console.log("Sending email to:", customer_email, restData);
 
-    // Send email
+    // Send email with correct field names
     const mailResult = await purchaseMail(
       customer_email,
       "Purchase Confirmation",
       {
-        name: customer_name,
+        customer_name,   // ✅ send correct key for template
         ...restData,
       }
     );
@@ -30,7 +35,6 @@ try {
       });
     }
 
-    // Success
     return res.status(201).send({
       message: "Product purchased and email sent successfully",
       data: stored,
@@ -40,7 +44,8 @@ try {
     console.error("Error in PostPurchase:", err);
     return res.status(500).send("Error in product purchase");
   }
-}
+};
+
 const getPurchase=async(req,res)=>{
  try {
     const showpurchase = await purchaseModel.find().sort({ _id: -1 });

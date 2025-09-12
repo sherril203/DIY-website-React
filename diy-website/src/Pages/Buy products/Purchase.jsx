@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router';
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Purchase = () => {
   const location = useLocation();
@@ -10,21 +12,16 @@ const Purchase = () => {
   const [customType, setCustomType] = useState('');
   const [paymentMode, setPaymentMode] = useState('');
 
-  // Pre-fill product info
   const [productName, setProductName] = useState(product?.name || '');
   const [productPrice, setProductPrice] = useState(product?.price || '');
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(product?.quantity || 1);
 
-  // Customer info
   const [customerName, setCustomerName] = useState('');
   const [customerEmail, setCustomerEmail] = useState('');
   const [mobileNo, setMobileNo] = useState('');
   const [address, setAddress] = useState('');
   const [upiId, setUpiId] = useState('');
-  const [customValue, setCustomValue] = useState(''); // name or file
-
-  // Status
-  const [status, setStatus] = useState('');
+  const [customValue, setCustomValue] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,7 +38,6 @@ const Purchase = () => {
       payment_mode: paymentMode,
     };
 
-    // Add optional fields
     if (customize && customType === 'name') {
       formData.customization_value = customValue;
     }
@@ -51,11 +47,11 @@ const Purchase = () => {
     }
 
     try {
-      const res = await axios.post('http://localhost:5000/purchase', formData);
-      setStatus(' Purchase successful!');
+      await axios.post('http://localhost:5000/purchase', formData);
+      toast.success(' Purchase successful!');
     } catch (err) {
       console.error(err);
-      setStatus(' Error during purchase.');
+      toast.error('Error during purchase. Please try again.');
     }
   };
 
@@ -68,64 +64,49 @@ const Purchase = () => {
         <h2 className="text-center font-bold text-2xl mb-6">Purchase Form</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Left Column */}
+
           <div className="text-left space-y-4">
-            {/* Product Name */}
             <div>
-              <label htmlFor="product_name" className="block mb-1 font-semibold">
-                Product Name
-              </label>
+              <label className="block font-semibold">Product Name</label>
               <input
                 type="text"
-                id="product_name"
                 value={productName}
-                onChange={(e) => setProductName(e.target.value)}
-                className="w-full border p-2 rounded"
                 readOnly
+                className="w-full border p-2 rounded"
               />
             </div>
 
-            {/* Quantity */}
             <div>
-              <label htmlFor="quantity" className="block mb-1 font-semibold">
-                Quantity
-              </label>
+              <label className="block font-semibold">Quantity</label>
               <input
                 type="number"
-                id="quantity"
                 value={quantity}
+                min={1}
                 onChange={(e) => setQuantity(e.target.value)}
                 className="w-full border p-2 rounded"
-                min={1}
               />
             </div>
 
-            {/* Product Price */}
             <div>
-              <label htmlFor="product_price" className="block mb-1 font-semibold">
-                Product Price
-              </label>
+              <label className="block font-semibold">Product Price</label>
               <input
                 type="number"
-                id="product_price"
                 value={productPrice}
-                onChange={(e) => setProductPrice(e.target.value)}
-                className="w-full border p-2 rounded"
                 readOnly
+                className="w-full border p-2 rounded"
               />
             </div>
 
-            {/* Customization Process */}
             <div>
-              <label className="block mb-1 font-semibold">Customization Process</label>
+              <label className="block font-semibold">Customization Process</label>
               <div className="flex gap-4">
                 <label>
                   <input
                     type="radio"
                     name="customization"
                     value="yes"
-                    className="mr-1"
                     onChange={() => setCustomize(true)}
+                    className="mr-1"
                   />
                   Yes
                 </label>
@@ -134,20 +115,20 @@ const Purchase = () => {
                     type="radio"
                     name="customization"
                     value="no"
-                    className="mr-1"
                     onChange={() => {
                       setCustomize(false);
                       setCustomType('');
                       setCustomValue('');
                     }}
+                    className="mr-1"
                   />
                   No
                 </label>
               </div>
 
               {customize && (
-                <div className="mt-4">
-                  <label className="block mb-1 font-semibold">Customized by</label>
+                <div className="mt-2">
+                  <label className="block font-semibold">Customized by</label>
                   <div className="flex gap-4">
                     <label>
                       <input
@@ -179,42 +160,33 @@ const Purchase = () => {
                     </label>
                   </div>
 
-                  {/* Input for customization */}
                   {customType === 'image' && (
-                    <div className="mt-2">
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => setCustomValue(e.target.files[0])}
-                        className="block mt-2"
-                      />
-                    </div>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => setCustomValue(e.target.files[0])}
+                      className="block mt-2"
+                    />
                   )}
                   {customType === 'name' && (
-                    <div className="mt-2">
-                      <input
-                        type="text"
-                        placeholder="Enter name"
-                        className="w-full border p-2 rounded"
-                        value={customValue}
-                        onChange={(e) => setCustomValue(e.target.value)}
-                      />
-                    </div>
+                    <input
+                      type="text"
+                      placeholder="Enter name"
+                      value={customValue}
+                      onChange={(e) => setCustomValue(e.target.value)}
+                      className="w-full border p-2 rounded mt-2"
+                    />
                   )}
                 </div>
               )}
             </div>
           </div>
 
-          {/* Right Column */}
           <div className="text-left space-y-4">
             <div>
-              <label htmlFor="customer_name" className="block mb-1 font-semibold">
-                Customer Name
-              </label>
+              <label className="block font-semibold">Customer Name</label>
               <input
                 type="text"
-                id="customer_name"
                 value={customerName}
                 onChange={(e) => setCustomerName(e.target.value)}
                 className="w-full border p-2 rounded"
@@ -222,12 +194,9 @@ const Purchase = () => {
             </div>
 
             <div>
-              <label htmlFor="customer_email" className="block mb-1 font-semibold">
-                Customer Email
-              </label>
+              <label className="block font-semibold">Email</label>
               <input
                 type="email"
-                id="customer_email"
                 value={customerEmail}
                 onChange={(e) => setCustomerEmail(e.target.value)}
                 className="w-full border p-2 rounded"
@@ -235,12 +204,9 @@ const Purchase = () => {
             </div>
 
             <div>
-              <label htmlFor="customer_mobile" className="block mb-1 font-semibold">
-                Mobile No
-              </label>
+              <label className="block font-semibold">Mobile Number</label>
               <input
                 type="tel"
-                id="customer_mobile"
                 value={mobileNo}
                 onChange={(e) => setMobileNo(e.target.value)}
                 className="w-full border p-2 rounded"
@@ -248,29 +214,25 @@ const Purchase = () => {
             </div>
 
             <div>
-              <label htmlFor="address" className="block mb-1 font-semibold">
-                Address
-              </label>
+              <label className="block font-semibold">Address</label>
               <textarea
-                id="address"
-                rows="3"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 className="w-full border p-2 rounded"
+                rows={3}
               ></textarea>
             </div>
 
-            {/* Payment Mode */}
             <div>
-              <label className="block mb-1 font-semibold">Payment Mode</label>
+              <label className="block font-semibold">Payment Mode</label>
               <div className="flex gap-4">
                 <label>
                   <input
                     type="radio"
                     name="payment_mode"
                     value="upi"
-                    className="mr-1"
                     onChange={() => setPaymentMode('upi')}
+                    className="mr-1"
                   />
                   UPI
                 </label>
@@ -279,8 +241,8 @@ const Purchase = () => {
                     type="radio"
                     name="payment_mode"
                     value="cash"
-                    className="mr-1"
                     onChange={() => setPaymentMode('cash')}
+                    className="mr-1"
                   />
                   Cash
                 </label>
@@ -288,12 +250,9 @@ const Purchase = () => {
 
               {paymentMode === 'upi' && (
                 <div className="mt-2">
-                  <label htmlFor="upi_id" className="block mb-1 font-semibold">
-                    Enter UPI ID
-                  </label>
+                  <label className="block font-semibold">UPI ID</label>
                   <input
                     type="text"
-                    id="upi_id"
                     value={upiId}
                     onChange={(e) => setUpiId(e.target.value)}
                     placeholder="example@upi"
@@ -303,7 +262,7 @@ const Purchase = () => {
               )}
 
               {paymentMode === 'cash' && (
-                <div className="mt-2 text-sm text-gray-600 italic">
+                <div className="mt-2 text-sm text-gray-500 italic">
                   Cash will be collected on delivery.
                 </div>
               )}
@@ -318,9 +277,10 @@ const Purchase = () => {
           >
             Purchase
           </button>
-          {status && <p className="mt-4 text-lg font-medium">{status}</p>}
         </div>
       </form>
+
+      <ToastContainer position="top-right" autoClose={1000} />
     </div>
   );
 };

@@ -40,12 +40,15 @@ const purchaseMail = async (to, subject, data) => {
       text: "Thank you for your purchase. Your product will be delivered soon.",
       html: `
         <div style="font-family: sans-serif; padding: 10px; line-height: 1.6;">
-          <h2 style="color: #d63384;">Thank you for your purchase, ${data.name}!</h2>
+          <h2 style="color: #d63384;">Thank you for your purchase, ${data.customer_name}!</h2>
+          <p>We're thrilled to confirm your order. Here are the details:</p>
           <p><strong>Product:</strong> ${data.product_name}</p>
           <p><strong>Quantity:</strong> ${data.quantity}</p>
-          <p><strong>Price:</strong> ₹${data.product_price}</p>
+          <p><strong>Total Price:</strong> ₹${data.product_price}</p>
           <p><strong>Customization:</strong> ${data.customization}</p>
           <p><strong>Payment Mode:</strong> ${data.payment_mode}</p>
+          <p><strong>Customer Name:</strong> ${data.customer_name}</p>
+          <p><strong>Mobile No:</strong> ${data.mobile_no}</p>
           <p><strong>Delivery Address:</strong> ${data.address}</p>
           <br/>
           <p>We'll process and ship your order shortly. Thank you for shopping with us!</p>
@@ -61,6 +64,8 @@ const purchaseMail = async (to, subject, data) => {
     console.error("Error sending email:", error);
     return { error };
   }
-};;
+};
+
+
 
 module.exports = {sendMailer,purchaseMail}
