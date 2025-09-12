@@ -34,8 +34,17 @@ const PhoneCustomization = () => {
             <h2 className='text-xl font-bold'>Total: ₹{totalAmount}</h2>
         
             <div className='flex gap-2 mt-4'>
-              <Link to="/purchase">
-              <button className='bg-green-500 text-white px-4 py-2 rounded'>Buy Now</button>
+              <Link
+                to="/purchase"
+                state={{
+                  product: {
+                    name: item.name,
+                    price: item.Price,
+                    quantity: count, // Optional: send quantity too
+                  }
+                }}
+              >
+                <button className='bg-green-500 text-white px-4 py-2 rounded'>Buy Now</button>
               </Link>
               <button className='bg-blue-500 text-white px-4 py-2 rounded'>Add to Cart</button>
             </div>

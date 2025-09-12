@@ -5,7 +5,7 @@ import Navigate from '../../common/Navigate';
 import Footer from '../../common/Footer';
 const Christmas = () => {
  const product = [
-    { image: christmas, name: "Christmas kit for kids", Price: 200  }
+    { product: christmas, product_name: "Christmas kit for kids", Price: 200  }
   ];
 
   const [count, setCount] = useState(1); 
@@ -21,8 +21,8 @@ const Christmas = () => {
       <div className='p-23'>
         {product.map((item, index) => (
           <div key={index} className='bg-white shadow p-6 rounded max-w-sm mx-auto'>
-            <img src={item.image} alt={item.name} className='w-full h-auto' />
-            <h2 className='text-lg font-semibold mt-2'>{item.name}</h2>
+            <img src={item.product} alt={item.product_name} className='w-full h-auto' />
+            <h2 className='text-lg font-semibold mt-2'>{item.product_name}</h2>
             <h2 className='text-gray-600'>Unit Price: ₹{item.Price}</h2>
 
             <div className='flex items-center gap-2 my-3'>
@@ -34,8 +34,17 @@ const Christmas = () => {
             <h2 className='text-xl font-bold'>Total: ₹{totalAmount}</h2>
 
             <div className='flex gap-2 mt-4'>
-              <Link to="/purchase">
-              <button className='bg-green-500 text-white px-4 py-2 rounded'>Buy Now</button>
+              <Link
+                to="/purchase"
+                state={{
+                  product: {
+                    name: item.product_name,
+                    price: item.Price,
+                    quantity: count, // Optional: send quantity too
+                  }
+                }}
+              >
+                <button className='bg-green-500 text-white px-4 py-2 rounded'>Buy Now</button>
               </Link>
               <button className='bg-blue-500 text-white px-4 py-2 rounded'>Add to Cart</button>
             </div>

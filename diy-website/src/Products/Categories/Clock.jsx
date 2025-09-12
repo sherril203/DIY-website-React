@@ -47,12 +47,12 @@ const Clock = ({ query }) => {
                 <button className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition">
                   Add to Cart
                 </button>
-            </Link>
-            <Link to="/purchase">
-              <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
-               Buy Now
-              </button>
-            </Link>
+                </Link>
+                <Link to="/purchase">
+                  <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
+                     Buy Now
+                  </button>
+                </Link>
             </div>
           </div>
         ))}
