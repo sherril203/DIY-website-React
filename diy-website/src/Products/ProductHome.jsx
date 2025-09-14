@@ -49,9 +49,20 @@ const ProductHome = () => {
          className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition">
           Add to Cart
         </button>
+        <Link
+         to="/purchase"
+          state={{
+                  product: {
+                    name: item.product_name,
+                    price: item.price,
+                    // quantity: count
+                  }
+                }}>
         <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
           Buy Now
         </button>
+        </Link>
+        
       </div>
     </div>
   ))}
