@@ -6,6 +6,8 @@ import flower from '../assets/clock/flower design clock.png'
 import love from '../assets/geometric design/geometric_love_heart_wall_art.jpg'
 import christmas from '../assets/kits/Christmas kit for kids.jpg'
 import {Link } from 'react-router'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
  
 const ProductHome = () => {
     const products=[
@@ -16,9 +18,12 @@ const ProductHome = () => {
         { product: love, product_name: "love heart wall art", price: 200 },
         { product: christmas, product_name: "Kids Christmas Kit", price: 200,path:"/products/christmas" },
     ]
-
+   const handleCart=()=>{
+    toast.success('product added')
+   }
    return (
     <div className=" bg-rose-50 p-3 " data-aos="fade-right">
+      <ToastContainer/>
       <h2 className="text-center font-bold text-3xl mt-22 p-3 text-rose-800">
         Products
       </h2>
@@ -40,7 +45,8 @@ const ProductHome = () => {
       <p className="text-gray-700 text-xl font-medium">₹{item.price}</p>
 
       <div className="flex gap-3 mt-2">
-        <button className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition">
+        <button onClick={handleCart}
+         className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition">
           Add to Cart
         </button>
         <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
