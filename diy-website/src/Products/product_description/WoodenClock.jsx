@@ -3,6 +3,8 @@ import wooden from '../../assets/clock/Wooden-Kids-Clock.jpg';
 import Navigate from '../../common/Navigate';
 import Footer from '../../common/Footer';
 import { Link } from 'react-router';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const WoodenClock = () => {
   const product = [
     { product: wooden, product_name: "Wooden Clock for kids", price: 200 },
@@ -14,7 +16,9 @@ const WoodenClock = () => {
   const decrease = () => setCount(count > 1 ? count - 1 : 1);
 
   const totalAmount = product[0].price * count;
-
+ const handleCart=()=>{
+  toast.success("product added")
+ }
   return (
     <div className='  bg-rose-50'>
         <Navigate/>
@@ -44,7 +48,8 @@ const WoodenClock = () => {
                   }
                 }}
               >
-                <button className='bg-green-500 text-white px-4 py-2 rounded'>Buy Now</button>
+                <button onClick={handleCart}
+                className='bg-green-500 text-white px-4 py-2 rounded'>Buy Now</button>
               </Link>
               <button className='bg-blue-500 text-white px-4 py-2 rounded'>Add to Cart</button>
             </div>

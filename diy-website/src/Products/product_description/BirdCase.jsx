@@ -3,7 +3,8 @@ import bird from '../../assets/phone case/bird-design-case.jpg'
 import { Link } from 'react-router'
 import Navigate from '../../common/Navigate';
 import Footer from '../../common/Footer';
-
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const BirdCase = () => {
   const product = [
     { product: bird, product_name: "Bird Design Phone Case", price: 200 },
@@ -15,7 +16,9 @@ const BirdCase = () => {
   const decrease = () => setCount(count > 1 ? count - 1 : 1);
 
   const totalAmount = product[0].price * count;
-
+  const handleCart=()=>{
+    toast.success('product added')
+  }
   return (
     <div className='  bg-rose-50'>
         <Navigate/>
@@ -46,7 +49,8 @@ const BirdCase = () => {
               >
                 <button className='bg-green-500 text-white px-4 py-2 rounded'>Buy Now</button>
               </Link>
-              <button className='bg-blue-500 text-white px-4 py-2 rounded'>Add to Cart</button>
+              <button onClick={handleCart}
+              className='bg-blue-500 text-white px-4 py-2 rounded'>Add to Cart</button>
             </div>
           </div>
         ))}

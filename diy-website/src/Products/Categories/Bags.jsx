@@ -2,6 +2,8 @@ import React from 'react';
 import cartoon from '../../assets/bags/cartoon design bags for kids.png';
 import flower from '../../assets/bags/flower_design_bag.png';
 import { Link } from 'react-router';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Bags = ({ query }) => {
   const bags = [
@@ -9,18 +11,19 @@ const Bags = ({ query }) => {
     { product: flower, product_name: "Flower Design Bag", price: 200, path: "/products/flower" }
   ];
 
-  // const filtered = bags.filter(item =>
-  //   item.product_name.toLowerCase().includes(query.toLowerCase())
-  // );
   const filtered = bags.filter(item =>
-  (item.product_name || '').toLowerCase().includes((query || '').toLowerCase())
-);
+    (item.product_name || '').toLowerCase().includes((query || '').toLowerCase())
+  );
 
+  const handleCart = () => {
+    toast.success("Product added");
+  };
 
   if (filtered.length === 0) return null;
 
   return (
     <div className="p-6 bg-rose-50">
+      <ToastContainer/>
       <h2 className="text-center font-bold text-3xl mb-6 text-rose-800">Bags</h2>
 
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center">
@@ -40,15 +43,16 @@ const Bags = ({ query }) => {
             <p className="text-gray-700 text-xl font-medium">₹{item.price}</p>
 
             <div className="flex gap-3 mt-2">
-              <Link to="/cart">
-              <button className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition">
+              <button  
+                onClick={handleCart}
+                className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition"
+              >
                 Add to Cart
               </button>
-              </Link>
               <Link to="/purchase">
-              <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
-                Buy Now
-              </button>
+                <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
+                  Buy Now
+                </button>
               </Link>
             </div>
           </div>

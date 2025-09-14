@@ -3,13 +3,16 @@ import React from 'react'
 import christmas from '../../assets/kits/Christmas kit for kids.jpg'
 import jewellery from '../../assets/kits/jewelery kit.jpg'
 import { Link } from 'react-router'
-
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Kits = ({ query }) => {
   const kits = [
     { product: christmas, product_name: "Kids Christmas Kit", price: 200, path: "/products/christmas" },
     { product: jewellery, product_name: "Jewellery Kit for Girls", price: 200, path: "/products/jewelery" },
   ]
-
+  const handleCart = () => {
+    toast.success("Product added");
+  };
   // const filtered = kits.filter((item) =>
   //   item.product_name.toLowerCase().includes(query.toLowerCase())
   // );
@@ -21,6 +24,7 @@ const Kits = ({ query }) => {
 
   return (
     <div className="p-6 bg-rose-50">
+      <ToastContainer/>
       <h2 className="text-center font-bold text-3xl mb-6 text-rose-800">Kit for kids</h2>
 
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center">
@@ -40,11 +44,12 @@ const Kits = ({ query }) => {
             <p className="text-gray-700 text-xl font-medium">₹{item.price}</p>
 
              <div className="flex gap-3 mt-2">
-              <Link to="/cart">
-                <button className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition">
+              
+                <button onClick={handleCart}
+                className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition">
                   Add to Cart
                 </button>
-            </Link>
+            
             <Link to="/purchase">
               <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
                Buy Now

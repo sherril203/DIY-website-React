@@ -3,6 +3,8 @@ import { Link } from 'react-router';
 import Customized from '../../assets/phone case/Name Customized phone case.png';
 import Navigate from '../../common/Navigate';
 import Footer from '../../common/Footer';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const PhoneCustomization = () => {
   const product = [
     { image: Customized, name: "Name Customized phone case", Price: 200 }
@@ -14,7 +16,9 @@ const PhoneCustomization = () => {
   const decrease = () => setCount(count > 1 ? count - 1 : 1);
 
   const totalAmount = product[0].Price * count;
-
+  const handleCart=()=>{
+    toast.success('product added')
+  }
   return (
     <div className='  bg-rose-50'>
         <Navigate/>
@@ -46,7 +50,8 @@ const PhoneCustomization = () => {
               >
                 <button className='bg-green-500 text-white px-4 py-2 rounded'>Buy Now</button>
               </Link>
-              <button className='bg-blue-500 text-white px-4 py-2 rounded'>Add to Cart</button>
+              <button onClick={handleCart}
+              className='bg-blue-500 text-white px-4 py-2 rounded'>Add to Cart</button>
             </div>
           </div>
         ))}

@@ -4,6 +4,8 @@ import lotus from '../../assets/geometric design/lotus design wall decor.webp'
 import love from '../../assets/geometric design/geometric_love_heart_wall_art.jpg'
 import modern from '../../assets/geometric design/modern holiday geometry design.jpg'
 import { Link } from 'react-router'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Geometric = ({ query }) => {
   const wall = [
@@ -12,10 +14,13 @@ const Geometric = ({ query }) => {
     { product: love, product_name: "Love Heart Wall Art", price: 200, path: "/products/love_decor" },
     { product: modern, product_name: "Modern Holiday Decor", price: 200, path: "/products/holiday" }
   ];
-
+  const handleCart = () => {
+    toast.success("Product added");
+  };
   // const filtered = wall.filter(item =>
   //   item.product_name.toLowerCase().includes(query.toLowerCase())
   // );
+  
     const filtered = wall.filter(item =>
   (item.product_name || '').toLowerCase().includes((query || '').toLowerCase())
 );
@@ -23,6 +28,7 @@ const Geometric = ({ query }) => {
 
   return (
     <div className="p-6 bg-rose-50">
+      <ToastContainer/>
       <h2 className="text-center font-bold text-3xl mb-6 text-rose-800">Geometric Design Wall Decor</h2>
 
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center">
@@ -42,11 +48,12 @@ const Geometric = ({ query }) => {
             <p className="text-gray-700 text-xl font-medium">₹{item.price}</p>
 
              <div className="flex gap-3 mt-2">
-              <Link to="/cart">
-                <button className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition">
+            
+                <button onClick={handleCart}
+                 className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition">
                   Add to Cart
                 </button>
-            </Link>
+           
             <Link to="/purchase">
               <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
                Buy Now

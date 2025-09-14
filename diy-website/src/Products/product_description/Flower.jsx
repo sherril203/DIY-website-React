@@ -3,6 +3,8 @@ import flower from '../../assets/bags/flower_design_bag.png'
 import Navigate from '../../common/Navigate';
 import Footer from '../../common/Footer';
 import { Link } from 'react-router';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Flower = () => {
   const product = [
     { product: flower, product_name: "Flower Design Bag", Price: 200 }
@@ -14,10 +16,13 @@ const Flower = () => {
   const decrease = () => setCount(count > 1 ? count - 1 : 1);
 
   const totalAmount = product[0].Price * count;
-
+  const handleCart=()=>{
+  toast.success('product added')
+  }
   return (
     <div className='  bg-rose-50'>
         <Navigate/>
+        <ToastContainer/>
       <div className='p-23'>
         {product.map((item, index) => (
           <div key={index} className='bg-white shadow p-6 rounded max-w-sm mx-auto'>

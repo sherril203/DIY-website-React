@@ -18,42 +18,13 @@ const UniqueClock = () => {
 
   const totalAmount = product[0].price * count;
 
-  const handleAddToCart = () => {
-    const cartItem = {
-      name: product[0].product_name,
-      price: product[0].price,
-      quantity: count,
-      total: totalAmount,
-      image: product[0].product,
-    };
-
-    // Get existing cart (or empty array)
-    const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    // Possibly check if item already in cart → update quantity
-    const index = existingCart.findIndex(item => item.name === cartItem.name);
-    if (index !== -1) {
-      // Update existing
-      existingCart[index].quantity += cartItem.quantity;
-      existingCart[index].total = existingCart[index].price * existingCart[index].quantity;
-    } else {
-      existingCart.push(cartItem);
-    }
-
-    localStorage.setItem('cart', JSON.stringify(existingCart));
-
-    toast.success('Item added to cart!', {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      pauseOnHover: true,
-      draggable: true,
-      theme: "colored",
-    });
+  const handleCart = () => {
+    toast.success("product added")
   };
 
   return (
     <div className='bg-rose-50'>
+      <ToastContainer/>
       <Navigate />
       <div className='p-6'>
         {product.map((item, index) => (
@@ -86,7 +57,7 @@ const UniqueClock = () => {
 
               <button
                 className='bg-blue-500 text-white px-4 py-2 rounded'
-                onClick={handleAddToCart}
+                onClick={handleCart}
               >
                 Add to Cart
               </button>

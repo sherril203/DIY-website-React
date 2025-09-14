@@ -5,6 +5,7 @@ import kids from '../../assets/cups/kids cup.png'
 import thought from '../../assets/cups/thought customization design cup.png'
 import white from '../../assets/cups/white_cup_with_customization.png'
 import { Link } from 'react-router'
+import { ToastContainer } from 'react-toastify'
 
 const Cups = ({ query }) => {
   const cups = [
@@ -17,6 +18,9 @@ const Cups = ({ query }) => {
   // const filtered = cups.filter((item) =>
   //   item.product_name.toLowerCase().includes(query.toLowerCase())
   // );
+    const handleCart = () => {
+      toast.success("Product added");
+    };
   const filtered = cups.filter(item =>
   (item.product_name || '').toLowerCase().includes((query || '').toLowerCase())
 );
@@ -24,6 +28,7 @@ const Cups = ({ query }) => {
 
   return (
     <div className="p-6 bg-rose-50">
+      <ToastContainer/>
       <h2 className="text-center font-bold text-3xl mb-6 text-rose-800">Cups</h2>
 
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center">
@@ -43,11 +48,10 @@ const Cups = ({ query }) => {
             <p className="text-gray-700 text-xl font-medium">₹{item.price}</p>
 
             <div className="flex gap-3 mt-2">
-              <Link to="/cart">
-                <button className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition">
+                <button onClick={handleCart}
+                className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition">
                   Add to Cart
                 </button>
-            </Link>
             <Link to="/purchase">
               <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
                Buy Now
