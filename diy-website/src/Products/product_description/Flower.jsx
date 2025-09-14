@@ -51,7 +51,8 @@ const Flower = () => {
               >
                 <button className='bg-green-500 text-white px-4 py-2 rounded'>Buy Now</button>
               </Link>
-              <button className='bg-blue-500 text-white px-4 py-2 rounded'>Add to Cart</button>
+              <button onClick={handleCart}
+               className='bg-blue-500 text-white px-4 py-2 rounded'>Add to Cart</button>
             </div>
           </div>
         ))}
