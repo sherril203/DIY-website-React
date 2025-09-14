@@ -4,6 +4,7 @@ import { MdDashboard } from "react-icons/md";
 import { AiFillProduct } from "react-icons/ai";
 import { FiMenu } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
+import { LuPackageCheck } from "react-icons/lu";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,6 +12,7 @@ const Sidebar = () => {
   const items = [
     { path: "/admin/dashboard", itemName: "Dashboard", icon: MdDashboard },
     { path: "/admin/addproducts", itemName: "Add Product", icon: AiFillProduct },
+     { path: "/admin/orders", itemName: "orders", icon: LuPackageCheck},
   ];
 
   return (

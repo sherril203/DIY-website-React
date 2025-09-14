@@ -20,18 +20,20 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
+    <div className="p-6 max-w-5xl mx-auto">
       <h2 className="text-3xl font-bold mt-12 mb-2 text-center">Dashboard</h2>
       <h3 className="text-2xl font-semibold mb-6 text-center">Products</h3>
 
       {data.length === 0 ? (
         <p className="text-center text-gray-600">No products found.</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
           {data.map((product) => (
             <div
               key={product._id}
-              className="border rounded-lg shadow-md p-4 flex flex-col items-center bg-white hover:shadow-lg transition-shadow duration-300"
+              className="border rounded-lg 
+               shadow-md p-3 flex flex-col items-center bg-red-100 hover:shadow-lg 
+              transition-shadow duration-300"
             >
               {product.product_img ? (
                 <img

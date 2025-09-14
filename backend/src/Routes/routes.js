@@ -25,7 +25,7 @@ router.delete('/deleteproducts/:id', products.deleteproducts);
 router.post('/purchase',purchase.PostPurchase)
 router.get('/getpurchase',purchase.getPurchase)
 //orders route
-router.post('/orders',orders.PostOrder)
+// router.post('/orders',orders.PostOrder)
 router.get('/getorders',orders.getOrder)
 //Admin login and Register
 router.post('/adminRegister', userController.UserRegisterController);

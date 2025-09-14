@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Purchase = () => {
   const location = useLocation();
   const product = location.state?.product;
-
+  const navigate=useNavigate()
   const [customize, setCustomize] = useState(false);
   const [customType, setCustomType] = useState('');
   const [paymentMode, setPaymentMode] = useState('');
@@ -23,7 +23,7 @@ const Purchase = () => {
   const [upiId, setUpiId] = useState('');
   const [customValue, setCustomValue] = useState('');
 
-  const handleSubmit = async (e) => {
+ const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = {
@@ -48,7 +48,8 @@ const Purchase = () => {
 
     try {
       await axios.post('http://localhost:5000/purchase', formData);
-      toast.success(' Purchase successful!');
+      toast.success('Purchase successful!');
+
     } catch (err) {
       console.error(err);
       toast.error('Error during purchase. Please try again.');

@@ -1,28 +1,40 @@
 const purchaseModel=require('../model/Purchase.model')
+const OrderModel =require('../model/Orders.model')
 const { purchaseMail } = require('../utils/mailService')
 const PostPurchase = async (req, res) => {
   try {
     const purchasedata = req.body;
 
-    // Save to DB
-    const stored = new purchaseModel(purchasedata);
-    await stored.save();
+    // Save to purchase collection
+    const storedPurchase = new purchaseModel(purchasedata);
+    await storedPurchase.save();
 
-    // Extract fields for email
+    // Create order data (copy relevant fields)
+    const orderData = {
+      product_name: purchasedata.product_name,
+      quantity: purchasedata.quantity,
+      product_price: purchasedata.product_price,
+      customer_name: purchasedata.customer_name,
+      mobile_no: purchasedata.mobile_no,
+      address: purchasedata.address,
+      payment_mode: purchasedata.payment_mode,
+    };
+
+    const storedOrder = new OrderModel(orderData);
+    await storedOrder.save(); // ✅ Save to orders
+
+    // Send email
     const {
       customer_name,
       customer_email,
       ...restData
     } = purchasedata;
 
-    console.log("Sending email to:", customer_email, restData);
-
-    // Send email with correct field names
     const mailResult = await purchaseMail(
       customer_email,
       "Purchase Confirmation",
       {
-        customer_name,   // ✅ send correct key for template
+        customer_name,
         ...restData,
       }
     );
@@ -30,14 +42,15 @@ const PostPurchase = async (req, res) => {
     if (!mailResult || mailResult.error) {
       console.error("Email failed:", mailResult?.error);
       return res.status(500).send({
-        message: "Purchase confirmed, but email failed to send",
-        data: stored,
+        message: "Purchase saved, but email failed",
+        data: storedPurchase,
       });
     }
 
     return res.status(201).send({
-      message: "Product purchased and email sent successfully",
-      data: stored,
+      message: "Purchase and Order saved. Email sent.",
+      purchase: storedPurchase,
+      order: storedOrder,
     });
 
   } catch (err) {

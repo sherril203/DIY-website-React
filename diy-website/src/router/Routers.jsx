@@ -50,6 +50,7 @@ import AdminLayout from "../Pages/Admin Page/AdminLayout";
 import Dashboard from "../Pages/Admin Page/Dashboard";
 import Addproducts from "../Pages/Admin Page/Addproducts";
 import Profile from "../Pages/Userpage/Profile";
+import AdminOrders from "../Pages/Admin Page/AdminOrders";
 
 const Routers = () => {
   return (
@@ -114,6 +115,7 @@ const Routers = () => {
    <Route path="/admin" element={<AdminLayout/>}>
      <Route path="dashboard" element={<Dashboard/>}/>
      <Route path="addproducts" element={<Addproducts/>}/>
+     <Route path="orders" element={<AdminOrders/>}/>
    </Route>
    
     </Routes>

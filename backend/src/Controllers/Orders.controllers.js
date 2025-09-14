@@ -1,15 +1,15 @@
 const OrderModel=require('../model/Orders.model')
-const PostOrder=async(req,res)=>{
-    try{
-    const Orderdata=req.body
-    const stored=new OrderModel(Orderdata)
-    await stored.save()
-    res.status(201).send("product purchased")
-    }
-    catch(err){
-        res.status(500).send("error in product purchase")
-    }
-}
+// const PostOrder=async(req,res)=>{
+//     try{
+//     const Orderdata=req.body
+//     const stored=new OrderModel(Orderdata)
+//     await stored.save()
+//     res.status(201).send("product purchased")
+//     }
+//     catch(err){
+//         res.status(500).send("error in product purchase")
+//     }
+// }
 const getOrder=async(req,res)=>{
  try {
     const showOrder = await OrderModel.find().sort({ _id: -1 });
@@ -19,4 +19,4 @@ const getOrder=async(req,res)=>{
     return res.status(500).send("error in get data");
   }
 }
-module.exports={PostOrder,getOrder}
+module.exports={getOrder}
