@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import {useEffect} from 'react'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { useLocation, useNavigate } from 'react-router';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
@@ -22,7 +25,9 @@ const Purchase = () => {
   const [address, setAddress] = useState('');
   const [upiId, setUpiId] = useState('');
   const [customValue, setCustomValue] = useState('');
-
+  useEffect(() => {
+    AOS.init({ duration: 2000, once: true }); 
+  }, []);
  const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -58,7 +63,7 @@ const Purchase = () => {
 
   return (
     <div className="p-6 mt-18 text-center bg-rose-50">
-      <form
+      <form data-aos="fade-up"
         onSubmit={handleSubmit}
         className="bg-white rounded p-6 w-full max-w-4xl mx-auto shadow-md"
       >

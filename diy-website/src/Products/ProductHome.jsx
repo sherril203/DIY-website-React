@@ -1,4 +1,6 @@
-import React from 'react'
+import {useEffect} from 'react'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import Butterfly from '../assets/cups/Butterfly Design Cup.png'
 import glitter from '../assets/phone case/Gilter-case.jpeg'
 import flower_bag from '../assets/bags/flower_design_bag.png'
@@ -18,19 +20,26 @@ const ProductHome = () => {
         { product: love, product_name: "love heart wall art", price: 200 },
         { product: christmas, product_name: "Kids Christmas Kit", price: 200,path:"/products/christmas" },
     ]
+    useEffect(() => {
+      AOS.init({ duration: 2000, once: true }); 
+    }, []);
+    
    const handleCart=()=>{
     toast.success('product added')
    }
    return (
-    <div className=" bg-rose-50 p-3 " data-aos="fade-right">
+    <div className=" bg-rose-50 p-3 ">
       <ToastContainer/>
-      <h2 className="text-center font-bold text-3xl mt-22 p-3 text-rose-800">
+      <h2 className="text-center font-bold text-3xl  p-3 text-rose-800"  data-aos="zoom-in">
         Products
       </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-6 px-6 ">
   {products.map((item, index) => (
     <div
       key={index}
+      data-aos="fade-up"
+      data-aos-duration="2000" 
+      data-aos-delay={index * 200} 
       className=" flex-shrink-0 flex flex-col justify-center
       items-center gap-3 bg-white p-6 shadow rounded-2xl hover:scale-105 transition-transform duration-300 w-72"
     >

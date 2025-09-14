@@ -1,4 +1,6 @@
-import React from 'react'
+import React,{useEffect} from 'react'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import heart from '../../assets/geometric design/heart-wall-hang.jpg'
 import lotus from '../../assets/geometric design/lotus design wall decor.webp'
 import love from '../../assets/geometric design/geometric_love_heart_wall_art.jpg'
@@ -14,6 +16,9 @@ const Geometric = ({ query }) => {
     { product: love, product_name: "Love Heart Wall Art", price: 200, path: "/products/love_decor" },
     { product: modern, product_name: "Modern Holiday Decor", price: 200, path: "/products/holiday" }
   ];
+  useEffect(() => {
+           AOS.init({ duration: 2000, once: true }); 
+  }, []);
   const handleCart = () => {
     toast.success("Product added");
   };
@@ -29,13 +34,17 @@ const Geometric = ({ query }) => {
   return (
     <div className="p-6 bg-rose-50">
       <ToastContainer/>
-      <h2 className="text-center font-bold text-3xl mb-6 text-rose-800">Geometric Design Wall Decor</h2>
+      <h2 className="text-center font-bold text-3xl mb-6 text-rose-800"
+      data-aos="zoom-in">Geometric Design Wall Decor</h2>
 
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center">
         {filtered.map((item, index) => (
           <div
             key={index}
             className="flex-shrink-0 flex flex-col items-center gap-3 bg-white border border-rose-200 p-6 shadow-md rounded-2xl hover:scale-105 transition-transform duration-300 w-72"
+             data-aos="fade-up"
+             data-aos-duration="2000" 
+             data-aos-delay={index * 200} 
           >
             <img
               src={item.product}

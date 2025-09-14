@@ -7,6 +7,9 @@ import sea from '../../assets/phone case/sea blue phone case.png'
 import image from '../../assets/phone case/image customization phone case.jpg'
 import { Link } from 'react-router'
 import { toast, ToastContainer } from 'react-toastify';
+import {useEffect} from 'react'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import 'react-toastify/dist/ReactToastify.css';
 const PhoneCase = ({ query }) => {
   const cases = [
@@ -17,6 +20,9 @@ const PhoneCase = ({ query }) => {
     { product: name, product_name: "Name Customization Phone Case", price: 200, path: "/products/customization" },
     { product: image, product_name: "Image Customization Phone Case", price: 200, path: "/products/image_customization" }
   ]
+     useEffect(() => {
+           AOS.init({ duration: 2000, once: true }); 
+   }, []);
 
   // const filtered = cases.filter(item =>
   //   item.product_name.toLowerCase().includes(query.toLowerCase())
@@ -33,12 +39,16 @@ const PhoneCase = ({ query }) => {
   return (
     <div className="p-6 bg-rose-50">
       <ToastContainer/>
-      <h2 className="text-center font-bold text-3xl mb-6 text-rose-800">Phone Case</h2>
+      <h2 className="text-center font-bold text-3xl mb-6 text-rose-800"
+      data-aos="zoom-in">Phone Case</h2>
 
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center">
         {filtered.map((item, index) => (
           <div
             key={index}
+            data-aos="fade-up"
+            data-aos-duration="2000" 
+            data-aos-delay={index * 200} 
             className="flex-shrink-0 flex flex-col items-center gap-3 bg-white border border-rose-200 p-6 shadow-md rounded-2xl hover:scale-105 transition-transform duration-300 w-72"
           >
             <img

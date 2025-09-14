@@ -1,4 +1,6 @@
-import React from 'react'
+import React,{useEffect} from 'react'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import holiday from '../../assets/clock/unique clock- the perfect holiday gift.jpg'
 import flower from '../../assets/clock/flower design clock.png'
 import wooden from '../../assets/clock/Wooden-Kids-Clock.jpg'
@@ -7,13 +9,16 @@ import { Link } from 'react-router'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const Clock = ({ query }) => {
+   useEffect(() => {
+      AOS.init({ duration: 2000, once: true }); 
+    }, []);
   const clocks = [
     { product: flower, product_name: "Flower Design Clock", price: 200, path: "/products/flowerclock" },
     { product: holiday, product_name: "Unique Clock - The Perfect Holiday Gift", price: 200, path: "/products/unique_clock-_the_perfect_holiday_gift" },
     { product: wooden, product_name: "Wooden Clock for kids", price: 200, path: "/products/woodenclock" },
     { product: road, product_name: "Car Road Design Clock", price: 200, path: "/products/roadclock" },
   ];
-
+   
   // const filtered = clocks.filter(item =>
   //   item.product_name.toLowerCase().includes(query.toLowerCase())
   // );
@@ -29,13 +34,17 @@ const Clock = ({ query }) => {
   return (
     <div className="p-6 bg-rose-50">
       <ToastContainer/>
-      <h2 className="text-center font-bold text-3xl mb-6 text-rose-800">Clock</h2>
+      <h2 className="text-center font-bold text-3xl mb-6 text-rose-800"
+      data-aos="zoom-in">Clock</h2>
 
       <div className="grid grid-cols-2 sm:grid-cols-1 md:grid-cols-3 gap-6  justify-center">
         {filtered.map((item, index) => (
           <div
             key={index}
             className="flex-shrink-0 flex flex-col items-center gap-3 bg-white border border-rose-200 p-6 shadow-md rounded-2xl hover:scale-105 transition-transform duration-300 w-72"
+            data-aos="fade-up"
+            data-aos-duration="2000" 
+            data-aos-delay={index * 200} 
           >
             <img
               src={item.product}

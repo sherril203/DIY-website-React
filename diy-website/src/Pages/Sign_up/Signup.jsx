@@ -3,8 +3,13 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import {useEffect} from 'react'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const Signup = () => {
+   useEffect(() => {
+      AOS.init({ duration: 2000, once: true }); 
+    }, []);
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -56,7 +61,7 @@ const handleSubmit = async (e) => {
     <div className='bg-gradient-to-l from-fuchsia-400 to-pink-400 p-6 min-h-screen flex flex-col justify-center items-center'>
       <ToastContainer /> 
 
-      <div className='bg-white rounded-xl shadow-lg p-10 space-y-6 max-w-md w-full'>
+      <div className='bg-white rounded-xl shadow-lg p-10 space-y-6 max-w-md w-full' data-aos="fade-down">
         <h2 className='text-center text-black text-2xl font-bold'>Sign Up</h2>
 
         <form onSubmit={handleSubmit} className='space-y-4'>

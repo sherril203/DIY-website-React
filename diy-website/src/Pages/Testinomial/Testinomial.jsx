@@ -4,8 +4,13 @@ import Navigate from '../../common/Navigate';
 import Footer from '../../common/Footer';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import {useEffect} from 'react'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const Testinomial = () => {
+   useEffect(() => {
+        AOS.init({ duration: 2000, once: true }); 
+      }, []);
   const [user, setUser] = useState([]);
   const [query, setQuery] = useState({
     name: "",
@@ -47,7 +52,7 @@ const Testinomial = () => {
           If you have any queries or comments, kindly fill the form
         </h2>
 
-        <form 
+        <form  data-aos="fade-down"
           onSubmit={handleSubmit} 
           className='bg-white rounded-xl shadow-lg p-10 space-y-6 w-full max-w-md'
         >
