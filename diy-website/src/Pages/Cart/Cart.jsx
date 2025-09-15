@@ -4,23 +4,23 @@ import UserNav from "../Userpage/UserNav";
 import { CartContext } from "../Cart/CartContext";
 
 const Cart = () => {
-  const { cartItems, removeFromCart } = useContext(CartContext);
-
+  const {cart, removeFromCart}=useContext(CartContext)
+  
   return (
     <div className="bg-rose-100 mt-17 min-h-screen">
       <UserNav />
       <h2 className="text-center font-bold text-3xl text-red-600 p-5">Cart</h2>
 
       <div className="max-w-2xl mx-auto bg-white p-5 mb-110 rounded shadow">
-        {cartItems.length === 0 ? (
+        {cart.length === 0 ? (
           <p className="text-center text-gray-500">Your cart is empty</p>
         ) : (
-          cartItems.map((item, index) => (
+          cart.map((item, index) => (
             <div
               key={index}
               className="flex justify-between items-center border-b py-3"
             >
-              <img src={item.image} alt={item.name} className="w-16 h-16 rounded" />
+              <img src={item.image} alt={item.name} className="w-30 h-30 rounded" />
               <div>
                 <h3 className="font-semibold">{item.name}</h3>
                 <p>Price: ₹{item.price}</p>

@@ -5,12 +5,13 @@ import Footer from '../../common/Footer';
 import { Link } from 'react-router';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { useContext } from 'react';
+import { CartContext } from '../../Pages/Cart/CartContext';
 const UniqueClock = () => {
   const product = [
     { product: unique, product_name: "Unique Clock - The Perfect Holiday Gift", price: 200 }
   ];
-
+ const {cart,setcart}=useContext(CartContext)
   const [count, setCount] = useState(1);
 
   const increase = () => setCount(count + 1);
@@ -18,9 +19,16 @@ const UniqueClock = () => {
 
   const totalAmount = product[0].price * count;
 
-  const handleCart = () => {
-    toast.success("product added")
-  };
+   const handleCart = (item) => {
+   const normalizedItem = {
+     image: item.image || item.product,
+     name: item.name || item.product_name,
+     price: item.Price,
+     quantity: count
+   };
+   setcart([...cart, normalizedItem]);
+   toast.success("Product added");
+ };
 
   return (
     <div className='bg-rose-50'>
@@ -57,7 +65,7 @@ const UniqueClock = () => {
 
               <button
                 className='bg-blue-500 text-white px-4 py-2 rounded'
-                onClick={handleCart}
+              onClick={()=>handleCart(item)}
               >
                 Add to Cart
               </button>

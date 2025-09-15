@@ -30,7 +30,7 @@ import PhoneCase from './Categories/PhoneCase';
 import Kits from './Categories/Kits';
 import Geometric from './Categories/Geometric';
 
-const Products = ({ query, category }) => {
+const Products = ({ query, category}) => {
   return (
     <div className="bg-rose-50 pt-0.5">
       {(!category || category === 'Bags') && <Bags query={query} />}

@@ -1,24 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import heart from '../../assets/geometric design/heart-wall-hang.jpg'
 import Navigate from '../../common/Navigate';
 import Footer from '../../common/Footer';
 import { Link } from 'react-router';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { CartContext } from '../../Pages/Cart/CartContext';
 const Heartwall = () => {
  const product = [
    { product: heart, product_name: "Heart Wall Decor", price: 200 },
   ];
-
+ const {cart,setcart}=useContext(CartContext)
   const [count, setCount] = useState(1); 
 
   const increase = () => setCount(count + 1);
   const decrease = () => setCount(count > 1 ? count - 1 : 1);
 
   const totalAmount = product[0].price * count;
- const handleCart=()=>{
-  toast.success('product added')
- }
+  const handleCart = (item) => {
+  const normalizedItem = {
+    image: item.image || item.product,
+    name: item.name || item.product_name,
+    price: item.Price,
+    quantity: count
+  };
+  setcart([...cart, normalizedItem]);
+  toast.success("Product added");
+};
   return (
     <div className='  bg-rose-50'>
       <ToastContainer/>
@@ -51,7 +59,7 @@ const Heartwall = () => {
               >
                 <button className='bg-green-500 text-white px-4 py-2 rounded'>Buy Now</button>
               </Link>
-              <button onClick={handleCart}
+              <button onClick={()=>handleCart(item)}
                className='bg-blue-500 text-white px-4 py-2 rounded'>Add to Cart</button>
             </div>
           </div>

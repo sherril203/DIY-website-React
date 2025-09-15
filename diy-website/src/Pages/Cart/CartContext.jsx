@@ -21,8 +21,8 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-  const removeFromCart = (name) => {
-    setCartItems((prev) => prev.filter((item) => item.name !== name));
+  const removeFromCart = (itemName) => {
+    setCartItems((prev) => prev.filter((item) => item.name !== itemName));
   };
 
   return (

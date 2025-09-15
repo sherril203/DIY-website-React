@@ -70,29 +70,28 @@ import Footer from "../../common/Footer";
 import { toast, ToastContainer } from "react-toastify";
 import { CartContext } from "../../Pages/Cart/CartContext"; 
 import "react-toastify/dist/ReactToastify.css";
-
 const BirdCase = () => {
   const product = [
     { product: bird, product_name: "Bird Design Phone Case", price: 200 },
   ];
-
+ const {cart,setcart}=useContext(CartContext)
   const [count, setCount] = useState(1);
-  const { addToCart } = useContext(CartContext); // ✅ use context
 
   const increase = () => setCount(count + 1);
   const decrease = () => setCount(count > 1 ? count - 1 : 1);
 
   const totalAmount = product[0].price * count;
 
-  const handleCart = () => {
-    addToCart({
-      name: product[0].product_name,
-      price: product[0].price,
-      quantity: count,
-      image: product[0].product,
-    });
-    toast.success("Product added to cart!");
-  };
+   const handleCart = (item) => {
+   const normalizedItem = {
+     image: item.image || item.product,
+     name: item.name || item.product_name,
+     price: item.Price,
+     quantity: count
+   };
+   setcart([...cart, normalizedItem]);
+   toast.success("Product added");
+ };
 
   return (
     <div className="bg-rose-50">
@@ -136,7 +135,7 @@ const BirdCase = () => {
                 </button>
               </Link>
               <button
-                onClick={handleCart}
+                onClick={()=>handleCart(item)}
                 className="bg-blue-500 text-white px-4 py-2 rounded"
               >
                 Add to Cart

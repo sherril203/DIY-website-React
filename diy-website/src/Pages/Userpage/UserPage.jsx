@@ -6,7 +6,7 @@ import UserService from './UserService'
 const UserPage = () => {
     const [query, setQuery] = useState('');
     const [category, setCategory] = useState('');
-  
+    const [cart,setcart]=useState([])
     const handleSearch = (e) => {
       e.preventDefault();
       console.log({ query, category });
@@ -14,7 +14,7 @@ const UserPage = () => {
   
   return (
     <div className='bg-rose-50 w-full min-h-screen'>
-        <UserNav/>
+        <UserNav cart={cart}/>
         <UserService/>
         <h2 className="text-center  font-bold text-3xl mt-19 text-rose-800 ">
         Products
