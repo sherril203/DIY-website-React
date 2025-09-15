@@ -4,7 +4,8 @@ import { Outlet } from "react-router";
 
 const PrivateRouters = () => {
   const token = localStorage.getItem("token");
-  return token ? <Outlet /> : <Navigate to="/login"/>;
+  // if token exists, allow access to nested routes
+  return token ? <Outlet /> : <Navigate to="/login" />;
 };
 
 export default PrivateRouters;

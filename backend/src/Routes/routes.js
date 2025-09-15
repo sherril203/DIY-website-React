@@ -30,4 +30,23 @@ router.get('/getorders',orders.getOrder)
 //Admin login and Register
 router.post('/adminRegister', userController.UserRegisterController);
 router.post('/adminlogin', userController.UserLoginController);
+//category
+//bags
+router.post('/category/bags', upload.single('product_img'), products.postCategory);
+router.get('/getcategory/:category', products.getcategory);
+//cups
+router.post('/category/cups', upload.single('product_img'), products.postCategory);
+router.get('/getcategory/cups', products.getcategory);
+//phone case
+router.post('/category/phone_case', upload.single('product_img'), products.postCategory);
+router.get('/getcategory/phone_case', products.getcategory);
+//kits
+router.post('/category/kits', upload.single('product_img'), products.postCategory);
+router.get('/getcategory/kits', products.getcategory);
+//clock
+router.post('/category/clock', upload.single('product_img'), products.postCategory);
+router.get('/getcategory/clock', products.getcategory);
+//geometric decor
+router.post('/category/geometric_decor', upload.single('product_img'), products.postCategory);
+router.get('/getcategory/geometric_decor', products.getcategory);
 module.exports = router;

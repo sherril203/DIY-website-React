@@ -25,7 +25,7 @@ const ModernHoliday= () => {
         <Navigate/>
       <div className='p-23'>
         {product.map((item, index) => (
-          <div key={index} className='bg-white shadow p-6 rounded max-w-sm mx-auto'>
+          <div key={index} className='bg-white shadow p-6 rounded max-w-sm mx-auto '>
             <img src={item.product} alt={item.product_name} className='w-full h-auto' />
             <h2 className='text-lg font-semibold mt-2'>{item.product_name}</h2>
             <h2 className='text-gray-600'>Unit Price: ₹{item.price}</h2>

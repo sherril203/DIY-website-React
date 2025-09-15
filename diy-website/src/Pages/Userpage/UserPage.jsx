@@ -69,7 +69,6 @@ const UserPage = () => {
 </form>
 
       <Products query={query} category={category} />
-        <Products/>
         <Footer/>
     </div>
   )

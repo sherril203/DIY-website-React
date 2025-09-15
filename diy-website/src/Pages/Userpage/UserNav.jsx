@@ -12,7 +12,7 @@ import { MdMiscellaneousServices } from "react-icons/md";
 import { MdOutlineFeed } from "react-icons/md";
 import { MdAccountCircle } from "react-icons/md";
 import logo from '../../assets/logo.png'
-const UserNav = () => {
+const UserNav = ({cartCount}) => {
  const [open, setOpen] = useState(false);
  
    return (
@@ -43,14 +43,24 @@ const UserNav = () => {
          </div>
  
          <div className="hidden lg:flex gap-3 items-center">
-           <Link to="/cart">
-             <button className=" flex items-center gap-3 text-white text-l
-              font-semibold px-4 py-2 border border-white rounded-xl
-               hover:bg-white hover:text-fuchsia-800 transition">
-               <FaCartArrowDown /> Cart
-             </button>
-           </Link>
-           <Link to="/profile"
+        <Link to="/user/cart">
+      <button
+    className="flex items-center gap-2 text-white text-lg font-semibold 
+    px-4 py-2 border border-white rounded-xl  hover:bg-white
+     hover:text-fuchsia-800 transition">
+    <div className="relative">
+      <FaCartArrowDown className="text-xl" />
+      {cartCount > 0 && (
+        <span
+          className="absolute -top-2 -right-2 bg-red-600 text-white 
+          text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+          {cartCount}
+        </span>)}
+         </div>
+          Cart
+          </button>
+          </Link>
+           <Link to="/user/profile"
             className=" flex items-center gap-3 text-white text-l
               font-semibold px-4 py-2 border border-white rounded-xl
                hover:bg-white hover:text-fuchsia-800 transition">
@@ -73,13 +83,13 @@ const UserNav = () => {
                <Link to="/homepage" className="flex gap-2 items-center"><TbHomeFilled /> Home</Link>
              </li> */}
              <li className="hover:text-indigo-200 transition">
-               <Link to="/profile" className="flex gap-2 items-center"><MdAccountCircle /> Profile</Link>
+               <Link to="/user/profile" className="flex gap-2 items-center"><MdAccountCircle /> Profile</Link>
              </li>
              <li className="hover:text-indigo-200 transition">
-               <Link to="/cart" className="flex gap-2 items-center"><FaCartArrowDown />Cart</Link>
+               <Link to="/user/cart" className="flex gap-2 items-center"><FaCartArrowDown />Cart</Link>
              </li>
              <li className="hover:text-indigo-200 transition">
-               <Link to="/orders" className="flex gap-2 items-center">< LuPackageCheck/>Orders</Link>
+               <Link to="/user/orders" className="flex gap-2 items-center">< LuPackageCheck/>Orders</Link>
              </li>
              <li className="hover:text-indigo-200 transition"> 
                <Link to="/homepage" className="flex gap-2 items-center"> < BiLogOut /> Logout</Link>

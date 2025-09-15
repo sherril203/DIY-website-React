@@ -1,5 +1,5 @@
 const productModel = require('../model/products.model');
-
+const categoryModel=require('../model/category.model')
 // Create product (with image upload)
 const postproduct = async (req, res) => {
   try {
@@ -73,10 +73,50 @@ const deleteproducts = async (req, res) => {
     res.status(500).send({ message: "Error deleting product" });
   }
 };
+// Create product category (with image upload)
+const postCategory = async (req, res) => {
+  try {
+    const categorydata = req.body;
+
+    if (req.file) {
+      categorydata.product_img = req.file.filename;
+    }
+
+    const savedProduct = new categoryModel(categorydata);
+    await savedProduct.save();
+
+    res.status(201).send({
+      message: "Product submitted successfully",
+      data: savedProduct, 
+    });
+  } catch (err) {
+    console.error("Error submitting product:", err);
+    res.status(500).send({ message: "Product submission error" });
+  }
+};
+
+// Get all products
+// Assuming you have categoryModel or Product model with a field 'category'
+const getcategory = async (req, res) => {
+  try {
+    const categoryName = req.params.category; // e.g., 'bags'
+    const showcategory = await categoryModel.find({ category: categoryName }).sort({ _id: 1 });
+    res.status(200).send({ data: showcategory });
+  } catch (err) {
+    console.error("Error in get data:", err);
+    res.status(500).send("Error retrieving products category");
+  }
+};
+
+
+
+
 
 module.exports = {
   postproduct,
   getproducts,
   updateproducts,
-  deleteproducts
+  deleteproducts,
+  postCategory,
+  getcategory
 };

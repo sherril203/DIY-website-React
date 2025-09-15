@@ -51,6 +51,8 @@ import Dashboard from "../Pages/Admin Page/Dashboard";
 import Addproducts from "../Pages/Admin Page/Addproducts";
 import Profile from "../Pages/Userpage/Profile";
 import AdminOrders from "../Pages/Admin Page/AdminOrders";
+import AdminRouter from "../Pages/Private Routers/AdminRouter";
+import UserLayout from "../Pages/Userpage/UserLayout";
 
 const Routers = () => {
   return (
@@ -85,7 +87,7 @@ const Routers = () => {
    <Route path="sea_case" element={<SeaCase/>}/>
    <Route path="birdCase" element={<BirdCase/>}/>
    /*kits*/
-   <Route path="jewelery" element={<Jewellery/>}/>
+   <Route path="jewellery" element={<Jewellery/>}/>
    <Route path="christmas" element={<Christmas/>}/>
    /*wall decor*/ 
    <Route path="lotus_decor" element={<LotusWall/>}/>
@@ -94,21 +96,30 @@ const Routers = () => {
    <Route path="heart" element={<Heartwall/>}/>
   </Route>
   <Route path="/purchase" element={<PurchasePage/>}/>
-  <Route path="/cart" element={<Cart/>}/>
-  <Route path="/orders" element={<Orders/>}/>
+<Route path="/cart" element={<Cart />} />  
+  
+  
+<Route path="/user" element={<UserLayout />}>
+  <Route path="/user" element={<UserPage />} />
+  <Route path="profile" element={<Profile />} />
+  <Route path="cart" element={<Cart />} />  
+  <Route path="orders" element={<Orders/>}/>
+</Route>
 
- <Route path="/login" element={<Login />} />
+
 
    {/* Protected routes */}
-  <Route element={<PrivateRouters />}>
-    <Route path="user" element={<UserPage />} />
-    <Route path="profile" element={<Profile/>}/>
-  </Route>
-  <Route path="/admin" element={<AdminLayout/>}>
-  </Route>
+   <Route element={<PrivateRouters />}>
+        <Route path="user" element={<UserPage />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="orders" element={<Orders/>}/>
+      </Route>
+      {/*public router */}
+     <Route path="/login" element={<Login />} />
+
   <Route path="/forgot" element={<ForgotPassword/>}/>
   <Route path="/reset" element={<ResetPassword/>}/>
-  {/* <Route path="/login" element={<Login />} /> */}
+
   { /*Admin panel*/ }
   <Route path="/adminRegister" element={<AdminSign/>}/>
   <Route path="/adminlogin" element={<AdminLogin/>}/>
@@ -117,7 +128,12 @@ const Routers = () => {
      <Route path="addproducts" element={<Addproducts/>}/>
      <Route path="orders" element={<AdminOrders/>}/>
    </Route>
-   
+   {/* private routing for admin */}
+     <Route element={<AdminRouter />}>
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/addproducts" element={<Addproducts />} />
+        <Route path="/orders" element={<AdminOrders />} />
+      </Route>
     </Routes>
   );
 }

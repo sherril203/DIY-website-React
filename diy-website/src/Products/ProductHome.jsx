@@ -24,9 +24,30 @@ const ProductHome = () => {
       AOS.init({ duration: 2000, once: true }); 
     }, []);
     
-   const handleCart=()=>{
-    toast.success('product added')
-   }
+    
+   const handleCart = (item) => {
+     // Get existing cart or empty array
+     let cart = JSON.parse(localStorage.getItem("cart")) || [];
+   
+     // Check if item already exists
+     const existingIndex = cart.findIndex(
+       (cartItem) => cartItem.product_name === item.product_name
+     );
+   
+     if (existingIndex !== -1) {
+       // If exists, increase quantity
+       cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
+     } else {
+       // If not, add with quantity 1
+       cart.push({ ...item, quantity: 1 });
+     }
+   
+     // Save back to localStorage
+     localStorage.setItem("cart", JSON.stringify(cart));
+   
+     // Show toast
+     toast.success("Product added to cart");
+   };
    return (
     <div className=" bg-rose-50 p-3 ">
       <ToastContainer/>
@@ -54,7 +75,7 @@ const ProductHome = () => {
       <p className="text-gray-700 text-xl font-medium">₹{item.price}</p>
 
       <div className="flex gap-3 mt-2">
-        <button onClick={handleCart}
+        <button onClick={()=>handleCart(item)}
          className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition">
           Add to Cart
         </button>
