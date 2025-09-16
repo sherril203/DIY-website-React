@@ -29,6 +29,7 @@ import Clock from './Categories/Clock';
 import PhoneCase from './Categories/PhoneCase';
 import Kits from './Categories/Kits';
 import Geometric from './Categories/Geometric';
+import Frames from './Categories/Frames';
 
 const Products = ({ query, category}) => {
   return (
@@ -36,6 +37,7 @@ const Products = ({ query, category}) => {
       {(!category || category === 'Bags') && <Bags query={query} />}
       {(!category || category === 'Cups') && <Cups query={query} />}
       {(!category || category === 'Phone Case') && <PhoneCase query={query} />}
+      {(!category || category === 'Phone Case') && <Frames query={query} />}
       {(!category || category === 'Clocks') && <Clock query={query} />}
       {(!category || category === 'Geometric Design Wall Decor') && <Geometric query={query} />}
       {(!category || category === 'Kits for kids') && <Kits query={query} />}

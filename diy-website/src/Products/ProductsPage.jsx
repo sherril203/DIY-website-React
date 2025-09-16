@@ -54,6 +54,7 @@ const ProductsPage = () => {
     <option value="Bags">Bags</option>
     <option value="Cups">Cups</option>
     <option value="Phone Case">Phone Case</option>
+    <option value="Photo Frame">Photo Frame</option>
     <option value="Clocks">Clocks</option>
     <option value="Geometric Design Wall Decor">Geometric Design Wall Decor</option>
     <option value="Kits for kids">Kits for kids</option>
@@ -61,7 +62,8 @@ const ProductsPage = () => {
 
   <button
     type="submit"
-    className="bg-gradient-to-l from-fuchsia-300 to-pink-400 p-3 rounded text-white shadow hover:opacity-90 transition"
+    className="bg-gradient-to-l from-fuchsia-300
+     to-pink-400 p-3 rounded text-white shadow hover:opacity-90 transition"
   >
     Search
   </button>

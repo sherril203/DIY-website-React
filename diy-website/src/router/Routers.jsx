@@ -55,6 +55,10 @@ import Dashboard from "../Pages/Admin Page/Dashboard";
 import Addproducts from "../Pages/Admin Page/Addproducts";
 import AdminOrders from "../Pages/Admin Page/AdminOrders";
 import Profile from "../Pages/Userpage/Profile";
+import BlockFrame from "../Products/product_description/BlockFrame";
+import BabiesPhoto from "../Products/product_description/BabiesPhoto";
+import CoupleFrame from "../Products/product_description/CouplesFrame";
+import CartoonFrame from "../Products/product_description/CartoonFrame";
 
 const Routers = () => {
   const [cart, setcart] = useState([]);
@@ -97,9 +101,14 @@ const Routers = () => {
           <Route path="image_customization" element={<ImgCustomized />} />
           <Route path="sea_case" element={<SeaCase />} />
           <Route path="birdCase" element={<BirdCase />} />
+          {/* Photo frame */}
+          <Route path="block" element={<BlockFrame/>}/>
+          <Route path="babies" element={<BabiesPhoto/>}/>
+          <Route path="couples" element={<CoupleFrame/>}/>
           {/* Kits */}
           <Route path="jewellery" element={<Jewellery />} />
           <Route path="christmas" element={<Christmas />} />
+          <Route path="cartoonframe" element={<CartoonFrame/>}/>
           {/* Wall Decor */}
           <Route path="lotus_decor" element={<LotusWall />} />
           <Route path="love_decor" element={<LoveHeart />} />

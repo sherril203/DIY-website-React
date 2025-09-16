@@ -49,4 +49,7 @@ router.get('/getcategory/clock', products.getcategory);
 //geometric decor
 router.post('/category/geometric_decor', upload.single('product_img'), products.postCategory);
 router.get('/getcategory/geometric_decor', products.getcategory);
+//photo frames
+router.post('/category/photo_frames', upload.single('product_img'), products.postCategory);
+router.get('/getcategory/photo_frames', products.getcategory);
 module.exports = router;
