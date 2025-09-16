@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from "react-router"; 
+import { Link, useNavigate } from "react-router"; 
 import { FaCartShopping, FaCartArrowDown } from "react-icons/fa6";
 import { TbHomeFilled } from "react-icons/tb";
 import { IoIosCall } from "react-icons/io";
@@ -14,7 +14,14 @@ import { CartContext } from '../Cart/CartContext';
 const UserNav = () => {
   const [open, setOpen] = useState(false);
   const { cart } = useContext(CartContext);
+  const navigate = useNavigate(); 
 
+  const handleSelect = (e) => {
+    const path = e.target.value;
+    if (path && path !== "") {
+      navigate(path);
+    }
+  };
   return (
     <div className="fixed top-0 w-full z-30 bg-gradient-to-r from-fuchsia-600 to-pink-500 shadow-lg">
       <nav className="flex justify-between items-center p-4">
@@ -54,7 +61,6 @@ const UserNav = () => {
           </ul>
         </div>
 
-
         <div className="hidden lg:flex gap-3 items-center">
           <div className="relative">
             <Link
@@ -64,25 +70,25 @@ const UserNav = () => {
             >
               <FaCartArrowDown className="text-xl" /> Cart
             </Link>
-             <div className="bg-fuchsia-600 text-white top-0 right-0 text-center
-                pl-0.6 w-6 h-6 absolute rounded-full text-[15px]">
-                {cart.length}
-              </div>
-            {/* {cart.length > 0 && (
-              <div className="bg-fuchsia-600 text-white top-0 right-0 text-center
-                pl-1 w-7 h-7 absolute rounded-full text-[15px]">
-                {cart.length}
-              </div>
-            )} */}
+            <div className="bg-fuchsia-600 text-white top-0 right-0 text-center
+              pl-0.6 w-6 h-6 absolute rounded-full text-[15px]">
+              {cart.length}
+            </div>
           </div>
 
-          <Link
-            to="/user/profile"
-            className="flex items-center gap-3 text-white text-lg font-semibold 
-              px-4 py-2 border border-white rounded-xl hover:bg-white hover:text-fuchsia-800 transition"
-          >
-            <MdAccountCircle size={25} />
-          </Link>
+         
+          <div className="relative">
+            <select
+              onChange={handleSelect}
+              className="bg-transparent text-white text-lg font-semibold 
+                px-4 py-2 border border-white rounded-xl hover:bg-white hover:text-fuchsia-800 transition cursor-pointer"
+            >
+              <option value="" hidden>Profile</option>
+              <option value="/user/profile"> Profile</option>
+              <option value="/user/orders"> Orders</option>
+              <option value="/login"> Logout</option>
+            </select>
+          </div>
         </div>
 
         <button

@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import {useEffect} from 'react'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-const AdminLogin = () => {
+const AdminLogin = ({ setIsSignedIn }) => {
 
   const navigate = useNavigate();
 
@@ -39,8 +39,10 @@ const AdminLogin = () => {
 
       const token = response.data.data?.token || response.data.token;
       localStorage.setItem("token", token);
-
       navigate('/admin');
+      // localStorage.setItem("adminAuth", "true"); 
+      // setIsSignedIn(true); 
+      // navigate("/admin")
 
     } catch (err) {
       console.error('Login failed:', err.response?.data || err.message);

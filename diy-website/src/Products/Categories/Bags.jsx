@@ -169,7 +169,14 @@ const Bags = ({ query }) => {
               <button onClick={() => handleCart(item)} className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition">
                 Add to Cart
               </button>
-              <Link to="/purchase">
+              <Link to="/purchase"
+               state={{
+                  product: {
+                    name: item.name,
+                    price: item.Price,
+                    //quantity: count, // Optional: send quantity too
+                  }
+                }}>
                 <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
                   Buy Now
                 </button>
