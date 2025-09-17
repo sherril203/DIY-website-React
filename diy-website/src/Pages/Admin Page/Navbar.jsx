@@ -23,7 +23,8 @@ const Navbar = () => {
         {/* Logout Button */}
         <Link to="/adminlogin">
           <button className="text-white text-base font-semibold px-4 py-2 border flex gap-2 items-center
-            border-white rounded-xl hover:bg-white hover:text-fuchsia-800 transition">
+            border-white rounded-xl hover:bg-white hover:text-fuchsia-800 transition"
+             onClick={()=>localStorage.removeItem("token")}>
             <BiLogOut size={20} /> Logout
           </button>
         </Link>

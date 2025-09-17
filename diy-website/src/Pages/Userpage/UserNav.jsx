@@ -16,11 +16,21 @@ const UserNav = () => {
   const { cart } = useContext(CartContext);
   const navigate = useNavigate(); 
 
+  const handleLogout = () => {
+    console.log("object")
+    localStorage.removeItem('user');  // ✅ remove only usertoken
+    navigate("/login");                    // ✅ redirect to login
+  };
   const handleSelect = (e) => {
     const path = e.target.value;
     if (path && path !== "") {
       navigate(path);
+      if(path === "/login")
+      {
+        localStorage.removeItem('user')
+      }
     }
+    
   };
   return (
     <div className="fixed top-0 w-full z-30 bg-gradient-to-r from-fuchsia-600 to-pink-500 shadow-lg">
@@ -80,7 +90,7 @@ const UserNav = () => {
           <div className="relative">
             <select
               onChange={handleSelect}
-              className="bg-transparent text-white text-lg font-semibold 
+              className="bg-transparent text-black text-lg font-semibold 
                 px-4 py-2 border border-white rounded-xl hover:bg-white hover:text-fuchsia-800 transition cursor-pointer"
             >
               <option value="" hidden>Profile</option>
@@ -117,10 +127,11 @@ const UserNav = () => {
                 <LuPackageCheck /> Orders
               </Link>
             </li>
-            <li className="hover:text-indigo-200 transition">
-              <Link to="/homepage" className="flex gap-2 items-center">
-                <BiLogOut /> Logout
-              </Link>
+            <li className="hover:text-indigo-200 transition" onClick={handleLogout}>
+              <button className="flex gap-2 items-center"
+               onClick={()=>handleLogout}>
+                <Link to="homepage"><BiLogOut /> logout</Link>
+              </button>
             </li>
           </ul>
         </div>

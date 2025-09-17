@@ -40,10 +40,8 @@ const Login = () => {
       });
       
       const token = response.data.data?.token || response.data.token;
-      localStorage.setItem("token", token);
-      navigate('/user');
-    //  localStorage.setItem("userAuth", "true");
-    // navigate("/user");  
+      localStorage.setItem("user", token);
+      navigate('/user/dashboard');
     } catch (err) {
       console.error('Login failed:', err.response?.data || err.message);
 

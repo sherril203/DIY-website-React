@@ -39,7 +39,7 @@ const AdminLogin = ({ setIsSignedIn }) => {
 
       const token = response.data.data?.token || response.data.token;
       localStorage.setItem("token", token);
-      navigate('/admin');
+      navigate('/admin/dashboard');
       // localStorage.setItem("adminAuth", "true"); 
       // setIsSignedIn(true); 
       // navigate("/admin")

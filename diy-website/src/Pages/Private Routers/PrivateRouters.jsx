@@ -1,6 +1,6 @@
 import React from "react";
-import { Navigate } from "react-router";
-import { Outlet } from "react-router";
+import { Navigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 // const PrivateRouters = ({ isSignedIn }) => {
 //   const token = localStorage.getItem("token");
@@ -15,10 +15,10 @@ import { Outlet } from "react-router";
 
 
 const PrivateRouters = () => {
-  const token = localStorage.getItem("userAuth"); // set on login
+  const token = localStorage.getItem('token'); // set on login
 
   if (!token) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/login" />;
   }
 
   return <Outlet />;
