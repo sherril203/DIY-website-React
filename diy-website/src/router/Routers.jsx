@@ -134,7 +134,7 @@ const Routers = () => {
             <PrivateRouters >
             <UserLayout />
             </PrivateRouters>}>
-            <Route path="user" element={<UserPage />} />
+            <Route path="dashboard" element={<UserPage />} />
             <Route path="profile" element={<Profile />} />
             <Route path="cart" element={<Cart />} />
             <Route path="orders" element={<Orders />} />

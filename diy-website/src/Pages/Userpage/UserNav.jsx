@@ -90,13 +90,13 @@ const UserNav = () => {
           <div className="relative">
             <select
               onChange={handleSelect}
-              className="bg-transparent text-black text-lg font-semibold 
+              className="bg-transparent  text-lg font-semibold text-white
                 px-4 py-2 border border-white rounded-xl hover:bg-white hover:text-fuchsia-800 transition cursor-pointer"
             >
-              <option value="" hidden>Profile</option>
-              <option value="/user/profile"> Profile</option>
-              <option value="/user/orders"> Orders</option>
-              <option value="/login"> Logout</option>
+              <option value="" hidden className='text-fuchsia-800'>Profile</option>
+              <option value="/user/profile"  className='text-fuchsia-800'> Profile</option>
+              <option value="/user/orders" className='text-fuchsia-800'> Orders</option>
+              <option value="/login" className='text-fuchsia-800'> Logout</option>
             </select>
           </div>
         </div>
