@@ -64,11 +64,13 @@ const ProductHome = () => {
       className=" flex-shrink-0 flex flex-col justify-center
       items-center gap-3 bg-white p-6 shadow rounded-2xl hover:scale-105 transition-transform duration-300 w-72"
     >
+      <Link to={item.path}>
       <img
         src={item.product}
         alt={item.product_name}
         className="w-56 h-56 object-contain"
       />
+      </Link>
       <Link to={item.path} className="text-lg font-semibold text-gray-800 text-center">
         {item.product_name}
       </Link>

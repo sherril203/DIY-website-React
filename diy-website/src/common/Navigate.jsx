@@ -48,12 +48,12 @@ const Navigate = () => {
               Login
             </button>
           </Link>
-          <Link to="/signup">
+          {/* <Link to="/signup">
             <button className="text-white text-base font-semibold
              px-4 py-2 border border-white rounded-xl hover:bg-white hover:text-fuchsia-800 transition">
               Sign Up
             </button>
-          </Link>
+          </Link> */}
         </div>
 
         <button 
@@ -68,7 +68,7 @@ const Navigate = () => {
         <div className="lg:hidden bg-fuchsia-600/95 text-white px-4 py-6">
           <ul className="flex flex-col gap-4 text-lg">
             <li className="hover:text-indigo-200 transition">
-              <Link to="/homepage" className="flex gap-2 items-center"><TbHomeFilled /> Home</Link>
+              <Link to="/" className="flex gap-2 items-center"><TbHomeFilled /> Home</Link>
             </li>
             <li className="hover:text-indigo-200 transition">
               <Link to="/products" className="flex gap-2 items-center"><FaCartShopping /> Products</Link>
@@ -84,9 +84,9 @@ const Navigate = () => {
             <li className="hover:text-indigo-200 transition"> 
               <Link to="/login" className="flex gap-2 items-center"> <LuLogIn/> Login</Link>
             </li>
-            <li className="hover:text-indigo-200 transition">
+            {/* <li className="hover:text-indigo-200 transition">
               <Link to="/signup" className="flex gap-2 items-center"> <BiLogOut/>Sign Up</Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       )}

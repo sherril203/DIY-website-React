@@ -54,7 +54,7 @@ const ProductsPage = () => {
     <option value="Bags">Bags</option>
     <option value="Cups">Cups</option>
     <option value="Phone Case">Phone Case</option>
-    <option value="Photo Frame">Photo Frame</option>
+    <option value="Photo Frames">Photo Frames</option>
     <option value="Clocks">Clocks</option>
     <option value="Geometric Design Wall Decor">Geometric Design Wall Decor</option>
     <option value="Kits for kids">Kits for kids</option>

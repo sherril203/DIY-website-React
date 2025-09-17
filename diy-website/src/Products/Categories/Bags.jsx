@@ -154,12 +154,15 @@ const Bags = ({ query }) => {
             data-aos="fade-up"
             data-aos-duration="2000"
             data-aos-delay={index * 200}
-          >
+          > 
+            <Link to={item.path}>
             <img
               src={`http://localhost:5000/files/${item.product_img}`}
               alt={item.product_name}
               className="w-56 h-56 object-contain"
                />
+            </Link>
+            
             <Link to={item.path} className="text-lg font-semibold text-indigo-800 text-center">
               {item.product_name}
             </Link>
@@ -172,9 +175,9 @@ const Bags = ({ query }) => {
               <Link to="/purchase"
                state={{
                   product: {
-                    name: item.name,
-                    price: item.Price,
-                    //quantity: count, // Optional: send quantity too
+                    name: item.product_name,
+                    price: item.product_price,
+                    // quantity: count
                   }
                 }}>
                 <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">

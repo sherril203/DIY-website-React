@@ -44,11 +44,14 @@ const Purchase = () => {
     };
 
     if (customize && customType === 'name') {
-      formData.customization_value = customValue;
+      formData.custom_value = customValue;
     }
 
     if (paymentMode === 'upi') {
       formData.upi_id = upiId;
+    }
+    if(paymentMode==='online_payment'){
+      formData.online_payment=online_payment
     }
 
     try {
@@ -232,6 +235,16 @@ const Purchase = () => {
             <div>
               <label className="block font-semibold">Payment Mode</label>
               <div className="flex gap-4">
+                <label>
+                  <input
+                    type="radio"
+                    name="payment_mode"
+                    value="online_payment"
+                    onChange={() => setPaymentMode('online_payment')}
+                    className="mr-1"
+                  />
+                  Online Payment
+                </label>
                 <label>
                   <input
                     type="radio"

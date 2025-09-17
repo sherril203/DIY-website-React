@@ -159,11 +159,12 @@ const Clock = ({ query }) => {
             data-aos-duration="2000"
             data-aos-delay={index * 200}
           >
-            <img
-              src={`http://localhost:5000/files/${item.product_img}`}
-              alt={item.product_name}
-              className="w-56 h-56 object-contain"
-               />
+             <Link to={item.path}>
+              <img
+                src={`http://localhost:5000/files/${item.product_img}`}
+                alt={item.product_name}
+                className="w-56 h-56 object-contain"/>
+            </Link>
             <Link to={item.path} className="text-lg font-semibold text-indigo-800 text-center">
               {item.product_name}
             </Link>
@@ -173,7 +174,14 @@ const Clock = ({ query }) => {
               <button onClick={() => handleCart(item)} className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition">
                 Add to Cart
               </button>
-              <Link to="/purchase">
+              <Link to="/purchase"
+              state={{
+                  product: {
+                    name: item.product_name,
+                    price: item.product_price,
+                    // quantity: count
+                  }
+                }}>
                 <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
                   Buy Now
                 </button>
