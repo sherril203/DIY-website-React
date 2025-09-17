@@ -44,7 +44,7 @@ const UserNav = () => {
         <div className="hidden lg:block">
           <ul className="flex gap-6 text-lg font-medium text-white">
             <li className="hover:text-indigo-200 transition">
-              <Link to="/homepage" className="flex gap-2 items-center">
+              <Link to="/" className="flex gap-2 items-center">
                 <TbHomeFilled /> Home
               </Link>
             </li>
@@ -90,7 +90,7 @@ const UserNav = () => {
           <div className="relative">
             <select
               onChange={handleSelect}
-              className="bg-transparent  text-lg font-semibold text-white
+              className="bg-transparent  text-lg font-semibold text-white  
                 px-4 py-2 border border-white rounded-xl hover:bg-white hover:text-fuchsia-800 transition cursor-pointer"
             >
               <option value="" hidden className='text-fuchsia-800'>Profile</option>
@@ -130,7 +130,7 @@ const UserNav = () => {
             <li className="hover:text-indigo-200 transition" onClick={handleLogout}>
               <button className="flex gap-2 items-center"
                onClick={()=>handleLogout}>
-                <Link to="homepage"><BiLogOut /> logout</Link>
+                <Link to="/"><BiLogOut /> logout</Link>
               </button>
             </li>
           </ul>

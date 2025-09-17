@@ -66,7 +66,8 @@ const Routers = () => {
     <CartContext.Provider value={{ cart, setcart }}>
       <Routes>
         {/* Public Pages */}
-        <Route path="/homepage" element={<HomePage />} />
+        {/* <Route path="/homepage" element={<HomePage />} /> */}
+        <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/services" element={<ServicePage />} />
         <Route path="/contact" element={<Contact />} />

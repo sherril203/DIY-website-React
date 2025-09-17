@@ -14,9 +14,17 @@ const Profile = () => {
             <MdAccountCircle size={150} />
           </div>
           <h3 className='text-center text-lg font-medium mb-4'>User</h3>
-          <h3 className='text-center text-lg font-medium mb-4'>DOB</h3>
-          <h3 className='text-center text-lg font-medium mb-4'>Mobile no</h3>
-          <h3 className='text-center text-lg font-medium mb-4'>Location</h3>
+          <h3 className='text-center text-lg font-medium mb-4'>Address:
+            <br />
+            112/34,near Egmore Railway Station,<br />
+            Gandhi Irwin road, Chennai
+          </h3>
+          <h3 className='text-center text-lg font-medium mb-4'>Mobile no:
+            <br /> 9587812654
+          </h3>
+          <h3 className='text-center text-lg font-medium mb-4'>Location: <br />
+          Chennai
+          </h3>
           <div className='flex justify-center gap-3'>
             <button className='px-4 py-2 bg-gradient-to-l from-fuchsia-200 to-pink-300 rounded hover:opacity-90 transition'>
               Edit Profile
