@@ -24,28 +24,28 @@ const PostPurchase = async (req, res) => {
     await storedOrder.save(); // ✅ Save to orders
 
     // Send email
-    const {
-      customer_name,
-      customer_email,
-      ...restData
-    } = purchasedata;
+    // const {
+    //   customer_name,
+    //   customer_email,
+    //   ...restData
+    // } = purchasedata;
 
-    const mailResult = await purchaseMail(
-      customer_email,
-      "Purchase Confirmation",
-      {
-        customer_name,
-        ...restData,
-      }
-    );
+    // const mailResult = await purchaseMail(
+    //   customer_email,
+    //   "Purchase Confirmation",
+    //   {
+    //     customer_name,
+    //     ...restData,
+    //   }
+    // );
 
-    if (!mailResult || mailResult.error) {
-      console.error("Email failed:", mailResult?.error);
-      return res.status(500).send({
-        message: "Purchase saved, but email failed",
-        data: storedPurchase,
-      });
-    }
+    // if (!mailResult || mailResult.error) {
+    //   console.error("Email failed:", mailResult?.error);
+    //   return res.status(500).send({
+    //     message: "Purchase saved, but email failed",
+    //     data: storedPurchase,
+    //   });
+    // }
 
     return res.status(201).send({
       message: "Purchase and Order saved. Email sent.",

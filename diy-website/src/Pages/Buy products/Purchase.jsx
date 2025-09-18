@@ -50,13 +50,14 @@ const Purchase = () => {
     if (paymentMode === 'upi') {
       formData.upi_id = upiId;
     }
-    if(paymentMode==='online_payment'){
-      formData.online_payment=online_payment
-    }
+    // if(paymentMode==='online_payment'){
+    //   formData.online_payment=online_payment
+    // }
 
     try {
       await axios.post('http://localhost:5000/purchase', formData);
       toast.success('Purchase successful!');
+      navigate('/confirmation', { state: formData });
 
     } catch (err) {
       console.error(err);
@@ -290,10 +291,11 @@ const Purchase = () => {
         </div>
 
         <div className="text-center mt-8">
+          
           <button
             type="submit"
-            className="bg-gradient-to-r from-fuchsia-600 to-pink-500 px-6 py-3 text-white font-bold rounded hover:opacity-90"
-          >
+            className="bg-gradient-to-r from-fuchsia-600
+             to-pink-500 px-6 py-3 text-white font-bold rounded hover:opacity-90">
             Purchase
           </button>
         </div>
