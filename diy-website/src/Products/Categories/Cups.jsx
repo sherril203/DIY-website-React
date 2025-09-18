@@ -253,7 +253,7 @@ const Cups = ({ query }) => {
       <ToastContainer />
       <h2 className="text-center font-bold text-3xl mb-6 text-rose-800" data-aos="zoom-in">Cups</h2>
 
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
         {filtered.map((item, index) => (
           <div
             key={index}

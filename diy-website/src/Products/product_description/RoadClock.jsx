@@ -103,3 +103,252 @@ const RoadClock = () => {
 };
 
 export default RoadClock;
+// import React, { useState, useContext, useEffect } from 'react';
+// import Navigate from '../../common/Navigate';
+// import Footer from '../../common/Footer';
+// import { Link } from 'react-router';
+// import { toast, ToastContainer } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+// import { CartContext } from '../../Pages/Cart/CartContext';
+// import AOS from 'aos';
+// import 'aos/dist/aos.css';
+// import axios from 'axios';
+
+// const RoadClock = () => {
+//   const [product, setProduct] = useState(null);
+//   const { cart, setcart } = useContext(CartContext);
+//   const [count, setCount] = useState(1);
+
+//   useEffect(() => {
+//     AOS.init({ duration: 1500, once: true });
+
+//     // Fetch RoadClock product from backend
+//     axios.get("http://localhost:5000/getproduct/roadclock")
+//       .then(res => {
+//         setProduct(res.data.data);
+//       })
+//       .catch(err => console.error("Error fetching product:", err));
+//   }, []);
+
+//   const increase = () => setCount(count + 1);
+//   const decrease = () => setCount(count > 1 ? count - 1 : 1);
+
+//   const handleCart = (item) => {
+//     const normalizedItem = {
+//       product_img: item.product_img,
+//       product_name: item.product_name,
+//       product_price: item.product_price,
+//       quantity: count
+//     };
+//     setcart([...cart, normalizedItem]);
+//     toast.success("Product added to cart");
+//   };
+
+
+//   const totalAmount = product.product_price * count;
+
+//   return (
+//     <div className='bg-rose-50'>
+//       <ToastContainer />
+//       <Navigate />
+
+//       <div className='p-8'>
+//         <div
+//           className="bg-white shadow p-6 rounded-xl max-w-4xl mx-auto flex flex-col md:flex-row gap-6"
+//           data-aos="fade-up"
+//         >
+//           {/* Left: Image */}
+//           <div className="flex-1 flex justify-center items-center">
+//             <img
+//               src={`http://localhost:5000/files/${product.product_img}`}
+//               alt={product.product_name}
+//               className="w-full max-w-sm h-auto rounded-lg"
+//             />
+//           </div>
+
+//           {/* Right: Details */}
+//           <div className="flex-1 flex flex-col justify-center">
+//             <h2 className="text-xl font-bold text-gray-800">{product.product_name}</h2>
+//             <h2 className="text-gray-600">Unit Price: ₹{product.product_price}</h2>
+
+//             <div className="flex items-center gap-2 my-3">
+//               <button
+//                 onClick={decrease}
+//                 className="bg-amber-400 px-3 py-1 rounded text-white"
+//               >
+//                 -
+//               </button>
+//               <span className="font-semibold">{count}</span>
+//               <button
+//                 onClick={increase}
+//                 className="bg-amber-400 px-3 py-1 rounded text-white"
+//               >
+//                 +
+//               </button>
+//             </div>
+
+//             <h2 className="text-lg font-bold">Total: ₹{totalAmount}</h2>
+
+//             <div className="flex gap-2 mt-4">
+//               <Link
+//                 to="/purchase"
+//                 state={{
+//                   product_name: product.product_name,
+//                   product_price: product.product_price,
+//                   quantity: count
+//                 }}
+//               >
+//                 <button className="bg-green-500 text-white px-4 py-2 rounded">
+//                   Buy Now
+//                 </button>
+//               </Link>
+//               <button
+//                 onClick={() => handleCart(product)}
+//                 className="bg-blue-500 text-white px-4 py-2 rounded"
+//               >
+//                 Add to Cart
+//               </button>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+
+//       <Footer />
+//     </div>
+//   );
+// };
+
+// export default RoadClock;
+// import React, { useState, useContext, useEffect } from 'react';
+// import Navigate from '../../common/Navigate';
+// import Footer from '../../common/Footer';
+// import { Link, useParams } from 'react-router';
+// import { toast, ToastContainer } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+// import { CartContext } from '../../Pages/Cart/CartContext';
+// import AOS from 'aos';
+// import 'aos/dist/aos.css';
+// import axios from 'axios';
+
+// const RoadClock = () => {
+//   const [product, setProduct] = useState(null);
+//   const { cart, setcart } = useContext(CartContext);
+//   const [count, setCount] = useState(1);
+//   const { id } = useParams(); // Get product ID from URL
+// console.log(id,
+//   "id"
+// )
+//   useEffect(() => {
+//     AOS.init({ duration: 1500, once: true });
+
+//     // Fetch product by ID from backend
+//     const fetchProduct = async () => {
+//       try {
+//         const res = await axios.get(`http://localhost:5000/getcategory/${id}`);
+//         setProduct(res.data.data);
+//       } catch (err) {
+//         console.error("Error fetching product:", err);
+//         toast.error("Failed to load product");
+//       }
+//     };
+
+//     fetchProduct();
+//   }, [id]);
+
+//   const increase = () => setCount(count + 1);
+//   const decrease = () => setCount(count > 1 ? count - 1 : 1);
+
+//   const handleCart = (item) => {
+//     const normalizedItem = {
+//       product_img: item.product_img,
+//       product_name: item.product_name,
+//       product_price: item.product_price,
+//       quantity: count
+//     };
+//     setcart([...cart, normalizedItem]);
+//     toast.success("Product added to cart");
+//   };
+
+//   // Show loader until product is fetched
+//   if (!product) {
+//     return (
+//       <div className="bg-rose-50 min-h-screen flex items-center justify-center">
+//         <p className="text-lg font-semibold text-gray-700">Loading product...</p>
+//       </div>
+//     );
+//   }
+
+//   const totalAmount = product.product_price * count;
+
+//   return (
+//     <div className="bg-rose-50 min-h-screen flex flex-col">
+//       <ToastContainer />
+//       <Navigate />
+
+//       <div className="flex-grow p-8 mt-20">
+//         <div
+//           className="bg-white shadow p-6 rounded-xl max-w-4xl mx-auto flex flex-col md:flex-row gap-6"
+//           data-aos="fade-up"
+//         >
+//           {/* Left: Image */}
+//           <div className="flex-1 flex justify-center items-center">
+//             <img
+//               src={`http://localhost:5000/files/${product.product_img}`}
+//               alt={product.product_name}
+//               className="w-full max-w-sm h-auto rounded-lg"
+//             />
+//           </div>
+
+//           {/* Right: Details */}
+//           <div className="flex-1 flex flex-col justify-center">
+//             <h2 className="text-xl font-bold text-gray-800">{product.product_name}</h2>
+//             <h2 className="text-gray-600">Unit Price: ₹{product.product_price}</h2>
+
+//             <div className="flex items-center gap-2 my-3">
+//               <button
+//                 onClick={decrease}
+//                 className="bg-amber-400 px-3 py-1 rounded text-white"
+//               >
+//                 -
+//               </button>
+//               <span className="font-semibold">{count}</span>
+//               <button
+//                 onClick={increase}
+//                 className="bg-amber-400 px-3 py-1 rounded text-white"
+//               >
+//                 +
+//               </button>
+//             </div>
+
+//             <h2 className="text-lg font-bold">Total: ₹{totalAmount}</h2>
+
+//             <div className="flex gap-2 mt-4">
+//               <Link
+//                 to="/purchase"
+//                 state={{
+//                   product_name: product.product_name,
+//                   product_price: product.product_price,
+//                   quantity: count
+//                 }}
+//               >
+//                 <button className="bg-green-500 text-white px-4 py-2 rounded">
+//                   Buy Now
+//                 </button>
+//               </Link>
+//               <button
+//                 onClick={() => handleCart(product)}
+//                 className="bg-blue-500 text-white px-4 py-2 rounded"
+//               >
+//                 Add to Cart
+//               </button>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+
+//       <Footer />
+//     </div>
+//   );
+// };
+
+// export default RoadClock;

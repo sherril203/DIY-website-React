@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useEffect} from 'react'
+import { useEffect } from 'react'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useLocation, useNavigate } from 'react-router';
@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Purchase = () => {
   const location = useLocation();
   const product = location.state?.product;
-  const navigate=useNavigate()
+  const navigate = useNavigate()
   const [customize, setCustomize] = useState(false);
   const [customType, setCustomType] = useState('');
   const [paymentMode, setPaymentMode] = useState('');
@@ -26,9 +26,9 @@ const Purchase = () => {
   const [upiId, setUpiId] = useState('');
   const [customValue, setCustomValue] = useState('');
   useEffect(() => {
-    AOS.init({ duration: 2000, once: true }); 
+    AOS.init({ duration: 2000, once: true });
   }, []);
- const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = {
@@ -291,7 +291,7 @@ const Purchase = () => {
         </div>
 
         <div className="text-center mt-8">
-          
+
           <button
             type="submit"
             className="bg-gradient-to-r from-fuchsia-600

@@ -1,3 +1,4 @@
+
 import React, { useContext } from "react";
 import Footer from "../../common/Footer";
 import UserNav from "../Userpage/UserNav";
@@ -5,7 +6,10 @@ import { CartContext } from "../Cart/CartContext";
 
 const Cart = () => {
   const {cart, removeFromCart}=useContext(CartContext)
-  
+  const handleDelete = (name, e) => {
+  e.preventDefault();
+  removeFromCart(name);
+};
   return (
      <div className="bg-rose-100 mt-17 min-h-screen">
       <UserNav />
@@ -30,7 +34,7 @@ const Cart = () => {
         <p className="text-gray-600">Price: ₹{item.price}</p>
         <p className="text-gray-600">Qty: {item.quantity}</p>
         <button
-          onClick={() => removeFromCart(item.name)}
+          onClick={(e) => handleDelete(item.name, e)}
           className="bg-red-500 text-white px-4 py-2 mt-3 rounded-lg hover:bg-red-600"
         >
           Remove

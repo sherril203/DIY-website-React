@@ -32,6 +32,17 @@ const getproducts = async (req, res) => {
     res.status(500).send("Error retrieving products");
   }
 };
+//get by id
+// const getproductsById = async (req, res) => {
+//   try {
+//     const id=req.params.id
+//     const showproducts = await productModel.findById(id)
+//     res.status(200).send({ data: showproducts });
+//   } catch (err) {
+//     console.error("Error in get data:", err);
+//     res.status(500).send("Error retrieving products");
+//   }
+// };
 
 // Update product (with optional image upload)
 const updateproducts = async (req, res) => {
@@ -118,5 +129,5 @@ module.exports = {
   updateproducts,
   deleteproducts,
   postCategory,
-  getcategory
+  getcategory,
 };

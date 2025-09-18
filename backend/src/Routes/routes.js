@@ -19,6 +19,7 @@ router.post('/reset', userController.Resetpassword);
 // Product Routes
 router.post('/productinfo', upload.single('product_img'), products.postproduct);
 router.get('/getproducts', products.getproducts);
+// router.get('/getproducts/:id', products.getproductsById);
 router.put('/updateproducts/:id', upload.single('product_img'), products.updateproducts);
 router.delete('/deleteproducts/:id', products.deleteproducts);
 //purchase routes

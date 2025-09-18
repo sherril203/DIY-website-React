@@ -114,21 +114,40 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 
 const Clock = ({ query }) => {
-  const [clock ,setClock] = useState([]);
- 
+  const [clock, setClock] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Fetch clocks
   useEffect(() => {
     AOS.init({ duration: 2000, once: true });
 
-    // Fetch products from backend
-    axios.get('http://localhost:5000/getcategory/clock')
-      .then(res => setClock(res.data.data))
-      .catch(err => console.error(err));
+    const fetchClocks = async () => {
+      try {
+        const res = await axios.get('http://localhost:5000/getcategory/clock');
+        setClock(res.data.data || []);
+      } catch (err) {
+        setError('Failed to fetch clocks');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchClocks();
   }, []);
 
+  // Refresh AOS after data updates
+  useEffect(() => {
+    AOS.refresh();
+  }, [clock]);
+
+  // Filter based on search query
   const filtered = clock.filter(item =>
-    (item.product_name || '').toLowerCase().includes((query || '').toLowerCase())
+    (item.product_name || '').toLowerCase().includes((query || '').trim().toLowerCase())
   );
 
+  // Add item to cart
   const handleCart = (item) => {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     const existingIndex = cart.findIndex(c => c.product_name === item.product_name);
@@ -143,27 +162,28 @@ const Clock = ({ query }) => {
     toast.success("Product added to cart");
   };
 
-  if (filtered.length === 0) return null;
+
+
 
   return (
     <div className="p-6 bg-rose-50">
       <ToastContainer />
       <h2 className="text-center font-bold text-3xl mb-6 text-rose-800" data-aos="zoom-in">Clocks</h2>
 
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
         {filtered.map((item, index) => (
           <div
             key={index}
             className="flex-shrink-0 flex flex-col items-center gap-3 bg-white border border-rose-200 p-6 shadow-md rounded-2xl hover:scale-105 transition-transform duration-300 w-72"
             data-aos="fade-up"
-            data-aos-duration="2000"
             data-aos-delay={index * 200}
           >
-             <Link to={item.path}>
+            <Link to={item.path}>
               <img
                 src={`http://localhost:5000/files/${item.product_img}`}
                 alt={item.product_name}
-                className="w-56 h-56 object-contain"/>
+                className="w-56 h-56 object-contain"
+              />
             </Link>
             <Link to={item.path} className="text-lg font-semibold text-indigo-800 text-center">
               {item.product_name}
@@ -171,17 +191,21 @@ const Clock = ({ query }) => {
             <p className="text-gray-700 text-xl font-medium">₹{item.product_price}</p>
 
             <div className="flex gap-3 mt-2">
-              <button onClick={() => handleCart(item)} className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition">
+              <button
+                onClick={() => handleCart(item)}
+                className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition"
+              >
                 Add to Cart
               </button>
-              <Link to="/purchase"
-              state={{
+              <Link
+                to="/purchase"
+                state={{
                   product: {
                     name: item.product_name,
                     price: item.product_price,
-                    // quantity: count
-                  }
-                }}>
+                  },
+                }}
+              >
                 <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
                   Buy Now
                 </button>
