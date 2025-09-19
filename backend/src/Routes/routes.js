@@ -5,6 +5,7 @@ const query = require('../Controllers/feedback.controller');
 const products = require('../Controllers/products.controllers');
 const purchase=require('../Controllers/Purchase.controllers')
 const orders=require('../Controllers/Orders.controllers')
+const { verifyPayment } = require('../Controllers/Payment.controllers')
 const upload = require('../middleware/fileStorage');
 // Post query and  get query
 router.post('/postquery', query.postquery);
@@ -28,6 +29,8 @@ router.get('/getpurchase',purchase.getPurchase)
 //orders route
 // router.post('/orders',orders.PostOrder)
 router.get('/getorders',orders.getOrder)
+//razorpay
+//router.post("/payment/verify", verifyPayment);
 //Admin login and Register
 router.post('/adminRegister', userController.UserRegisterController);
 router.post('/adminlogin', userController.UserLoginController);

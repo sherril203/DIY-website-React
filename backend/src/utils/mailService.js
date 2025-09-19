@@ -31,8 +31,11 @@ const sendMailer = async(to,subject,data) =>{
         throw error
     };
 };
-const purchaseMail = async (to, subject, data) => {
+// Purchase Confirmation Mailer
+const ConfirmationMail = async (to, subject, data) => {
   try {
+    const totalPrice = data.product_price * data.quantity;
+
     const mailoptions = {
       from: user_mail,
       to,
@@ -44,8 +47,8 @@ const purchaseMail = async (to, subject, data) => {
           <p>We're thrilled to confirm your order. Here are the details:</p>
           <p><strong>Product:</strong> ${data.product_name}</p>
           <p><strong>Quantity:</strong> ${data.quantity}</p>
-          <p><strong>Total Price:</strong> ₹${data.product_price}</p>
-          <p><strong>Customization:</strong> ${data.customization}</p>
+          <p><strong>Total Price:</strong> ₹${totalPrice}</p>
+          ${data.customization ? `<p><strong>Customization:</strong> ${data.customization}</p>` : ""}
           <p><strong>Payment Mode:</strong> ${data.payment_mode}</p>
           <p><strong>Customer Name:</strong> ${data.customer_name}</p>
           <p><strong>Mobile No:</strong> ${data.mobile_no}</p>
@@ -54,18 +57,18 @@ const purchaseMail = async (to, subject, data) => {
           <p>We'll process and ship your order shortly. Thank you for shopping with us!</p>
           <p style="font-size: 14px; color: #555;">- Arts World</p>
         </div>
-      `
+      `,
     };
 
     const info = await transport.sendMail(mailoptions);
-    console.log("Email sent:", info.response);
+    console.log("Confirmation email sent:", info.response);
     return info;
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.error("Error sending confirmation email:", error);
     return { error };
   }
 };
 
 
 
-module.exports = {sendMailer,purchaseMail}
+module.exports = {sendMailer,ConfirmationMail}
