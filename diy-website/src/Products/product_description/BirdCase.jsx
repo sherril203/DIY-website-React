@@ -36,7 +36,7 @@
 // //             </div>
 
 // //             <h2 className='text-xl font-bold'>Total: ₹{totalAmount}</h2>
-        
+
 // //             <div className='flex gap-2 mt-4'>
 // //               <Link
 // //                 to="/purchase"
@@ -156,12 +156,12 @@ import { Link } from "react-router";
 import Navigate from "../../common/Navigate";
 import Footer from "../../common/Footer";
 import { toast, ToastContainer } from "react-toastify";
-import { CartContext } from "../../Pages/Cart/CartContext"; 
+import { CartContext } from "../../Pages/Cart/CartContext";
 import "react-toastify/dist/ReactToastify.css";
 
 const BirdCase = () => {
   const product = [
-    { product: bird, product_name: "Bird Design Phone Case", price: 200 },
+    { product_img: bird, product_name: "Bird Design Phone Case", price: 200 },
   ];
 
   const { cart, setcart } = useContext(CartContext);
@@ -174,7 +174,7 @@ const BirdCase = () => {
 
   const handleCart = (item) => {
     const normalizedItem = {
-      image: item.image || item.product,
+      image: item.image || item.product_img,
       name: item.name || item.product_name,
       price: item.price,
       quantity: count,
@@ -196,7 +196,7 @@ const BirdCase = () => {
             {/* Left: Image */}
             <div className="flex-1 flex justify-center items-center">
               <img
-                src={item.product}
+                src={item.product_img}
                 alt={item.product_name}
                 className="w-full max-w-sm h-auto rounded-lg"
               />
@@ -204,26 +204,18 @@ const BirdCase = () => {
 
             {/* Right: Details */}
             <div className="flex-1 flex flex-col justify-center">
-              <h2 className="text-lg font-semibold mt-2">{item.product_name}</h2>
-              <h2 className="text-gray-600">Unit Price: ₹{item.price}</h2>
+              <div className='mb-45'>
+                <h2 className='text-lg font-semibold '>{item.product_name}</h2>
+                <h2 className='text-gray-600 '>Unit Price: ₹{item.price}</h2>
 
-              <div className="flex items-center gap-2 my-3">
-                <button
-                  onClick={increase}
-                  className="bg-amber-400 px-3 py-1 rounded text-white"
-                >
-                  +
-                </button>
-                <span className="font-semibold">{count}</span>
-                <button
-                  onClick={decrease}
-                  className="bg-amber-400 px-3 py-1 rounded text-white"
-                >
-                  -
-                </button>
+                <div className='flex items-center gap-2 my-3'>
+                  <button onClick={increase} className='bg-amber-400 px-3 py-1 rounded text-white'>+</button>
+                  <span className='font-semibold'>{count}</span>
+                  <button onClick={decrease} className='bg-amber-400 px-3 py-1 rounded text-white'>-</button>
+                </div>
+
+                <h2 className='text-xl font-bold'>Total: ₹{totalAmount}</h2>
               </div>
-
-              <h2 className="text-xl font-bold">Total: ₹{totalAmount}</h2>
 
               <div className="flex gap-2 mt-4">
                 <Link

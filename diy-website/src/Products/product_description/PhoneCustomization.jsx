@@ -9,7 +9,7 @@ import { useContext } from 'react';
 import { CartContext } from '../../Pages/Cart/CartContext';
 const PhoneCustomization = () => {
   const product = [
-    { image: Customized, name: "Name Customized phone case", Price: 200 }
+    { product_img: Customized, product_name: "Name Customized phone case", Price: 200 }
   ];
  const {cart,setcart}=useContext(CartContext)
   const [count, setCount] = useState(1); 
@@ -20,8 +20,8 @@ const PhoneCustomization = () => {
   const totalAmount = product[0].Price * count;
    const handleCart = (item) => {
    const normalizedItem = {
-     image: item.image || item.product,
-     name: item.name || item.product_name,
+     image: item.product_img ,
+     name:  item.product_name,
      price: item.Price,
      quantity: count
    };
@@ -42,7 +42,7 @@ const PhoneCustomization = () => {
             {/* Left: Image */}
             <div className="flex-1 flex justify-center items-center">
               <img
-                src={item.product}
+                src={item.product_img}
                 alt={item.product_name}
                 className="w-full max-w-sm h-auto rounded-lg"
               />
@@ -50,26 +50,18 @@ const PhoneCustomization = () => {
 
             {/* Right: Details */}
             <div className="flex-1 flex flex-col justify-center">
-              <h2 className="text-lg font-semibold mt-2">{item.product_name}</h2>
-              <h2 className="text-gray-600">Unit Price: ₹{item.price}</h2>
+               <div className='mb-69'>
+                <h2 className='text-lg font-semibold '>{item.product_name}</h2>
+                <h2 className='text-gray-600 '>Unit Price: ₹{item.Price}</h2>
 
-              <div className="flex items-center gap-2 my-3">
-                <button
-                  onClick={increase}
-                  className="bg-amber-400 px-3 py-1 rounded text-white"
-                >
-                  +
-                </button>
-                <span className="font-semibold">{count}</span>
-                <button
-                  onClick={decrease}
-                  className="bg-amber-400 px-3 py-1 rounded text-white"
-                >
-                  -
-                </button>
+                <div className='flex items-center gap-2 my-3'>
+                  <button onClick={increase} className='bg-amber-400 px-3 py-1 rounded text-white'>+</button>
+                  <span className='font-semibold'>{count}</span>
+                  <button onClick={decrease} className='bg-amber-400 px-3 py-1 rounded text-white'>-</button>
+                </div>
+
+                <h2 className='text-xl font-bold'>Total: ₹{totalAmount}</h2>
               </div>
-
-              <h2 className="text-xl font-bold">Total: ₹{totalAmount}</h2>
 
               <div className="flex gap-2 mt-4">
                 <Link

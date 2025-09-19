@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useEffect } from 'react'
+import {useEffect} from 'react'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { useLocation, useNavigate } from 'react-router';
+import { useLocation, useNavigate,Link } from 'react-router';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Purchase = () => {
   const location = useLocation();
   const product = location.state?.product;
-  const navigate = useNavigate()
+  const navigate=useNavigate()
   const [customize, setCustomize] = useState(false);
   const [customType, setCustomType] = useState('');
   const [paymentMode, setPaymentMode] = useState('');
@@ -26,44 +26,43 @@ const Purchase = () => {
   const [upiId, setUpiId] = useState('');
   const [customValue, setCustomValue] = useState('');
   useEffect(() => {
-    AOS.init({ duration: 2000, once: true });
+    AOS.init({ duration: 2000, once: true }); 
   }, []);
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    const formData = {
-      product_name: productName,
-      product_price: Number(productPrice),
-      quantity: Number(quantity),
-      customization: customize ? customType : 'no',
-      customer_name: customerName,
-      customer_email: customerEmail,
-      mobile_no: Number(mobileNo),
-      address,
-      payment_mode: paymentMode,
-    };
-
-    if (customize && customType === 'name') {
-      formData.custom_value = customValue;
-    }
-
-    if (paymentMode === 'upi') {
-      formData.upi_id = upiId;
-    }
-    // if(paymentMode==='online_payment'){
-    //   formData.online_payment=online_payment
-    // }
-
-    try {
-      await axios.post('http://localhost:5000/purchase', formData);
-      toast.success('Purchase successful!');
-      navigate('/confirmation', { state: formData });
-
-    } catch (err) {
-      console.error(err);
-      toast.error('Error during purchase. Please try again.');
-    }
+  const formData = {
+    product_name: productName,
+    product_price: Number(productPrice),
+    quantity: Number(quantity),
+    customization: customize ? customType : 'no',
+    customer_name: customerName,
+    customer_email: customerEmail,
+    mobile_no: Number(mobileNo),
+    address,
+    payment_mode: paymentMode,
   };
+
+  if (customize && customType === 'name') {
+    formData.custom_value = customValue;
+  }
+
+  if (paymentMode === 'upi') {
+    formData.upi_id = upiId;
+  }
+
+  try {
+    await axios.post('http://localhost:5000/purchase', formData);
+    toast.success('Purchase successful!');
+
+    // ✅ Navigate and send formData
+    navigate("/confirmation", { state: formData });
+
+  } catch (err) {
+    console.error(err);
+    toast.error('Error during purchase. Please try again.');
+  }
+};
 
   return (
     <div className="p-6 mt-18 text-center bg-rose-50">
@@ -291,13 +290,13 @@ const Purchase = () => {
         </div>
 
         <div className="text-center mt-8">
-
-          <button
+           <button
             type="submit"
-            className="bg-gradient-to-r from-fuchsia-600
-             to-pink-500 px-6 py-3 text-white font-bold rounded hover:opacity-90">
+            className="bg-gradient-to-r from-fuchsia-600 to-pink-500 px-6 py-3 text-white font-bold rounded hover:opacity-90"
+          >
             Purchase
           </button>
+         
         </div>
       </form>
 

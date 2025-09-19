@@ -9,9 +9,9 @@ import { useContext } from 'react';
 import { CartContext } from '../../Pages/Cart/CartContext';
 const UniqueClock = () => {
   const product = [
-    { product: unique, product_name: "Unique Clock - The Perfect Holiday Gift", price: 200 }
+    { product_img: unique, product_name: "Unique Clock - The Perfect Holiday Gift", price: 200 }
   ];
- const {cart,setcart}=useContext(CartContext)
+  const { cart, setcart } = useContext(CartContext)
   const [count, setCount] = useState(1);
 
   const increase = () => setCount(count + 1);
@@ -19,24 +19,24 @@ const UniqueClock = () => {
 
   const totalAmount = product[0].price * count;
 
-   const handleCart = (item) => {
-   const normalizedItem = {
-     image: item.image || item.product,
-     name: item.name || item.product_name,
-     price: item.Price,
-     quantity: count
-   };
-   setcart([...cart, normalizedItem]);
-   toast.success("Product added");
- };
+  const handleCart = (item) => {
+    const normalizedItem = {
+      image: item.image || item.product_img,
+      name: item.name || item.product_name,
+      price: item.Price,
+      quantity: count
+    };
+    setcart([...cart, normalizedItem]);
+    toast.success("Product added");
+  };
 
   return (
     <div className='bg-rose-50'>
-      <ToastContainer/>
+      <ToastContainer />
       <Navigate />
       <div className='p-6'>
         {product.map((item, index) => (
-         <div
+          <div
             key={index}
             className="bg-white shadow p-6 rounded max-w-4xl mt-22
             mx-auto flex flex-col md:flex-row gap-6 "
@@ -44,7 +44,7 @@ const UniqueClock = () => {
             {/* Left: Image */}
             <div className="flex-1 flex justify-center items-center">
               <img
-                src={item.product}
+                src={item.product_img}
                 alt={item.product_name}
                 className="w-full max-w-sm h-auto rounded-lg"
               />
@@ -52,26 +52,18 @@ const UniqueClock = () => {
 
             {/* Right: Details */}
             <div className="flex-1 flex flex-col justify-center">
-              <h2 className="text-lg font-semibold mt-2">{item.product_name}</h2>
-              <h2 className="text-gray-600">Unit Price: ₹{item.price}</h2>
+              <div className='mb-30'>
+                <h2 className='text-lg font-semibold '>{item.product_name}</h2>
+                <h2 className='text-gray-600 '>Unit Price: ₹{item.Price}</h2>
 
-              <div className="flex items-center gap-2 my-3">
-                <button
-                  onClick={increase}
-                  className="bg-amber-400 px-3 py-1 rounded text-white"
-                >
-                  +
-                </button>
-                <span className="font-semibold">{count}</span>
-                <button
-                  onClick={decrease}
-                  className="bg-amber-400 px-3 py-1 rounded text-white"
-                >
-                  -
-                </button>
+                <div className='flex items-center gap-2 my-3'>
+                  <button onClick={increase} className='bg-amber-400 px-3 py-1 rounded text-white'>+</button>
+                  <span className='font-semibold'>{count}</span>
+                  <button onClick={decrease} className='bg-amber-400 px-3 py-1 rounded text-white'>-</button>
+                </div>
+
+                <h2 className='text-xl font-bold'>Total: ₹{totalAmount}</h2>
               </div>
-
-              <h2 className="text-xl font-bold">Total: ₹{totalAmount}</h2>
 
               <div className="flex gap-2 mt-4">
                 <Link

@@ -18,10 +18,10 @@ const Confirmationpage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!data.product_price) {
-      alert("Please enter amount");
-      return;
-    }
+    // if (!data.product_price) {
+    //   alert("Please enter amount");
+    //   return;
+    // }
 
     if (!ScriptLoaded) {
       alert("Razorpay SDK not loaded yet");
@@ -30,7 +30,7 @@ const Confirmationpage = () => {
 
     const options = {
       key: "rzp_test_RIxDCEPrAengZM", // Test key
-      amount: data.product_price*100 , // in paise
+      amount: data.product_price * 100, // in paise
       currency: "INR",
       name: "Artworld",
       description: "Purchase Payment",
