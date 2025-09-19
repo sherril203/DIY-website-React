@@ -13,7 +13,19 @@ const Jewellery = () => {
   ];
   const { cart, setcart } = useContext(CartContext)
   const [count, setCount] = useState(1);
+  const [review, setReview] = useState('');
+  const [reviews, setReviews] = useState([]); // store all submitted reviews
 
+  const handleReview = () => {
+    if (!review.trim()) {
+      toast.error("Review cannot be empty!");
+      return;
+    }
+
+    setReviews([...reviews, review]); // add new review to list
+    setReview(''); // clear input
+    toast.success("Review submitted!");
+  };
   const increase = () => setCount(count + 1);
   const decrease = () => setCount(count > 1 ? count - 1 : 1);
 
@@ -88,6 +100,43 @@ const Jewellery = () => {
             </div>
           </div>
         ))}
+      </div>
+      <div className="flex justify-center mb-15 ">
+        <div className="bg-white w-[48%]  p-8 rounded shadow gap-5">
+          <h2 className="font-bold text-xl mb-3 text-center">Reviews</h2>
+
+          <div className='flex justify-center gap-5'>
+            <input
+              type="text"
+              value={review}
+              onChange={(e) => setReview(e.target.value)}
+              placeholder="Enter review"
+              className="p-3 ring-2 rounded w-full mb-3"
+            />
+
+            <div className="">
+              <button
+                onClick={handleReview}
+                className="bg-blue-500 p-3 rounded text-white"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+
+          {/* Show submitted reviews */}
+          <div className="mt-5 space-y-2">
+            {reviews.length === 0 ? (
+              <p className="text-gray-500 italic text-center">No reviews yet.</p>
+            ) : (
+              reviews.map((r, idx) => (
+                <div key={idx} className="bg-gray-100 p-3 rounded shadow-sm">
+                  {r}
+                </div>
+              ))
+            )}
+          </div>
+        </div>
       </div>
       <Footer />
     </div>
