@@ -1,6 +1,6 @@
 const purchaseModel=require('../model/Purchase.model')
 const OrderModel =require('../model/Orders.model')
-const { purchaseMail } = require('../utils/mailService')
+const {  ConfirmationMail } = require('../utils/mailService')
 const PostPurchase = async (req, res) => {
   try {
     const purchasedata = req.body;
@@ -30,7 +30,7 @@ const PostPurchase = async (req, res) => {
     //   ...restData
     // } = purchasedata;
 
-    // const mailResult = await purchaseMail(
+    // const mailResult = await ConfirmationMail(
     //   customer_email,
     //   "Purchase Confirmation",
     //   {

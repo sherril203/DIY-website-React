@@ -26,7 +26,7 @@ const Orders = () => {
       <UserNav />
       <h2 className="text-center font-bold text-3xl text-red-600 p-5 mt-20">Orders</h2>
 
-      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 mb-10 px-4">
+      <div className=" mx-auto grid grid-cols-2 md:grid-cols-3 gap-6 mb-10 px-4">
         {data.length === 0 ? (
           <p className="col-span-full text-center text-gray-500">No orders found.</p>
         ) : (

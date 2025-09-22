@@ -34,15 +34,45 @@ const Confirmationpage = () => {
       currency: "INR",
       name: "Artworld",
       description: "Purchase Payment",
-      handler: function (response) {
-        alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
-        if(response.razorpay_payment_id)
-        {
+      // handler: function (response) {
+      //   alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
+      //   if(response.razorpay_payment_id)
+      //   {
           
-        }
+      //   }
 
-        // TODO: Send response.razorpay_payment_id + amount to backend to save purchase/order and send email
-      },
+      //   // TODO: Send response.razorpay_payment_id + amount to backend to save purchase/order and send email
+      // }
+          handler: async function (response) {
+      alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
+
+      if (response.razorpay_payment_id) {
+        try {
+          // ✅ Send details to backend
+          const res = await fetch("http://localhost:5000/api/purchase", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              ...data,
+              razorpay_payment_id: response.razorpay_payment_id,
+            }),
+          });
+
+          const result = await res.json();
+          console.log("Backend response:", result);
+          if (res.ok) {
+            alert("Purchase confirmed! Email sent.");
+          } else {
+            alert("Purchase saved but email failed.");
+          }
+        } catch (err) {
+          console.error("Error sending purchase to backend:", err);
+          alert("Payment succeeded but backend failed.");
+        }
+      }
+    },
       prefill: {
         name: "Sherril",
         email: "sherrilkumar@gmail.com",
