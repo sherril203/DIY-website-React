@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import Footer from '../../common/Footer';
-import Navigate from '../../common/Navigate';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import UserNav from '../Userpage/UserNav';
 
 const Confirmationpage = () => {
   const location = useLocation();
@@ -36,6 +36,10 @@ const Confirmationpage = () => {
       description: "Purchase Payment",
       handler: function (response) {
         alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
+        if(response.razorpay_payment_id)
+        {
+          
+        }
 
         // TODO: Send response.razorpay_payment_id + amount to backend to save purchase/order and send email
       },
@@ -69,7 +73,7 @@ const Confirmationpage = () => {
   }, []);
   return (
     <div className="bg-rose-50 min-h-screen flex flex-col">
-      <Navigate />
+    <UserNav/>
 
       <div className="flex-grow flex items-center justify-center mt-30 mb-20">
         <div

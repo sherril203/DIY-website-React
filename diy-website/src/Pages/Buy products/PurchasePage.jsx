@@ -1,12 +1,12 @@
 import React from 'react'
-import Navigate from '../../common/Navigate'
+import UserNav from '../Userpage/UserNav'
 import Footer from '../../common/Footer'
 import Purchase from '../../Pages/Buy products/Purchase'
 
 const PurchasePage = () => {
   return (
     <div >
-        <Navigate/>
+        <UserNav/>
         <Purchase/>
         <Footer/>
     </div>

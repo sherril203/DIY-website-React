@@ -60,7 +60,7 @@ const ConfirmationMail = async (to, subject, data) => {
       `,
     };
 
-    const info = await transport.sendMail(mailoptions);
+    const info = await transport.ConfirmationMail(mailoptions);
     console.log("Confirmation email sent:", info.response);
     return info;
   } catch (error) {

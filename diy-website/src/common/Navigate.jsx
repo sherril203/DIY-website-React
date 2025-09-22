@@ -24,7 +24,7 @@ const Navigate = () => {
         <div className="hidden lg:block">
           <ul className="flex gap-6 text-lg font-medium text-white">
             <li className="hover:text-indigo-200 transition">
-              <Link to="/homepage" className="flex gap-2 items-center"><TbHomeFilled /> Home</Link>
+              <Link to="/" className="flex gap-2 items-center"><TbHomeFilled /> Home</Link>
             </li>
             <li className="hover:text-indigo-200 transition">
               <Link to="/products" className="flex gap-2 items-center"><FaCartShopping /> Products</Link>
