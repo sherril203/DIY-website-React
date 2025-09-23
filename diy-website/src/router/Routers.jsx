@@ -54,6 +54,8 @@ import CoupleFrame from "../Products/product_description/CouplesFrame";
 import CartoonFrame from "../Products/product_description/CartoonFrame";
 import Razorpay from "../Pages/Payments/Razorpay";
 import Confirmationpage from "../Pages/Buy products/Confirmationpage";
+import Payment_success from "../Pages/success/PaymentSuccess";
+import PaymentSuccess from "../Pages/success/PaymentSuccess";
 
 // (Import statements unchanged for brevity...)
 
@@ -151,7 +153,8 @@ const Routers = () => {
         </Route>
         <Route path="/payment" element={<Razorpay/>}/>
         <Route path="/confirmation" element={<Confirmationpage/>}/>
-
+        <Route path="/success" element={<PaymentSuccess/>}/>
+        
 
 
       </Routes>

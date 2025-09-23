@@ -31,26 +31,25 @@ const sendMailer = async(to,subject,data) =>{
         throw error
     };
 };
-// Purchase Confirmation Mailer
-const ConfirmationMail = async (to, subject, data) => {
+const ConfirmationMail = async (to, subject, data, name) => {
   try {
     const totalPrice = data.product_price * data.quantity;
-
-    const mailoptions = {
+    const mailOptions = {
       from: user_mail,
       to,
       subject,
       text: "Thank you for your purchase. Your product will be delivered soon.",
       html: `
         <div style="font-family: sans-serif; padding: 10px; line-height: 1.6;">
-          <h2 style="color: #d63384;">Thank you for your purchase, ${data.customer_name}!</h2>
+          <h2 style="color: #d63384;">Thank you for your purchase, ${name}!</h2>
           <p>We're thrilled to confirm your order. Here are the details:</p>
+          ${data.razorpay_payment_id ? `<p><strong>Payment ID:</strong> ${data.razorpay_payment_id}</p>` : ""}
           <p><strong>Product:</strong> ${data.product_name}</p>
           <p><strong>Quantity:</strong> ${data.quantity}</p>
           <p><strong>Total Price:</strong> ₹${totalPrice}</p>
           ${data.customization ? `<p><strong>Customization:</strong> ${data.customization}</p>` : ""}
           <p><strong>Payment Mode:</strong> ${data.payment_mode}</p>
-          <p><strong>Customer Name:</strong> ${data.customer_name}</p>
+          <p><strong>Customer Name:</strong> ${name}</p>
           <p><strong>Mobile No:</strong> ${data.mobile_no}</p>
           <p><strong>Delivery Address:</strong> ${data.address}</p>
           <br/>
@@ -60,7 +59,7 @@ const ConfirmationMail = async (to, subject, data) => {
       `,
     };
 
-    const info = await transport.ConfirmationMail(mailoptions);
+    const info = await transport.sendMail(mailOptions);
     console.log("Confirmation email sent:", info.response);
     return info;
   } catch (error) {
@@ -71,4 +70,6 @@ const ConfirmationMail = async (to, subject, data) => {
 
 
 
-module.exports = {sendMailer,ConfirmationMail}
+
+
+module.exports = { sendMailer, ConfirmationMail };

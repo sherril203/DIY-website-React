@@ -221,9 +221,9 @@ const BirdCase = () => {
                 <h2 className='text-gray-600 '>Unit Price: ₹{item.price}</h2>
 
                 <div className='flex items-center gap-2 my-3'>
-                  <button onClick={increase} className='bg-amber-400 px-3 py-1 rounded text-white'>+</button>
-                  <span className='font-semibold'>{count}</span>
                   <button onClick={decrease} className='bg-amber-400 px-3 py-1 rounded text-white'>-</button>
+                  <span className='font-semibold'>{count}</span>
+                  <button onClick={increase} className='bg-amber-400 px-3 py-1 rounded text-white'>+</button>
                 </div>
 
                 <h2 className='text-xl font-bold'>Total: ₹{totalAmount}</h2>

@@ -42,6 +42,7 @@ const Orders = () => {
               <p className="text-gray-600"><strong>Mobile:</strong> {order.mobile_no}</p>
               <p className="text-gray-600"><strong>Address:</strong> {order.address}</p>
               <p className="text-gray-600"><strong>Payment Mode:</strong> {order.payment_mode}</p>
+              <p className="text-gray-600"><strong>Status:</strong> {order.status}</p>
             </div>
           ))
         )}

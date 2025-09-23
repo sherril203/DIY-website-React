@@ -27,7 +27,7 @@ router.delete('/deleteproducts/:id', products.deleteproducts);
 router.post('/purchase',purchase.PostPurchase)
 router.get('/getpurchase',purchase.getPurchase)
 //orders route
-// router.post('/orders',orders.postOrder)
+router.post('/orders',orders.postOrder)
 router.get('/getorders',orders.getOrder)
 //razorpay
 //router.post("/payment/verify", verifyPayment);
