@@ -33,7 +33,7 @@ const sendMailer = async(to,subject,data) =>{
 };
 const ConfirmationMail = async (to, subject, data, name) => {
   try {
-    const totalPrice = data.product_price * data.quantity;
+    const totalPrice = data.product_price ;
     const mailOptions = {
       from: user_mail,
       to,
