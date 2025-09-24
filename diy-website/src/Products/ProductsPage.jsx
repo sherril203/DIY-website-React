@@ -93,24 +93,24 @@ const ProductsPage = () => {
   };
 
   return (
-    <div className="bg-rose-50 min-h-screen flex flex-col">
+    <div className="bg-rose-50 min-h-screen flex flex-col ">
       <Navigate />
 
       {/* Page Title */}
-      <h2 className="text-center font-bold text-2xl sm:text-3xl lg:text-4xl mt-16 sm:mt-24 text-rose-800">
+      <h2 className="text-center font-bold text-2xl sm:text-3xl lg:text-4xl mt-12 sm:mt-20 lg:mt-24 text-rose-800 px-4">
         Products
       </h2>
 
       {/* Search + Filter */}
       <form
-        className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-3 mt-4 px-4"
+        className="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-3 mt-6 px-4 max-w-4xl mx-auto w-full"
         onSubmit={handleSearch}
       >
         {/* Search Input */}
-        <div className="relative w-full sm:w-auto">
+        <div className="relative flex-1">
           <input
             type="search"
-            className="bg-white p-3 pr-10 rounded-lg border border-rose-200 shadow-sm w-full sm:w-64 lg:w-80 focus:outline-none focus:ring-2 focus:ring-rose-400 transition"
+            className="bg-white p-3 pr-10 rounded-lg border border-rose-200 shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-rose-400 transition"
             placeholder="Search products..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -119,25 +119,27 @@ const ProductsPage = () => {
         </div>
 
         {/* Category Select */}
-        <select
-          className="bg-white p-3 rounded-lg border border-rose-200 shadow-sm w-full sm:w-auto focus:outline-none focus:ring-2 focus:ring-rose-400 transition"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          aria-label="Filter by category"
-        >
-          <option value="">All</option>
-          <option value="Bags">Bags</option>
-          <option value="Cups">Cups</option>
-          <option value="Phone Case">Phone Case</option>
-          <option value="Photo Frames">Photo Frames</option>
-          <option value="Clocks">Clocks</option>
-          <option value="Geometric Design Wall Decor">Geometric Design Wall Decor</option>
-          <option value="Kits for kids">Kits for kids</option>
-        </select>
+        <div className="w-full sm:w-48 lg:w-56">
+          <select
+            className="bg-white p-3 rounded-lg border border-rose-200 shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-rose-400 transition"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            aria-label="Filter by category"
+          >
+            <option value="">All</option>
+            <option value="Bags">Bags</option>
+            <option value="Cups">Cups</option>
+            <option value="Phone Case">Phone Case</option>
+            <option value="Photo Frames">Photo Frames</option>
+            <option value="Clocks">Clocks</option>
+            <option value="Geometric Design Wall Decor">Geometric Design Wall Decor</option>
+            <option value="Kits for kids">Kits for kids</option>
+          </select>
+        </div>
       </form>
 
       {/* Product Grid */}
-      <div className="flex-grow">
+      <div className="flex-grow px-4 sm:px-6 lg:px-8 mt-6">
         <Products query={query} category={category} />
       </div>
 

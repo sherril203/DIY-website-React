@@ -59,6 +59,7 @@ import PaymentSuccess from "../Pages/success/PaymentSuccess";
 import AdminProfile from "../Pages/Admin Page/AdminProfile";
 import KidsImage from "../Products/product_description/KidsImage";
 import Quiling from "../Products/product_description/Quiling";
+import ImageCollege from "../Products/product_description/ImageCollege";
 
 // (Import statements unchanged for brevity...)
 
@@ -114,6 +115,7 @@ const Routers = () => {
           <Route path="babies" element={<BabiesPhoto />} />
           <Route path="couples" element={<CoupleFrame />} />
           <Route path="cartoonframe" element={<CartoonFrame />} />
+          <Route path="college" element={<ImageCollege/>}/>
           {/* Kits */}
           <Route path="jewellery" element={<Jewellery />} />
           <Route path="christmas" element={<Christmas />} />
