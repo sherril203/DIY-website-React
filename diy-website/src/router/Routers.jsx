@@ -56,6 +56,9 @@ import Razorpay from "../Pages/Payments/Razorpay";
 import Confirmationpage from "../Pages/Buy products/Confirmationpage";
 import Payment_success from "../Pages/success/PaymentSuccess";
 import PaymentSuccess from "../Pages/success/PaymentSuccess";
+import AdminProfile from "../Pages/Admin Page/AdminProfile";
+import KidsImage from "../Products/product_description/KidsImage";
+import Quiling from "../Products/product_description/Quiling";
 
 // (Import statements unchanged for brevity...)
 
@@ -90,6 +93,7 @@ const Routers = () => {
           <Route path="butterfly" element={<Butterfly />} />
           <Route path="thought" element={<ThoughtCup />} />
           <Route path="kids" element={<KidsCup />} />
+          <Route path="Image_cup_kits" element={<KidsImage/>}/>
           {/* Bags */}
           <Route path="flower" element={<Flower />} />
           <Route path="cartoon" element={<Cartoon />} />
@@ -109,10 +113,11 @@ const Routers = () => {
           <Route path="block" element={<BlockFrame />} />
           <Route path="babies" element={<BabiesPhoto />} />
           <Route path="couples" element={<CoupleFrame />} />
+          <Route path="cartoonframe" element={<CartoonFrame />} />
           {/* Kits */}
           <Route path="jewellery" element={<Jewellery />} />
           <Route path="christmas" element={<Christmas />} />
-          <Route path="cartoonframe" element={<CartoonFrame />} />
+          <Route path="quiling" element={<Quiling/>}/>
           {/* Wall Decor */}
           <Route path="lotus_decor" element={<LotusWall />} />
           <Route path="love_decor" element={<LoveHeart />} />
@@ -130,7 +135,7 @@ const Routers = () => {
           <Route path="orders" element={<AdminOrders />} />
         </Route>
 
-
+        <Route path="/admin/profile" element={<AdminProfile/>}/>
         <Route path="/adminlogin" element={<AdminLogin />} />
         <Route path="/adminRegister" element={<AdminSign />} />
 

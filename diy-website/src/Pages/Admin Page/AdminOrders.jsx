@@ -40,6 +40,7 @@ const AdminOrders = () => {
               <p><strong>Mobile:</strong> {order.mobile_no}</p>
               <p><strong>Address:</strong> {order.address}</p>
               <p><strong>Payment Mode:</strong> {order.payment_mode}</p>
+              <p><strong>Payment ID:</strong> {order.razorpay_payment_id}</p>
             </div>
           ))
         )}

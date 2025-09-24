@@ -5,7 +5,7 @@ const query = require('../Controllers/feedback.controller');
 const products = require('../Controllers/products.controllers');
 const purchase=require('../Controllers/Purchase.controllers')
 const orders=require('../Controllers/Orders.controllers')
-const { verifyPayment } = require('../Controllers/Payment.controllers')
+const product=require('../Controllers/productHome.controller')
 const upload = require('../middleware/fileStorage');
 // Post query and  get query
 router.post('/postquery', query.postquery);
@@ -56,4 +56,7 @@ router.get('/getcategory/geometric_decor', products.getcategory);
 //photo frames
 router.post('/category/photo_frames', upload.single('product_img'), products.postCategory);
 router.get('/getcategory/photo_frames', products.getcategory);
+//product display in home page
+router.post('/postsome',upload.single('product_img'),product.postSomeProduct)
+router.get('/getsome',product.getSomeProduct)
 module.exports = router;

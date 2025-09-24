@@ -484,7 +484,7 @@ const Purchase = () => {
               <label className="block font-semibold">Payment Mode</label>
               <div className="flex gap-4">
                 <label><input type="radio" name="payment_mode" value="online_payment" onChange={() => setPaymentMode('online_payment')} className="mr-1" /> Online Payment</label>
-                <label><input type="radio" name="payment_mode" value="upi" onChange={() => setPaymentMode('upi')} className="mr-1" /> UPI</label>
+                {/* <label><input type="radio" name="payment_mode" value="upi" onChange={() => setPaymentMode('upi')} className="mr-1" /> UPI</label> */}
                 <label><input type="radio" name="payment_mode" value="cash" onChange={() => setPaymentMode('cash')} className="mr-1" /> Cash</label>
               </div>
               {paymentMode === 'upi' && <input type="text" value={upiId} onChange={(e) => setUpiId(e.target.value)} placeholder="example@upi" className="w-full border p-2 rounded mt-2" />}

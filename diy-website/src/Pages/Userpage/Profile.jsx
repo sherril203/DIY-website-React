@@ -7,7 +7,7 @@ const Profile = () => {
   return (
     <div className='bg-rose-50 min-h-screen flex flex-col mt-20'>
       <UserNav />
-      <div className='flex-grow flex justify-center items-start mt-10'>
+      <div className='flex-grow flex justify-center items-start mt-10 mb-10'>
         <div className='rounded p-6 bg-white w-full max-w-md shadow-md'>
           <h2 className='text-3xl font-bold text-center mb-4'>Profile</h2>
           <div className='flex justify-center mb-2'>
