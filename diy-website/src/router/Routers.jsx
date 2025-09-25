@@ -60,6 +60,8 @@ import AdminProfile from "../Pages/Admin Page/AdminProfile";
 import KidsImage from "../Products/product_description/KidsImage";
 import Quiling from "../Products/product_description/Quiling";
 import ImageCollege from "../Products/product_description/ImageCollege";
+import ImageClock from "../Products/product_description/ImageClock";
+import Illusion from "../Products/product_description/Illusion";
 
 // (Import statements unchanged for brevity...)
 
@@ -103,6 +105,7 @@ const Routers = () => {
           <Route path="unique_clock-_the_perfect_holiday_gift" element={<UniqueClock />} />
           <Route path="woodenclock" element={<WoodenClock />} />
           <Route path="roadclock" element={<RoadClock />} />
+          <Route path="image_clock" element={<ImageClock/>}/>
           {/* Phone Cases */}
           <Route path="anime" element={<Anime />} />
           <Route path="glitter" element={<Glitter />} />
@@ -125,6 +128,7 @@ const Routers = () => {
           <Route path="love_decor" element={<LoveHeart />} />
           <Route path="holiday" element={<Holiday />} />
           <Route path="heart" element={<Heartwall />} />
+          <Route path="illusion" element={<Illusion/>}/>
         </Route>
 
         {/* Protected admin  */}

@@ -14,19 +14,19 @@ const Quiling = () => {
 
   const [count, setCount] = useState(1);
   const { cart, setcart } = useContext(CartContext)
-    const [review, setReview] = useState('');
-    const [reviews, setReviews] = useState([]); // store all submitted reviews
-  
-    const handleReview = () => {
-      if (!review.trim()) {
-        toast.error("Review cannot be empty!");
-        return;
-      }
-  
-      setReviews([...reviews, review]); // add new review to list
-      setReview(''); // clear input
-      toast.success("Review submitted!");
-    };
+  const [review, setReview] = useState('');
+  const [reviews, setReviews] = useState([]); // store all submitted reviews
+
+  const handleReview = () => {
+    if (!review.trim()) {
+      toast.error("Review cannot be empty!");
+      return;
+    }
+
+    setReviews([...reviews, review]); // add new review to list
+    setReview(''); // clear input
+    toast.success("Review submitted!");
+  };
   const increase = () => setCount(count + 1);
   const decrease = () => setCount(count > 1 ? count - 1 : 1);
 
@@ -66,7 +66,9 @@ const Quiling = () => {
               <div className='mb-45'>
                 <h2 className='text-lg font-semibold '>{item.product_name}</h2>
                 <h2 className='text-gray-600 '>Unit Price: ₹{item.Price}</h2>
-
+                <h2 className='text-gray-600 '><b>Products in Kit :</b> Color Papers,Gum,
+                  Scissors(1),Glitter Papers,Catalog
+                </h2>
                 <div className='flex items-center gap-2 my-3'>
                   <button onClick={decrease} className='bg-amber-400 px-3 py-1 rounded text-white'>-</button>
                   <span className='font-semibold'>{count}</span>
@@ -76,8 +78,14 @@ const Quiling = () => {
                 <h2 className='text-xl font-bold'>Total: ₹{totalAmount}</h2>
               </div>
 
-              <div className="flex gap-2 mt-4">
-                <Link
+              <div className="flex gap-50 ">
+                <button
+                  onClick={() => handleCart(item)}
+                  className="bg-amber-500 text-white px-4 py-2 rounded"
+                >
+                  Add to Cart
+                </button>
+                 <Link
                   to="/purchase"
                   state={{
                     product: {
@@ -91,12 +99,6 @@ const Quiling = () => {
                     Buy Now
                   </button>
                 </Link>
-                <button
-                  onClick={() => handleCart(item)}
-                  className="bg-blue-500 text-white px-4 py-2 rounded"
-                >
-                  Add to Cart
-                </button>
               </div>
             </div>
           </div>

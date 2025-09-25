@@ -62,7 +62,7 @@ const KidsCup = () => {
 
             {/* Right: Details */}
             <div className="flex-1 flex flex-col justify-center">
-               <div className='mb-50'>
+              <div className='mb-50'>
                 <h2 className='text-lg font-semibold '>{item.product_name}</h2>
                 <h2 className='text-gray-600 '>Unit Price: ₹{item.price}</h2>
 
@@ -75,13 +75,19 @@ const KidsCup = () => {
                 <h2 className='text-xl font-bold'>Total: ₹{totalAmount}</h2>
               </div>
 
-              <div className="flex gap-2 mt-4">
-                <Link
+             <div className="flex gap-50 ">
+                <button
+                  onClick={() => handleCart(item)}
+                  className="bg-amber-500 text-white px-4 py-2 rounded"
+                >
+                  Add to Cart
+                </button>
+                 <Link
                   to="/purchase"
                   state={{
                     product: {
                       name: item.product_name,
-                      price: item.price,
+                      price: item.Price,
                       quantity: count,
                     },
                   }}
@@ -90,12 +96,6 @@ const KidsCup = () => {
                     Buy Now
                   </button>
                 </Link>
-                <button
-                  onClick={() => handleCart(item)}
-                  className="bg-blue-500 text-white px-4 py-2 rounded"
-                >
-                  Add to Cart
-                </button>
               </div>
             </div>
           </div>

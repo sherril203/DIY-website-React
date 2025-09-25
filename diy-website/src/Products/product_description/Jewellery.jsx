@@ -65,7 +65,9 @@ const Jewellery = () => {
               <div className='mb-45'>
                 <h2 className='text-lg font-semibold '>{item.product_name}</h2>
                 <h2 className='text-gray-600 '>Unit Price: ₹{item.Price}</h2>
-
+                <h2 className='text-gray-600 '><b>Products in Kit :</b> Beads(letter cube beads,color beads,circle letter beads),thread,
+                symbol locket(star,mermaid,unicorn,heart),Emoji,Catalog
+                </h2>
                 <div className='flex items-center gap-2 my-3'>
                   <button onClick={decrease} className='bg-amber-400 px-3 py-1 rounded text-white'>-</button>
                   <span className='font-semibold'>{count}</span>
@@ -75,13 +77,19 @@ const Jewellery = () => {
                 <h2 className='text-xl font-bold'>Total: ₹{totalAmount}</h2>
               </div>
 
-              <div className="flex gap-2 mt-4">
-                <Link
+             <div className="flex gap-50 ">
+                <button
+                  onClick={() => handleCart(item)}
+                  className="bg-amber-500 text-white px-4 py-2 rounded"
+                >
+                  Add to Cart
+                </button>
+                 <Link
                   to="/purchase"
                   state={{
                     product: {
                       name: item.product_name,
-                      price: item.price,
+                      price: item.Price,
                       quantity: count,
                     },
                   }}
@@ -90,12 +98,6 @@ const Jewellery = () => {
                     Buy Now
                   </button>
                 </Link>
-                <button
-                  onClick={() => handleCart(item)}
-                  className="bg-blue-500 text-white px-4 py-2 rounded"
-                >
-                  Add to Cart
-                </button>
               </div>
             </div>
           </div>

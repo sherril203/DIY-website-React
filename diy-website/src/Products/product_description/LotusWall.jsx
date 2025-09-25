@@ -7,47 +7,47 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from 'react';
 import { CartContext } from '../../Pages/Cart/CartContext';
-const LotusWall= () => {
+const LotusWall = () => {
   const product = [
-   { product_img: lotus, product_name: "Lotus Design Wall Decor", price: 200 },
+    { product_img: lotus, product_name: "Lotus Design Wall Decor", price: 200 },
   ];
 
-  const [count, setCount] = useState(1); 
- const {cart,setcart}=useContext(CartContext)
-   const [review, setReview] = useState('');
-   const [reviews, setReviews] = useState([]); // store all submitted reviews
- 
-   const handleReview = () => {
-     if (!review.trim()) {
-       toast.error("Review cannot be empty!");
-       return;
-     }
- 
-     setReviews([...reviews, review]); // add new review to list
-     setReview(''); // clear input
-     toast.success("Review submitted!");
-   };
+  const [count, setCount] = useState(1);
+  const { cart, setcart } = useContext(CartContext)
+  const [review, setReview] = useState('');
+  const [reviews, setReviews] = useState([]); // store all submitted reviews
+
+  const handleReview = () => {
+    if (!review.trim()) {
+      toast.error("Review cannot be empty!");
+      return;
+    }
+
+    setReviews([...reviews, review]); // add new review to list
+    setReview(''); // clear input
+    toast.success("Review submitted!");
+  };
   const increase = () => setCount(count + 1);
   const decrease = () => setCount(count > 1 ? count - 1 : 1);
 
   const totalAmount = product[0].price * count;
   const handleCart = (item) => {
-  const normalizedItem = {
-    image: item.image || item.product_img,
-    name: item.name || item.product_name,
-    price: item.Price,
-    quantity: count
+    const normalizedItem = {
+      image: item.image || item.product_img,
+      name: item.name || item.product_name,
+      price: item.Price,
+      quantity: count
+    };
+    setcart([...cart, normalizedItem]);
+    toast.success("Product added");
   };
-  setcart([...cart, normalizedItem]);
-  toast.success("Product added");
-};
   return (
     <div className='  bg-rose-50'>
-      <ToastContainer/>
-        <Navigate/>
+      <ToastContainer />
+      <Navigate />
       <div className='p-23'>
         {product.map((item, index) => (
-         <div
+          <div
             key={index}
             className="bg-white shadow p-6 rounded max-w-4xl mt-22
             mx-auto flex flex-col md:flex-row gap-6 "
@@ -76,8 +76,14 @@ const LotusWall= () => {
                 <h2 className='text-xl font-bold'>Total: ₹{totalAmount}</h2>
               </div>
 
-              <div className="flex gap-2 mt-4">
-                <Link
+             <div className="flex gap-50 ">
+                <button
+                  onClick={() => handleCart(item)}
+                  className="bg-amber-500 text-white px-4 py-2 rounded"
+                >
+                  Add to Cart
+                </button>
+                 <Link
                   to="/purchase"
                   state={{
                     product: {
@@ -91,12 +97,6 @@ const LotusWall= () => {
                     Buy Now
                   </button>
                 </Link>
-                <button
-                  onClick={() => handleCart(item)}
-                  className="bg-blue-500 text-white px-4 py-2 rounded"
-                >
-                  Add to Cart
-                </button>
               </div>
             </div>
           </div>
@@ -139,7 +139,7 @@ const LotusWall= () => {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

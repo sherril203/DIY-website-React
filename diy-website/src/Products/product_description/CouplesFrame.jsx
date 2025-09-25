@@ -83,7 +83,7 @@ const CoupleFrame = () => {
                   state={{
                     product: {
                       name: item.product_name,
-                      price: item.price,
+                      price: item.Price,
                       quantity: count,
                     },
                   }}

@@ -11,8 +11,8 @@ const RoadClock = () => {
   const product = [
     { product_img: road, product_name: "Car Road clock for kids", price: 200 },
   ];
- const {cart,setcart}=useContext(CartContext)
-  const [count, setCount] = useState(1); 
+  const { cart, setcart } = useContext(CartContext)
+  const [count, setCount] = useState(1);
   const [review, setReview] = useState('');
   const [reviews, setReviews] = useState([]); // store all submitted reviews
 
@@ -31,19 +31,19 @@ const RoadClock = () => {
 
   const totalAmount = product[0].price * count;
   const handleCart = (item) => {
-  const normalizedItem = {
-    image: item.image || item.product_img,
-    name: item.name || item.product_name,
-    price: item.Price,
-    quantity: count
+    const normalizedItem = {
+      image: item.image || item.product_img,
+      name: item.name || item.product_name,
+      price: item.Price,
+      quantity: count
+    };
+    setcart([...cart, normalizedItem]);
+    toast.success("Product added");
   };
-  setcart([...cart, normalizedItem]);
-  toast.success("Product added");
-};
   return (
     <div className='  bg-rose-50'>
-      <ToastContainer/>
-        <Navigate/>
+      <ToastContainer />
+      <Navigate />
       <div className='p-23'>
         {product.map((item, index) => (
           <div
@@ -62,7 +62,7 @@ const RoadClock = () => {
 
             {/* Right: Details */}
             <div className="flex-1 flex flex-col justify-center">
-             <div className='mb-50'>
+              <div className='mb-50'>
                 <h2 className='text-lg font-semibold '>{item.product_name}</h2>
                 <h2 className='text-gray-600 '>Unit Price: ₹{item.price}</h2>
 
@@ -75,13 +75,19 @@ const RoadClock = () => {
                 <h2 className='text-xl font-bold'>Total: ₹{totalAmount}</h2>
               </div>
 
-              <div className="flex gap-2 mt-4">
-                <Link
+             <div className="flex gap-50 ">
+                <button
+                  onClick={() => handleCart(item)}
+                  className="bg-amber-500 text-white px-4 py-2 rounded"
+                >
+                  Add to Cart
+                </button>
+                 <Link
                   to="/purchase"
                   state={{
                     product: {
                       name: item.product_name,
-                      price: item.price,
+                      price: item.Price,
                       quantity: count,
                     },
                   }}
@@ -90,12 +96,6 @@ const RoadClock = () => {
                     Buy Now
                   </button>
                 </Link>
-                <button
-                  onClick={() => handleCart(item)}
-                  className="bg-blue-500 text-white px-4 py-2 rounded"
-                >
-                  Add to Cart
-                </button>
               </div>
             </div>
           </div>
@@ -138,7 +138,7 @@ const RoadClock = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
