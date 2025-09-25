@@ -108,7 +108,7 @@ import { Link } from 'react-router';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
-
+import { FaStar } from "react-icons/fa";
 const Bags = ({ query }) => {
   const [bags, setBags] = useState([]);
  
@@ -166,8 +166,8 @@ const Bags = ({ query }) => {
             <Link to={item.path} className="text-lg font-semibold text-indigo-800 text-center">
               {item.product_name}
             </Link>
+            <p className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25}/>3.0</p>
             <p className="text-gray-700 text-xl font-medium">₹{item.product_price}</p>
-
             <div className="flex gap-3 mt-2">
               <button onClick={() => handleCart(item)} className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition">
                 Add to Cart

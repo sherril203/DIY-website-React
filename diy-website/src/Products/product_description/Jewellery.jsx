@@ -7,6 +7,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from 'react';
 import { CartContext } from '../../Pages/Cart/CartContext';
+import { FaStar } from "react-icons/fa";
 const Jewellery = () => {
   const product = [
     { product_img: jewel, product_name: "Jewellery kit for girls", Price: 200 }
@@ -64,6 +65,7 @@ const Jewellery = () => {
             <div className="flex-1 flex flex-col justify-center">
               <div className='mb-45'>
                 <h2 className='text-lg font-semibold '>{item.product_name}</h2>
+                 <h2 className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25}/>3.0</h2>
                 <h2 className='text-gray-600 '>Unit Price: ₹{item.Price}</h2>
                 <h2 className='text-gray-600 '><b>Products in Kit :</b> Beads(letter cube beads,color beads,circle letter beads),thread,
                 symbol locket(star,mermaid,unicorn,heart),Emoji,Catalog

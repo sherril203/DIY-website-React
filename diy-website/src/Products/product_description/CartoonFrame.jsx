@@ -7,6 +7,7 @@ import Footer from "../../common/Footer";
 import { toast, ToastContainer } from "react-toastify";
 import { CartContext } from "../../Pages/Cart/CartContext";
 import "react-toastify/dist/ReactToastify.css";
+import { FaStar } from "react-icons/fa";
 const CartoonFrame = () => {
   const product = [
     { product_img: block, product_name: "Cartoon Photo Frame for Kids ", price: 200 },
@@ -66,6 +67,7 @@ const CartoonFrame = () => {
             <div className="flex-1 flex flex-col justify-center">
               <div className='mb-60'>
                 <h2 className='text-lg font-semibold '>{item.product_name}</h2>
+                <p className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25}/>3.0</p>
                 <h2 className='text-gray-600 '>Unit Price: ₹{item.price}</h2>
 
                 <div className='flex items-center gap-2 my-3'>

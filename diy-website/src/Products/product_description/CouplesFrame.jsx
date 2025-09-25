@@ -7,6 +7,7 @@ import Footer from "../../common/Footer";
 import { toast, ToastContainer } from "react-toastify";
 import { CartContext } from "../../Pages/Cart/CartContext";
 import "react-toastify/dist/ReactToastify.css";
+import { FaStar } from "react-icons/fa";
 const CoupleFrame = () => {
   const product = [
     { product: block, product_name: "Couples Collague Frame", price: 200 },
@@ -66,6 +67,7 @@ const CoupleFrame = () => {
             <div className="flex-1 flex flex-col justify-center">
               <div className='mb-60'>
                 <h2 className='text-lg font-semibold '>{item.product_name}</h2>
+                 <h2 className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25}/>3.0</h2>
                 <h2 className='text-gray-600 '>Unit Price: ₹{item.price}</h2>
 
                 <div className='flex items-center gap-2 my-3'>
@@ -77,7 +79,13 @@ const CoupleFrame = () => {
                 <h2 className='text-xl font-bold'>Total: ₹{totalAmount}</h2>
               </div>
 
-              <div className="flex gap-2 mt-4">
+              <div className="flex gap-50 ">
+                <button
+                  onClick={() => handleCart(item)}
+                  className="bg-amber-500 text-white px-4 py-2 rounded"
+                >
+                  Add to Cart
+                </button>
                 <Link
                   to="/purchase"
                   state={{
@@ -92,12 +100,6 @@ const CoupleFrame = () => {
                     Buy Now
                   </button>
                 </Link>
-                <button
-                  onClick={() => handleCart(item)}
-                  className="bg-blue-500 text-white px-4 py-2 rounded"
-                >
-                  Add to Cart
-                </button>
               </div>
             </div>
           </div>

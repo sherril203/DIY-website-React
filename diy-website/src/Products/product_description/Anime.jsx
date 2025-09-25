@@ -81,6 +81,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from 'react';
 import { CartContext } from '../../Pages/Cart/CartContext';
+import { FaStar } from "react-icons/fa";
 const Anime = () => {
   const product = [
     { product_img: anime, product_name: "Anime Phone Case", Price: 200 }
@@ -137,6 +138,7 @@ const Anime = () => {
             <div className='flex-1 flex flex-col justify-center'>
               <div className='mb-40'>
                 <h2 className='text-lg font-semibold '>{item.product_name}</h2>
+                <p className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25}/>3.0</p>
                 <h2 className='text-gray-600 '>Unit Price: ₹{item.Price}</h2>
 
                 <div className='flex items-center gap-2 my-3'>

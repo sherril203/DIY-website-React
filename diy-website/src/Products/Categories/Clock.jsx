@@ -112,7 +112,7 @@ import { Link } from 'react-router';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
-
+import { FaStar } from "react-icons/fa";
 const Clock = ({ query }) => {
   const [clock, setClock] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -188,6 +188,7 @@ const Clock = ({ query }) => {
             <Link to={item.path} className="text-lg font-semibold text-indigo-800 text-center">
               {item.product_name}
             </Link>
+            <p className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25}/>3.0</p>
             <p className="text-gray-700 text-xl font-medium">₹{item.product_price}</p>
 
             <div className="flex gap-3 mt-2">

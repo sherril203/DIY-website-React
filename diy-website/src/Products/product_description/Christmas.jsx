@@ -7,6 +7,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from 'react';
 import { CartContext } from '../../Pages/Cart/CartContext';
+import { FaStar } from "react-icons/fa";
 const Christmas = () => {
   const product = [
     { product_img: christmas, product_name: "Christmas kit for kids", Price: 200 }
@@ -65,6 +66,7 @@ const Christmas = () => {
             <div className="flex-1 flex flex-col justify-center">
               <div className='mb-45'>
                 <h2 className='text-lg font-semibold '>{item.product_name}</h2>
+                 <h2 className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25}/>3.0</h2>
                 <h2 className='text-gray-600 '>Unit Price: ₹{item.Price}</h2>
                 <h2 className='text-gray-600 '><b>Products in Kit :</b> Santa claus(5),Snow man(3),
                   Star(3),Gift(6),Candy(6),Deer(3),Frozen Ice(3),Cookie man(3),Socks(4),
