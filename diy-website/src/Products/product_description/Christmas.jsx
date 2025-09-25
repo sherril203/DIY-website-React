@@ -58,20 +58,31 @@ const Christmas = () => {
               <img
                 src={item.product_img}
                 alt={item.product_name}
-                className="w-full max-w-sm h-auto rounded-lg"
+                className="w-full max-w-sm h-auto rounded-lg mb-30"
               />
             </div>
 
             {/* Right: Details */}
             <div className="flex-1 flex flex-col justify-center">
-              <div className='mb-45'>
+              <div className='mb-30'>
                 <h2 className='text-lg font-semibold '>{item.product_name}</h2>
                  <h2 className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25}/>3.0</h2>
                 <h2 className='text-gray-600 '>Unit Price: ₹{item.Price}</h2>
-                <h2 className='text-gray-600 '><b>Products in Kit :</b> Santa claus(5),Snow man(3),
-                  Star(3),Gift(6),Candy(6),Deer(3),Frozen Ice(3),Cookie man(3),Socks(4),
-                  merry christmas tag(3),catalog(1)
-                </h2>
+                <h2 className='text-gray-600 font-bold '>Products in Kit :</h2>
+                <ul className="list-[square] ml-5 ">
+                  <li>Santa claus(5)</li>
+                  <li>Snow man(3)</li>
+                  <li>Gift(6)</li>
+                  <li>Star(3)</li>
+                  <li>Candy(6)</li>
+                  <li>Deer(3)</li>
+                  <li>Frozen Ice(3)</li>
+                  <li>Cookie man(3)</li>
+                  <li>Socks(4)</li>
+                  <li>merry christmas tag(3)</li>
+                  <li>catalog(1)</li>
+                </ul>
+                
                 <div className='flex items-center gap-2 my-3'>
                   <button onClick={decrease} className='bg-amber-400 px-3 py-1 rounded text-white'>-</button>
                   <span className='font-semibold'>{count}</span>
@@ -81,8 +92,15 @@ const Christmas = () => {
                 <h2 className='text-xl font-bold'>Total: ₹{totalAmount}</h2>
               </div>
 
-              <div className="flex gap-2 ">
-                <Link
+              <div className="flex gap-50 ">
+             
+                <button
+                  onClick={() => handleCart(item)}
+                  className="bg-amber-500 text-white px-4 py-2 rounded"
+                >
+                  Add to Cart
+                </button>
+                   <Link
                   to="/purchase"
                   state={{
                     product: {
@@ -96,12 +114,6 @@ const Christmas = () => {
                     Buy Now
                   </button>
                 </Link>
-                <button
-                  onClick={() => handleCart(item)}
-                  className="bg-blue-500 text-white px-4 py-2 rounded"
-                >
-                  Add to Cart
-                </button>
               </div>
             </div>
           </div>

@@ -64,13 +64,18 @@ const Quiling = () => {
 
             {/* Right: Details */}
             <div className="flex-1 flex flex-col justify-center">
-              <div className='mb-45'>
+              <div className='mb-20'>
                 <h2 className='text-lg font-semibold '>{item.product_name}</h2>
-                <h2 className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25}/>3.0</h2>
+                <h2 className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25} />3.0</h2>
                 <h2 className='text-gray-600 '>Unit Price: ₹{item.Price}</h2>
-                <h2 className='text-gray-600 '><b>Products in Kit :</b> Color Papers,Gum,
-                  Scissors(1),Glitter Papers,Catalog
-                </h2>
+                <h2 className='text-gray-600 font-bold'>Products in Kit :</h2>
+                <ul className="list-[square] ml-5 ">
+                  <li>Color Papers</li>
+                  <li>Gum,</li>
+                  <li>Scissors</li>
+                  <li>Glitter Papers</li>
+                  <li>Catalog</li>
+                </ul>
                 <div className='flex items-center gap-2 my-3'>
                   <button onClick={decrease} className='bg-amber-400 px-3 py-1 rounded text-white'>-</button>
                   <span className='font-semibold'>{count}</span>
@@ -87,7 +92,7 @@ const Quiling = () => {
                 >
                   Add to Cart
                 </button>
-                 <Link
+                <Link
                   to="/purchase"
                   state={{
                     product: {
