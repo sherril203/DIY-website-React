@@ -62,6 +62,7 @@ import Quiling from "../Products/product_description/Quiling";
 import ImageCollege from "../Products/product_description/ImageCollege";
 import ImageClock from "../Products/product_description/ImageClock";
 import Illusion from "../Products/product_description/Illusion";
+import Dorabag from "../Products/product_description/Dorabag";
 
 // (Import statements unchanged for brevity...)
 
@@ -100,6 +101,7 @@ const Routers = () => {
           {/* Bags */}
           <Route path="flower" element={<Flower />} />
           <Route path="cartoon" element={<Cartoon />} />
+          <Route path="dora_bag" element={<Dorabag/>}/>
           {/* Clocks */}
           <Route path="flowerclock" element={<FlowerClock />} />
           <Route path="unique_clock-_the_perfect_holiday_gift" element={<UniqueClock />} />
