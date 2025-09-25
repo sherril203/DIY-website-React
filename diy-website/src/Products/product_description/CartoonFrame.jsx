@@ -68,7 +68,7 @@ const CartoonFrame = () => {
               <div className='mb-60'>
                 <h2 className='text-lg font-semibold '>{item.product_name}</h2>
                 <p className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25}/>3.0</p>
-                <h2 className='text-gray-600 '>Unit Price: ₹{item.price}</h2>
+                <h2 className='text-gray-600 text-xl '>Unit Price: ₹{item.price}</h2>
 
                 <div className='flex items-center gap-2 my-3'>
                   <button onClick={decrease} className='bg-amber-400 px-3 py-1 rounded text-white'>-</button>
