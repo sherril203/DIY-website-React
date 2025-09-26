@@ -10,7 +10,7 @@ import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
 const Quiling = () => {
   const product = [
-    { product_img: quil, product_name: "Kits for Quiling Beginners", Price: 200 }
+    { product_img: quil, product_name: "Kits for Quiling Beginners", Price: 130 }
   ];
 
   const [count, setCount] = useState(1);

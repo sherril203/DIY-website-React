@@ -10,7 +10,7 @@ import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
 const WoodenClock = () => {
   const product = [
-    { product_img: wooden, product_name: "Wooden Clock for kids", price: 200 },
+    { product_img: wooden, product_name: "Wooden Clock for kids", price: 130 },
   ];
   const { cart, setcart } = useContext(CartContext)
   const [count, setCount] = useState(1);

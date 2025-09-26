@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import kids from '../../assets/cups/Image Customization for Kids.png'
+import nature from '../../assets/bags/Nature Tote Bag.png'
 import Navigate from '../../common/Navigate';
 import Footer from '../../common/Footer';
 import { Link } from 'react-router';
@@ -8,12 +8,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from 'react';
 import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
-const KidsImage = () => {
+const NatureBag = () => {
   const product = [
-    { product_img: kids, product_name: "Image Customization Cup for Kids", price: 150 },
+    { product_img: nature, product_name: "Nature Tote Bag", Price: 100 }
   ];
-  const { cart, setcart } = useContext(CartContext)
+
   const [count, setCount] = useState(1);
+  const { cart, setcart } = useContext(CartContext)
   const [review, setReview] = useState('');
   const [reviews, setReviews] = useState([]); // store all submitted reviews
 
@@ -30,12 +31,12 @@ const KidsImage = () => {
   const increase = () => setCount(count + 1);
   const decrease = () => setCount(count > 1 ? count - 1 : 1);
 
-  const totalAmount = product[0].price * count;
+  const totalAmount = product[0].Price * count;
   const handleCart = (item) => {
     const normalizedItem = {
       image: item.image || item.product_img,
       name: item.name || item.product_name,
-      price: item.price,
+      price: item.Price,
       quantity: count
     };
     setcart([...cart, normalizedItem]);
@@ -50,7 +51,7 @@ const KidsImage = () => {
           <div
             key={index}
             className="bg-white shadow p-6 rounded max-w-4xl mt-22
-            mx-auto flex flex-col md:flex-row gap-6 "
+                     mx-auto flex flex-col md:flex-row gap-6 "
           >
             {/* Left: Image */}
             <div className="flex-1 flex justify-center items-center">
@@ -63,10 +64,10 @@ const KidsImage = () => {
 
             {/* Right: Details */}
             <div className="flex-1 flex flex-col justify-center">
-               <div className='mb-50'>
+              <div className='mb-70'>
                 <h2 className='text-lg font-semibold '>{item.product_name}</h2>
                  <h2 className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25}/>3.0</h2>
-                <h2 className='text-gray-600 text-xl '>Unit Price: ₹{item.price}</h2>
+                <h2 className='text-gray-600 text-xl '>Unit Price: ₹{item.Price}</h2>
 
                 <div className='flex items-center gap-2 my-3'>
                   <button onClick={decrease} className='bg-amber-400 px-3 py-1 rounded text-white'>-</button>
@@ -145,4 +146,4 @@ const KidsImage = () => {
   );
 };
 
-export default KidsImage;
+export default NatureBag;

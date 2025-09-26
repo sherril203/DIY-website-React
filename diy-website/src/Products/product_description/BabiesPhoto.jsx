@@ -98,7 +98,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { FaStar } from "react-icons/fa";
 const BabiesPhoto = () => {
   const product = [
-    { product_img: block, product_name: "Photo Frame for Babies", price: 200 },
+    { product_img: block, product_name: "Photo Frame for Babies", price: 120 },
   ];
 
   const { cart, setcart } = useContext(CartContext);

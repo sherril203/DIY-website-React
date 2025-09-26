@@ -10,7 +10,7 @@ import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
 const Flower = () => {
   const product = [
-    { product_img: flower, product_name: "Flower Design Bag", Price: 200 }
+    { product_img: flower, product_name: "Flower Design Bag", Price: 100 }
   ];
 
   const [count, setCount] = useState(1);

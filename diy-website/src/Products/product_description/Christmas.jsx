@@ -10,7 +10,7 @@ import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
 const Christmas = () => {
   const product = [
-    { product_img: christmas, product_name: "Christmas kit for kids", Price: 200 }
+    { product_img: christmas, product_name: "Christmas kit for kids", Price: 120 }
   ];
 
   const [count, setCount] = useState(1);

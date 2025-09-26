@@ -10,7 +10,7 @@ import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
 const KidsCup = () => {
   const product = [
-    { product_img: kid, product_name: "Kids Cup", price: 200 },
+    { product_img: kid, product_name: "Kids Cup", price: 150 },
   ];
   const { cart, setcart } = useContext(CartContext)
   const [count, setCount] = useState(1);

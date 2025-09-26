@@ -63,6 +63,9 @@ import ImageCollege from "../Products/product_description/ImageCollege";
 import ImageClock from "../Products/product_description/ImageClock";
 import Illusion from "../Products/product_description/Illusion";
 import Dorabag from "../Products/product_description/Dorabag";
+import NatureBag from "../Products/product_description/NatureBag";
+import HelloKitty from "../Products/product_description/HelloKitty";
+import PopsicleFrame from "../Products/product_description/PopsicleFrame";
 
 // (Import statements unchanged for brevity...)
 
@@ -102,6 +105,8 @@ const Routers = () => {
           <Route path="flower" element={<Flower />} />
           <Route path="cartoon" element={<Cartoon />} />
           <Route path="dora_bag" element={<Dorabag/>}/>
+          <Route path="nature" element={<NatureBag/>}/>
+          <Route path="kitty" element={<HelloKitty/>}/>
           {/* Clocks */}
           <Route path="flowerclock" element={<FlowerClock />} />
           <Route path="unique_clock-_the_perfect_holiday_gift" element={<UniqueClock />} />
@@ -121,6 +126,7 @@ const Routers = () => {
           <Route path="couples" element={<CoupleFrame />} />
           <Route path="cartoonframe" element={<CartoonFrame />} />
           <Route path="college" element={<ImageCollege/>}/>
+          <Route path="popsicle" element={<PopsicleFrame/>}/>
           {/* Kits */}
           <Route path="jewellery" element={<Jewellery />} />
           <Route path="christmas" element={<Christmas />} />

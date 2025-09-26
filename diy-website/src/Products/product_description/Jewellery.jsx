@@ -10,7 +10,7 @@ import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
 const Jewellery = () => {
   const product = [
-    { product_img: jewel, product_name: "Jewellery kit for girls", Price: 200 }
+    { product_img: jewel, product_name: "Jewellery kit for girls", Price: 120 }
   ];
   const { cart, setcart } = useContext(CartContext)
   const [count, setCount] = useState(1);

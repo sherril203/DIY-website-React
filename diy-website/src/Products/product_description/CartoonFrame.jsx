@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { FaStar } from "react-icons/fa";
 const CartoonFrame = () => {
   const product = [
-    { product_img: block, product_name: "Cartoon Photo Frame for Kids ", price: 200 },
+    { product_img: block, product_name: "Cartoon Photo Frame for Kids ", price: 140 },
   ];
   const { cart, setcart } = useContext(CartContext)
   const [count, setCount] = useState(1);

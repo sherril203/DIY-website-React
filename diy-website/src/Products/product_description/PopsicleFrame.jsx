@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
-import kids from '../../assets/cups/Image Customization for Kids.png'
-import Navigate from '../../common/Navigate';
-import Footer from '../../common/Footer';
-import { Link } from 'react-router';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useContext } from 'react';
-import { CartContext } from '../../Pages/Cart/CartContext';
+
+import React, { useState, useContext } from "react";
+import pop from "../../assets/frames/Popisicle Photo Frame.png";
+import { Link } from "react-router";
+import Navigate from "../../common/Navigate";
+import Footer from "../../common/Footer";
+import { toast, ToastContainer } from "react-toastify";
+import { CartContext } from "../../Pages/Cart/CartContext";
+import "react-toastify/dist/ReactToastify.css";
 import { FaStar } from "react-icons/fa";
-const KidsImage = () => {
+
+
+const PopsicleFrame = () => {
   const product = [
-    { product_img: kids, product_name: "Image Customization Cup for Kids", price: 150 },
+    { product_img: pop, product_name: "Popsicle College Frame", price: 190 },
   ];
-  const { cart, setcart } = useContext(CartContext)
+
+  const { cart, setcart } = useContext(CartContext);
   const [count, setCount] = useState(1);
   const [review, setReview] = useState('');
   const [reviews, setReviews] = useState([]); // store all submitted reviews
@@ -31,26 +34,27 @@ const KidsImage = () => {
   const decrease = () => setCount(count > 1 ? count - 1 : 1);
 
   const totalAmount = product[0].price * count;
+
   const handleCart = (item) => {
     const normalizedItem = {
-      image: item.image || item.product_img,
-      name: item.name || item.product_name,
+      image: item.product_img,
+      name: item.product_name,
       price: item.price,
-      quantity: count
+      quantity: count,
     };
     setcart([...cart, normalizedItem]);
     toast.success("Product added");
   };
+
   return (
-    <div className='  bg-rose-50'>
+    <div className="bg-rose-50 ">
       <ToastContainer />
       <Navigate />
-      <div className='p-23'>
+      <div className="p-6">
         {product.map((item, index) => (
           <div
             key={index}
-            className="bg-white shadow p-6 rounded max-w-4xl mt-22
-            mx-auto flex flex-col md:flex-row gap-6 "
+            className="bg-white shadow p-6 rounded max-w-4xl mx-auto flex flex-col md:flex-row gap-6 mt-25"
           >
             {/* Left: Image */}
             <div className="flex-1 flex justify-center items-center">
@@ -63,13 +67,13 @@ const KidsImage = () => {
 
             {/* Right: Details */}
             <div className="flex-1 flex flex-col justify-center">
-               <div className='mb-50'>
+              <div className='mb-45'>
                 <h2 className='text-lg font-semibold '>{item.product_name}</h2>
                  <h2 className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25}/>3.0</h2>
                 <h2 className='text-gray-600 text-xl '>Unit Price: ₹{item.price}</h2>
 
                 <div className='flex items-center gap-2 my-3'>
-                  <button onClick={decrease} className='bg-amber-400 px-3 py-1 rounded text-white'>-</button>
+                 <button onClick={decrease} className='bg-amber-400 px-3 py-1 rounded text-white'>-</button>
                   <span className='font-semibold'>{count}</span>
                   <button onClick={increase} className='bg-amber-400 px-3 py-1 rounded text-white'>+</button>
                 </div>
@@ -89,7 +93,7 @@ const KidsImage = () => {
                   state={{
                     product: {
                       name: item.product_name,
-                      price: item.Price,
+                      price: item.price,
                       quantity: count,
                     },
                   }}
@@ -145,4 +149,5 @@ const KidsImage = () => {
   );
 };
 
-export default KidsImage;
+export default PopsicleFrame;
+
