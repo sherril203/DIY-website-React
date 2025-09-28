@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Footer from '../../common/Footer';
 import UserNav from '../Userpage/UserNav';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Orders = () => {
   const [data, setData] = useState([]);
@@ -20,9 +23,22 @@ const Orders = () => {
   useEffect(() => {
     getOrders();
   }, []);
+ const DeleteOrder = async (orderId) => {
+  if (!window.confirm('Are you sure you want to cancel this order?')) return;
+
+  try {
+    await axios.delete(`http://localhost:5000/getorders/${orderId}`);
+    toast.success('Order cancelled successfully');
+    setData(prevData => prevData.filter(order => order._id !== orderId));
+  } catch (error) {
+    toast.error('Failed to cancel order');
+    console.log('Delete error:', error.message);
+  }
+};
 
   return (
     <div className="bg-rose-100 min-h-screen">
+      <ToastContainer/>
       <UserNav />
       <h2 className="text-center font-bold text-3xl text-red-600 p-5 mt-20">Orders</h2>
 
@@ -44,6 +60,7 @@ const Orders = () => {
               <p className="text-gray-600"><strong>Payment Mode:</strong> {order.payment_mode}</p>
               <p className="text-gray-600"><strong>Payment ID:</strong>{order.razorpay_payment_id}</p>
               <p className="text-gray-600"><strong>Status:</strong> {order.status}</p>
+              <button onClick={()=>DeleteOrder(order._id)} className='p-3 bg-red-300 rounded'>Cancel Order</button>
             </div>
           ))
         )}

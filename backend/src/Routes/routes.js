@@ -29,6 +29,7 @@ router.get('/getpurchase',purchase.getPurchase)
 //orders route
 router.post('/orders',orders.postOrder)
 router.get('/getorders',orders.getOrder)
+router.delete('/getorders/:orderId',orders.CancelOrder) //cancel the order
 //razorpay
 //router.post("/payment/verify", verifyPayment);
 //Admin login and Register

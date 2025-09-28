@@ -103,4 +103,16 @@ const getOrder = async (req, res) => {
     return res.status(500).send("error in get data");
   }
 }
-module.exports = { postOrder, getOrder }
+ 
+const CancelOrder=async (req, res) => {
+  try {
+    const id=req.params.orderId
+    const deleted = await OrderModel.findByIdAndDelete(id);
+    if (!deleted) return res.status(404).send({ message: 'Order not found' });
+    res.status(200).send({ message: 'Order deleted' });
+  } catch (err) {
+    res.status(500).send({ error: 'Server error' });
+  }
+};
+
+module.exports = { postOrder, getOrder,CancelOrder }
