@@ -158,7 +158,7 @@ const Kits = ({ query }) => {
               <img
                 src={`http://localhost:5000/files/${item.product_img}`}
                 alt={item.product_name}
-                className="w-56 h-56 object-contain "
+                className="w-60 h-60 object-contain "
               />
             </Link>
 
