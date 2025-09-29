@@ -231,14 +231,6 @@ const Bags = ({ query }) => {
     toast.success("Product added to cart");
   };
 
-  if (filtered.length === 0) {
-    return (
-      <div className="p-10 text-center text-gray-600">
-        <h2 className="text-2xl font-semibold">No bags found</h2>
-      </div>
-    );
-  }
-
   return (
     <div className="p-6 bg-rose-50">
       <ToastContainer />
