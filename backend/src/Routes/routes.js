@@ -7,6 +7,7 @@ const purchase=require('../Controllers/Purchase.controllers')
 const orders=require('../Controllers/Orders.controllers')
 const product=require('../Controllers/productHome.controller')
 const upload = require('../middleware/fileStorage');
+const { authMiddleware } = require('../middleware/Auth');
 // Post query and  get query
 router.post('/postquery', query.postquery);
 router.get('/getquery', query.getquery);
@@ -60,4 +61,6 @@ router.get('/getcategory/photo_frames', products.getcategory);
 //product display in home page
 router.post('/postsome',upload.single('product_img'),product.postSomeProduct)
 router.get('/getsome',product.getSomeProduct)
+//get user profile
+// router.get("/profile",authMiddleware, userController.getUserProfile);
 module.exports = router;

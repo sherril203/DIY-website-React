@@ -66,6 +66,9 @@ import Dorabag from "../Products/product_description/Dorabag";
 import NatureBag from "../Products/product_description/NatureBag";
 import HelloKitty from "../Products/product_description/HelloKitty";
 import PopsicleFrame from "../Products/product_description/PopsicleFrame";
+import Edit from "../Pages/EditProfile/Edit";
+import CartoonCup from "../Products/product_description/CartoonCup";
+import Tree from "../Products/product_description/Tree";
 
 // (Import statements unchanged for brevity...)
 
@@ -100,7 +103,8 @@ const Routers = () => {
           <Route path="butterfly" element={<Butterfly />} />
           <Route path="thought" element={<ThoughtCup />} />
           <Route path="kids" element={<KidsCup />} />
-          <Route path="Image_cup_kits" element={<KidsImage/>}/>
+          <Route path="Image_cup_kids" element={<KidsImage/>}/>
+          <Route path="cartoon_cup" element={<CartoonCup/>}/>
           {/* Bags */}
           <Route path="flower" element={<Flower />} />
           <Route path="cartoon" element={<Cartoon />} />
@@ -137,6 +141,7 @@ const Routers = () => {
           <Route path="holiday" element={<Holiday />} />
           <Route path="heart" element={<Heartwall />} />
           <Route path="illusion" element={<Illusion/>}/>
+          <Route path="tree_of_memories" element={<Tree/>}/>
         </Route>
 
         {/* Protected admin  */}
@@ -167,9 +172,11 @@ const Routers = () => {
         <Route path="/user" element={<UserLayout />}  >
           <Route path="dashboard" element={<UserPage />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="editProfile" element={<Edit/>}/>
           <Route path="cart" element={<Cart />} />
           <Route path="orders" element={<Orders />} />
         </Route>
+        <Route path="/editProfile" element={<Edit/>}/>
         <Route path="/payment" element={<Razorpay/>}/>
         <Route path="/confirmation" element={<Confirmationpage/>}/>
         <Route path="/success" element={<PaymentSuccess/>}/>

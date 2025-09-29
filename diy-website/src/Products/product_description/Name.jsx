@@ -7,13 +7,14 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from 'react';
 import { CartContext } from '../../Pages/Cart/CartContext';
+import { FaStar } from "react-icons/fa";
 const Name = () => {
-  const {cart,setcart}=useContext(CartContext)
+  const { cart, setcart } = useContext(CartContext)
   const product = [
     { product_img: name, product_name: "Name Customization Cup", Price: 200 }
   ];
 
-  const [count, setCount] = useState(1); 
+  const [count, setCount] = useState(1);
   const [review, setReview] = useState('');
   const [reviews, setReviews] = useState([]); // store all submitted reviews
 
@@ -29,26 +30,26 @@ const Name = () => {
   };
   const increase = () => setCount(count + 1);
   const decrease = () => setCount(count > 1 ? count - 1 : 1);
- 
+
   const totalAmount = product[0].Price * count;
-//  const handleCart=(item)=>{
-//   setcart([...cart,item])
-//   toast.success('product added')
-//  }
+  //  const handleCart=(item)=>{
+  //   setcart([...cart,item])
+  //   toast.success('product added')
+  //  }
   const handleCart = (item) => {
-  const normalizedItem = {
-    image: item.image || item.product_img,
-    name: item.name || item.product_name,
-    price: item.Price,
-    quantity: count
+    const normalizedItem = {
+      image: item.image || item.product_img,
+      name: item.name || item.product_name,
+      price: item.Price,
+      quantity: count
+    };
+    setcart([...cart, normalizedItem]);
+    toast.success("Product added");
   };
-  setcart([...cart, normalizedItem]);
-  toast.success("Product added");
-};
   return (
     <div className='  bg-rose-50'>
-      <ToastContainer/>
-        <Navigate/>
+      <ToastContainer />
+      <Navigate />
       <div className='p-23'>
         {product.map((item, index) => (
           <div
@@ -69,9 +70,9 @@ const Name = () => {
             <div className="flex-1 flex flex-col justify-center">
               <div className='mb-70'>
                 <h2 className='text-lg font-semibold '>{item.product_name}</h2>
-                <h2 className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25}/>3.0</h2>
-                <h2 className='text-gray-600 text-xl '>Unit Price: ₹{item.price}</h2>
-
+                <h2 className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25} />3.0</h2>
+                <h2 className='text-gray-600 text-xl '>Unit Price: ₹{item.Price}</h2>
+                <h2 className='text-gray-600 text-xl '>Customizable</h2>
                 <div className='flex items-center gap-2 my-3'>
                   <button onClick={decrease} className='bg-amber-400 px-3 py-1 rounded text-white'>-</button>
                   <span className='font-semibold'>{count}</span>
@@ -81,14 +82,14 @@ const Name = () => {
                 <h2 className='text-xl font-bold'>Total: ₹{totalAmount}</h2>
               </div>
 
-             <div className="flex gap-50 ">
+              <div className="flex gap-50 ">
                 <button
                   onClick={() => handleCart(item)}
                   className="bg-amber-500 text-white px-4 py-2 rounded"
                 >
                   Add to Cart
                 </button>
-                 <Link
+                <Link
                   to="/purchase"
                   state={{
                     product: {
@@ -144,7 +145,7 @@ const Name = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

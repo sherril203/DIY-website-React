@@ -157,7 +157,7 @@ const BabiesPhoto = () => {
                 <h2 className='text-lg font-semibold '>{item.product_name}</h2>
                 <p className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25}/>3.0</p>
                 <h2 className='text-gray-600 text-xl '>Unit Price: ₹{item.price}</h2>
-
+                <h2 className='text-gray-600 text-xl '>Customizable</h2>
                 <div className='flex items-center gap-2 my-3'>
                  <button onClick={decrease} className='bg-amber-400 px-3 py-1 rounded text-white'>-</button>
                   <span className='font-semibold'>{count}</span>
@@ -179,7 +179,7 @@ const BabiesPhoto = () => {
                   state={{
                     product: {
                       name: item.product_name,
-                      price: item.Price,
+                      price: item.price,
                       quantity: count,
                     },
                   }}

@@ -22,7 +22,7 @@
 //     { product: wooden, product_name: "Wooden Clock for kids", price: 200, path: "/products/woodenclock" },
 //     { product: road, product_name: "Car Road Design Clock", price: 200, path: "/products/roadclock" },
 //   ];
-   
+
 //   const filtered = clocks.filter(item =>
 //     (item.product_name || '').toLowerCase().includes((query || '').toLowerCase())
 //   );
@@ -105,6 +105,121 @@
 // export default Clock;
 
 //backend to frontend
+// import React, { useEffect, useState } from 'react';
+// import AOS from 'aos';
+// import 'aos/dist/aos.css';
+// import { Link } from 'react-router';
+// import { toast, ToastContainer } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+// import axios from 'axios';
+// import { FaStar } from "react-icons/fa";
+// const Clock = ({ query }) => {
+//   const [clock, setClock] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
+
+//   // Fetch clocks
+//   useEffect(() => {
+//     AOS.init({ duration: 2000, once: true });
+
+//     const fetchClocks = async () => {
+//       try {
+//         const res = await axios.get('http://localhost:5000/getcategory/clock');
+//         setClock(res.data.data || []);
+//       } catch (err) {
+//         setError('Failed to fetch clocks');
+//         console.error(err);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchClocks();
+//   }, []);
+
+//   // Refresh AOS after data updates
+//   useEffect(() => {
+//     AOS.refresh();
+//   }, [clock]);
+
+//   // Filter based on search query
+//   const filtered = clock.filter(item =>
+//     (item.product_name || '').toLowerCase().includes((query || '').trim().toLowerCase())
+//   );
+
+//   // Add item to cart
+//   const handleCart = (item) => {
+//     let cart = JSON.parse(localStorage.getItem("cart")) || [];
+//     const existingIndex = cart.findIndex(c => c.product_name === item.product_name);
+
+//     if (existingIndex !== -1) {
+//       cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
+//     } else {
+//       cart.push({ ...item, quantity: 1 });
+//     }
+
+//     localStorage.setItem("cart", JSON.stringify(cart));
+//     toast.success("Product added to cart");
+//   };
+
+
+
+
+//   return (
+//     <div className="p-6 bg-rose-50">
+//       <ToastContainer />
+//       <h2 className="text-center font-bold text-3xl mb-6 text-rose-800" data-aos="zoom-in">Clocks</h2>
+
+//       <div  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10 justify-items-center">
+//         {filtered.map((item, index) => (
+//           <div
+//             key={index}
+//             className="flex-shrink-0 flex flex-col items-center gap-3 bg-white border border-rose-200 p-6 shadow-md rounded-2xl hover:scale-105 transition-transform duration-300 w-72"
+//             data-aos="fade-up"
+//             data-aos-delay={index * 200}
+//           >
+//             <Link to={item.path}>
+//               <img
+//                 src={`http://localhost:5000/files/${item.product_img}`}
+//                 alt={item.product_name}
+//                 className="w-56 h-56 object-contain"
+//               />
+//             </Link>
+//             <Link to={item.path} className="text-lg font-semibold text-indigo-800 text-center">
+//               {item.product_name}
+//             </Link>
+//             <p className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25}/>3.0</p>
+//             <p className="text-gray-700 text-xl font-medium">₹{item.product_price}</p>
+
+//             <div className="flex gap-3 mt-2">
+//               <button
+//                 onClick={() => handleCart(item)}
+//                 className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition"
+//               >
+//                 Add to Cart
+//               </button>
+//               <Link
+//                 to="/purchase"
+//                 state={{
+//                   product: {
+//                     name: item.product_name,
+//                     price: item.product_price,
+//                   },
+//                 }}
+//               >
+//                 <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
+//                   Buy Now
+//                 </button>
+//               </Link>
+//             </div>
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Clock;
 import React, { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -113,70 +228,49 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { FaStar } from "react-icons/fa";
+
 const Clock = ({ query }) => {
   const [clock, setClock] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
-  // Fetch clocks
   useEffect(() => {
     AOS.init({ duration: 2000, once: true });
-
-    const fetchClocks = async () => {
-      try {
-        const res = await axios.get('http://localhost:5000/getcategory/clock');
-        setClock(res.data.data || []);
-      } catch (err) {
-        setError('Failed to fetch clocks');
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchClocks();
+    axios.get('http://localhost:5000/getcategory/clock')
+      .then(res => setClock(res.data.data))
+      .catch(() => toast.error("Failed to fetch clocks"))
+      .finally(() => setLoading(false));
   }, []);
 
-  // Refresh AOS after data updates
-  useEffect(() => {
-    AOS.refresh();
-  }, [clock]);
-
-  // Filter based on search query
   const filtered = clock.filter(item =>
-    (item.product_name || '').toLowerCase().includes((query || '').trim().toLowerCase())
+    (item.product_name || '').toLowerCase().includes((query || '').toLowerCase())
   );
 
-  // Add item to cart
   const handleCart = (item) => {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const existingIndex = cart.findIndex(c => c.product_name === item.product_name);
-
-    if (existingIndex !== -1) {
-      cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
-    } else {
-      cart.push({ ...item, quantity: 1 });
-    }
+    const index = cart.findIndex(c => c.product_name === item.product_name);
+    index !== -1
+      ? (cart[index].quantity = (cart[index].quantity || 1) + 1)
+      : cart.push({ ...item, quantity: 1 });
 
     localStorage.setItem("cart", JSON.stringify(cart));
     toast.success("Product added to cart");
   };
 
-
-
+  if (loading) return <div className="text-center py-10">Loading...</div>;
+  if (filtered.length === 0) return null;
 
   return (
     <div className="p-6 bg-rose-50">
       <ToastContainer />
       <h2 className="text-center font-bold text-3xl mb-6 text-rose-800" data-aos="zoom-in">Clocks</h2>
 
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-10 justify-items-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {filtered.map((item, index) => (
           <div
             key={index}
-            className="flex-shrink-0 flex flex-col items-center gap-3 bg-white border border-rose-200 p-6 shadow-md rounded-2xl hover:scale-105 transition-transform duration-300 w-72"
+            className="w-full max-w-xs bg-white border border-rose-200 p-6 shadow-md rounded-2xl flex flex-col items-center gap-3 hover:scale-105 transition-transform duration-300"
             data-aos="fade-up"
-            data-aos-delay={index * 200}
+            data-aos-delay={index * 150}
           >
             <Link to={item.path}>
               <img
@@ -185,29 +279,29 @@ const Clock = ({ query }) => {
                 className="w-56 h-56 object-contain"
               />
             </Link>
+
             <Link to={item.path} className="text-lg font-semibold text-indigo-800 text-center">
               {item.product_name}
             </Link>
-            <p className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25}/>3.0</p>
-            <p className="text-gray-700 text-xl font-medium">₹{item.product_price}</p>
 
-            <div className="flex gap-3 mt-2">
+            <p className="flex items-center gap-1 text-yellow-500 text-sm sm:text-base">
+              <FaStar size={20} /> <span className="text-gray-700">3.0</span>
+            </p>
+
+            <p className="text-gray-800 text-xl font-bold">₹{item.product_price}</p>
+  <div className="flex flex-col sm:flex-row gap-3 w-full mt-2">
               <button
                 onClick={() => handleCart(item)}
-                className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition"
+                className="flex-1 bg-amber-500 text-white px-4 py-2 rounded-lg hover:bg-amber-600 transition"
               >
                 Add to Cart
               </button>
               <Link
                 to="/purchase"
-                state={{
-                  product: {
-                    name: item.product_name,
-                    price: item.product_price,
-                  },
-                }}
+                state={{ product: { name: item.product_name, price: item.product_price } }}
+                className="flex-1"
               >
-                <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
+                <button className="w-full bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
                   Buy Now
                 </button>
               </Link>

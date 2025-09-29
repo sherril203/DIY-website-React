@@ -65,9 +65,9 @@ const ThoughtCup = () => {
             <div className="flex-1 flex flex-col justify-center">
               <div className='mb-45'>
                 <h2 className='text-lg font-semibold '>{item.product_name}</h2>
-                <h2 className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25}/>3.0</h2>
+                <h2 className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25} />3.0</h2>
                 <h2 className='text-gray-600 text-xl '>Unit Price: ₹{item.price}</h2>
-
+                <h2 className='text-gray-600 text-xl '>Customizable</h2>
                 <div className='flex items-center gap-2 my-3'>
                   <button onClick={decrease} className='bg-amber-400 px-3 py-1 rounded text-white'>-</button>
                   <span className='font-semibold'>{count}</span>
@@ -76,14 +76,14 @@ const ThoughtCup = () => {
 
                 <h2 className='text-xl font-bold'>Total: ₹{totalAmount}</h2>
               </div>
-             <div className="flex gap-50 ">
+              <div className="flex gap-50 ">
                 <button
                   onClick={() => handleCart(item)}
                   className="bg-amber-500 text-white px-4 py-2 rounded"
                 >
                   Add to Cart
                 </button>
-                 <Link
+                <Link
                   to="/purchase"
                   state={{
                     product: {

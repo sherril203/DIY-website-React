@@ -93,7 +93,7 @@ const ProductsPage = () => {
   };
 
   return (
-    <div className="bg-rose-50 min-h-screen flex flex-col container">
+    <div className="bg-rose-50  flex flex-col w-full">
       <Navigate />
 
       {/* Page Title */}

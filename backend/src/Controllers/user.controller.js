@@ -165,6 +165,20 @@ const AdminLoginController = async (req, res) => {
     return res.status(500).send({ message: "Login failed", error: err.message });
   }
 };
+// Get User Profile
+// const getUserProfile = async (req, res) => {
+//   try {
+//     // req.userId comes from middleware (after token verification)
+//     const user = await SignModel.findById(req.userId).select("-password");
+//     if (!user) {
+//       return res.status(404).json({ message: "User not found" });
+//     }
+//     return res.status(200).json(user);
+//   } catch (err) {
+//     return res.status(500).json({ message: "Server error", error: err.message });
+//   }
+// };
+
 
 
 

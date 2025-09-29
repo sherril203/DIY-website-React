@@ -1,6 +1,5 @@
-
 import React, { useState, useContext } from "react";
-import block from "../../assets/frames/Cartoon_frame.png";
+import olaf from "../../assets/cups/Cartoon Customizable Cup.png";
 import { Link } from "react-router";
 import Navigate from "../../common/Navigate";
 import Footer from "../../common/Footer";
@@ -8,11 +7,12 @@ import { toast, ToastContainer } from "react-toastify";
 import { CartContext } from "../../Pages/Cart/CartContext";
 import "react-toastify/dist/ReactToastify.css";
 import { FaStar } from "react-icons/fa";
-const CartoonFrame = () => {
+const CartoonCup = () => {
   const product = [
-    { product_img: block, product_name: "Cartoon Photo Frame for Kids ", price: 140 },
+    { product_img: olaf, product_name: "Cartoon Customization Cup for Kids", price: 110 },
   ];
-  const { cart, setcart } = useContext(CartContext)
+
+  const { cart, setcart } = useContext(CartContext);
   const [count, setCount] = useState(1);
   const [review, setReview] = useState('');
   const [reviews, setReviews] = useState([]); // store all submitted reviews
@@ -36,8 +36,8 @@ const CartoonFrame = () => {
     const normalizedItem = {
       image: item.image || item.product_img,
       name: item.name || item.product_name,
-      price: item.Price,
-      quantity: count
+      price: item.price, // fixed here (was item.Price)
+      quantity: count,
     };
     setcart([...cart, normalizedItem]);
     toast.success("Product added");
@@ -51,10 +51,9 @@ const CartoonFrame = () => {
         {product.map((item, index) => (
           <div
             key={index}
-            className="bg-white shadow p-6 rounded max-w-4xl mt-22
-                     mx-auto flex flex-col md:flex-row gap-6 "
+            className="bg-white shadow p-6 rounded max-w-4xl mx-auto flex flex-col md:flex-row gap-6 mt-10"
           >
-            {/* Left: Image */}
+            {/* Left: Product Image */}
             <div className="flex-1 flex justify-center items-center">
               <img
                 src={item.product_img}
@@ -63,9 +62,9 @@ const CartoonFrame = () => {
               />
             </div>
 
-            {/* Right: Details */}
+            {/* Right: Product Details */}
             <div className="flex-1 flex flex-col justify-center">
-              <div className='mb-60'>
+              <div className='mb-50'>
                 <h2 className='text-lg font-semibold '>{item.product_name}</h2>
                 <p className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25} />3.0</p>
                 <h2 className='text-gray-600 text-xl '>Unit Price: ₹{item.price}</h2>
@@ -79,7 +78,6 @@ const CartoonFrame = () => {
                 <h2 className='text-xl font-bold'>Total: ₹{totalAmount}</h2>
               </div>
 
-
               <div className="flex gap-50 ">
                 <button
                   onClick={() => handleCart(item)}
@@ -92,7 +90,7 @@ const CartoonFrame = () => {
                   state={{
                     product: {
                       name: item.product_name,
-                      price: item.Price,
+                      price: item.price,
                       quantity: count,
                     },
                   }}
@@ -148,4 +146,4 @@ const CartoonFrame = () => {
   );
 };
 
-export default CartoonFrame;
+export default CartoonCup;
