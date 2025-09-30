@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import road from '../../assets/clock/car road design clock.webp';
-import Navigate from '../../common/Navigate';
 import Footer from '../../common/Footer';
 import { Link } from 'react-router';
 import { toast, ToastContainer } from 'react-toastify';
@@ -8,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from 'react';
 import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
+import UserNav from '../../Pages/Userpage/UserNav';
 const RoadClock = () => {
   const product = [
     { product_img: road, product_name: "Car Road clock for kids", price: 200 },
@@ -44,7 +44,7 @@ const RoadClock = () => {
   return (
     <div className='  bg-rose-50'>
       <ToastContainer />
-      <Navigate />
+      <UserNav />
       <div className='p-23'>
         {product.map((item, index) => (
           <div

@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from 'react';
 import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
+import UserNav from '../../Pages/Userpage/UserNav';
 const Cartoon = () => {
   const product = [
     { product_img: cartoon, product_name: "cartoon design bags for kids", Price: 100 }
@@ -49,7 +50,7 @@ const Cartoon = () => {
   return (
     <div className='  bg-rose-50'>
       <ToastContainer />
-      <Navigate />
+      <UserNav />
       <div className='p-23'>
         {product.map((item, index) => (
           <div

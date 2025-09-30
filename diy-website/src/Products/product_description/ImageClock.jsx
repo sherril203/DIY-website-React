@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from 'react';
 import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
+import UserNav from '../../Pages/Userpage/UserNav';
 const ImageClock = () => {
   const product = [
     { product_img: imgclock, product_name: "Image Customization Clock ", price: 150 },
@@ -44,7 +45,7 @@ const ImageClock = () => {
   return (
     <div className='  bg-rose-50'>
       <ToastContainer/>
-        <Navigate/>
+        <UserNav/>
       <div className='p-23'>
         {product.map((item, index) => (
           <div

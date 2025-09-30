@@ -7,6 +7,7 @@ const purchase=require('../Controllers/Purchase.controllers')
 const orders=require('../Controllers/Orders.controllers')
 const product=require('../Controllers/productHome.controller')
 const upload = require('../middleware/fileStorage');
+const admin=require('../Controllers/Admin.controllers')
 const { authMiddleware } = require('../middleware/Auth');
 // Post query and  get query
 router.post('/postquery', query.postquery);
@@ -34,8 +35,8 @@ router.delete('/getorders/:orderId',orders.CancelOrder) //cancel the order
 //razorpay
 //router.post("/payment/verify", verifyPayment);
 //Admin login and Register
-router.post('/adminRegister', userController.UserRegisterController);
-router.post('/adminlogin', userController.UserLoginController);
+router.post('/adminRegister', admin.AdminRegisterController);
+router.post('/adminlogin', admin.AdminLoginController);
 //category
 //bags
 router.post('/category/bags', upload.single('product_img'), products.postCategory);

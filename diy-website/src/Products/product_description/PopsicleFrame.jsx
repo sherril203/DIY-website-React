@@ -2,7 +2,7 @@
 import React, { useState, useContext } from "react";
 import pop from "../../assets/frames/Popisicle Photo Frame.png";
 import { Link } from "react-router";
-import Navigate from "../../common/Navigate";
+import UserNav from "../../Pages/Userpage/UserNav";
 import Footer from "../../common/Footer";
 import { toast, ToastContainer } from "react-toastify";
 import { CartContext } from "../../Pages/Cart/CartContext";
@@ -49,7 +49,7 @@ const PopsicleFrame = () => {
   return (
     <div className="bg-rose-50 ">
       <ToastContainer />
-      <Navigate />
+      <UserNav/>
       <div className="p-6">
         {product.map((item, index) => (
           <div

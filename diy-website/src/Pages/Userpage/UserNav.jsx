@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link, useNavigate } from "react-router"; 
+import { Link, useNavigate } from "react-router";
 import { FaCartShopping, FaCartArrowDown } from "react-icons/fa6";
 import { TbHomeFilled } from "react-icons/tb";
 import { IoIosCall } from "react-icons/io";
@@ -14,56 +14,57 @@ import { CartContext } from '../Cart/CartContext';
 const UserNav = () => {
   const [open, setOpen] = useState(false);
   const { cart } = useContext(CartContext);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     console.log("object")
-    localStorage.removeItem('user');  // ✅ remove only usertoken
-    navigate("/login");                    // ✅ redirect to login
+    localStorage.removeItem('user');  
+    navigate("/login");                   
   };
   const handleSelect = (e) => {
     const path = e.target.value;
     if (path && path !== "") {
       navigate(path);
-      if(path === "/login")
-      {
+      if (path === "/login") {
         localStorage.removeItem('user')
       }
     }
-    
+
   };
   return (
-    <div className="fixed top-0 w-full z-30 bg-gradient-to-r from-fuchsia-600 to-pink-500 shadow-lg">
+    <div className="fixed top-0 w-full z-30 bg-stone-100 shadow-lg">
       <nav className="flex justify-between items-center p-4">
 
-        <div className="font-extrabold text-white text-2xl flex items-center">
+        <div className="font-extrabold text-stone-700 text-2xl flex items-center">
           <img src={logo} alt="Arts Worlds Logo" width="50" className="mr-2" />
-          Arts Worlds
+          <Link to="/">
+            Arts Worlds
+          </Link>
         </div>
 
         <div className="hidden lg:block">
-          <ul className="flex gap-6 text-lg font-medium text-white">
-            <li className="hover:text-indigo-200 transition">
+          <ul className="flex gap-6 text-lg font-medium text-stone-700">
+            <li className="hover:text-stone-500 transition">
               <Link to="/" className="flex gap-2 items-center">
                 <TbHomeFilled /> Home
               </Link>
             </li>
-            <li className="hover:text-indigo-200 transition">
+            <li className="hover:text-stone-500 transition">
               <Link to="/products" className="flex gap-2 items-center">
                 <FaCartShopping /> Products
               </Link>
             </li>
-            <li className="hover:text-indigo-200 transition">
+            <li className="hover:text-stone-500 transition">
               <Link to="/services" className="flex gap-2 items-center">
                 <MdMiscellaneousServices /> Services
               </Link>
             </li>
-            <li className="hover:text-indigo-200 transition">
+            <li className="hover:text-stone-500 transition">
               <Link to="/contact" className="flex gap-2 items-center">
                 <IoIosCall /> Contact
               </Link>
             </li>
-            <li className="hover:text-indigo-200 transition">
+            <li className="hover:text-stone-500 transition">
               <Link to="/testinomial" className="flex gap-2 items-center">
                 <MdOutlineFeed /> Testimonial
               </Link>
@@ -75,28 +76,28 @@ const UserNav = () => {
           <div className="relative">
             <Link
               to="/user/cart"
-              className="flex items-center gap-2 text-white text-lg font-semibold 
-                px-4 py-2 border border-white rounded-xl hover:bg-white hover:text-fuchsia-800 transition"
+              className="flex items-center gap-2 text-stone-700 text-lg font-semibold 
+                px-4 py-2 border border-white rounded-xl hover:bg-stone-500 hover:text-white transition"
             >
               <FaCartArrowDown className="text-xl" /> Cart
             </Link>
-            <div className="bg-fuchsia-600 text-white top-0 right-0 text-center
+            <div className="bg-stone-500 text-white top-0 right-0 text-center
               pl-0.6 w-6 h-6 absolute rounded-full text-[15px]">
               {cart.length}
             </div>
           </div>
 
-         
+
           <div className="relative">
             <select
               onChange={handleSelect}
-              className="bg-transparent  text-lg font-semibold text-white  
-                px-4 py-2 border border-white rounded-xl hover:bg-white hover:text-fuchsia-800 transition cursor-pointer"
+              className="bg-transparent  text-lg font-semibold text-stone-700  
+                px-4 py-2 border border-white rounded-xl hover:bg-stone-500 hover:text-white transition cursor-pointer"
             >
-              <option value="" hidden className='text-fuchsia-800'>Profile</option>
-              <option value="/user/profile"  className='text-fuchsia-800'> Profile</option>
-              <option value="/user/orders" className='text-fuchsia-800'> Orders</option>
-              <option value="/login" className='text-fuchsia-800'> Logout</option>
+              <option value="" hidden className='text-stone-700'>Profile</option>
+              <option value="/user/profile" className='text-stone-700'> Profile</option>
+              <option value="/user/orders" className='text-stone-700'> Orders</option>
+              <option value="/login" className='text-stone-700'> Logout</option>
             </select>
           </div>
         </div>
@@ -129,7 +130,7 @@ const UserNav = () => {
             </li>
             <li className="hover:text-indigo-200 transition" onClick={handleLogout}>
               <button className="flex gap-2 items-center"
-               onClick={()=>handleLogout}>
+                onClick={() => handleLogout}>
                 <Link to="/"><BiLogOut /> logout</Link>
               </button>
             </li>

@@ -15,27 +15,29 @@ const Navigate = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="fixed top-0 w-full z-30 bg-gradient-to-r from-fuchsia-600 to-pink-500 shadow-lg">
+    <div className="fixed top-0 w-full z-30 bg-gradient-to-r bg-stone-100 shadow-lg">
       <nav className="flex justify-between items-center p-4">
-       <div className="font-extrabold text-white text-2xl flex items-center">
-         <img src={logo} alt="Arts Worlds Logo" width="50" className="mr-2" />
+       <div className="font-extrabold text-stone-700 text-2xl flex items-center">
+        <img src={logo} alt="Arts Worlds Logo" width="50" className="mr-2" />
+        <Link to="/">
           Arts Worlds
+          </Link>
        </div>
         <div className="hidden lg:block">
-          <ul className="flex gap-6 text-lg font-medium text-white">
-            <li className="hover:text-indigo-200 transition">
+          <ul className="flex gap-6 text-lg font-medium text-stone-700">
+            <li className="hover:text-stone-500 transition">
               <Link to="/" className="flex gap-2 items-center"><TbHomeFilled /> Home</Link>
             </li>
-            <li className="hover:text-indigo-200 transition">
+            <li className="hover:text-stone-500 transition">
               <Link to="/products" className="flex gap-2 items-center"><FaCartShopping /> Products</Link>
             </li>
-            <li className="hover:text-indigo-200 transition">
+            <li className="hover:text-stone-500 transition">
               <Link to="/services" className="flex gap-2 items-center">< MdMiscellaneousServices /> Services</Link>
             </li>
-            <li className="hover:text-indigo-200 transition">
+            <li className="hover:text-stone-500 transition">
               <Link to="/contact" className="flex gap-2 items-center"><IoIosCall /> Contact</Link>
             </li>
-            <li className="hover:text-indigo-200 transition">
+            <li className="hover:text-stone-500 transition">
               <Link to="/testinomial" className="flex gap-2 items-center"><MdOutlineFeed />Testimonial</Link>
               </li>
           </ul>
@@ -43,8 +45,8 @@ const Navigate = () => {
 
         <div className="hidden lg:flex gap-2 items-center">
           <Link to="/login">
-            <button className="text-white text-base font-semibold px-4 py-2 border
-             border-white rounded-xl hover:bg-white hover:text-fuchsia-800 transition">
+            <button className="text-stone-700 text-base font-semibold px-4 py-2 border
+             border-black rounded-xl hover:bg-stone-500 hover:text-white transition">
               Login
             </button>
           </Link>

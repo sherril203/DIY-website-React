@@ -7,6 +7,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { CartContext } from "../../Pages/Cart/CartContext";
 import "react-toastify/dist/ReactToastify.css";
 import { FaStar } from "react-icons/fa";
+import UserNav from "../../Pages/Userpage/UserNav";
 const CartoonCup = () => {
   const product = [
     { product_img: olaf, product_name: "Cartoon Customization Cup for Kids", price: 110 },
@@ -46,7 +47,7 @@ const CartoonCup = () => {
   return (
     <div className="bg-rose-50">
       <ToastContainer />
-      <Navigate />
+      <UserNav />
       <div className="p-23">
         {product.map((item, index) => (
           <div

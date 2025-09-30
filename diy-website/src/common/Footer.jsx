@@ -7,7 +7,7 @@ import { IoCall } from "react-icons/io5";
 
 const Footer = () => {
   return (
-    <div className="bg-gradient-to-r from-fuchsia-600 to-pink-500 text-white p-10">
+    <div className="bg-gray-200 text-gray-700 p-10">
       <div className="flex flex-col md:flex-row justify-between gap-10">
 
         <div>
@@ -51,7 +51,8 @@ const Footer = () => {
         </div>
 
       </div>
-      <p className="text-center text-sm text-white mt-8">© 2025 DIY Arts. All rights reserved.</p>
+      <hr />
+      <p className="text-center text-sm text-black mt-8">© 2025 DIY Arts. All rights reserved.</p>
     </div>
   );
 };

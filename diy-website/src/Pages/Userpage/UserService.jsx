@@ -21,7 +21,8 @@ const UserService = () => {
   ];
 
   return (
-    <div className="bg-rose-50 py-12 px-4 mt-18">
+    <div className="bg-stone-100 py-12 px-4 mt-18">
+      <h2 className='text-4xl text-stone-700 mb-4 flex justify-center items-center'>Why ArtsWorld</h2>
       {/* Service Cards */}
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {services.map((item, index) => (
@@ -29,8 +30,8 @@ const UserService = () => {
             key={index}
             className="bg-white shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-300 rounded-2xl p-6 text-center"
           >
-            <div className="text-4xl text-red-600 mb-4 flex justify-center items-center">{item.icon}</div>
-            <h3 className="text-xl font-bold text-red-600 mb-2">{item.title}</h3>
+            <div className="text-4xl text-stone-700 mb-4 flex justify-center items-center">{item.icon}</div>
+            <h3 className="text-xl font-bold text-stone-700 mb-2">{item.title}</h3>
 
             {/* Description */}
             <p className="text-gray-700">{item.description}</p>

@@ -96,6 +96,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { CartContext } from "../../Pages/Cart/CartContext";
 import "react-toastify/dist/ReactToastify.css";
 import { FaStar } from "react-icons/fa";
+import UserNav from "../../Pages/Userpage/UserNav";
 const BabiesPhoto = () => {
   const product = [
     { product_img: block, product_name: "Photo Frame for Babies", price: 120 },
@@ -135,7 +136,7 @@ const BabiesPhoto = () => {
   return (
     <div className="bg-rose-50">
       <ToastContainer />
-      <Navigate />
+      <UserNav/>
       <div className="p-23">
         {product.map((item, index) => (
           <div

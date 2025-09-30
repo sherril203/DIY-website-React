@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from 'react';
 import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
+import UserNav from '../../Pages/Userpage/UserNav';
 const ThoughtCup = () => {
   const product = [
     { product_img: thought, product_name: "Thought Customization Cup", price: 200 }
@@ -44,7 +45,7 @@ const ThoughtCup = () => {
   return (
     <div className='  bg-rose-50'>
       <ToastContainer />
-      <Navigate />
+      <UserNav />
       <div className='p-23'>
         {product.map((item, index) => (
           <div

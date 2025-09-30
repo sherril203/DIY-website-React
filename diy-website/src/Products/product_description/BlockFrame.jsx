@@ -96,6 +96,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { CartContext } from "../../Pages/Cart/CartContext";
 import "react-toastify/dist/ReactToastify.css";
 import { FaStar } from "react-icons/fa";
+import UserNav from "../../Pages/Userpage/UserNav";
 const BlockFrame = () => {
   const product = [
     { product_img: block, product_name: "Block Photo Frame", price: 200 },
@@ -135,7 +136,7 @@ const BlockFrame = () => {
   return (
     <div className="bg-rose-50">
       <ToastContainer />
-      <Navigate />
+      <UserNav />
       <div className="p-6">
         {product.map((item, index) => (
           <div

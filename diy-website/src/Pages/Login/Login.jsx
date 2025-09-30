@@ -25,36 +25,71 @@ const Login = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     const response = await axios.post('http://localhost:5000/userlogin', formData);
+
+  //     console.log('Login Success:', response.data); 
+
+  //     toast.success("Login successful!", {
+  //       position: "top-right",
+  //       autoClose: 3000,
+  //       theme: "colored",
+  //     });
+      
+  //     const token = response.data.data?.token || response.data.token;
+  //     localStorage.setItem("user", token);
+  //     navigate('/user/dashboard');
+  //   } catch (err) {
+  //     console.error('Login failed:', err.response?.data || err.message);
+
+  //     toast.error(err.response?.data?.message || 'Invalid credentials', {
+  //       position: "top-right",
+  //       autoClose: 3000,
+  //       theme: "colored",
+  //     });
+  //   }
+  // };
+    const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const response = await axios.post('http://localhost:5000/userlogin', formData);
 
-      console.log('Login Success:', response.data); 
+      console.log('Login Success:', response.data);
 
-      toast.success("Login successful!", {
-        position: "top-right",
+      toast.success('Login successful!', {
+        position: 'top-right',
         autoClose: 3000,
-        theme: "colored",
+        theme: 'colored',
       });
-      
-      const token = response.data.data?.token || response.data.token;
-      localStorage.setItem("user", token);
-      navigate('/user/dashboard');
+
+      // ✅ Save both token & user info
+      const token = response.data.data?.token;
+      const user = response.data.data?.user;
+
+      if (token && user) {
+        localStorage.setItem('token', token);
+        localStorage.setItem('user', JSON.stringify(user));
+      }
+
+      // ✅ Redirect to profile or dashboard
+      navigate('/user/dashboard'); 
     } catch (err) {
       console.error('Login failed:', err.response?.data || err.message);
 
       toast.error(err.response?.data?.message || 'Invalid credentials', {
-        position: "top-right",
+        position: 'top-right',
         autoClose: 3000,
-        theme: "colored",
+        theme: 'colored',
       });
     }
   };
 
   return (
-    <div className='bg-gradient-to-l from-fuchsia-400 to-pink-400 p-6 min-h-screen flex flex-col justify-center items-center'>
+    <div className='bg-gradient-to-l bg-stone-100 p-6 min-h-screen flex flex-col justify-center items-center'>
       <ToastContainer />
 
       <div className='bg-white rounded-xl shadow-lg p-10 space-y-6 max-w-md w-full '

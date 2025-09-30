@@ -159,6 +159,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { CartContext } from "../../Pages/Cart/CartContext";
 import "react-toastify/dist/ReactToastify.css";
 import { FaStar } from "react-icons/fa";
+import UserNav from "../../Pages/Userpage/UserNav";
 const BirdCase = () => {
   const product = [
     { product_img: bird, product_name: "Bird Design Phone Case", price: 200 },
@@ -198,7 +199,7 @@ const BirdCase = () => {
   return (
     <div className="bg-rose-50">
       <ToastContainer />
-      <Navigate />
+      <UserNav />
       <div className="p-23">
         {product.map((item, index) => (
           <div

@@ -421,7 +421,7 @@ const Purchase = () => {
   };
 
   return (
-    <div className="p-6 mt-18 text-center bg-rose-50">
+    <div className="p-6 mt-18 text-center bg-stone-100">
       <form
         data-aos="fade-up"
         onSubmit={handleSubmit}

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import heart from '../../assets/geometric design/heart-wall-hang.jpg'
-import Navigate from '../../common/Navigate';
+import UserNav from '../../Pages/Userpage/UserNav'
 import Footer from '../../common/Footer';
 import { Link } from 'react-router';
 import { toast, ToastContainer } from 'react-toastify';
@@ -43,7 +43,7 @@ const Heartwall = () => {
   return (
     <div className='  bg-rose-50'>
       <ToastContainer />
-      <Navigate />
+      <UserNav/>
       <div className='p-23'>
         {product.map((item, index) => (
           <div

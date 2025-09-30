@@ -157,9 +157,9 @@ const ProductHome = () => {
   };
 
   return (
-    <div className="bg-rose-50 p-3">
+    <div className="bg-stone-100 p-3">
       <ToastContainer />
-      <h2 className="text-center font-bold text-3xl p-3 text-rose-800" data-aos="zoom-in">
+      <h2 className="text-center font-bold text-3xl p-3 text-stone-700" data-aos="zoom-in">
         Products
       </h2>
 
@@ -213,7 +213,7 @@ const ProductHome = () => {
                   },
                 }}
               >
-                <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
+               <button className="w-full bg-[#916A2f] text-white px-4 py-2 rounded-lg hover:bg-[#7B481C] transition">
                   Buy Now
                 </button>
               </Link>
@@ -223,7 +223,7 @@ const ProductHome = () => {
       </div>
 
       <Link to="/products" className="flex justify-center items-center p-4">
-        <button className="p-3 rounded bg-amber-300 hover:bg-amber-400 text-center">
+        <button className="p-3 rounded bg-[#916A2f] hover:bg-[#7B481C] text-center text-white">
           Explore More
         </button>
       </Link>

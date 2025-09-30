@@ -93,11 +93,11 @@ const ProductsPage = () => {
   };
 
   return (
-    <div className="bg-rose-50  flex flex-col w-full">
+    <div className=" bg-stone-100 flex flex-col w-full ">
       <Navigate />
 
       {/* Page Title */}
-      <h2 className="text-center font-bold text-2xl sm:text-3xl lg:text-4xl mt-12 sm:mt-20 lg:mt-24 text-rose-800 px-4">
+      <h2 className="text-center font-bold text-2xl sm:text-3xl lg:text-4xl mt-12 sm:mt-20 lg:mt-24 text-stone-700 px-4">
         Products
       </h2>
 
@@ -110,7 +110,7 @@ const ProductsPage = () => {
         <div className="relative flex-1">
           <input
             type="search"
-            className="bg-white p-3 pr-10 rounded-lg border border-rose-200 shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-rose-400 transition"
+            className="bg-white p-3 pr-10 rounded-lg border border-stone-700 shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-rose-400 transition"
             placeholder="Search products..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -121,7 +121,7 @@ const ProductsPage = () => {
         {/* Category Select */}
         <div className="w-full sm:w-48 lg:w-56">
           <select
-            className="bg-white p-3 rounded-lg border border-rose-200 shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-rose-400 transition"
+            className="bg-white p-3 rounded-lg border border-stone-700 shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-rose-400 transition"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             aria-label="Filter by category"
@@ -142,7 +142,7 @@ const ProductsPage = () => {
       <div className="flex-grow px-4 sm:px-6 lg:px-8 mt-6">
         <Products query={query} category={category} />
       </div>
-
+      <br />
       <Footer />
     </div>
   );

@@ -145,9 +145,9 @@ const Geometric = ({ query }) => {
   if (filtered.length === 0) return null;
 
   return (
-    <div className="p-6 bg-rose-50">
+    <div >
       <ToastContainer />
-      <h2 className="text-center font-bold text-3xl mb-8 text-rose-800" data-aos="zoom-in">
+      <h2 className="text-center font-bold text-3xl mb-8 text-stone-700" data-aos="zoom-in">
         Geometric Design Wall Decor
       </h2>
 
@@ -155,7 +155,7 @@ const Geometric = ({ query }) => {
         {filtered.map((item, index) => (
           <div
             key={index}
-            className="w-full max-w-xs bg-white border border-rose-200 p-6 rounded-2xl shadow-md flex flex-col items-center gap-3 transition-transform hover:scale-105"
+            className="w-full max-w-xs bg-white  p-6 rounded-2xl shadow-md flex flex-col items-center gap-3 transition-transform hover:scale-105"
             data-aos="fade-up"
             data-aos-delay={index * 150}
           >
@@ -167,7 +167,7 @@ const Geometric = ({ query }) => {
               />
             </Link>
 
-            <Link to={item.path} className="text-lg font-semibold text-indigo-800 text-center">
+            <Link to={item.path} className="text-lg font-semibold text-black text-center">
               {item.product_name}
             </Link>
 
@@ -190,7 +190,7 @@ const Geometric = ({ query }) => {
                 state={{ product: { name: item.product_name, price: item.product_price } }}
                 className="flex-1"
               >
-                <button className="w-full bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
+                <button className="w-full bg-[#916A2f] text-white px-4 py-2 rounded-lg hover:bg-[#7B481C] transition">
                   Buy Now
                 </button>
               </Link>

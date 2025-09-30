@@ -21,7 +21,8 @@ const Services = () => {
   ];
 
   return (
-    <div className="bg-rose-50 py-12 px-4 ">
+    <div className="bg-stone-100 py-12 px-4 ">
+       <h2 className='text-4xl text-stone-700 mt-12 flex justify-center items-center font-bold'>Why ArtsWorld</h2>
       {/* <h2 className="text-center font-bold text-3xl text-red-800 mb-10">Services</h2> */}
       {/* Service Cards */}
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-15 mb-60">
@@ -30,8 +31,8 @@ const Services = () => {
             key={index}
             className="bg-white shadow-md hover:shadow-xl hover:scale-105 transition-transform duration-300 rounded-2xl p-6 text-center"
           >
-            <div className="text-4xl text-red-800 mb-4 flex justify-center items-center">{item.icon}</div>
-            <h3 className="text-xl font-bold text-red-800 mb-2">{item.title}</h3>
+            <div className="text-4xl text-stone-700 mb-4 flex justify-center items-center">{item.icon}</div>
+            <h3 className="text-xl font-bold text-stone-700 mb-2">{item.title}</h3>
 
             {/* Description */}
             <p className="text-gray-700">{item.description}</p>

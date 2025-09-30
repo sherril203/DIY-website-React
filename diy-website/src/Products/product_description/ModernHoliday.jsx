@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import holiday from '../../assets/geometric design/modern holiday geometry design.jpg'
 import Footer from '../../common/Footer';
-import Navigate from '../../common/Navigate';
+import UserNav from '../../Pages/Userpage/UserNav';
 import { Link } from 'react-router';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -44,7 +44,7 @@ const ModernHoliday = () => {
   return (
     <div className='  bg-rose-50'>
       <ToastContainer />
-      <Navigate />
+      <UserNav/>
       <div className='p-23'>
         {product.map((item, index) => (
           <div

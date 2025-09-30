@@ -80,7 +80,7 @@ const Confirmationpage = () => {
     };
   }, []);
   return (
-    <div className="bg-rose-50 min-h-screen flex flex-col">
+    <div className="bg-stone-100 min-h-screen flex flex-col">
       <UserNav />
       <div className="flex-grow flex items-center justify-center mt-20 mb-20">
         <div className="bg-white shadow-lg rounded-xl p-8 w-full max-w-2xl mt-15" data-aos="fade-up">

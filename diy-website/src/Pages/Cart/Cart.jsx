@@ -11,13 +11,13 @@ const Cart = () => {
   removeFromCart(name);
 };
   return (
-     <div className="bg-rose-100 mt-17 min-h-screen">
+     <div className="bg-stone-100 mt-17 min-h-screen">
       <UserNav />
-      <h2 className="text-center font-bold text-3xl text-red-600 p-5">Cart</h2>
+      <h2 className="text-center font-bold text-3xl text-stone-700 p-5">Cart</h2>
 
       <div className="max-w-2xl mx-auto bg-white p-5 mb-110 rounded shadow">
        {cart.length === 0 ? (
-  <p className="text-center text-gray-500">Your cart is empty</p>
+  <p className="text-center text-stone-700">Your cart is empty</p>
 ) : (
   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
     {cart.map((item, index) => (

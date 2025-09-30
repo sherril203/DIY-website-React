@@ -45,10 +45,10 @@ const Testinomial = () => {
   };
 
   return (
-    <div className='bg-red-100 min-h-screen'>
+    <div className='bg-stone-100 min-h-screen'>
       <Navigate />
       <div className='flex flex-col justify-center items-center p-10 space-y-8'>
-        <h2 className='text-2xl text-indigo-900 font-semibold text-center mt-15'>
+        <h2 className='text-2xl text-stone-700 font-semibold text-center mt-15'>
           If you have any queries or comments, kindly fill the form
         </h2>
 

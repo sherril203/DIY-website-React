@@ -1,120 +1,202 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
+// import axios from 'axios';
+// import { useNavigate, Link } from 'react-router'; 
+// import { toast, ToastContainer } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+// import {useEffect} from 'react'
+// import AOS from 'aos';
+// import 'aos/dist/aos.css';
+// const AdminLogin = ({ setIsSignedIn }) => {
+
+//   const navigate = useNavigate();
+
+//   const [formData, setFormData] = useState({
+//     email: '',
+//     password: ''
+//   });
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setFormData(prev => ({
+//       ...prev,
+//       [name]: value
+//     }));
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+
+//     try {
+//       const response = await axios.post('http://localhost:5000/adminlogin', formData);
+
+//       console.log('Login Success:', response.data); 
+
+//       toast.success("Login successful!", {
+//         position: "top-right",
+//         autoClose: 3000,
+//         theme: "colored",
+//       });
+
+//       const token = response.data.data?.token || response.data.token;
+//       localStorage.setItem("token", token);
+//       navigate('/admin/dashboard');
+//       // localStorage.setItem("adminAuth", "true"); 
+//       // setIsSignedIn(true); 
+//       // navigate("/admin")
+
+//     } catch (err) {
+//       console.error('Login failed:', err.response?.data || err.message);
+
+//       toast.error(err.response?.data?.message || 'Invalid credentials', {
+//         position: "top-right",
+//         autoClose: 3000,
+//         theme: "colored",
+//       });
+//     }
+//   };
+//    useEffect(() => {
+//       AOS.init({ duration: 2000, once: true }); 
+//     }, []);
+
+//   return (
+//     <div className='bg-gradient-to-l from-fuchsia-400 to-pink-400 p-6 min-h-screen flex flex-col justify-center items-center'>
+//       <ToastContainer />
+
+//       <div className='bg-white rounded-xl shadow-lg p-10 space-y-6 max-w-md w-full' data-aos="fade-up">
+//         <h2 className='text-center text-black text-2xl font-bold'>Admin Login</h2>
+
+//         <form onSubmit={handleSubmit} className='space-y-4' >
+//           <div>
+//             <label htmlFor="email" className='text-2xl'>Email</label>
+//             <input
+//               type="email"
+//               id="email"
+//               name="email"
+//               placeholder='Enter email'
+//               className='bg-white rounded p-4 w-full mt-1 focus:ring-5 focus:ring-amber-500'
+//               value={formData.email}
+//               onChange={handleChange}
+//               required
+//             />
+//           </div>
+
+//           <div>
+//             <label htmlFor="password" className='text-2xl'>Password</label>
+//             <input
+//               type="password"
+//               id="password"
+//               name="password"
+//               placeholder='Enter password'
+//               className='bg-white rounded p-4 w-full mt-1 focus:ring-5 focus:ring-amber-500'
+//               value={formData.password}
+//               onChange={handleChange}
+//               required
+//             />
+//           </div>
+
+//           <div>
+//             <button
+//               type="submit"
+//               className='bg-gradient-to-l from-fuchsia-400 to-pink-400 text-center p-2 rounded text-2xl w-full text-white hover:bg-amber-300 transition'
+//             >
+//               Login
+//             </button>
+//           </div>
+//         </form>
+
+//         <p className='text-center text-lg'>
+//           New account?{' '}
+//           <Link to="/adminRegister" className='text-blue-600 hover:underline'>
+//             Sign Up
+//           </Link>
+//         </p>
+//         <p className='text-center text-lg'>
+//           Forgot Password?{' '}
+//           <Link to="/forgot" className='text-blue-600 hover:underline'>
+//             Forgot Password 
+//           </Link>
+//         </p>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default AdminLogin;
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate, Link } from 'react-router'; 
+import { useNavigate, Link } from 'react-router';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {useEffect} from 'react'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-const AdminLogin = ({ setIsSignedIn }) => {
 
+const AdminLogin = () => {
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  });
+  const [formData, setFormData] = useState({ email: '', password: '' });
+
+  useEffect(() => {
+    AOS.init({ duration: 2000, once: true });
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const response = await axios.post('http://localhost:5000/adminlogin', formData);
 
-      console.log('Login Success:', response.data); 
+      console.log('Admin Login Success:', response.data);
 
-      toast.success("Login successful!", {
-        position: "top-right",
-        autoClose: 3000,
-        theme: "colored",
-      });
+      toast.success("Login successful!", { position: "top-right", autoClose: 3000, theme: "colored" });
 
-      const token = response.data.data?.token || response.data.token;
-      localStorage.setItem("token", token);
-      navigate('/admin/dashboard');
-      // localStorage.setItem("adminAuth", "true"); 
-      // setIsSignedIn(true); 
-      // navigate("/admin")
+      const token = response.data.data?.token;
+      const admin = response.data.data?.admin; // assuming backend sends admin info
 
+      if (token && admin) {
+        localStorage.setItem("token", token);
+        localStorage.setItem("admin", JSON.stringify(admin));
+      }
+
+      navigate('/admin/dashboard'); // redirect to admin profile
     } catch (err) {
       console.error('Login failed:', err.response?.data || err.message);
-
-      toast.error(err.response?.data?.message || 'Invalid credentials', {
-        position: "top-right",
-        autoClose: 3000,
-        theme: "colored",
-      });
+      toast.error(err.response?.data?.message || 'Invalid credentials', { position: "top-right", autoClose: 3000, theme: "colored" });
     }
   };
-   useEffect(() => {
-      AOS.init({ duration: 2000, once: true }); 
-    }, []);
 
   return (
     <div className='bg-gradient-to-l from-fuchsia-400 to-pink-400 p-6 min-h-screen flex flex-col justify-center items-center'>
       <ToastContainer />
-
       <div className='bg-white rounded-xl shadow-lg p-10 space-y-6 max-w-md w-full' data-aos="fade-up">
         <h2 className='text-center text-black text-2xl font-bold'>Admin Login</h2>
-
-        <form onSubmit={handleSubmit} className='space-y-4' >
+        <form onSubmit={handleSubmit} className='space-y-4'>
           <div>
             <label htmlFor="email" className='text-2xl'>Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder='Enter email'
+            <input type="email" id="email" name="email" placeholder='Enter email'
               className='bg-white rounded p-4 w-full mt-1 focus:ring-5 focus:ring-amber-500'
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
+              value={formData.email} onChange={handleChange} required />
           </div>
-
           <div>
             <label htmlFor="password" className='text-2xl'>Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder='Enter password'
+            <input type="password" id="password" name="password" placeholder='Enter password'
               className='bg-white rounded p-4 w-full mt-1 focus:ring-5 focus:ring-amber-500'
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
+              value={formData.password} onChange={handleChange} required />
           </div>
-
           <div>
-            <button
-              type="submit"
-              className='bg-gradient-to-l from-fuchsia-400 to-pink-400 text-center p-2 rounded text-2xl w-full text-white hover:bg-amber-300 transition'
-            >
+            <button type="submit" className='bg-gradient-to-l from-fuchsia-400 to-pink-400 text-center p-2 rounded text-2xl w-full text-white hover:bg-amber-300 transition'>
               Login
             </button>
           </div>
         </form>
-
         <p className='text-center text-lg'>
-          New account?{' '}
-          <Link to="/adminRegister" className='text-blue-600 hover:underline'>
-            Sign Up
-          </Link>
+          New account? <Link to="/adminRegister" className='text-blue-600 hover:underline'>Sign Up</Link>
         </p>
         <p className='text-center text-lg'>
-          Forgot Password?{' '}
-          <Link to="/forgot" className='text-blue-600 hover:underline'>
-            Forgot Password 
-          </Link>
+          Forgot Password? <Link to="/forgot" className='text-blue-600 hover:underline'>Forgot Password</Link>
         </p>
       </div>
     </div>
