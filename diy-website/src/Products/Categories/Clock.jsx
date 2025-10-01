@@ -228,7 +228,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { FaStar } from "react-icons/fa";
-
+import { FaCartShopping, FaCartArrowDown } from "react-icons/fa6";
 const Clock = ({ query }) => {
   const [clock, setClock] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -285,16 +285,16 @@ const Clock = ({ query }) => {
             </Link>
 
             <p className="flex items-center gap-1 text-yellow-500 text-sm sm:text-base">
-              <FaStar size={20} /> <span className="text-gray-700">3.0</span>
+              <FaStar size={20} /> <span className="text-gray-700">3.1</span>
             </p>
 
             <p className="text-gray-800 text-xl font-bold">₹{item.product_price}</p>
-  <div className="flex flex-col sm:flex-row gap-3 w-full mt-2">
+            <div className="flex flex-col sm:flex-row gap-3 w-full mt-2">
               <button
                 onClick={() => handleCart(item)}
-                className="flex-1 bg-amber-500 text-white px-4 py-2 rounded-lg hover:bg-amber-600 transition"
+                className=" bg-amber-500 text-white px-4  mx-auto rounded-lg hover:bg-amber-600 transition"
               >
-                Add to Cart
+                <FaCartShopping size={20} />
               </button>
               <Link
                 to="/purchase"

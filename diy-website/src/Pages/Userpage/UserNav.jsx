@@ -38,7 +38,7 @@ const UserNav = () => {
         <div className="font-extrabold text-stone-700 text-2xl flex items-center">
           <img src={logo} alt="Arts Worlds Logo" width="50" className="mr-2" />
           <Link to="/">
-            Arts Worlds
+            Arts World
           </Link>
         </div>
 

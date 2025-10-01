@@ -1,48 +1,116 @@
 
+// import React, { useContext } from "react";
+// import Footer from "../../common/Footer";
+// import UserNav from "../Userpage/UserNav";
+// import { CartContext } from "../Cart/CartContext";
+
+// const Cart = () => {
+//   const {cart, removeFromCart}=useContext(CartContext)
+//   const handleDelete = (name, e) => {
+//   e.preventDefault();
+//   removeFromCart(name);
+// };
+//   return (
+//      <div className="bg-stone-100 mt-17 min-h-screen">
+//       <UserNav />
+//       <h2 className="text-center font-bold text-3xl text-stone-700 p-5">Cart</h2>
+
+//       <div className="max-w-2xl mx-auto bg-white p-5 mb-110 rounded shadow">
+//        {cart.length === 0 ? (
+//   <p className="text-center text-stone-700">Your cart is empty</p>
+// ) : (
+//   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+//     {cart.map((item, index) => (
+//       <div
+//         key={index}
+//         className="bg-white rounded-xl shadow-lg p-4 flex flex-col items-center"
+//       >
+//         <img
+//           src={item.image}
+//           alt={item.name}
+//           className="w-32 h-32 object-cover rounded-lg mb-3"
+//         />
+//         <h3 className="font-semibold text-lg">{item.name}</h3>
+//         <p className="text-gray-600">Price: ₹{item.price}</p>
+//         <p className="text-gray-600">Qty: {item.quantity}</p>
+//         <button
+//           onClick={(e) => handleDelete(item.name, e)}
+//           className="bg-red-500 text-white px-4 py-2 mt-3 rounded-lg hover:bg-red-600"
+//         >
+//           Remove
+//         </button>
+//       </div>
+//     ))}
+//   </div>
+// )}
+//       </div>
+
+//       <Footer />
+//     </div>
+//   );
+// };
+
+// export default Cart;
+// Cart.jsx
 import React, { useContext } from "react";
 import Footer from "../../common/Footer";
 import UserNav from "../Userpage/UserNav";
 import { CartContext } from "../Cart/CartContext";
+import { toast, ToastContainer } from "react-toastify";
+import { Link } from "react-router";
 
 const Cart = () => {
-  const {cart, removeFromCart}=useContext(CartContext)
-  const handleDelete = (name, e) => {
-  e.preventDefault();
-  removeFromCart(name);
-};
+  const { cart, setcart } = useContext(CartContext);
+
+  const handleDelete = (name) => {
+    setcart(cart.filter((item) => item.name !== name));
+    toast.success("Item removed from cart");
+  };
+
   return (
-     <div className="bg-stone-100 mt-17 min-h-screen">
+    <div className="bg-stone-100 mt-16 min-h-screen">
+      <ToastContainer/>
       <UserNav />
       <h2 className="text-center font-bold text-3xl text-stone-700 p-5">Cart</h2>
 
-      <div className="max-w-2xl mx-auto bg-white p-5 mb-110 rounded shadow">
-       {cart.length === 0 ? (
-  <p className="text-center text-stone-700">Your cart is empty</p>
-) : (
-  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-    {cart.map((item, index) => (
-      <div
-        key={index}
-        className="bg-white rounded-xl shadow-lg p-4 flex flex-col items-center"
-      >
-        <img
-          src={item.image}
-          alt={item.name}
-          className="w-32 h-32 object-cover rounded-lg mb-3"
-        />
-        <h3 className="font-semibold text-lg">{item.name}</h3>
-        <p className="text-gray-600">Price: ₹{item.price}</p>
-        <p className="text-gray-600">Qty: {item.quantity}</p>
-        <button
-          onClick={(e) => handleDelete(item.name, e)}
-          className="bg-red-500 text-white px-4 py-2 mt-3 rounded-lg hover:bg-red-600"
-        >
-          Remove
-        </button>
-      </div>
-    ))}
-  </div>
-)}
+      <div className="max-w-2xl mx-auto bg-white p-5 mb-28 rounded shadow">
+        {cart.length === 0 ? (
+          <p className="text-center text-stone-700">Your cart is empty</p>
+        ) : (
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              {cart.map((item, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-xl shadow-lg p-4 flex flex-col items-center"
+                > <Link to={item.path}>
+                <img
+                    src={item.image}
+                    alt={item.name}
+                    className="w-32 h-32 object-cover rounded-lg mb-3"
+                  />
+                </Link>
+                  <Link to={item.path}><h3 className="font-semibold text-lg">{item.name}</h3></Link>
+                  
+                  <p className="text-gray-600">Price: ₹{item.price}</p>
+                  <p className="text-gray-600">Qty: {item.quantity}</p>
+                  <button
+                    type="button"
+                    onClick={() => handleDelete(item.name)}
+                    className="bg-red-500 text-white px-4 py-2 mt-3 rounded-lg hover:bg-red-600"
+                  >
+                    Remove
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            {/* Total Price */}
+            <div className="text-right mt-6 font-bold text-xl text-stone-700">
+              Total: ₹{cart.reduce((acc, item) => acc + item.price * item.quantity, 0)}
+            </div>
+          </>
+        )}
       </div>
 
       <Footer />

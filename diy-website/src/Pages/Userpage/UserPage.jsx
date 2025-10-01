@@ -13,7 +13,7 @@ const UserPage = () => {
     };
   
   return (
-    <div className='bg-stone-100 '>
+    <div className='bg-stone-100 w-full '>
         <UserNav cart={cart}/>
         <UserService/>
         <h2 className="text-center  font-bold text-3xl mt-19 text-stone-700 ">
@@ -55,8 +55,8 @@ const UserPage = () => {
         </div>
       </form>
 
-      <Products query={query} category={category} />
-      <br/>
+      <Products query={query} category={category}  />
+      <br />
         <Footer/>
     </div>
   )

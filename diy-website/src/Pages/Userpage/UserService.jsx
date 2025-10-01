@@ -22,7 +22,7 @@ const UserService = () => {
 
   return (
     <div className="bg-stone-100 py-12 px-4 mt-18">
-      <h2 className='text-4xl text-stone-700 mb-4 flex justify-center items-center'>Why ArtsWorld</h2>
+      <h2 className='text-4xl text-stone-700 mb-4 flex justify-center items-center font-bold'>Why ArtsWorld</h2>
       {/* Service Cards */}
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {services.map((item, index) => (

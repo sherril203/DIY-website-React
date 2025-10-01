@@ -69,6 +69,7 @@ import PopsicleFrame from "../Products/product_description/PopsicleFrame";
 import Edit from "../Pages/EditProfile/Edit";
 import CartoonCup from "../Products/product_description/CartoonCup";
 import Tree from "../Products/product_description/Tree";
+import CloudStar from "../Products/product_description/CloudStar";
 
 // (Import statements unchanged for brevity...)
 
@@ -117,6 +118,7 @@ const Routers = () => {
           <Route path="woodenclock" element={<WoodenClock />} />
           <Route path="roadclock" element={<RoadClock />} />
           <Route path="image_clock" element={<ImageClock/>}/>
+          <Route path="cloud_star" element={<CloudStar/>}/>
           {/* Phone Cases */}
           <Route path="anime" element={<Anime />} />
           <Route path="glitter" element={<Glitter />} />

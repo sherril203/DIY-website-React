@@ -94,7 +94,7 @@
 //  };
 
 //   return (
-//     <div className="bg-rose-50">
+//     <div className='bg-stone-100'>
 //       <ToastContainer />
 //       <Navigate />
 //       <div className="p-23">
@@ -197,7 +197,7 @@ const BirdCase = () => {
   };
 
   return (
-    <div className="bg-rose-50">
+    <div className='bg-stone-100'>
       <ToastContainer />
       <UserNav />
       <div className="p-23">

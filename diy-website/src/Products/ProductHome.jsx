@@ -113,7 +113,7 @@ import AOS from 'aos';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
-
+import { FaCartShopping, FaCartArrowDown } from "react-icons/fa6";
 import 'aos/dist/aos.css';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -201,7 +201,7 @@ const ProductHome = () => {
                 onClick={() => handleCart(item)}
                 className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition"
               >
-                Add to Cart
+               <FaCartArrowDown size={20}/>
               </button>
 
               <Link

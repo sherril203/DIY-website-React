@@ -112,22 +112,35 @@ const Resetpassword = async (req, res) => {
 };
 
 
-// Get User Profile
-// const getUserProfile = async (req, res) => {
-//   try {
-//     // req.userId comes from middleware (after token verification)
-//     const user = await SignModel.findById(req.userId).select("-password");
-//     if (!user) {
-//       return res.status(404).json({ message: "User not found" });
-//     }
-//     return res.status(200).json(user);
-//   } catch (err) {
-//     return res.status(500).json({ message: "Server error", error: err.message });
-//   }
-// };
+// Update User Profile
+const updateUserProfile = async (req, res) => {
+  try {
+    const userId = req.params.id;  // from URL
+    const updates = req.body;      // { username, email, etc. }
+
+    // prevent password updates here (use reset password instead)
+    if (updates.password) {
+      return res.status(400).json({ message: "Password update not allowed here" });
+    }
+
+    const user = await SignModel.findByIdAndUpdate(
+      userId,
+      updates,
+      { new: true, runValidators: true }
+    ).select("-password");
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    return res.status(200).json({ message: "Profile updated successfully", user });
+  } catch (err) {
+    return res.status(500).json({ message: "Update failed", error: err.message });
+  }
+};
 
 
 
 
-module.exports = { UserLoginController, UserRegisterController,forgotpassword,Resetpassword, 
+module.exports = { UserLoginController, UserRegisterController,forgotpassword,Resetpassword,updateUserProfile 
 };

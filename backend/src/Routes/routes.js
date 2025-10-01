@@ -15,6 +15,7 @@ router.get('/getquery', query.getquery);
 // Register and Login for user
 router.post('/userRegister', userController.UserRegisterController);
 router.post('/userlogin', userController.UserLoginController);
+router.put("/user/:id",userController.updateUserProfile);
 // forgot password
 router.post('/userlogin', userController.forgotpassword);
 // Reset password
@@ -62,6 +63,4 @@ router.get('/getcategory/photo_frames', products.getcategory);
 //product display in home page
 router.post('/postsome',upload.single('product_img'),product.postSomeProduct)
 router.get('/getsome',product.getSomeProduct)
-//get user profile
-// router.get("/profile",authMiddleware, userController.getUserProfile);
 module.exports = router;

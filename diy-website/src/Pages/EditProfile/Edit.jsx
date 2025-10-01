@@ -124,13 +124,14 @@ import Footer from '../../common/Footer';
 import 'react-toastify/dist/ReactToastify.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import UserNav from '../Userpage/UserNav';
 
 const Edit = () => {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
-    mobile: '',
-    address: ''
+    // mobile: '',
+    // address: ''
   });
 
   useEffect(() => {
@@ -143,8 +144,8 @@ const Edit = () => {
       setFormData({
         username: user.username || '',
         email: user.email || '',
-        mobile: user.mobile || '',
-        address: user.address || ''
+        // mobile: user.mobile || '',
+        // address: user.address || ''
       });
     }
   }, []);
@@ -181,7 +182,7 @@ const Edit = () => {
 
   return (
     <div className="text-center bg-rose-50 min-h-screen">
-      <Navigate />
+      <UserNav/>
       <form
         data-aos="fade-up"
         onSubmit={handleSubmit}
@@ -212,7 +213,7 @@ const Edit = () => {
               required
             />
           </div>
-          <div>
+          {/* <div>
             <label className="block font-semibold">Mobile Number</label>
             <input
               type="tel"
@@ -233,7 +234,7 @@ const Edit = () => {
               rows={3}
               required
             ></textarea>
-          </div>
+          </div> */}
         </div>
 
         <div className="text-center mt-8">

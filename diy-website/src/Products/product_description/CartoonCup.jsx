@@ -45,7 +45,7 @@ const CartoonCup = () => {
   };
 
   return (
-    <div className="bg-rose-50">
+    <div className='bg-stone-100'>
       <ToastContainer />
       <UserNav />
       <div className="p-23">

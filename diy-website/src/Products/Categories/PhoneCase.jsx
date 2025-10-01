@@ -117,7 +117,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { FaStar } from "react-icons/fa";
-
+import { FaCartShopping, FaCartArrowDown } from "react-icons/fa6";
 const PhoneCase = ({ query }) => {
   const [cases, setCases] = useState([]);
 
@@ -185,9 +185,9 @@ const PhoneCase = ({ query }) => {
             <div className="flex flex-col sm:flex-row gap-3 w-full mt-2">
               <button
                 onClick={() => handleCart(item)}
-                className="flex-1 bg-amber-500 text-white px-4 py-2 rounded-lg hover:bg-amber-600 transition"
+                className=" bg-amber-500 text-white px-4  mx-auto rounded-lg hover:bg-amber-600 transition"
               >
-                Add to Cart
+                <FaCartShopping size={20} />
               </button>
               <Link
                 to="/purchase"
