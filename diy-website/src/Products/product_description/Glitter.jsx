@@ -8,6 +8,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from 'react';
 import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
+import emerald from '../../assets/phone case/Ruby-emerald.png'
+import aqua from '../../assets/phone case/aqua-torquise.png'
 const Anime = () => {
   const product = [
     { product_img: glitter, product_name: "Glitter Phone Case", Price: 200 }
@@ -16,7 +18,10 @@ const Anime = () => {
   const [count, setCount] = useState(1);
   const [review, setReview] = useState('');
   const [reviews, setReviews] = useState([]); // store all submitted reviews
-
+  const sidepics = [
+    { product_img: emerald},
+    { product_img: aqua }
+  ];
   const handleReview = () => {
     if (!review.trim()) {
       toast.error("Review cannot be empty!");
@@ -44,66 +49,87 @@ const Anime = () => {
   return (
     <div className='  bg-stone-100'>
       <ToastContainer />
-      <UserNav/>
+      <UserNav />
       <div className='p-23'>
         {product.map((item, index) => (
           <div
-            key={index}
-            className="bg-white shadow p-6 rounded max-w-4xl mt-22
-            mx-auto flex flex-col md:flex-row gap-6 "
-          >
-            {/* Left: Image */}
-            <div className="flex-1 flex justify-center items-center">
-              <img
-                src={item.product_img}
-                alt={item.product_name}
-                className="w-full max-w-sm h-auto rounded-lg"
-              />
-            </div>
+  key={index}
+  className="bg-white shadow p-6 rounded max-w-4xl mt-10 mx-auto flex flex-col md:flex-row gap-6"
+>
+  {/* Left: Main Image */}
+  <div className="flex-1 flex justify-center items-center">
+    <img
+      src={item.product_img}
+      alt={item.product_name}
+      className="w-full max-w-sm h-auto rounded-lg"
+    />
+  </div>
 
-            {/* Right: Details */}
-            <div className="flex-1 flex flex-col justify-center">
-               <div className='mb-65'>
-                <h2 className='text-lg font-semibold '>{item.product_name}</h2>
-                 <h2 className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25}/>3.0</h2>
-                <h2 className='text-gray-600 text-xl'>Unit Price: ₹{item.Price}</h2>
+  {/* Right: Details */}
+  <div className="flex-1 flex flex-col justify-between">
+    <div>
+      <h2 className="text-lg font-semibold">{item.product_name}</h2>
+      <h2 className="flex items-center gap-2 text-lg font-bold">
+        <FaStar color="yellow" size={25} /> 3.0
+      </h2>
+      <h2 className="text-gray-600 text-xl mb-2">
+        Unit Price: ₹{item.Price}
+      </h2>
 
-                <div className='flex items-center gap-2 my-3'>
-                  <button onClick={decrease} className='bg-amber-400 px-3 py-1 rounded text-white'>-</button>
-                  <span className='font-semibold'>{count}</span>
-                  <button onClick={increase} className='bg-amber-400 px-3 py-1 rounded text-white'>+</button>
-                </div>
+      {/* Quantity Selector */}
+      <div className="flex items-center gap-2 my-3">
+        <button onClick={decrease} className="bg-amber-400 px-3 py-1 rounded text-white">-</button>
+        <span className="font-semibold">{count}</span>
+        <button onClick={increase} className="bg-amber-400 px-3 py-1 rounded text-white">+</button>
+      </div>
 
-                <h2 className='text-xl font-bold'>Total: ₹{totalAmount}</h2>
-              </div>
-             <div className="flex gap-50 ">
-                <button
-                  onClick={() => handleCart(item)}
-                  className="bg-amber-500 text-white px-4 py-2 rounded"
-                >
-                  Add to Cart
-                </button>
-                 <Link
-                  to="/purchase"
-                  state={{
-                    product: {
-                      name: item.product_name,
-                      price: item.Price,
-                      quantity: count,
-                    },
-                  }}
-                >
-                  <button className="bg-green-500 text-white px-4 py-2 rounded">
-                    Buy Now
-                  </button>
-                </Link>
-              </div>
-            </div>
-          </div>
+      <h2 className="text-xl font-bold mb-4">Total: ₹{totalAmount}</h2>
+
+      {/* Side Images (Moved Here) */}
+      <div className='flex flex-row'>
+        <div className="grid grid-cols-2 gap-2 ">
+        {sidepics.map((pic, idx) => (
+          <img
+            key={idx}
+            src={pic.product_img}
+            alt={`Side pic ${idx + 1}`}
+            className="w-24 h-24 object-contain rounded shadow"
+          />
+        ))}
+         </div>
+      </div>
+    </div>
+
+    {/* Buttons */}
+    <div className="flex gap-50 mt-6">
+      <button
+        onClick={() => handleCart(item)}
+        className="bg-amber-500 text-white px-4 py-2 rounded"
+      >
+        Add to Cart
+      </button>
+      <Link
+        to="/purchase"
+        state={{
+          product: {
+            name: item.product_name,
+            price: item.Price,
+            quantity: count,
+          },
+        }}
+      >
+        <button className="bg-green-500 text-white px-4 py-2 rounded">
+          Buy Now
+        </button>
+      </Link>
+    </div>
+  </div>
+</div>
+
         ))}
       </div>
       <div className="flex justify-center mb-15 ">
-        <div className="bg-white w-[48%]  p-8 rounded shadow gap-5">
+        <div className="bg-white w-230  p-8 rounded shadow gap-5">
           <h2 className="font-bold text-xl mb-3 text-center">Reviews</h2>
 
           <div className='flex justify-center gap-5'>
@@ -118,7 +144,7 @@ const Anime = () => {
             <div className="">
               <button
                 onClick={handleReview}
-                className="bg-blue-500 p-3 rounded text-white"
+                className="bg-blue-500 p-2 rounded text-white"
               >
                 Submit
               </button>

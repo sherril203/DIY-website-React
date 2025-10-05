@@ -109,12 +109,12 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { FaStar } from "react-icons/fa";
 import { FaCartShopping, FaCartArrowDown } from "react-icons/fa6";
-const Kits = ({ query }) => {
+const Kids = ({ query }) => {
   const [kits, setKits] = useState([]);
 
   useEffect(() => {
     AOS.init({ duration: 2000, once: true });
-    axios.get("http://localhost:5000/getcategory/kits")
+    axios.get("http://localhost:5000/getcategory/kids")
       .then((res) => setKits(res.data.data))
       .catch((err) => console.error(err));
   }, []);
@@ -123,36 +123,36 @@ const Kits = ({ query }) => {
     (item.product_name || "").toLowerCase().includes((query || "").toLowerCase())
   );
 
-  const handleCart = (item) => {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const existingIndex = cart.findIndex((c) => c.product_name === item.product_name);
-
-    if (existingIndex !== -1) {
-      cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
-    } else {
-      cart.push({ ...item, quantity: 1 });
-    }
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-    toast.success("Product added to cart");
+ const handleCart = (item) => {
+    axios.post("http://localhost:5000/cart/add", {
+      image: item.product_img,
+      product_name: item.product_name,
+      quantity: 1,
+      price: item.product_price, 
+    })
+      .then(() => {
+        toast.success("Product added to cart");
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Failed to add to cart");
+      });
   };
-
   if (filtered.length === 0) return null;
 
   return (
     <div >
       <ToastContainer />
       <h2 className="text-center font-bold text-3xl mb-8 text-stone-700" data-aos="zoom-in">
-        Kits for Kids
+      for Kids
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {filtered.map((item, index) => (
+        {filtered.map((item) => (
           <div
-            key={index}
+            key={item._id || item.product_name}
             className="w-full max-w-xs bg-white  p-6 rounded-2xl shadow-md flex flex-col items-center gap-3 transition-transform hover:scale-105"
             data-aos="fade-up"
-            data-aos-delay={index * 150}
           >
             <Link to={item.path}>
               <img
@@ -197,5 +197,5 @@ const Kits = ({ query }) => {
   );
 };
 
-export default Kits;
+export default Kids;
 

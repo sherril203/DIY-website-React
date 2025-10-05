@@ -169,7 +169,7 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className='bg-gradient-to-l from-fuchsia-400 to-pink-400 p-6 min-h-screen flex flex-col justify-center items-center'>
+    <div className='bg-stone-100 p-6 min-h-screen flex flex-col justify-center items-center'>
       <ToastContainer />
       <div className='bg-white rounded-xl shadow-lg p-10 space-y-6 max-w-md w-full' data-aos="fade-up">
         <h2 className='text-center text-black text-2xl font-bold'>Admin Login</h2>

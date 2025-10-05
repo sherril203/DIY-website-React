@@ -32,7 +32,7 @@ const getproducts = async (req, res) => {
     res.status(500).send("Error retrieving products");
   }
 };
-//get by id
+// get by id
 // const getproductsById = async (req, res) => {
 //   try {
 //     const id=req.params.id
@@ -130,4 +130,5 @@ module.exports = {
   deleteproducts,
   postCategory,
   getcategory,
+
 };

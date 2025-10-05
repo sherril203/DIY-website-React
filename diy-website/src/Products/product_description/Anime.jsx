@@ -72,94 +72,120 @@
 // };
 
 // export default Anime;
-import React, { useState } from 'react';
-import { Link } from 'react-router';
+import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import anime from '../../assets/phone case/anime-case.jpeg';
-
+import axios from 'axios';
 import Footer from '../../common/Footer';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useContext } from 'react';
 import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
 import UserNav from '../../Pages/Userpage/UserNav';
+
+
+
 const Anime = () => {
   const product = [
     { product_img: anime, product_name: "Anime Phone Case", Price: 200 }
   ];
-  const { cart, setcart } = useContext(CartContext)
+
+  const { cart, setcart } = useContext(CartContext);
   const [count, setCount] = useState(1);
   const [review, setReview] = useState('');
-  const [reviews, setReviews] = useState([]); // store all submitted reviews
+  const [reviews, setReviews] = useState([]);
 
   const handleReview = () => {
     if (!review.trim()) {
       toast.error("Review cannot be empty!");
       return;
     }
-
-    setReviews([...reviews, review]); // add new review to list
-    setReview(''); // clear input
+    setReviews([...reviews, review]);
+    setReview('');
     toast.success("Review submitted!");
   };
 
-
-  const increase = () => setCount(count + 1);
-  const decrease = () => setCount(count > 1 ? count - 1 : 1);
+  const increase = () => setCount(prev => prev + 1);
+  const decrease = () => setCount(prev => (prev > 1 ? prev - 1 : 1));
 
   const totalAmount = product[0].Price * count;
+
   const handleCart = (item) => {
-    const normalizedItem = {
-      image: item.image || item.product_img,
-      name: item.name || item.product_name,
-      price: item.Price,
-      quantity: count
-    };
-    setcart([...cart, normalizedItem]);
-    toast.success("Product added");
+    axios.post("http://localhost:5000/cart/add", {
+      image: item.product_img,
+      product_name: item.product_name,
+      quantity: count,
+      price: item.Price, 
+    })
+      .then(() => {
+        toast.success("Product added to cart");
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Failed to add to cart");
+      });
   };
+
+
   return (
-    <div className='bg-stone-100'>
+    <div className='bg-stone-100 min-h-screen'>
       <ToastContainer />
-      <UserNav/>
-      <div className='p-23'>
+      <UserNav />
+
+      <div className='p-6'>
         {product.map((item, index) => (
-          <div key={index} className='bg-white shadow p-6 rounded mt-10
-         max-w-4xl mx-auto flex flex-col md:flex-row gap-6'>
-            {/* Left: Product Image */}
+          <div
+            key={item._id || item.product_name}
+            className='bg-white shadow p-6 rounded mt-10 max-w-4xl mx-auto flex flex-col md:flex-row gap-6'
+          >
+            {/* Left: Image */}
             <div className='flex-1 flex justify-center items-center'>
               <img
                 src={item.product_img}
                 alt={item.product_name}
-                className='w-full max-w-sm h-auto rounded-lg'
+                className='w-full max-w-sm h-auto rounded-lg object-contain'
               />
             </div>
 
-            {/* Right: Product Details */}
-            <div className='flex-1 flex flex-col justify-center'>
-              <div className='mb-40'>
-                <h2 className='text-lg font-semibold '>{item.product_name}</h2>
-                <p className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25}/>3.0</p>
-                <h2 className='text-gray-600 text-xl '>Unit Price: ₹{item.Price}</h2>
+            {/* Right: Details */}
+            <div className='flex-1 flex flex-col justify-between'>
+              <div>
+                <h2 className='text-xl font-semibold'>{item.product_name}</h2>
+                <p className='flex items-center gap-2 text-lg font-bold text-black mt-1'>
+                  <FaStar color="yellow" /> 3.0
+                </p>
+                <h3 className='text-gray-700 text-lg mt-2'>Unit Price: ₹{item.Price}</h3>
 
-                <div className='flex items-center gap-2 my-3'>
-                  <button onClick={decrease} className='bg-amber-400 px-3 py-1 rounded text-white'>-</button>
-                  <span className='font-semibold'>{count}</span>
-                  <button onClick={increase} className='bg-amber-400 px-3 py-1 rounded text-white'>+</button>
+                <div className='flex items-center gap-3 my-4'>
+                  <button
+                    onClick={decrease}
+                    className='bg-amber-400 px-3 py-1 rounded text-white'
+                    aria-label="Decrease quantity"
+                  >
+                    -
+                  </button>
+                  <span className='font-semibold text-lg'>{count}</span>
+                  <button
+                    onClick={increase}
+                    className='bg-amber-400 px-3 py-1 rounded text-white'
+                    aria-label="Increase quantity"
+                  >
+                    +
+                  </button>
                 </div>
 
-                <h2 className='text-xl font-bold'>Total: ₹{totalAmount}</h2>
+                <h3 className='text-xl font-bold'>Total: ₹{totalAmount}</h3>
               </div>
 
-
-             <div className="flex gap-50 ">
+              <div className="flex flex-wrap gap-50 mt-6">
                 <button
                   onClick={() => handleCart(item)}
-                  className="bg-amber-500 text-white px-4 py-2 rounded"
+                  className="bg-amber-500 text-white px-4 py-2 rounded hover:bg-amber-600 transition"
                 >
                   Add to Cart
                 </button>
-                 <Link
+
+                <Link
                   to="/purchase"
                   state={{
                     product: {
@@ -169,41 +195,39 @@ const Anime = () => {
                     },
                   }}
                 >
-                  <button className="bg-green-500 text-white px-4 py-2 rounded">
+                  <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">
                     Buy Now
                   </button>
                 </Link>
               </div>
             </div>
           </div>
-
         ))}
       </div>
-      <div className="flex justify-center mb-15 ">
-        <div className="bg-white w-[48%]  p-8 rounded shadow gap-5">
-          <h2 className="font-bold text-xl mb-3 text-center">Reviews</h2>
 
-          <div className='flex justify-center gap-5'>
+      {/* Review Section */}
+      <div className="flex justify-center mt-16 mb-20">
+        <div className="bg-white w-full max-w-2xl p-8 rounded shadow">
+          <h2 className="font-bold text-2xl mb-4 text-center">Reviews</h2>
+
+          <div className='flex flex-col sm:flex-row justify-center gap-4'>
             <input
               type="text"
               value={review}
               onChange={(e) => setReview(e.target.value)}
-              placeholder="Enter review"
-              className="p-3 ring-2 rounded w-full mb-3"
+              placeholder="Enter your review"
+              className="p-3 border rounded w-full"
+              aria-label="Write a review"
             />
-
-            <div className="">
-              <button
-                onClick={handleReview}
-                className="bg-blue-500 p-3 rounded text-white"
-              >
-                Submit
-              </button>
-            </div>
+            <button
+              onClick={handleReview}
+              className="bg-blue-500 px-5 py-3 rounded text-white hover:bg-blue-600 transition"
+            >
+              Submit
+            </button>
           </div>
 
-          {/* Show submitted reviews */}
-          <div className="mt-5 space-y-2">
+          <div className="mt-6 space-y-3">
             {reviews.length === 0 ? (
               <p className="text-gray-500 italic text-center">No reviews yet.</p>
             ) : (
@@ -216,7 +240,6 @@ const Anime = () => {
           </div>
         </div>
       </div>
-
 
       <Footer />
     </div>

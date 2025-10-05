@@ -9,6 +9,7 @@ const product=require('../Controllers/productHome.controller')
 const upload = require('../middleware/fileStorage');
 const admin=require('../Controllers/Admin.controllers')
 const { authMiddleware } = require('../middleware/Auth');
+const cartController = require('../Controllers/Cart.controllers');
 // Post query and  get query
 router.post('/postquery', query.postquery);
 router.get('/getquery', query.getquery);
@@ -49,8 +50,8 @@ router.get('/getcategory/cups', products.getcategory);
 router.post('/category/phone_case', upload.single('product_img'), products.postCategory);
 router.get('/getcategory/phone_case', products.getcategory);
 //kits
-router.post('/category/kits', upload.single('product_img'), products.postCategory);
-router.get('/getcategory/kits', products.getcategory);
+router.post('/category/kids', upload.single('product_img'), products.postCategory);
+router.get('/getcategory/kids', products.getcategory);
 //clock
 router.post('/category/clock', upload.single('product_img'), products.postCategory);
 router.get('/getcategory/clock', products.getcategory);
@@ -63,4 +64,9 @@ router.get('/getcategory/photo_frames', products.getcategory);
 //product display in home page
 router.post('/postsome',upload.single('product_img'),product.postSomeProduct)
 router.get('/getsome',product.getSomeProduct)
+//cart
+router.post('/cart/add', cartController.addToCart);
+router.get('/cart/get', cartController.getCartItems);
+router.delete('/cart/remove/:id', cartController.removeCartItem);
+router.delete('/cart/clear', cartController.clearCart);
 module.exports = router;

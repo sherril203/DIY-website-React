@@ -1,20 +1,20 @@
-
-import React, { useState, useContext } from "react";
-import block from "../../assets/frames/Cartoon_frame.png";
-import { Link } from "react-router";
-import Navigate from "../../common/Navigate";
-import Footer from "../../common/Footer";
-import { toast, ToastContainer } from "react-toastify";
-import { CartContext } from "../../Pages/Cart/CartContext";
-import "react-toastify/dist/ReactToastify.css";
+import React, { useState } from 'react';
+import { Link } from 'react-router';
+import pouch from '../../assets/kids/Kids Pouch set.png';
+import UserNav from '../../Pages/Userpage/UserNav';
+import Footer from '../../common/Footer';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useContext } from 'react';
+import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
-import UserNav from "../../Pages/Userpage/UserNav";
-const CartoonFrame = () => {
+const Kidspouch = () => {
   const product = [
-    { product_img: block, product_name: "Cartoon Photo Frame for Kids ", price: 140 },
+    { product_img: pouch, product_name: "Pouch for kids", Price: 120 }
   ];
-  const { cart, setcart } = useContext(CartContext)
+
   const [count, setCount] = useState(1);
+  const { cart, setcart } = useContext(CartContext)
   const [review, setReview] = useState('');
   const [reviews, setReviews] = useState([]); // store all submitted reviews
 
@@ -31,8 +31,7 @@ const CartoonFrame = () => {
   const increase = () => setCount(count + 1);
   const decrease = () => setCount(count > 1 ? count - 1 : 1);
 
-  const totalAmount = product[0].price * count;
-
+  const totalAmount = product[0].Price * count;
   const handleCart = (item) => {
     const normalizedItem = {
       image: item.image || item.product_img,
@@ -43,34 +42,35 @@ const CartoonFrame = () => {
     setcart([...cart, normalizedItem]);
     toast.success("Product added");
   };
-
   return (
     <div className='bg-stone-100'>
       <ToastContainer />
-      <UserNav />
-      <div className="p-23">
+      <UserNav/>
+      <div className='p-23'>
         {product.map((item, index) => (
           <div
             key={index}
             className="bg-white shadow p-6 rounded max-w-4xl mt-22
-                     mx-auto flex flex-col md:flex-row gap-6 "
+                      mx-auto flex flex-col md:flex-row gap-6 "
           >
             {/* Left: Image */}
             <div className="flex-1 flex justify-center items-center">
               <img
                 src={item.product_img}
                 alt={item.product_name}
-                className="w-full max-w-sm h-auto rounded-lg"
+                className="w-full max-w-sm h-auto rounded-lg mb-30"
               />
             </div>
 
             {/* Right: Details */}
             <div className="flex-1 flex flex-col justify-center">
-              <div className='mb-60'>
+              <div className='mb-30'>
                 <h2 className='text-lg font-semibold '>{item.product_name}</h2>
-                <p className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25} />3.0</p>
-                <h2 className='text-gray-600 text-xl '>Unit Price: ₹{item.price}</h2>
+                 <h2 className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25}/>3.3</h2>
+                <h2 className='text-gray-600 text-xl '>Unit Price: ₹{item.Price}</h2>
+                 <h2 className='text-gray-600 text-xl '>1 Set = 2 pouch (each ₹60)</h2>
                 <h2 className='text-gray-600 text-xl '>Customization Available</h2>
+
                 <div className='flex items-center gap-2 my-3'>
                   <button onClick={decrease} className='bg-amber-400 px-3 py-1 rounded text-white'>-</button>
                   <span className='font-semibold'>{count}</span>
@@ -80,15 +80,15 @@ const CartoonFrame = () => {
                 <h2 className='text-xl font-bold'>Total: ₹{totalAmount}</h2>
               </div>
 
-
               <div className="flex gap-50 ">
+             
                 <button
                   onClick={() => handleCart(item)}
                   className="bg-amber-500 text-white px-4 py-2 rounded"
                 >
                   Add to Cart
                 </button>
-                <Link
+                   <Link
                   to="/purchase"
                   state={{
                     product: {
@@ -147,6 +147,6 @@ const CartoonFrame = () => {
       <Footer />
     </div>
   );
-};
+}
 
-export default CartoonFrame;
+export default Kidspouch

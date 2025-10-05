@@ -70,6 +70,7 @@ import Edit from "../Pages/EditProfile/Edit";
 import CartoonCup from "../Products/product_description/CartoonCup";
 import Tree from "../Products/product_description/Tree";
 import CloudStar from "../Products/product_description/CloudStar";
+import Kidspouch from "../Products/product_description/Kidspouch";
 
 // (Import statements unchanged for brevity...)
 
@@ -128,15 +129,17 @@ const Routers = () => {
           <Route path="birdCase" element={<BirdCase />} />
           {/* Photo frame */}
           <Route path="block" element={<BlockFrame />} />
-          <Route path="babies" element={<BabiesPhoto />} />
+          {/* <Route path="babies" element={<BabiesPhoto />} /> */}
+          <Route path="/products/:id" element={<BabiesPhoto />} />
           <Route path="couples" element={<CoupleFrame />} />
           <Route path="cartoonframe" element={<CartoonFrame />} />
           <Route path="college" element={<ImageCollege/>}/>
           <Route path="popsicle" element={<PopsicleFrame/>}/>
-          {/* Kits */}
+          {/* Kids */}
           <Route path="jewellery" element={<Jewellery />} />
           <Route path="christmas" element={<Christmas />} />
           <Route path="quiling" element={<Quiling/>}/>
+          <Route path="pouch" element={<Kidspouch/>}/>
           {/* Wall Decor */}
           <Route path="lotus_decor" element={<LotusWall />} />
           <Route path="love_decor" element={<LoveHeart />} />

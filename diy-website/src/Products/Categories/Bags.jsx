@@ -217,19 +217,23 @@ const Bags = ({ query }) => {
     (item.product_name || "").toLowerCase().includes((query || "").toLowerCase())
   );
 
-  const handleCart = (item) => {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const existingIndex = cart.findIndex((c) => c.product_name === item.product_name);
-
-    if (existingIndex !== -1) {
-      cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
-    } else {
-      cart.push({ ...item, quantity: 1 });
-    }
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-    toast.success("Product added to cart");
+ const handleCart = (item) => {
+    axios.post("http://localhost:5000/cart/add", {
+      image: item.product_img,
+      product_name: item.product_name,
+      quantity: 1,
+      price: item.product_price, 
+    })
+      .then(() => {
+        toast.success("Product added to cart");
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Failed to add to cart");
+      });
   };
+
+
 
   return (
     <div >
@@ -239,12 +243,11 @@ const Bags = ({ query }) => {
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {filtered.map((item, index) => (
+        {filtered.map((item) => (
           <div
-            key={index}
+            key={item._id || item.product_name} // ✅ Use unique key if _id exists
             className="w-full max-w-xs bg-white p-6 rounded-2xl shadow-md flex flex-col items-center gap-3 transition-transform hover:scale-105"
             data-aos="fade-up"
-            data-aos-delay={index * 150}
           >
             <Link to={item.path}>
               <img
@@ -290,114 +293,4 @@ const Bags = ({ query }) => {
 };
 
 export default Bags;
-// import React, { useEffect, useState, useContext } from "react";
-// import AOS from "aos";
-// import "aos/dist/aos.css";
-// import { Link } from "react-router-dom"; // changed from "react-router"
-// import { toast, ToastContainer } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
-// import axios from "axios";
-// import { FaStar } from "react-icons/fa";
-// import { CartContext } from '../../Pages/Cart/CartContext';
 
-// const Bags = ({ query }) => {
-//   const [bags, setBags] = useState([]);
-//   const { cart, setcart } = useContext(CartContext);
-
-//   useEffect(() => {
-//     AOS.init({ duration: 2000, once: true });
-
-//     axios.get("http://localhost:5000/getcategory/bags")
-//       .then((res) => setBags(res.data.data))
-//       .catch((err) => {
-//         console.error(err);
-//         toast.error("Failed to load products");
-//       });
-//   }, []);
-
-//   const filtered = bags.filter((item) =>
-//     (item.product_name || "").toLowerCase().includes((query || "").toLowerCase())
-//   );
-
-//   const handleCart = (item) => {
-//     const normalizedItem = {
-//       image: item.image || item.product_img,
-//       name: item.name || item.product_name,
-//       price: item.Price || item.product_price,
-//       quantity: 1
-//     };
-
-//     // Prevent duplicate items
-//     const existing = cart.find(i => i.name === normalizedItem.name);
-//     if (existing) {
-//       toast.info("Item already in cart");
-//       return;
-//     }
-
-//     setcart([...cart, normalizedItem]);
-//     toast.success("Product added to cart");
-//   };
-
-//   return (
-//     <div className="px-4 md:px-8">
-//       <ToastContainer position="top-right" autoClose={2000} />
-//       <h2
-//         className="text-center font-bold text-3xl mb-8 text-stone-700"
-//         data-aos="zoom-in"
-//       >
-//         Bags
-//       </h2>
-
-//       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-//         {filtered.map((item, index) => (
-//           <div
-//             key={index}
-//             className="w-full max-w-xs bg-white p-6 rounded-2xl shadow-md flex flex-col items-center gap-3 transition-transform hover:scale-105"
-//             data-aos="fade-up"
-//             data-aos-delay={index * 150}
-//           >
-//             <Link to={item.path || "#"}>
-//               <img
-//                 src={`http://localhost:5000/files/${item.product_img}`}
-//                 alt={item.product_name || "Product Image"}
-//                 className="w-60 h-60 object-contain"
-//               />
-//             </Link>
-
-//             <Link to={item.path || "#"} className="text-lg font-semibold text-black text-center">
-//               {item.product_name || "Unnamed Product"}
-//             </Link>
-
-//             <p className="flex items-center gap-1 text-yellow-500">
-//               <FaStar size={20} />
-//               <span className="text-gray-700 font-medium">{item.rating || 3.0}</span>
-//             </p>
-
-//             <p className="text-gray-800 text-xl font-bold">₹{item.product_price || "N/A"}</p>
-
-//             <div className="flex flex-col sm:flex-row gap-3 w-full mt-2">
-//               <button
-//                 onClick={() => handleCart(item)}
-//                 className="flex-1 bg-amber-500 text-white px-4 py-2 rounded-lg hover:bg-amber-600 transition"
-//               >
-//                 Add to Cart
-//               </button>
-
-//               <Link
-//                 to="/purchase"
-//                 state={{ product: { name: item.product_name, price: item.product_price } }}
-//                 className="flex-1"
-//               >
-//                 <button className="w-full bg-[#916A2f] text-white px-4 py-2 rounded-lg hover:bg-[#7B481C] transition">
-//                   Buy Now
-//                 </button>
-//               </Link>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Bags;

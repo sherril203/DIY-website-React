@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router';
-import quil from '../../assets/kits/kit for quilling beginners.jpg';
+import quil from '../../assets/kids/kit for quilling beginners.jpg';
 import UserNav from '../../Pages/Userpage/UserNav';
 import Footer from '../../common/Footer';
 import { toast, ToastContainer } from 'react-toastify';

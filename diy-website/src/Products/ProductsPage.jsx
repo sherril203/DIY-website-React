@@ -133,7 +133,7 @@ const ProductsPage = () => {
             <option value="Photo Frames">Photo Frames</option>
             <option value="Clocks">Clocks</option>
             <option value="Geometric Design Wall Decor">Geometric Design Wall Decor</option>
-            <option value="Kits for kids">Kits for kids</option>
+            <option value="for Kids">for Kids</option>
           </select>
         </div>
       </form>

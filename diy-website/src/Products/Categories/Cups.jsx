@@ -322,18 +322,21 @@ const Cups = ({ query }) => {
   const filtered = cups.filter(item =>
     (item.product_name || '').toLowerCase().includes((query || '').toLowerCase())
   );
-
   const handleCart = (item) => {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const index = cart.findIndex(c => c.product_name === item.product_name);
-    index !== -1
-      ? (cart[index].quantity = (cart[index].quantity || 1) + 1)
-      : cart.push({ ...item, quantity: 1 });
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-    toast.success("Product added to cart");
+    axios.post("http://localhost:5000/cart/add", {
+      image: item.product_img,
+      product_name: item.product_name,
+      quantity: 1,
+      price: item.product_price,
+    })
+      .then(() => {
+        toast.success("Product added to cart");
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Failed to add to cart");
+      });
   };
-
   if (filtered.length === 0) return null;
 
   return (
@@ -342,12 +345,11 @@ const Cups = ({ query }) => {
       <h2 className="text-center font-bold text-3xl mb-6 text-stone-700" data-aos="zoom-in">Cups</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {filtered.map((item, index) => (
+        {filtered.map((item) => (
           <div
-            key={index}
-            className="w-full max-w-xs bg-white  p-6 shadow-md rounded-2xl flex flex-col items-center gap-3 hover:scale-105 transition-transform duration-300"
+            key={item._id || item.product_name} // ✅ Use unique key if _id exists
+            className="w-full max-w-xs bg-white p-6 rounded-2xl shadow-md flex flex-col items-center gap-3 transition-transform hover:scale-105"
             data-aos="fade-up"
-            data-aos-delay={index * 150}
           >
             <Link to={item.path}>
               <img

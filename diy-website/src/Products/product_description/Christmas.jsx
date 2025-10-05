@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router';
-import christmas from '../../assets/kits/Christmas kit for kids.jpg';
+import christmas from '../../assets/kids/Christmas kit for kids.jpg';
 import UserNav from '../../Pages/Userpage/UserNav';
 import Footer from '../../common/Footer';
 import { toast, ToastContainer } from 'react-toastify';

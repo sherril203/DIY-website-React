@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router';
-import jewel from '../../assets/kits/jewelery kit.jpg';
+import jewel from '../../assets/kids/jewelery kit.jpg';
 import UserNav from '../../Pages/Userpage/UserNav'
 import Footer from '../../common/Footer';
 import { toast, ToastContainer } from 'react-toastify';

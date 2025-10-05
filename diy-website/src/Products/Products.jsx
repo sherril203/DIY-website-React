@@ -27,7 +27,7 @@ import Bags from './Categories/Bags';
 import Cups from './Categories/Cups';
 import Clock from './Categories/Clock';
 import PhoneCase from './Categories/PhoneCase';
-import Kits from './Categories/Kits';
+import Kids from './Categories/Kids';
 import Geometric from './Categories/Geometric';
 import Frames from './Categories/Frames';
 
@@ -40,7 +40,7 @@ const Products = ({ query, category}) => {
       {(!category || category === 'Photo Frames') && <Frames query={query} />}
       {(!category || category === 'Clocks') && <Clock query={query} />}
       {(!category || category === 'Geometric Design Wall Decor') && <Geometric query={query} />}
-      {(!category || category === 'Kits for kids') && <Kits query={query} />}
+      {(!category || category === 'for Kids') && <Kids query={query} />}
     </div>
   );
 };

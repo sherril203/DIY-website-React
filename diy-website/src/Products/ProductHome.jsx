@@ -108,17 +108,21 @@
 // }
 
 // export default ProductHome
+
+//data from backend to frontend
 import { useEffect, useState } from 'react';
 import AOS from 'aos';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { toast, ToastContainer } from 'react-toastify';
-import { FaCartShopping, FaCartArrowDown } from "react-icons/fa6";
+import { FaCartArrowDown } from "react-icons/fa6";
 import 'aos/dist/aos.css';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 const ProductHome = () => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const getProducts = async () => {
     try {
@@ -126,34 +130,33 @@ const ProductHome = () => {
       const products = Array.isArray(response?.data?.data) ? response.data.data : [];
       setData(products);
     } catch (error) {
-      console.log("GET error:", error.message);
+      console.error("GET error:", error.message);
+      toast.error("Failed to load products");
       setData([]);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     getProducts();
-  }, []);
-
-  useEffect(() => {
     AOS.init({ duration: 2000, once: true });
   }, []);
 
   const handleCart = (item) => {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    const existingIndex = cart.findIndex(
-      (cartItem) => cartItem.product_name === item.product_name
-    );
-
-    if (existingIndex !== -1) {
-      cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
-    } else {
-      cart.push({ ...item, quantity: 1 });
-    }
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-    toast.success("Product added to cart");
+    axios.post("http://localhost:5000/cart/add", {
+      image: item.product_img,
+      product_name: item.product_name,
+      quantity: 1,
+      price: item.product_price, 
+    })
+      .then(() => {
+        toast.success("Product added to cart");
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Failed to add to cart");
+      });
   };
 
   return (
@@ -163,64 +166,65 @@ const ProductHome = () => {
         Products
       </h2>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 justify-items-center">
-        {data.map((item, index) => (
-          <div
-            key={index}
+      {loading ? (
+        <div className="text-center text-gray-600 py-10">Loading products...</div>
+      ) : data.length === 0 ? (
+        <div className="text-center text-gray-500 py-10">No products found.</div>
+      ) : (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 justify-items-center">
+          {data.map((item, index) => (
+            <div
+               key={item._id || item.product_name} // ✅ Use unique key if _id exists
+            className="w-full max-w-xs bg-white p-6 rounded-2xl shadow-md flex flex-col items-center gap-3 transition-transform hover:scale-105"
             data-aos="fade-up"
-            data-aos-duration="2000"
-            data-aos-delay={index * 200}
-            className="flex-shrink-0 flex flex-col justify-center items-center gap-3 bg-white p-6 shadow rounded-2xl hover:scale-105 transition-transform duration-300 w-72"
-          >
-            <Link to={item.path}>
-              {item.product_img ? (
-                <img
-                  src={`http://localhost:5000/files/${item.product_img}`}
-                  alt={item.product_name}
-                  className="w-50 h-50 object-contain mb-4 rounded"
-                  loading="lazy"
-                />
-              ) : (
-                <div className="w-40 h-40 flex items-center justify-center bg-gray-200 mb-4 rounded text-gray-500">
-                  No Image
-                </div>
-              )}
-            </Link>
-
-            <Link
-              to={item.path}
-              className="text-lg font-semibold text-gray-800 text-center"
             >
-              {item.product_name}
-            </Link>
-
-            <p className="text-gray-700 text-xl font-medium">₹{item.product_price}</p>
-
-            <div className="flex gap-3 mt-2">
-              <button
-                onClick={() => handleCart(item)}
-                className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition"
-              >
-               <FaCartArrowDown size={20}/>
-              </button>
-
-              <Link
-                to="/purchase"
-                state={{
-                  product: {
-                    name: item.product_name,
-                    price: item.product_price,
-                  },
-                }}
-              >
-               <button className="w-full bg-[#916A2f] text-white px-4 py-2 rounded-lg hover:bg-[#7B481C] transition">
-                  Buy Now
-                </button>
+              <Link to={item.path} className="w-full flex flex-col items-center">
+                {item.product_img ? (
+                  <img
+                    src={`http://localhost:5000/files/${item.product_img}`}
+                    alt={item.product_name}
+                    className="w-50 h-50 object-contain mb-4 rounded"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="w-40 h-40 flex items-center justify-center bg-gray-200 mb-4 rounded text-gray-500">
+                    No Image
+                  </div>
+                )}
+                <div className="text-lg font-semibold text-gray-800 text-center">
+                  {item.product_name}
+                </div>
               </Link>
+
+              <p className="text-gray-700 text-xl font-medium">₹{item.product_price}</p>
+
+              <div className="flex gap-3 mt-2">
+                <button
+                  onClick={() => handleCart(item)}
+                  className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition"
+                  aria-label="Add to Cart"
+                >
+                  <FaCartArrowDown size={20} />
+                </button>
+
+                <Link
+                  to="/purchase"
+                  state={{
+                    product: {
+                      name: item.product_name,
+                      price: item.product_price,
+                    },
+                  }}
+                >
+                  <button className="w-full bg-[#916A2f] text-white px-4 py-2 rounded-lg hover:bg-[#7B481C] transition">
+                    Buy Now
+                  </button>
+                </Link>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
 
       <Link to="/products" className="flex justify-center items-center p-4">
         <button className="p-3 rounded bg-[#916A2f] hover:bg-[#7B481C] text-center text-white">
@@ -232,5 +236,3 @@ const ProductHome = () => {
 };
 
 export default ProductHome;
-
-
