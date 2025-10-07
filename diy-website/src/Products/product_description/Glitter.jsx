@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router';
-import glitter from '../../assets/phone case/Gilter-case.jpeg';
+import glitter from '../../assets/phone_case/Gilter-case.jpeg';
 import UserNav from '../../Pages/Userpage/UserNav';
 import Footer from '../../common/Footer';
 import { toast, ToastContainer } from 'react-toastify';
@@ -8,8 +8,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from 'react';
 import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
-import emerald from '../../assets/phone case/Ruby-emerald.png'
-import aqua from '../../assets/phone case/aqua-torquise.png'
+import emerald from '../../assets/phone_case/Ruby-emerald.png'
+import aqua from '../../assets/phone_case/aqua-torquise.png'
+import axios from "axios";
 const Anime = () => {
   const product = [
     { product_img: glitter, product_name: "Glitter Phone Case", Price: 200 }
@@ -36,16 +37,21 @@ const Anime = () => {
   const decrease = () => setCount(count > 1 ? count - 1 : 1);
 
   const totalAmount = product[0].Price * count;
-  const handleCart = (item) => {
-    const normalizedItem = {
-      image: item.image || item.product_img,
-      name: item.name || item.product_name,
-      price: item.Price,
-      quantity: count
-    };
-    setcart([...cart, normalizedItem]);
-    toast.success("Product added");
-  };
+const handleCart = (item) => {
+    axios.post("http://localhost:5000/cart/add", {
+      image: item.product_img,
+      product_name: item.product_name,
+      quantity: count,
+      price: item.price, 
+    })
+      .then(() => {
+        toast.success("Product added to cart");
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Failed to add to cart");
+      });
+  }
   return (
     <div className='  bg-stone-100'>
       <ToastContainer />

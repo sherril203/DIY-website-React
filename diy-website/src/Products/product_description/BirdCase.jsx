@@ -151,7 +151,7 @@
 
 // export default BirdCase;
 import React, { useState, useContext } from "react";
-import bird from "../../assets/phone case/bird-design-case.jpg";
+import bird from "../../assets/phone_case/bird-design-case.jpg";
 import { Link } from "react-router";
 import Navigate from "../../common/Navigate";
 import Footer from "../../common/Footer";
@@ -160,6 +160,7 @@ import { CartContext } from "../../Pages/Cart/CartContext";
 import "react-toastify/dist/ReactToastify.css";
 import { FaStar } from "react-icons/fa";
 import UserNav from "../../Pages/Userpage/UserNav";
+import axios from "axios"
 const BirdCase = () => {
   const product = [
     { product_img: bird, product_name: "Bird Design Phone Case", price: 200 },
@@ -186,15 +187,20 @@ const BirdCase = () => {
   const totalAmount = product[0].price * count;
 
   const handleCart = (item) => {
-    const normalizedItem = {
-      image: item.image || item.product_img,
-      name: item.name || item.product_name,
-      price: item.price,
+    axios.post("http://localhost:5000/cart/add", {
+      image: item.product_img,
+      product_name: item.product_name,
       quantity: count,
-    };
-    setcart([...cart, normalizedItem]);
-    toast.success("Product added");
-  };
+      price: item.price, 
+    })
+      .then(() => {
+        toast.success("Product added to cart");
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Failed to add to cart");
+      });
+  }
 
   return (
     <div className='bg-stone-100'>

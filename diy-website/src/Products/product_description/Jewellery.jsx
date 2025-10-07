@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from 'react';
 import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
+import axios from 'axios';
 const Jewellery = () => {
   const product = [
     { product_img: jewel, product_name: "Jewellery kit for girls", Price: 120 }
@@ -31,16 +32,21 @@ const Jewellery = () => {
   const decrease = () => setCount(count > 1 ? count - 1 : 1);
 
   const totalAmount = product[0].Price * count;
-  const handleCart = (item) => {
-    const normalizedItem = {
-      image: item.product_img || item.product_image,
-      name: item.product_name || item.product_name,
-      price: item.Price,
-      quantity: count
-    };
-    setcart([...cart, normalizedItem]);
-    toast.success("Product added");
-  };
+const handleCart = (item) => {
+    axios.post("http://localhost:5000/cart/add", {
+      image: item.product_img,
+      product_name: item.product_name,
+      quantity: count,
+      price: item.price, 
+    })
+      .then(() => {
+        toast.success("Product added to cart");
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Failed to add to cart");
+      });
+  }
   return (
     <div className='bg-stone-100'>
       <ToastContainer />

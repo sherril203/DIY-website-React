@@ -8,7 +8,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { CartContext } from "../../Pages/Cart/CartContext";
 import "react-toastify/dist/ReactToastify.css";
 import { FaStar } from "react-icons/fa";
-
+import axios from "axios";
 
 const PopsicleFrame = () => {
   const product = [
@@ -35,16 +35,21 @@ const PopsicleFrame = () => {
 
   const totalAmount = product[0].price * count;
 
-  const handleCart = (item) => {
-    const normalizedItem = {
+const handleCart = (item) => {
+    axios.post("http://localhost:5000/cart/add", {
       image: item.product_img,
-      name: item.product_name,
-      price: item.price,
+      product_name: item.product_name,
       quantity: count,
-    };
-    setcart([...cart, normalizedItem]);
-    toast.success("Product added");
-  };
+      price: item.price, 
+    })
+      .then(() => {
+        toast.success("Product added to cart");
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Failed to add to cart");
+      });
+  }
 
   return (
     <div className='bg-stone-100'>

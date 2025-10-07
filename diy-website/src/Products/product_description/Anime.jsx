@@ -74,7 +74,7 @@
 // export default Anime;
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import anime from '../../assets/phone case/anime-case.jpeg';
+import anime from '../../assets/phone_case/anime-case.jpeg';
 import axios from 'axios';
 import Footer from '../../common/Footer';
 import { toast, ToastContainer } from 'react-toastify';

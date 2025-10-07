@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router';
-import Customized from '../../assets/phone case/Name Customized phone case.png';
+import Customized from '../../assets/phone_case/Name Customized phone case.png';
 import UserNav from '../../Pages/Userpage/UserNav';
 import Footer from '../../common/Footer';
 import { toast, ToastContainer } from 'react-toastify';
@@ -8,6 +8,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from 'react';
 import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
+import axios from 'axios';
+
 const PhoneCustomization = () => {
   const product = [
     { product_img: Customized, product_name: "Name Customized phone case", Price: 200 }
@@ -31,16 +33,21 @@ const PhoneCustomization = () => {
   const decrease = () => setCount(count > 1 ? count - 1 : 1);
 
   const totalAmount = product[0].Price * count;
-  const handleCart = (item) => {
-    const normalizedItem = {
+ const handleCart = (item) => {
+    axios.post("http://localhost:5000/cart/add", {
       image: item.product_img,
-      name: item.product_name,
-      price: item.Price,
-      quantity: count
-    };
-    setcart([...cart, normalizedItem]);
-    toast.success("Product added");
-  };
+      product_name: item.product_name,
+      quantity: count,
+      price: item.price, 
+    })
+      .then(() => {
+        toast.success("Product added to cart");
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Failed to add to cart");
+      });
+  }
   return (
     <div className='bg-stone-100'>
       <ToastContainer />

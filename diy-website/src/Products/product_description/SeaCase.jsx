@@ -150,16 +150,17 @@
 // export default SeaCase
 
 import React, { useState, useContext } from 'react';
-import sea from '../../assets/phone case/sea blue phone case.png';
-import beach from '../../assets/phone case/beach design phone case.png';
-import shark from '../../assets/phone case/Sea design Phone Case.png';
-import { Link } from 'react-router-dom'; // ✅ Fixed import
+import sea from '../../assets/phone_case/sea blue phone case.png';
+import beach from '../../assets/phone_case/beach design phone case.png';
+import shark from '../../assets/phone_case/Sea design Phone Case.png';
+import { Link } from 'react-router'; // ✅ Fixed import
 import Footer from '../../common/Footer';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
 import UserNav from '../../Pages/Userpage/UserNav';
+import axios from 'axios'
 
 const SeaCase = () => {
   const product = [
@@ -185,16 +186,22 @@ const SeaCase = () => {
 
   const totalAmount = product[0].price * count;
 
-  const handleCart = (item) => {
-    const normalizedItem = {
+const handleCart = (item) => {
+    axios.post("http://localhost:5000/cart/add", {
       image: item.product_img,
-      name: item.product_name,
-      price: item.price,
-      quantity: count
-    };
-    setcart([...cart, normalizedItem]);
-    toast.success("Product added to cart");
-  };
+      product_name: item.product_name,
+      quantity: count,
+      price: item.price, 
+    })
+      .then(() => {
+        toast.success("Product added to cart");
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Failed to add to cart");
+      });
+  }
+
 
   const handleReview = () => {
     if (!review.trim()) {

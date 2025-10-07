@@ -97,6 +97,8 @@ import { CartContext } from "../../Pages/Cart/CartContext";
 import "react-toastify/dist/ReactToastify.css";
 import { FaStar } from "react-icons/fa";
 import UserNav from "../../Pages/Userpage/UserNav";
+import axios from "axios";
+
 const BabiesPhoto = () => {
   const product = [
     { product_img: block, product_name: "Photo Frame for Babies", price: 120 },
@@ -122,16 +124,21 @@ const BabiesPhoto = () => {
 
   const totalAmount = product[0].price * count;
 
-  const handleCart = (item) => {
-    const normalizedItem = {
-      image: item.image || item.product_img,
-      name: item.name || item.product_name,
-      price: item.price, 
+const handleCart = (item) => {
+    axios.post("http://localhost:5000/cart/add", {
+      image: item.product_img,
+      product_name: item.product_name,
       quantity: count,
-    };
-    setcart([...cart, normalizedItem]);
-    toast.success("Product added");
-  };
+      price: item.price, 
+    })
+      .then(() => {
+        toast.success("Product added to cart");
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Failed to add to cart");
+      });
+  }
 
   return (
     <div className='bg-stone-100'>
