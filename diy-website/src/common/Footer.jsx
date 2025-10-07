@@ -51,7 +51,6 @@ const Footer = () => {
         </div>
 
       </div>
-      <hr />
       <p className="text-center text-sm text-black mt-8">© 2025 DIY Arts. All rights reserved.</p>
     </div>
   );
