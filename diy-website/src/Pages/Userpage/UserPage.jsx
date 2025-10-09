@@ -1,25 +1,25 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import Footer from '../../common/Footer'
 import UserNav from '../Userpage/UserNav'
 import Products from '../../Products/Products'
 import UserService from './UserService'
 const UserPage = () => {
-    const [query, setQuery] = useState('');
-    const [category, setCategory] = useState('');
-    const [cart,setcart]=useState([])
-    const handleSearch = (e) => {
-      e.preventDefault();
-      console.log({ query, category });
-    };
-  
+  const [query, setQuery] = useState('');
+  const [category, setCategory] = useState('');
+  const [cart, setcart] = useState([])
+  const handleSearch = (e) => {
+    e.preventDefault();
+    console.log({ query, category });
+  };
+
   return (
     <div className='bg-stone-100 w-full '>
-        <UserNav cart={cart}/>
-        <UserService/>
-        <h2 className="text-center  font-bold text-3xl mt-19 text-stone-700 ">
+      <UserNav cart={cart} />
+      <UserService />
+      <h2 className="text-center  font-bold text-3xl mt-19 text-stone-700 ">
         Products
       </h2>
-<form
+      <form
         className="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-3 mt-6 px-4 max-w-4xl mx-auto w-full"
         onSubmit={handleSearch}
       >
@@ -50,14 +50,14 @@ const UserPage = () => {
             <option value="Photo Frames">Photo Frames</option>
             <option value="Clocks">Clocks</option>
             <option value="Geometric Design Wall Decor">Geometric Design Wall Decor</option>
-            <option value="Kits for kids">Kits for kids</option>
+            <option value="for Kids">for Kids</option>
           </select>
         </div>
       </form>
 
-      <Products query={query} category={category}  />
+      <Products query={query} category={category} />
       <br />
-        <Footer/>
+      <Footer />
     </div>
   )
 }

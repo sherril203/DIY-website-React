@@ -1,9 +1,13 @@
-const mongoose=require('mongoose')
-const CartSchema=new mongoose.Schema({
-    image:{type:String},
-    product_name:{type:String},
-    quantity :{type:Number,default: 1},
-    price:{type:Number}
-})
-const CartModel=mongoose.model('cart',CartSchema)
-module.exports=CartModel
+const mongoose = require('mongoose');
+
+const CartSchema = new mongoose.Schema({
+  image: { type: String, required: true },
+  product_name: { type: String, required: true },
+  quantity: { type: Number, default: 1 },
+  description:{type:String},
+  price: { type: Number, required: true },
+  userId: { type: String, required: true } 
+});
+
+const CartModel = mongoose.model('cart', CartSchema);
+module.exports = CartModel;

@@ -10,7 +10,7 @@
 // import {Link } from 'react-router'
 // import { toast, ToastContainer } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
- 
+
 // const ProductHome = () => {
 //     const products=[
 //         { product: flower_bag, product_name: "Flower Design Bag", price: 200,path:"/products/flower" },
@@ -23,17 +23,17 @@
 //     useEffect(() => {
 //       AOS.init({ duration: 2000, once: true }); 
 //     }, []);
-    
-    
+
+
 //    const handleCart = (item) => {
 //      // Get existing cart or empty array
 //      let cart = JSON.parse(localStorage.getItem("cart")) || [];
-   
+
 //      // Check if item already exists
 //      const existingIndex = cart.findIndex(
 //        (cartItem) => cartItem.product_name === item.product_name
 //      );
-   
+
 //      if (existingIndex !== -1) {
 //        // If exists, increase quantity
 //        cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
@@ -41,10 +41,10 @@
 //        // If not, add with quantity 1
 //        cart.push({ ...item, quantity: 1 });
 //      }
-   
+
 //      // Save back to localStorage
 //      localStorage.setItem("cart", JSON.stringify(cart));
-   
+
 //      // Show toast
 //      toast.success("Product added to cart");
 //    };
@@ -94,7 +94,7 @@
 //           Buy Now
 //         </button>
 //         </Link>
-        
+
 //       </div>
 //     </div>
 //   ))}
@@ -143,12 +143,16 @@ const ProductHome = () => {
     AOS.init({ duration: 2000, once: true });
   }, []);
 
+
   const handleCart = (item) => {
+    const userData = JSON.parse(localStorage.getItem('user')); // assuming you stored login data
+    const userId = userData?.userId || userData?.user?.userId;
     axios.post("http://localhost:5000/cart/add", {
       image: item.product_img,
       product_name: item.product_name,
       quantity: 1,
-      price: item.product_price, 
+      price: item.product_price,
+      userId,
     })
       .then(() => {
         toast.success("Product added to cart");
@@ -174,11 +178,11 @@ const ProductHome = () => {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 justify-items-center">
           {data.map((item, index) => (
             <div
-               key={item._id || item.product_name} // ✅ Use unique key if _id exists
-            className="w-full max-w-xs bg-white p-6 rounded-2xl shadow-md flex flex-col items-center gap-3 transition-transform hover:scale-105"
-            data-aos="fade-up"
+              key={item._id || item.product_name} // ✅ Use unique key if _id exists
+              className="w-full max-w-xs bg-white p-6 rounded-2xl shadow-md flex flex-col items-center gap-3 transition-transform hover:scale-105"
+              data-aos="fade-up"
             >
-              <Link to={item.path} className="w-full flex flex-col items-center">
+              <Link to={`/${item._id}`} className="w-full flex flex-col items-center">
                 {item.product_img ? (
                   <img
                     src={`http://localhost:5000/files/${item.product_img}`}

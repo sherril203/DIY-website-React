@@ -23,12 +23,15 @@ const Frames = ({ query }) => {
   const filtered = frames.filter(item =>
     (item.product_name || '').toLowerCase().includes((query || '').toLowerCase())
   );
- const handleCart = (item) => {
+  const handleCart = (item) => {
+    const userData = JSON.parse(localStorage.getItem('user')); // assuming you stored login data
+    const userId = userData?.userId || userData?.user?.userId;
     axios.post("http://localhost:5000/cart/add", {
       image: item.product_img,
       product_name: item.product_name,
       quantity: 1,
-      price: item.product_price, 
+      price: item.product_price,
+      userId,
     })
       .then(() => {
         toast.success("Product added to cart");
@@ -38,7 +41,6 @@ const Frames = ({ query }) => {
         toast.error("Failed to add to cart");
       });
   };
-
   if (filtered.length === 0) return null;
 
   return (
@@ -53,7 +55,7 @@ const Frames = ({ query }) => {
             className="w-full max-w-xs bg-white p-6 rounded-2xl shadow-md flex flex-col items-center gap-3 transition-transform hover:scale-105"
             data-aos="fade-up"
           >
-            <Link to={item.path}>
+            <Link to={`/products/${item._id}`}>
               <img
                 src={`http://localhost:5000/files/${item.product_img}`}
                 alt={item.product_name}
@@ -61,7 +63,7 @@ const Frames = ({ query }) => {
               />
             </Link>
 
-            <Link to={item.path} className="text-lg font-semibold text-black text-center">
+            <Link to={`/products/${item._id}`} className="text-lg font-semibold text-black text-center">
               {item.product_name}
             </Link>
 

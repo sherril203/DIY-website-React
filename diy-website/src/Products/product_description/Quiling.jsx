@@ -34,20 +34,31 @@ const Quiling = () => {
 
   const totalAmount = product[0].Price * count;
 const handleCart = (item) => {
-    axios.post("http://localhost:5000/cart/add", {
-      image: item.product_img,
-      product_name: item.product_name,
-      quantity: count,
-      price: item.price, 
-    })
-      .then(() => {
-        toast.success("Product added to cart");
-      })
-      .catch((err) => {
-        console.error(err);
-        toast.error("Failed to add to cart");
-      });
+  const userData = JSON.parse(localStorage.getItem('userData')); // assuming you stored login data
+  const userId = userData?.userId || userData?.user?.userId;
+
+  if (!userId) {
+    toast.error("User not logged in");
+    return;
   }
+
+  axios.post("http://localhost:5000/cart/add", {
+    image: item.product_img,
+    product_name: item.product_name,
+    quantity: count,
+    price: item.price,  // ❗Fix key name
+    description:item.description,
+    userId              // ✅ Add userId
+  })
+    .then(() => {
+      toast.success("Product added to cart");
+    })
+    .catch((err) => {
+      console.error(err);
+      toast.error("Failed to add to cart");
+    });
+}
+
   return (
     <div className='bg-stone-100'>
       <ToastContainer />
@@ -74,14 +85,9 @@ const handleCart = (item) => {
                 <h2 className='text-lg font-semibold '>{item.product_name}</h2>
                 <h2 className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25} />3.0</h2>
                 <h2 className='text-gray-600 text-xl'>Unit Price: ₹{item.Price}</h2>
-                <h2 className='text-gray-600 font-bold'>Products in Kit :</h2>
-                <ul className="list-[square] ml-5 ">
-                  <li>Color Papers</li>
-                  <li>Gum,</li>
-                  <li>Scissors</li>
-                  <li>Glitter Papers</li>
-                  <li>Catalog</li>
-                </ul>
+                  <h2 className='text-gray-600 font-bold'>Description</h2>
+                 <h2 className='text-gray-600 '>{item.description}</h2>
+               
                 <div className='flex items-center gap-2 my-3'>
                   <button onClick={decrease} className='bg-amber-400 px-3 py-1 rounded text-white'>-</button>
                   <span className='font-semibold'>{count}</span>

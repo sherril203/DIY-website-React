@@ -1,3 +1,4 @@
+const { default: mongoose } = require('mongoose');
 const Product=require('../model/productHome.model')
 // Create product (with image upload)
 const postSomeProduct = async (req, res) => {
@@ -32,9 +33,30 @@ const getSomeProduct = async (req, res) => {
   }
 };
 
+const getProductById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Validate MongoDB ObjectId
+    if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).send({ message: "Invalid ID" });
+    }
+
+    const product = await Product.findById(id);
+
+    if (!product) {
+      return res.status(404).send({ message: "Product not found" });
+    }
+
+    res.status(200).send({ data: product });
+  } catch (err) {
+    console.error("Error fetching product by ID:", err);
+    res.status(500).send({ message: "Server error" });
+  }
+};
 
 module.exports = {
   postSomeProduct,
   getSomeProduct,
-
+getProductById
 };

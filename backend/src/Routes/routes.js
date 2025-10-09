@@ -46,24 +46,31 @@ router.get('/getcategory/:category', products.getcategory);
 //cups
 router.post('/category/cups', upload.single('product_img'), products.postCategory);
 router.get('/getcategory/cups', products.getcategory);
+router.get('/getcategory/cups/:id', products.getproductsById);
 //phone case
 router.post('/category/phone_case', upload.single('product_img'), products.postCategory);
 router.get('/getcategory/phone_case', products.getcategory);
+router.get('/getcategory/phone_case/:id', products.getproductsById);
 //kits
 router.post('/category/kids', upload.single('product_img'), products.postCategory);
 router.get('/getcategory/kids', products.getcategory);
+router.get('/getcategory/kids/:id', products.getproductsById);
 //clock
 router.post('/category/clock', upload.single('product_img'), products.postCategory);
 router.get('/getcategory/clock', products.getcategory);
+router.get('/getcategory/clock/:id', products.getproductsById);
 //geometric decor
 router.post('/category/geometric_decor', upload.single('product_img'), products.postCategory);
 router.get('/getcategory/geometric_decor', products.getcategory);
+router.get('/getcategory/geometric_decor/:id', products.getproductsById);
 //photo frames
 router.post('/category/photo_frames', upload.single('product_img'), products.postCategory);
 router.get('/getcategory/photo_frames', products.getcategory);
+router.get('/getcategory/photo_frames/:id', products.getproductsById);
 //product display in home page
 router.post('/postsome',upload.single('product_img'),product.postSomeProduct)
 router.get('/getsome',product.getSomeProduct)
+router.get('/getsome/:category/:id',product.getProductById)
 //cart
 router.post('/cart/add', cartController.addToCart);
 router.get('/cart/get', cartController.getCartItems);

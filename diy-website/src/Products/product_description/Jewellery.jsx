@@ -72,15 +72,8 @@ const handleCart = (item) => {
               <div className='mb-45'>
                 <h2 className='text-lg font-semibold '>{item.product_name}</h2>
                  <h2 className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25}/>3.0</h2>
-                <h2 className='text-gray-600 text-xl '>Unit Price: ₹{item.price}</h2>
-                <h2 className='text-gray-600 font-bold'>Products in Kit : </h2>
-                 <ul className="list-[square] ml-5 ">
-                  <li>Beads(letter cube beads,color beads,circle letter beads)</li>
-                  <li>thread</li>
-                  <li>symbol locket(star,mermaid,unicorn,heart)</li>
-                  <li>Emoji</li>
-                  <li>Catalog</li>
-                </ul>
+                <h2 className='text-gray-600 text-xl '>Unit Price: ₹{item.Price}</h2>
+               
                 <div className='flex items-center gap-2 my-3'>
                   <button onClick={decrease} className='bg-amber-400 px-3 py-1 rounded text-white'>-</button>
                   <span className='font-semibold'>{count}</span>

@@ -5,6 +5,7 @@ const categorySchema = new mongoose.Schema({
     product_name: { type: String },
     product_price: { type: String },
     category: { type: String, required: true }, // new field to store 'bags', 'shoes', etc.
+    description:{type:String},
     path:{type:String}
 });
 

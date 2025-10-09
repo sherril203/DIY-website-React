@@ -71,15 +71,13 @@ import CartoonCup from "../Products/product_description/CartoonCup";
 import Tree from "../Products/product_description/Tree";
 import CloudStar from "../Products/product_description/CloudStar";
 import Kidspouch from "../Products/product_description/Kidspouch";
+import Dummy from "../Pages/Dummy";
 
 // (Import statements unchanged for brevity...)
 
 const Routers = () => {
   const [cart, setcart] = useState([]);
-  const [isSignedIn, setIsSignedIn] = useState(null);
 
-  const SignIn = () => setIsSignedIn(true);
-  const SignOut = () => setIsSignedIn(false);
 
   return (
     <CartContext.Provider value={{ cart, setcart }}>
@@ -87,6 +85,7 @@ const Routers = () => {
         {/* Public Pages */}
         {/* <Route path="/homepage" element={<HomePage />} /> */}
         <Route path="/" element={<HomePage />} />
+        <Route path="/:id" element={<Dummy/>}/>
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/services" element={<ServicePage />} />
         <Route path="/contact" element={<Contact />} />
@@ -99,56 +98,104 @@ const Routers = () => {
         <Route path="/cart" element={<Cart />} />
 
         {/* Product Details (Nested under ProductLayout) */}
-        <Route path="/products" element={<ProductLayout />}>
+        {/* <Route path="/products" element={<ProductLayout />}> */}
           {/* Cups */}
-          <Route path="name" element={<Name />} />
+          {/* <Route path="name" element={<Name />} />
           <Route path="butterfly" element={<Butterfly />} />
           <Route path="thought" element={<ThoughtCup />} />
           <Route path="kids" element={<KidsCup />} />
           <Route path="Image_cup_kids" element={<KidsImage/>}/>
-          <Route path="cartoon_cup" element={<CartoonCup/>}/>
+          <Route path="cartoon_cup" element={<CartoonCup/>}/> */}
           {/* Bags */}
-          <Route path="flower" element={<Flower />} />
+          {/* <Route path="flower" element={<Flower />} />
           <Route path="cartoon" element={<Cartoon />} />
           <Route path="dora_bag" element={<Dorabag/>}/>
           <Route path="nature" element={<NatureBag/>}/>
-          <Route path="kitty" element={<HelloKitty/>}/>
+          <Route path="kitty" element={<HelloKitty/>}/> */}
           {/* Clocks */}
-          <Route path="flowerclock" element={<FlowerClock />} />
+          {/* <Route path="flowerclock" element={<FlowerClock />} />
           <Route path="unique_clock-_the_perfect_holiday_gift" element={<UniqueClock />} />
           <Route path="woodenclock" element={<WoodenClock />} />
           <Route path="roadclock" element={<RoadClock />} />
           <Route path="image_clock" element={<ImageClock/>}/>
-          <Route path="cloud_star" element={<CloudStar/>}/>
+          <Route path="cloud_star" element={<CloudStar/>}/> */}
           {/* Phone Cases */}
-          <Route path="anime" element={<Anime />} />
+          {/* <Route path="anime" element={<Anime />} />
           <Route path="glitter" element={<Glitter />} />
           <Route path="customization" element={<PhoneCustomization />} />
           <Route path="image_customization" element={<ImgCustomized />} />
           <Route path="sea_case" element={<SeaCase />} />
-          <Route path="birdCase" element={<BirdCase />} />
+          <Route path="birdCase" element={<BirdCase />} /> */}
           {/* Photo frame */}
-          <Route path="block" element={<BlockFrame />} />
-          {/* <Route path="babies" element={<BabiesPhoto />} /> */}
-          <Route path="/products/:id" element={<BabiesPhoto />} />
+          {/* <Route path="block" element={<BlockFrame />} />
+          <Route path="babies" element={<BabiesPhoto />} />
           <Route path="couples" element={<CoupleFrame />} />
           <Route path="cartoonframe" element={<CartoonFrame />} />
           <Route path="college" element={<ImageCollege/>}/>
-          <Route path="popsicle" element={<PopsicleFrame/>}/>
+          <Route path="popsicle" element={<PopsicleFrame/>}/> */}
           {/* Kids */}
-          <Route path="jewellery" element={<Jewellery />} />
+          {/* <Route path="jewellery" element={<Jewellery />} />
           <Route path="christmas" element={<Christmas />} />
           <Route path="quiling" element={<Quiling/>}/>
-          <Route path="pouch" element={<Kidspouch/>}/>
+          <Route path="pouch" element={<Kidspouch/>}/> */}
           {/* Wall Decor */}
-          <Route path="lotus_decor" element={<LotusWall />} />
+          {/* <Route path="lotus_decor" element={<LotusWall />} />
           <Route path="love_decor" element={<LoveHeart />} />
           <Route path="holiday" element={<Holiday />} />
           <Route path="heart" element={<Heartwall />} />
           <Route path="illusion" element={<Illusion/>}/>
-          <Route path="tree_of_memories" element={<Tree/>}/>
+          <Route path="tree_of_memories" element={<Tree/>}/> */}
+        {/* </Route> */}
+  {/* Product Details (Nested under ProductLayout) */}
+        <Route path="/products/:id" element={<ImgCustomized />}>  
+          {/* Cups */}
+          {/* <Route path="name" element={<Name />} />
+          <Route path="butterfly" element={<Butterfly />} />
+          <Route path="thought" element={<ThoughtCup />} />
+          <Route path="kids" element={<KidsCup />} />
+          <Route path="Image_cup_kids" element={<KidsImage/>}/>
+          <Route path="cartoon_cup" element={<CartoonCup/>}/> */}
+          {/* Bags */}
+          {/* <Route path="flower" element={<Flower />} />
+          <Route path="cartoon" element={<Cartoon />} />
+          <Route path="dora_bag" element={<Dorabag/>}/>
+          <Route path="nature" element={<NatureBag/>}/>
+          <Route path="kitty" element={<HelloKitty/>}/> */}
+          {/* Clocks */}
+          {/* <Route path="flowerclock" element={<FlowerClock />} />
+          <Route path="unique_clock-_the_perfect_holiday_gift" element={<UniqueClock />} />
+          <Route path="woodenclock" element={<WoodenClock />} />
+          <Route path="roadclock" element={<RoadClock />} />
+          <Route path="image_clock" element={<ImageClock/>}/>
+          <Route path="cloud_star" element={<CloudStar/>}/> */}
+          {/* Phone Cases */}
+          {/* <Route path="anime" element={<Anime />} />
+          <Route path="glitter" element={<Glitter />} />
+          <Route path="customization" element={<PhoneCustomization />} />
+          <Route path="image_customization" element={<ImgCustomized />} />
+          <Route path="sea_case" element={<SeaCase />} />
+          <Route path="birdCase" element={<BirdCase />} /> */}
+          {/* Photo frame */}
+          {/* <Route path="block" element={<BlockFrame />} /> */}
+          {/* <Route path="babies" element={<BabiesPhoto />} /> */}
+          {/* <Route path="babies" element={<BabiesPhoto />} />
+          <Route path="couples" element={<CoupleFrame />} />
+          <Route path="cartoonframe" element={<CartoonFrame />} />
+          <Route path="college" element={<ImageCollege/>}/>
+          <Route path="popsicle" element={<PopsicleFrame/>}/> */}
+          {/* Kids */}
+          {/* <Route path="jewellery" element={<Jewellery />} />
+          <Route path="christmas" element={<Christmas />} />
+          <Route path="quiling" element={<Quiling/>}/>
+          <Route path="pouch" element={<Kidspouch/>}/> */}
+          {/* Wall Decor */}
+          {/* <Route path="lotus_decor" element={<LotusWall />} />
+          <Route path="love_decor" element={<LoveHeart />} />
+          <Route path="holiday" element={<Holiday />} />
+          <Route path="heart" element={<Heartwall />} />
+          <Route path="illusion" element={<Illusion/>}/>
+          <Route path="tree_of_memories" element={<Tree/>}/> */}
         </Route>
-
         {/* Protected admin  */}
         <Route path="/admin" element={
           <AdminRouters >

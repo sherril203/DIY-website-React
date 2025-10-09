@@ -74,6 +74,10 @@ const handleCart = (item) => {
                 <h2 className='flex gap-3 text-lg font-bold'><FaStar color="yellow" size={25} />3.0</h2>
                 <h2 className='text-gray-600 text-xl '>Unit Price: ₹{item.price}</h2>
                 <h2 className='text-gray-600 text-xl '>Customizable</h2>
+                <h2 className='text-gray-600 text-xl '>Materials:</h2>
+                  <ul className="list-[square] ml-5 ">
+                  <li>Ceramics Used</li>
+                </ul>
                 <div className='flex items-center gap-2 my-3'>
                   <button onClick={decrease} className='bg-amber-400 px-3 py-1 rounded text-white'>-</button>
                   <span className='font-semibold'>{count}</span>
