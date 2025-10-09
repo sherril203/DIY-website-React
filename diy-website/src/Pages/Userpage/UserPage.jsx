@@ -3,6 +3,7 @@ import Footer from '../../common/Footer'
 import UserNav from '../Userpage/UserNav'
 import Products from '../../Products/Products'
 import UserService from './UserService'
+import Navbar from '../../common/Navbar'
 const UserPage = () => {
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState('');
@@ -14,7 +15,7 @@ const UserPage = () => {
 
   return (
     <div className='bg-stone-100 w-full '>
-      <UserNav cart={cart} />
+      <Navbar cart={cart} />
       <UserService />
       <h2 className="text-center  font-bold text-3xl mt-19 text-stone-700 ">
         Products

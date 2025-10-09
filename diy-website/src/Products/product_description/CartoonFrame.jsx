@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { FaStar } from "react-icons/fa";
 import UserNav from "../../Pages/Userpage/UserNav";
 import axios from "axios";
+import Navbar from "../../common/Navbar";
 const CartoonFrame = () => {
   const product = [
     { product_img: block, product_name: "Cartoon Photo Frame for Kids ", price: 140 },
@@ -62,7 +63,7 @@ const handleCart = (item) => {
   return (
     <div className='bg-stone-100'>
       <ToastContainer />
-      <UserNav />
+      <Navbar />
       <div className="p-23">
         {product.map((item, index) => (
           <div

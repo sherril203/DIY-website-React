@@ -62,7 +62,7 @@ const handleCart = (item) => {
   return (
     <div className='bg-stone-100'>
       <ToastContainer />
-      <UserNav/>
+      <Navbar/>
       <div className='p-23'>
         {product.map((item, index) => (
           <div

@@ -57,6 +57,7 @@ import Footer from '../../common/Footer';
 import { Link } from 'react-router';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Navbar from '../../common/Navbar';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -81,7 +82,7 @@ const Profile = () => {
 
   return (
     <div className='bg-stone-100 min-h-screen flex flex-col mt-20'>
-      <UserNav />
+      <Navbar />
       <div className='flex-grow flex justify-center items-start mt-10 mb-10'>
         <div className='rounded p-6 bg-white w-full max-w-md shadow-md'>
           <h2 className='text-3xl font-bold text-center mb-4'>Profile</h2>

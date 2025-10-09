@@ -10,6 +10,7 @@ import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
 import axios from 'axios'
 import UserNav from '../../Pages/Userpage/UserNav';
+import Navbar from '../../common/Navbar';
 const WoodenClock = () => {
   const product = [
     { product_img: wooden, product_name: "Wooden Clock for kids", price: 130 },
@@ -61,7 +62,7 @@ const handleCart = (item) => {
   return (
     <div className='bg-stone-100'>
       <ToastContainer />
-      <UserNav />
+      <Navbar />
       <div className='p-23'>
         {product.map((item, index) => (
           <div

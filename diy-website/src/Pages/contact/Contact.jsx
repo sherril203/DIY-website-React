@@ -7,11 +7,12 @@ import Footer from '../../common/Footer';
 import map from '../../assets/map.jpg';
 import { IoIosMailUnread } from "react-icons/io";
 import { IoCall } from "react-icons/io5";
+import Navbar from '../../common/Navbar';
 
 const Contact = () => {
   return (
     <div className="bg-stone-100">
-      <Navigate />
+      <Navbar />
 
      <h2 className="text-center font-bold text-4xl text-black mt-18 p-4 mb-6">Contact Us</h2>
       <div className="flex flex-col lg:flex-row justify-center items-center gap-10 p-6">

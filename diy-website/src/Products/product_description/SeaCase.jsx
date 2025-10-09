@@ -161,6 +161,7 @@ import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
 import UserNav from '../../Pages/Userpage/UserNav';
 import axios from 'axios'
+import Navbar from '../../common/Navbar';
 
 const SeaCase = () => {
   const product = [
@@ -226,7 +227,7 @@ const handleCart = (item) => {
   return (
     <div className='bg-stone-100 min-h-screen'>
       <ToastContainer />
-      <UserNav />
+      <Navbar />
 
       {/* Product Section */}
       <div className='p-10 mt-18'>

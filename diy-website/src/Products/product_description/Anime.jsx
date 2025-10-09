@@ -256,6 +256,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
 import UserNav from '../../Pages/Userpage/UserNav';
+import Navbar from '../../common/Navbar';
 
 const Anime = () => {
   const {id}= useParams()
@@ -329,7 +330,7 @@ const handleCart = (item) => {
   return (
     <div className='bg-stone-100 min-h-screen'>
       <ToastContainer />
-      <UserNav />
+      <Navbar />
 
       <div className='p-6'>
         <div

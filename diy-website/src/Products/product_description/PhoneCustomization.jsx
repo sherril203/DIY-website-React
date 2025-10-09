@@ -162,6 +162,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
+import Navbar from '../../common/Navbar';
 
 const PhoneCustomization = () => {
   const [product, setProduct] = useState(null);
@@ -225,7 +226,7 @@ const PhoneCustomization = () => {
   return (
     <div className='bg-stone-100 min-h-screen'>
       <ToastContainer />
-      <UserNav />
+      <Navbar />
 
       <div className='p-6'>
         <div

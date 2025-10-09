@@ -314,6 +314,7 @@ import { CartContext } from "../../Pages/Cart/CartContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaStar } from "react-icons/fa";
+import Navbar from "../../common/Navbar";
 
 const BirdCase = () => {
   const { id } = useParams(); // ⬅️ extract id from route like /products/:id
@@ -383,7 +384,7 @@ const handleCart = (item) => {
   return (
     <div className='bg-stone-100 min-h-screen'>
       <ToastContainer />
-      <UserNav />
+      <Navbar />
 
       <div className="p-6">
         <div className="bg-white shadow p-6 rounded max-w-4xl mx-auto flex flex-col md:flex-row gap-6 mt-23">

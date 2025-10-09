@@ -4,6 +4,7 @@ import Footer from '../../common/Footer';
 import UserNav from '../Userpage/UserNav';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Navbar from '../../common/Navbar';
 
 
 const Orders = () => {
@@ -39,7 +40,7 @@ const Orders = () => {
   return (
     <div className="bg-stone-100  ">
       <ToastContainer/>
-      <UserNav />
+      <Navbar/>
       <h2 className="text-center font-bold text-3xl text-stone-700 p-5 mt-20">Orders</h2>
 
       <div className=" mx-auto grid grid-cols-2 md:grid-cols-3 gap-6 mb-10 px-4">

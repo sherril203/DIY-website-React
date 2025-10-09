@@ -9,6 +9,7 @@ import { useContext } from 'react';
 import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
 import axios from 'axios'
+import Navbar from '../../common/Navbar';
 const LoveHeart = () => {
   const product = [
     { product_img: love, product_name: "Love Heart Wall Art", price: 200 },
@@ -60,7 +61,7 @@ const handleCart = (item) => {
   return (
     <div className='bg-stone-100'>
       <ToastContainer />
-      <UserNav/>
+      <Navbar/>
       <div className='p-23'>
         {product.map((item, index) => (
           <div

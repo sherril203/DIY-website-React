@@ -118,6 +118,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import { FaCartArrowDown } from "react-icons/fa6";
 import 'aos/dist/aos.css';
 import 'react-toastify/dist/ReactToastify.css';
+import Navbar from '../common/Navbar';
 
 
 const ProductHome = () => {
@@ -165,6 +166,7 @@ const ProductHome = () => {
 
   return (
     <div className="bg-stone-100 p-3">
+      <Navbar/>
       <ToastContainer />
       <h2 className="text-center font-bold text-3xl p-3 text-stone-700" data-aos="zoom-in">
         Products

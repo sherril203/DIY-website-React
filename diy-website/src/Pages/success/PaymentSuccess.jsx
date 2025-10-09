@@ -26,6 +26,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import UserNav from '../Userpage/UserNav';
 import { FaCheckCircle } from "react-icons/fa";
+import Navbar from '../../common/Navbar';
 
 const PaymentSuccess = () => {
   const [paymentid, setPaymentid] = useState(null);
@@ -42,7 +43,7 @@ const PaymentSuccess = () => {
 
   return (
     <div className="bg-stone-100 w-full min-h-screen p-3">
-      <UserNav />
+      <Navbar />
       <div className="mt-50 p-6 bg-white rounded-2xl shadow-md mx-auto max-w-md flex flex-col justify-center items-center text-center">
         <FaCheckCircle size={100} className="text-green-500 mb-4" />
         <h2 className="text-2xl font-semibold">Order & Payment Success</h2>

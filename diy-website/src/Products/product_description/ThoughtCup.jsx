@@ -10,6 +10,7 @@ import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
 import UserNav from '../../Pages/Userpage/UserNav';
 import axios from 'axios'
+import Navbar from '../../common/Navbar';
 const ThoughtCup = () => {
   const product = [
     { product_img: thought, product_name: "Thought Customization Cup", price: 200 }
@@ -61,7 +62,7 @@ const handleCart = (item) => {
   return (
     <div className='bg-stone-100'>
       <ToastContainer />
-      <UserNav />
+      <Navbar />
       <div className='p-23'>
         {product.map((item, index) => (
           <div

@@ -7,6 +7,7 @@ import UserNav from '../Userpage/UserNav';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from 'axios'
+import Navbar from '../../common/Navbar';
 const Confirmationpage = () => {
   const location = useLocation();
   const data = location.state; // formData passed from Purchase
@@ -81,7 +82,7 @@ const Confirmationpage = () => {
   }, []);
   return (
     <div className="bg-stone-100 min-h-screen flex flex-col">
-      <UserNav />
+      <Navbar />
       <div className="flex-grow flex items-center justify-center mt-20 mb-20">
         <div className="bg-white shadow-lg rounded-xl p-8 w-full max-w-2xl mt-15" data-aos="fade-up">
           <h2 className="text-center text-2xl font-bold mb-6" data-aos="zoom-in">Product Confirmation</h2>

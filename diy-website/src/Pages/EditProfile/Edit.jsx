@@ -125,6 +125,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import UserNav from '../Userpage/UserNav';
+import Navbar from '../../common/Navbar';
 
 const Edit = () => {
   const [formData, setFormData] = useState({
@@ -182,7 +183,7 @@ const Edit = () => {
 
   return (
     <div className="text-center bg-rose-50 min-h-screen">
-      <UserNav/>
+      <Navbar/>
       <form
         data-aos="fade-up"
         onSubmit={handleSubmit}

@@ -82,6 +82,7 @@ import React, { useState } from 'react';
 import Navigate from '../common/Navigate';
 import Footer from '../common/Footer';
 import Products from './Products';
+import Navbar from '../common/Navbar';
 
 const ProductsPage = () => {
   const [query, setQuery] = useState('');
@@ -94,7 +95,7 @@ const ProductsPage = () => {
 
   return (
     <div className=" bg-stone-100 flex flex-col w-full ">
-      <Navigate />
+      <Navbar/>
 
       {/* Page Title */}
       <h2 className="text-center font-bold text-2xl sm:text-3xl lg:text-4xl mt-12 sm:mt-20 lg:mt-24 text-stone-700 px-4">

@@ -9,6 +9,7 @@ import { useContext } from 'react';
 import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
 import axios from "axios";
+import Navbar from '../../common/Navbar';
 const Illusion= () => {
   const product = [
    { product_img: illusion, product_name: "3D Illusion Wall Decor", price: 200 },
@@ -61,7 +62,7 @@ const handleCart = (item) => {
   return (
     <div className='bg-stone-100'>
       <ToastContainer/>
-        <UserNav/>
+        <Navbar/>
       <div className='p-23'>
         {product.map((item, index) => (
          <div

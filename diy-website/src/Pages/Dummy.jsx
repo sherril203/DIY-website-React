@@ -169,6 +169,7 @@ import UserNav from '../Pages/Userpage/UserNav';
 import Footer from '../common/Footer';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Navbar from '../common/Navbar';
 
 const Dummy = () => {
   const { id } = useParams();
@@ -237,7 +238,7 @@ const Dummy = () => {
   return (
     <div className='bg-stone-100'>
       <ToastContainer />
-      <UserNav />
+      <Navbar />
 
       <div className='p-6'>
         <div className="bg-white shadow p-6 rounded max-w-4xl mt-23 mx-auto flex flex-col md:flex-row gap-6">

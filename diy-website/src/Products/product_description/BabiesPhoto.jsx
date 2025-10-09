@@ -98,6 +98,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { FaStar } from "react-icons/fa";
 import UserNav from "../../Pages/Userpage/UserNav";
 import axios from "axios";
+import Navbar from "../../common/Navbar";
 
 const BabiesPhoto = () => {
   const product = [
@@ -147,16 +148,10 @@ const handleCart = (item) => {
     toast.error("Failed to add to cart");
   });
 };
-
-
-
-
-
-
   return (
     <div className="bg-stone-100">
       <ToastContainer />
-      <UserNav />
+      <Navbar/>
 
       <div className="p-10">
         {product.map((item, index) => (

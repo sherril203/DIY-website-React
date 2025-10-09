@@ -162,6 +162,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
 import axios from 'axios';
+import Navbar from '../../common/Navbar';
 
 const ImgCustomized = () => {
   const [product, setProduct] = useState(null);
@@ -236,7 +237,7 @@ const handleCart = (item) => {
   return (
     <div className='bg-stone-100'>
       <ToastContainer />
-      <UserNav />
+      <Navbar />
 
       <div className='p-6'>
         <div className="bg-white shadow p-6 rounded max-w-4xl mt-23 mx-auto flex flex-col md:flex-row gap-6">

@@ -346,6 +346,7 @@ import UserNav from "../Userpage/UserNav";
 import { toast, ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+import Navbar from "../../common/Navbar";
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -431,7 +432,7 @@ const Cart = () => {
   return (
     <div className="bg-stone-100 min-h-screen">
       <ToastContainer />
-      <UserNav />
+      <Navbar/>
       <h2 className="text-center font-bold text-3xl text-stone-700 p-5 mt-20">Cart</h2>
 
       {loading ? (

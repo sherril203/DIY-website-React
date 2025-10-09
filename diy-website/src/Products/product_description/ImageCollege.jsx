@@ -9,6 +9,7 @@ import { CartContext } from "../../Pages/Cart/CartContext";
 import "react-toastify/dist/ReactToastify.css";
 import { FaStar } from "react-icons/fa";
 import axios from "axios";
+import Navbar from "../../common/Navbar";
 const ImageCollege = () => {
   const product = [
     { product_img: college, product_name: "Image College Frame", price: 200 },
@@ -62,7 +63,7 @@ const handleCart = (item) => {
   return (
     <div className="bg-stone-100">
       <ToastContainer />
-      <UserNav/>
+      <Navbar/>
       <div className="p-6">
         {product.map((item, index) => (
           <div

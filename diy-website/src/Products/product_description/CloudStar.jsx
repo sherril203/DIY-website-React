@@ -9,6 +9,7 @@ import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
 import UserNav from '../../Pages/Userpage/UserNav';
 import axios from "axios";
+import Navbar from '../../common/Navbar';
 const CloudStar = () => {
   const product = [
     { product_img: cloud, product_name: "Cloud Star Design Clock ", price: 160 },
@@ -60,7 +61,7 @@ const handleCart = (item) => {
   return (
     <div className='  bg-rose-50'>
       <ToastContainer/>
-        <UserNav/>
+        <Navbar/>
       <div className='p-23'>
         {product.map((item, index) => (
           <div
