@@ -210,7 +210,7 @@ const NatureBag = () => {
   const totalAmount = unitPrice * count;
 
   const handleCart = () => {
-    axios.post("http://localhost:5000/cart/add", {
+    axios.post(`${BACKEND_API}/cart/add` , {
       image: product.product_img,
       product_name: product.product_name,
       quantity: count,

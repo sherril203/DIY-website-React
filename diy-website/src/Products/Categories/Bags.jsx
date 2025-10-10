@@ -208,7 +208,7 @@ const Bags = ({ query }) => {
 
   useEffect(() => {
     AOS.init({ duration: 2000, once: true });
-    axios.get("http://localhost:5000/getcategory/bags")
+    axios.get(`${BACKEND_API}/getcategory/bags`)
       .then((res) => setBags(res.data.data))
       .catch((err) => console.error(err));
   }, []);
@@ -220,7 +220,7 @@ const Bags = ({ query }) => {
   const handleCart = (item) => {
     const userData = JSON.parse(localStorage.getItem('user')); // assuming you stored login data
     const userId = userData?.userId || userData?.user?.userId;
-    axios.post("http://localhost:5000/cart/add", {
+    axios.post(`${BACKEND_API}/cart/add` , {
       image: item.product_img,
       product_name: item.product_name,
       quantity: 1,
@@ -244,7 +244,7 @@ const Bags = ({ query }) => {
         Bags
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
         {filtered.map((item) => (
           <div
             key={item._id || item.product_name} // ✅ Use unique key if _id exists

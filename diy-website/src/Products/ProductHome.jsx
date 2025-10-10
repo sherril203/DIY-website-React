@@ -148,7 +148,7 @@ const ProductHome = () => {
   const handleCart = (item) => {
     const userData = JSON.parse(localStorage.getItem('user')); // assuming you stored login data
     const userId = userData?.userId || userData?.user?.userId;
-    axios.post("http://localhost:5000/cart/add", {
+    axios.post(`${BACKEND_API}/cart/add`, {
       image: item.product_img,
       product_name: item.product_name,
       quantity: 1,

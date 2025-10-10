@@ -76,11 +76,11 @@ import Dummy from "../Pages/Dummy";
 // (Import statements unchanged for brevity...)
 
 const Routers = () => {
-  const [cart, setcart] = useState([]);
+    const [cartItems, setCartItems] = useState([]);
 
 
   return (
-    <CartContext.Provider value={{ cart, setcart }}>
+    <CartContext.Provider value={{cartItems, setCartItems }}>
       <Routes>
         {/* Public Pages */}
         {/* <Route path="/homepage" element={<HomePage />} /> */}

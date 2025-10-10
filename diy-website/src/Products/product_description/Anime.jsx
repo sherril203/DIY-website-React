@@ -247,6 +247,194 @@
 // };
 
 // export default Anime;
+// import React, { useState, useEffect, useContext } from 'react';
+// import { Link, useParams } from 'react-router-dom';
+// import axios from 'axios';
+// import Footer from '../../common/Footer';
+// import { toast, ToastContainer } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+// import { CartContext } from '../../Pages/Cart/CartContext';
+// import { FaStar } from "react-icons/fa";
+// import UserNav from '../../Pages/Userpage/UserNav';
+// import Navbar from '../../common/Navbar';
+
+// const Anime = () => {
+//   const {id}= useParams()
+//   const [product, setProduct] = useState(null);
+//   const [count, setCount] = useState(1);
+//   const [review, setReview] = useState('');
+//   const [reviews, setReviews] = useState([]);
+//   const { cart, setcart } = useContext(CartContext);
+
+
+//   useEffect(() => {
+//     axios.get(`http://localhost:5000/getcategory/phone_case/${id}`)
+//       .then(res => {
+//         setProduct(res.data);
+//       })
+//       .catch(err => {
+//         console.error("Failed to fetch product:", err);
+//         toast.error("Failed to load product");
+//       });
+//   }, []);
+
+//   const handleReview = () => {
+//     if (!review.trim()) {
+//       toast.error("Review cannot be empty!");
+//       return;
+//     }
+//     setReviews([...reviews, review]);
+//     setReview('');
+//     toast.success("Review submitted!");
+//   };
+
+//   const increase = () => setCount(prev => prev + 1);
+//   const decrease = () => setCount(prev => (prev > 1 ? prev - 1 : 1));
+
+//   if (!product) {
+//     return (
+//       <div className="min-h-screen flex justify-center items-center bg-stone-100">
+//         <p className="text-gray-500 text-lg">Loading ...</p>
+//       </div>
+//     );
+//   }
+
+//   const unitPrice = Number(product.product_price);
+//   const totalAmount = unitPrice * count;
+// const handleCart = (item) => {
+//   const userData = JSON.parse(localStorage.getItem('userData')); // assuming you stored login data
+//   const userId = userData?.userId || userData?.user?.userId;
+
+//   if (!userId) {
+//     toast.error("User not logged in");
+//     return;
+//   }
+
+//   axios.post("http://localhost:5000/cart/add", {
+//     image: item.product_img,
+//     product_name: item.product_name,
+//     quantity: count,
+//     price: item.Price,  // ❗Fix key name
+//     userId              // ✅ Add userId
+//   })
+//     .then(() => {
+//       toast.success("Product added to cart");
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//       toast.error("Failed to add to cart");
+//     });
+// }
+
+
+//   return (
+//     <div className='bg-stone-100 min-h-screen'>
+//       <ToastContainer />
+//       <Navbar />
+
+//       <div className='p-6'>
+//         <div
+//           className='bg-white shadow p-6 rounded mt-10 max-w-4xl mx-auto flex flex-col md:flex-row gap-6'
+//         >
+//           {/* Image */}
+//           <div className='flex-1 flex justify-center items-center'>
+//             <img
+//               src={`http://localhost:5000/files/${product.product_img}`}
+//               alt={product.product_name}
+//               className='w-full max-w-sm h-auto rounded-lg object-contain'
+//             />
+//           </div>
+
+//           {/* Details */}
+//           <div className='flex-1 flex flex-col justify-between'>
+//             <div>
+//               <h2 className='text-xl font-semibold'>{product.product_name}</h2>
+//               <p className='flex items-center gap-2 text-lg font-bold text-black mt-1'>
+//                 <FaStar color="yellow" /> 3.0
+//               </p>
+//               <h3 className='text-gray-700 text-lg mt-2'>Unit Price: ₹{unitPrice}</h3>
+
+//               <div className='flex items-center gap-3 my-4'>
+//                 <button onClick={decrease} className='bg-amber-400 px-3 py-1 rounded text-white'>
+//                   -
+//                 </button>
+//                 <span className='font-semibold text-lg'>{count}</span>
+//                 <button onClick={increase} className='bg-amber-400 px-3 py-1 rounded text-white'>
+//                   +
+//                 </button>
+//               </div>
+
+//               <h3 className='text-xl font-bold'>Total: ₹{totalAmount}</h3>
+//             </div>
+
+//             <div className="flex flex-wrap gap-50 mt-6">
+//               <button
+//                 onClick={handleCart}
+//                 className="bg-amber-500 text-white px-4 py-2 rounded hover:bg-amber-600 transition"
+//               >
+//                 Add to Cart
+//               </button>
+
+//               <Link
+//                 to="/purchase"
+//                 state={{
+//                   product: {
+//                     name: product.product_name,
+//                     price: unitPrice,
+//                     quantity: count,
+//                   },
+//                 }}
+//               >
+//                 <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">
+//                   Buy Now
+//                 </button>
+//               </Link>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* Reviews */}
+//       <div className="flex justify-center mt-14 mb-20">
+//         <div className="bg-white w-full max-w-4xl p-8 rounded shadow">
+//           <h2 className="font-bold text-2xl mb-4 text-center">Reviews</h2>
+
+//           <div className='flex flex-col sm:flex-row justify-center gap-4'>
+//             <input
+//               type="text"
+//               value={review}
+//               onChange={(e) => setReview(e.target.value)}
+//               placeholder="Enter your review"
+//               className="p-3 border rounded w-full"
+//             />
+//             <button
+//               onClick={handleReview}
+//               className="bg-blue-500 px-5 py-3 rounded text-white hover:bg-blue-600 transition"
+//             >
+//               Submit
+//             </button>
+//           </div>
+
+//           <div className="mt-6 space-y-3">
+//             {reviews.length === 0 ? (
+//               <p className="text-gray-500 italic text-center">No reviews yet.</p>
+//             ) : (
+//               reviews.map((r, idx) => (
+//                 <div key={idx} className="bg-gray-100 p-3 rounded shadow-sm">
+//                   {r}
+//                 </div>
+//               ))
+//             )}
+//           </div>
+//         </div>
+//       </div>
+
+//       <Footer />
+//     </div>
+//   );
+// };
+
+// export default Anime;
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -255,17 +443,15 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { CartContext } from '../../Pages/Cart/CartContext';
 import { FaStar } from "react-icons/fa";
-import UserNav from '../../Pages/Userpage/UserNav';
 import Navbar from '../../common/Navbar';
 
 const Anime = () => {
-  const {id}= useParams()
+  const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [count, setCount] = useState(1);
   const [review, setReview] = useState('');
   const [reviews, setReviews] = useState([]);
   const { cart, setcart } = useContext(CartContext);
-
 
   useEffect(() => {
     axios.get(`http://localhost:5000/getcategory/phone_case/${id}`)
@@ -276,7 +462,7 @@ const Anime = () => {
         console.error("Failed to fetch product:", err);
         toast.error("Failed to load product");
       });
-  }, []);
+  }, [id]);
 
   const handleReview = () => {
     if (!review.trim()) {
@@ -301,65 +487,66 @@ const Anime = () => {
 
   const unitPrice = Number(product.product_price);
   const totalAmount = unitPrice * count;
-const handleCart = (item) => {
-  const userData = JSON.parse(localStorage.getItem('userData')); // assuming you stored login data
-  const userId = userData?.userId || userData?.user?.userId;
 
-  if (!userId) {
-    toast.error("User not logged in");
-    return;
-  }
+  const handleCart = () => {
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    const userId = userData?.userId || userData?.user?.userId;
 
-  axios.post("http://localhost:5000/cart/add", {
-    image: item.product_img,
-    product_name: item.product_name,
-    quantity: count,
-    price: item.Price,  // ❗Fix key name
-    userId              // ✅ Add userId
-  })
-    .then(() => {
-      toast.success("Product added to cart");
+    if (!userId) {
+      toast.error("User not logged in");
+      return;
+    }
+
+    axios.post(`${BACKEND_API}/cart/add`, {
+      image: product.product_img,
+      product_name: product.product_name,
+      quantity: count,
+      price: product.Price,
+      userId
     })
-    .catch((err) => {
-      console.error(err);
-      toast.error("Failed to add to cart");
-    });
-}
-
+      .then(() => {
+        toast.success("Product added to cart");
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Failed to add to cart");
+      });
+  };
 
   return (
     <div className='bg-stone-100 min-h-screen'>
       <ToastContainer />
       <Navbar />
 
-      <div className='p-6'>
-        <div
-          className='bg-white shadow p-6 rounded mt-10 max-w-4xl mx-auto flex flex-col md:flex-row gap-6'
-        >
-          {/* Image */}
+      {/* Product Details */}
+      <div className='p-4 sm:p-6'>
+        <div className='bg-white shadow p-4 sm:p-6 rounded mt-6 sm:mt-10 max-w-6xl mx-auto flex flex-col md:flex-row gap-6'>
+          
+          {/* Product Image */}
           <div className='flex-1 flex justify-center items-center'>
             <img
-              src={`http://localhost:5000/files/${product.product_img}`}
+              src={`${BACKEND_API}/files/${product.product_img}`}
               alt={product.product_name}
-              className='w-full max-w-sm h-auto rounded-lg object-contain'
+              className='w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-sm h-auto rounded-lg object-contain'
             />
           </div>
 
-          {/* Details */}
+          {/* Product Info */}
           <div className='flex-1 flex flex-col justify-between'>
             <div>
-              <h2 className='text-xl font-semibold'>{product.product_name}</h2>
+              <h2 className='text-xl sm:text-2xl font-semibold'>{product.product_name}</h2>
               <p className='flex items-center gap-2 text-lg font-bold text-black mt-1'>
                 <FaStar color="yellow" /> 3.0
               </p>
               <h3 className='text-gray-700 text-lg mt-2'>Unit Price: ₹{unitPrice}</h3>
 
+              {/* Quantity Controls */}
               <div className='flex items-center gap-3 my-4'>
-                <button onClick={decrease} className='bg-amber-400 px-3 py-1 rounded text-white'>
+                <button onClick={decrease} className='bg-amber-400 px-3 py-1 rounded text-white text-lg'>
                   -
                 </button>
                 <span className='font-semibold text-lg'>{count}</span>
-                <button onClick={increase} className='bg-amber-400 px-3 py-1 rounded text-white'>
+                <button onClick={increase} className='bg-amber-400 px-3 py-1 rounded text-white text-lg'>
                   +
                 </button>
               </div>
@@ -367,10 +554,11 @@ const handleCart = (item) => {
               <h3 className='text-xl font-bold'>Total: ₹{totalAmount}</h3>
             </div>
 
-            <div className="flex flex-wrap gap-50 mt-6">
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 mt-6">
               <button
                 onClick={handleCart}
-                className="bg-amber-500 text-white px-4 py-2 rounded hover:bg-amber-600 transition"
+                className="bg-amber-500 text-white px-4 py-2 rounded hover:bg-amber-600 transition w-full sm:w-auto"
               >
                 Add to Cart
               </button>
@@ -385,7 +573,7 @@ const handleCart = (item) => {
                   },
                 }}
               >
-                <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">
+                <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition w-full sm:w-auto">
                   Buy Now
                 </button>
               </Link>
@@ -394,11 +582,12 @@ const handleCart = (item) => {
         </div>
       </div>
 
-      {/* Reviews */}
-      <div className="flex justify-center mt-14 mb-20">
-        <div className="bg-white w-full max-w-4xl p-8 rounded shadow">
-          <h2 className="font-bold text-2xl mb-4 text-center">Reviews</h2>
+      {/* Review Section */}
+      <div className="flex justify-center mt-10 px-4 mb-20">
+        <div className="bg-white w-full max-w-4xl p-4 sm:p-8 rounded shadow">
+          <h2 className="font-bold text-xl sm:text-2xl mb-4 text-center">Reviews</h2>
 
+          {/* Review Input */}
           <div className='flex flex-col sm:flex-row justify-center gap-4'>
             <input
               type="text"
@@ -409,12 +598,13 @@ const handleCart = (item) => {
             />
             <button
               onClick={handleReview}
-              className="bg-blue-500 px-5 py-3 rounded text-white hover:bg-blue-600 transition"
+              className="bg-blue-500 px-5 py-3 rounded text-white hover:bg-blue-600 transition w-full sm:w-auto"
             >
               Submit
             </button>
           </div>
 
+          {/* Review List */}
           <div className="mt-6 space-y-3">
             {reviews.length === 0 ? (
               <p className="text-gray-500 italic text-center">No reviews yet.</p>

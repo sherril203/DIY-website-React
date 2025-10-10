@@ -35,12 +35,14 @@ const Products = ({ query, category}) => {
   return (
     <div className="pt-0.5">
       {(!category || category === 'Bags') && <Bags query={query} />}
+      <br />
       {(!category || category === 'Cups') && <Cups query={query} />}
-      {(!category || category === 'Phone Case') && <PhoneCase query={query} />}
-      {(!category || category === 'Photo Frames') && <Frames query={query} />}
-      {(!category || category === 'Clocks') && <Clock query={query} />}
-      {(!category || category === 'Geometric Design Wall Decor') && <Geometric query={query} />}
-      {(!category || category === 'for Kids') && <Kids query={query} />}
+      <br />
+      {(!category || category === 'Phone Case') && <PhoneCase query={query} />} <br />
+      {(!category || category === 'Photo Frames') && <Frames query={query} />} <br />
+      {(!category || category === 'Clocks') && <Clock query={query} />} <br />
+      {(!category || category === 'Geometric Design Wall Decor') && <Geometric query={query} />} <br />
+      {(!category || category === 'for Kids') && <Kids query={query} />} 
     </div>
   );
 };

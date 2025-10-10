@@ -34,7 +34,7 @@ const Jewellery = () => {
 
   const totalAmount = product[0].Price * count;
 const handleCart = (item) => {
-    axios.post("http://localhost:5000/cart/add", {
+    axios.post(`${BACKEND_API}/cart/add` , {
       image: item.product_img,
       product_name: item.product_name,
       quantity: count,

@@ -236,7 +236,7 @@ const Kidspouch = () => {
           {/* Left: Image */}
           <div className="flex-1 flex justify-center items-center">
             <img
-              src={`http://localhost:5000/files/${product.product_img}`}
+              src={`${BACKEND_API}/files/${product.product_img}`}
               alt={product.product_name}
               className="w-full max-w-sm h-auto rounded-lg"
             />

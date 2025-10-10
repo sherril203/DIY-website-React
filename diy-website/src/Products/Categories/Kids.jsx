@@ -114,7 +114,7 @@ const Kids = ({ query }) => {
 
   useEffect(() => {
     AOS.init({ duration: 2000, once: true });
-    axios.get("http://localhost:5000/getcategory/kids")
+    axios.get(`${BACKEND_API}/getcategory/kids`)
       .then((res) => setKits(res.data.data))
       .catch((err) => console.error(err));
   }, []);
@@ -126,7 +126,7 @@ const Kids = ({ query }) => {
   const handleCart = (item) => {
     const userData = JSON.parse(localStorage.getItem('user')); // assuming you stored login data
     const userId = userData?.userId || userData?.user?.userId;
-    axios.post("http://localhost:5000/cart/add", {
+    axios.post(`${BACKEND_API}/cart/add` , {
       image: item.product_img,
       product_name: item.product_name,
       quantity: 1,
@@ -150,7 +150,7 @@ const Kids = ({ query }) => {
       for Kids
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
         {filtered.map((item) => (
           <div
             key={item._id || item.product_name}
@@ -159,7 +159,7 @@ const Kids = ({ query }) => {
           >
             <Link to={`/products/${item._id}`}>
               <img
-                src={`http://localhost:5000/files/${item.product_img}`}
+                src={`${BACKEND_API}/files/${item.product_img}`}
                 alt={item.product_name}
                 className="w-60 h-60 object-contain "
               />
