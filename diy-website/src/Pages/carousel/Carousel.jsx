@@ -47,7 +47,6 @@ import "slick-carousel/slick/slick-theme.css";
 
 import cups from '../../assets/carousel/cups.png';
 import phone from '../../assets/carousel/phone.png';
-import wall from '../../assets/carousel/wall.png';
 import kits from '../../assets/carousel/kits.png';
 import clock from '../../assets/carousel/clocks.png';
 
@@ -62,7 +61,7 @@ const Carousel = () => {
     arrows: false,
   };
 
-  const slides = [wall, kits, cups, phone, clock];
+  const slides = [ kits, cups, phone, clock];
 
   return (
     <div className="w-full max-w-screen mx-auto mt-21">
