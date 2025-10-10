@@ -129,7 +129,7 @@ const BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
   const getProducts = async () => {
     try {
       const response = await axios.get(`${BACKEND_API}/getsome`);
-      console.log("data:",response)
+     
       const products = Array.isArray(response?.data?.data) ? response.data.data : [];
       setData(products);
     } catch (error) {

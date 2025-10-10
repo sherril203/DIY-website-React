@@ -116,7 +116,7 @@ import { FaStar } from "react-icons/fa";
 import { FaCartShopping, FaCartArrowDown } from "react-icons/fa6";
 const Geometric = ({ query }) => {
   const [decorItems, setDecorItems] = useState([]);
-const REACT_APP_BACKEND_API = import.meta.env.VITE_REACT_APP_BACKEND_API;
+const REACT_APP_BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
   useEffect(() => {
     AOS.init({ duration: 2000, once: true });
     axios.get(`${REACT_APP_BACKEND_API}/getcategory/geometric_decor`)

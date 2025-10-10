@@ -119,7 +119,7 @@ import axios from "axios";
 import { FaStar } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 
-const BACKEND_API = import.meta.env.VITE_REACT_APP_BACKEND_API;
+const BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
 
 
 const PhoneCase = ({ query }) => {
