@@ -8,13 +8,15 @@ import Navbar from '../../common/Navbar'
 
 const HomePage = () => {
   return (
-    <div className='w-full'>
-      <Navbar/>
+    <>
+        <Navbar/>
       <Carousel/>
       <ProductHome/>
       <Services/>
       <Footer/>
-    </div>
+    </>
+  
+   
   )
 }
 
