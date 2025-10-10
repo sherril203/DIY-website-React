@@ -7,7 +7,7 @@ const path=require('path')
 const router = require('./Routes/routes'); 
 const app = express();
 app.use(cors({
-  origin: "http://localhost:5173" 
+  // origin: "http://localhost:5173" 
 }));
 app.use(express.json());
 app.use(router);
