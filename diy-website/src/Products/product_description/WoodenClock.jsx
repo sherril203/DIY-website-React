@@ -19,7 +19,7 @@ const WoodenClock = () => {
   const [count, setCount] = useState(1);
   const [review, setReview] = useState('');
   const [reviews, setReviews] = useState([]); // store all submitted reviews
- const BACKEND_API=import.meta.env.VITE_REACT_APP_BACKEND_API
+ const BACKEND_API=import.meta.env.VITE_API_BACKEND_URL;
   const handleReview = () => {
     if (!review.trim()) {
       toast.error("Review cannot be empty!");

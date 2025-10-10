@@ -201,9 +201,9 @@ const Glitter = () => {
     { product_img: emerald },
     { product_img: aqua }
   ];
-  const REACT_APP_BACKEND_API = import.meta.env.VITE_REACT_APP_BACKEND_API;
+  const REACT_APP_BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;;
   useEffect(() => {
-    axios.get(`http://localhost:5000/getcategory/phone_case/${id}`)
+    axios.get(`${REACT_APP_BACKEND_API}/getcategory/phone_case/${id}`)
       .then(res => {
         setProduct(res.data);
       })
@@ -263,7 +263,7 @@ const Glitter = () => {
           {/* Left: Image */}
           <div className="flex-1 flex justify-center items-center">
             <img
-              src={`http://localhost:5000/files/${product.product_img}`}
+              src={`${REACT_APP_BACKEND_API}/files/${product.product_img}`}
               alt={product.product_name}
               className="w-full max-w-sm h-auto rounded-lg"
             />

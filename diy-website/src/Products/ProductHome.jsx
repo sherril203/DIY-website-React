@@ -124,10 +124,12 @@ import Navbar from '../common/Navbar';
 const ProductHome = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-const BACKEND_API = import.meta.env.VITE_REACT_APP_BACKEND_API;
+const BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
+
   const getProducts = async () => {
     try {
       const response = await axios.get(`${BACKEND_API}/getsome`);
+      console.log("data:",response)
       const products = Array.isArray(response?.data?.data) ? response.data.data : [];
       setData(products);
     } catch (error) {

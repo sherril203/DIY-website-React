@@ -104,7 +104,7 @@ const BabiesPhoto = () => {
   const product = [
     { product_img: block, product_name: "Photo Frame for Babies", price: 120 }, 
   ];
-const REACT_APP_BACKEND_API = import.meta.env.VITE_REACT_APP_BACKEND_API;
+const REACT_APP_BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;;
   const { cart, setcart } = useContext(CartContext);
   const [count, setCount] = useState(1);
   const [review, setReview] = useState('');

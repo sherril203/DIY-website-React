@@ -173,7 +173,7 @@ const Kidspouch = () => {
   const [review, setReview] = useState('');
   const [reviews, setReviews] = useState([]);
   const { id } = useParams(); // ✅ Get product ID from URL
-const REACT_APP_BACKEND_API = import.meta.env.VITE_REACT_APP_BACKEND_API;
+const REACT_APP_BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
   useEffect(() => {
     axios.get(`${REACT_APP_BACKEND_API}/getcategory/kids/${id}`)
       .then(res => {

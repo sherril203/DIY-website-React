@@ -181,7 +181,7 @@ const SeaCase = () => {
   const [count, setCount] = useState(1);
   const [review, setReview] = useState('');
   const [reviews, setReviews] = useState([]);
-  const REACT_APP_BACKEND_API = import.meta.env.VITE_REACT_APP_BACKEND_API;
+  const REACT_APP_BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
   const increase = () => setCount(count + 1);
   const decrease = () => setCount(count > 1 ? count - 1 : 1);
 

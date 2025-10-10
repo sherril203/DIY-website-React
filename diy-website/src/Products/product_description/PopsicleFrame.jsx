@@ -15,7 +15,7 @@ const PopsicleFrame = () => {
   const product = [
     { product_img: pop, product_name: "Popsicle College Frame", price: 190 },
   ];
-const REACT_APP_BACKEND_API = import.meta.env.VITE_REACT_APP_BACKEND_API;
+const REACT_APP_BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
   const { cart, setcart } = useContext(CartContext);
   const [count, setCount] = useState(1);
   const [review, setReview] = useState('');

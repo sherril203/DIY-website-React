@@ -171,9 +171,9 @@ const ImgCustomized = () => {
   const [review, setReview] = useState('');
   const [reviews, setReviews] = useState([]);
   const { id } = useParams();
-const REACT_APP_BACKEND_API = import.meta.env.VITE_REACT_APP_BACKEND_API;
+const REACT_APP_BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
   useEffect(() => {
-    axios.get(`http://localhost:5000/getcategory/phone_case/${id}`)
+    axios.get(`${REACT_APP_BACKEND_API}/getcategory/phone_case/${id}`)
       .then(res => {
         setProduct(res.data);
       })
