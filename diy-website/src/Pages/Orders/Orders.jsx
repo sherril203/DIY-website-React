@@ -10,16 +10,29 @@ import Navbar from '../../common/Navbar';
 const Orders = () => {
   const [data, setData] = useState([]);
 
-  const getOrders = async () => {
-    try {
-      const response = await axios.get("http://localhost:5000/getorders"); 
-      const orders = Array.isArray(response?.data?.showdata) ? response.data.showdata : [];
-      setData(orders);
-    } catch (error) {
-      console.log("GET error:", error.message);
-      setData([]);
-    }
-  };
+const getOrders = async () => {
+  const userData = JSON.parse(localStorage.getItem("user"));
+  const userId = userData?.userId || userData?.id;
+
+  if (!userId) {
+    toast.error("User not logged in");
+    return;
+  }
+
+  try {
+    const response = await axios.get("http://localhost:5000/getorders", {
+      params: { userId }
+    });
+
+    const orders = Array.isArray(response?.data?.showdata) ? response.data.showdata : [];
+    setData(orders);
+  } catch (error) {
+    console.log("GET error:", error.message);
+    toast.error("Failed to fetch orders");
+    setData([]);
+  }
+};
+
 
   useEffect(() => {
     getOrders();

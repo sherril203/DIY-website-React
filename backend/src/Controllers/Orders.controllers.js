@@ -55,7 +55,8 @@ const postOrder = async (req, res) => {
       address,
       payment_mode,
       razorpay_payment_id,
-      status: "Success"
+      status: "Success",
+      userId
     });
 
     await savedOrder.save();
@@ -96,13 +97,20 @@ const postOrder = async (req, res) => {
 
 const getOrder = async (req, res) => {
   try {
-    const showOrder = await OrderModel.find().sort({ _id: -1 });
+    const { userId } = req.query;
+
+    if (!userId) {
+      return res.status(400).send({ message: "User ID is required" });
+    }
+
+    const showOrder = await OrderModel.find({ userId }).sort({ _id: -1 });
     return res.status(200).send({ showdata: showOrder });
   } catch (err) {
     console.error("Error in get data:", err);
     return res.status(500).send("error in get data");
   }
-}
+};
+
  
 const CancelOrder=async (req, res) => {
   try {
