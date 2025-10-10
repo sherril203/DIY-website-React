@@ -329,10 +329,10 @@ const Navbar = () => {
                                            px-4 py-2 border border-white rounded-xl hover:bg-stone-500 hover:text-white transition">
                                     <FaCartArrowDown className="text-xl" /> Cart
                                 </Link>
-                                <div className="bg-stone-500 text-white top-0 right-0 text-center
+                                {/* <div className="bg-stone-500 text-white top-0 right-0 text-center
                                          pl-0.6 w-6 h-6 absolute rounded-full text-[15px]">
                                     {cartItems.length}
-                                </div>
+                                </div> */}
                             </div>
 
 
