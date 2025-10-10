@@ -187,7 +187,7 @@ const BACKEND_API = import.meta.env.VITE_REACT_APP_BACKEND_API;
               <Link to={`/${item._id}`} className="w-full flex flex-col items-center">
                 {item.product_img ? (
                   <img
-                    src={`http://localhost:5000/files/${item.product_img}`}
+                    src={`${BACKEND_API}/files/${item.product_img}`}
                     alt={item.product_name}
                     className="w-50 h-50 object-contain mb-4 rounded"
                     loading="lazy"
