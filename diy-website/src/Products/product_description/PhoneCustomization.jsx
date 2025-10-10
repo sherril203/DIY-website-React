@@ -171,7 +171,7 @@ const PhoneCustomization = () => {
   const [reviews, setReviews] = useState([]);
   const { cart, setcart } = useContext(CartContext);
   const {id} =useParams()
-
+const REACT_APP_BACKEND_API = import.meta.env.VITE_REACT_APP_BACKEND_API;
   useEffect(() => {
     axios.get(`http://localhost:5000/getcategory/phone_case/${id}`)
       .then(res => {
@@ -208,7 +208,7 @@ const PhoneCustomization = () => {
   const totalAmount = unitPrice * count;
 
   const handleCart = () => {
-    axios.post(`${BACKEND_API}/cart/add` , {
+    axios.post(`${REACT_APP_BACKEND_API}/cart/add` , {
       image: product.product_img,
       product_name: product.product_name,
       quantity: count,
@@ -235,7 +235,7 @@ const PhoneCustomization = () => {
           {/* Image */}
           <div className='flex-1 flex justify-center items-center'>
             <img
-              src={`${BACKEND_API}/files/${product.product_img}`}
+              src={`${REACT_APP_BACKEND_API}/files/${product.product_img}`}
               alt={product.product_name}
               className='w-full max-w-sm h-auto rounded-lg object-contain'
             />

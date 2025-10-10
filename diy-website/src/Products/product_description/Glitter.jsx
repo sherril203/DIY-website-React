@@ -201,6 +201,7 @@ const Glitter = () => {
     { product_img: emerald },
     { product_img: aqua }
   ];
+  const REACT_APP_BACKEND_API = import.meta.env.VITE_REACT_APP_BACKEND_API;
   useEffect(() => {
     axios.get(`http://localhost:5000/getcategory/phone_case/${id}`)
       .then(res => {
@@ -237,7 +238,7 @@ const Glitter = () => {
   const totalAmount = unitPrice * count;
 
   const handleCart = () => {
-    axios.post(`${BACKEND_API}/cart/add` , {
+    axios.post(`${REACT_APP_BACKEND_API}/cart/add` , {
       image: product.product_img,
       product_name: product.product_name,
       quantity: count,

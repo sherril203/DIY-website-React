@@ -172,10 +172,10 @@ const NatureBag = () => {
   const [review, setReview] = useState('');
   const [reviews, setReviews] = useState([]);
   const { id } = useParams(); // ✅ For dynamic route
-
+const REACT_APP_BACKEND_API = import.meta.env.VITE_REACT_APP_BACKEND_API;
   // ✅ Fetch product dynamically
   useEffect(() => {
-    axios.get(`http://localhost:5000/getcategory/bags/${id}`)
+    axios.get(`${REACT_APP_BACKEND_API}/getcategory/bags/${id}`)
       .then(res => {
         setProduct(res.data);
       })
@@ -210,7 +210,7 @@ const NatureBag = () => {
   const totalAmount = unitPrice * count;
 
   const handleCart = () => {
-    axios.post(`${BACKEND_API}/cart/add` , {
+    axios.post(`${REACT_APP_BACKEND_API}/cart/add` , {
       image: product.product_img,
       product_name: product.product_name,
       quantity: count,

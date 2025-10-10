@@ -181,7 +181,7 @@ const SeaCase = () => {
   const [count, setCount] = useState(1);
   const [review, setReview] = useState('');
   const [reviews, setReviews] = useState([]);
-
+  const REACT_APP_BACKEND_API = import.meta.env.VITE_REACT_APP_BACKEND_API;
   const increase = () => setCount(count + 1);
   const decrease = () => setCount(count > 1 ? count - 1 : 1);
 
@@ -196,7 +196,7 @@ const handleCart = (item) => {
     return;
   }
 
-  axios.post(`${BACKEND_API}/cart/add` , {
+  axios.post(`${REACT_APP_BACKEND_API}/cart/add` , {
     image: item.product_img,
     product_name: item.product_name,
     quantity: count,

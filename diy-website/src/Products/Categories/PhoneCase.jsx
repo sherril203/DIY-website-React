@@ -112,16 +112,19 @@
 import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { Link } from "react-router"; 
+import { Link } from "react-router-dom"; // ✅ FIXED
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { FaStar } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 
+const BACKEND_API = import.meta.env.VITE_REACT_APP_BACKEND_API;
+
+
 const PhoneCase = ({ query }) => {
   const [cases, setCases] = useState([]);
-  const [loading, setLoading] = useState(true); // ✅ Loading state
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     AOS.init({ duration: 2000, once: true });
@@ -141,9 +144,15 @@ const PhoneCase = ({ query }) => {
   );
 
   const handleCart = (item) => {
-    const userData = JSON.parse(localStorage.getItem('user')); // assuming you stored login data
+    const userData = JSON.parse(localStorage.getItem('user'));
     const userId = userData?.userId || userData?.user?.userId;
-    axios.post(`${BACKEND_API}/cart/add` , {
+
+    if (!userId) {
+      toast.error("Please log in to add to cart.");
+      return;
+    }
+
+    axios.post(`${BACKEND_API}/cart/add`, {
       image: item.product_img,
       product_name: item.product_name,
       quantity: 1,
@@ -158,19 +167,34 @@ const PhoneCase = ({ query }) => {
         toast.error("Failed to add to cart");
       });
   };
-  if (filtered.length === 0) return null;
+
+  if (loading) {
+    return (
+      <div className="min-h-[50vh] flex justify-center items-center text-stone-500 text-lg">
+        Loading phone cases...
+      </div>
+    );
+  }
+
+  if (filtered.length === 0) {
+    return (
+      <div className="text-center text-stone-500 py-10 text-xl">
+        No phone cases found.
+      </div>
+    );
+  }
 
   return (
-    <div>
+    <div className="px-4 sm:px-6 lg:px-10 py-10 bg-stone-100 min-h-screen">
       <ToastContainer />
-      <h2 className="text-center font-bold text-3xl mb-8 text-stone-700" data-aos="zoom-in">
+      <h2 className="text-center font-bold text-3xl mb-10 text-stone-700" data-aos="zoom-in">
         Phone Cases
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
         {filtered.map((item) => (
           <div
-            key={item._id || item.product_name} // ✅ Use unique key if _id exists
+            key={item._id || item.product_name}
             className="w-full max-w-xs bg-white p-6 rounded-2xl shadow-md flex flex-col items-center gap-3 transition-transform hover:scale-105"
             data-aos="fade-up"
           >

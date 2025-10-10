@@ -124,7 +124,7 @@ import Navbar from '../common/Navbar';
 const ProductHome = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-
+const BACKEND_API = process.env.BACKEND_API;
   const getProducts = async () => {
     try {
       const response = await axios.get("http://localhost:5000/getsome");

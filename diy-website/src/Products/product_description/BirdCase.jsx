@@ -324,7 +324,7 @@ const BirdCase = () => {
   const [count, setCount] = useState(1);
   const [review, setReview] = useState('');
   const [reviews, setReviews] = useState([]);
-
+const REACT_APP_BACKEND_API = import.meta.env.VITE_REACT_APP_BACKEND_API;
   useEffect(() => {
     axios.get(`http://localhost:5000/getcategory/phone_case/${id}`)
       .then(res => {
@@ -348,7 +348,7 @@ const handleCart = (item) => {
     return;
   }
 
-  axios.post(`${BACKEND_API}/cart/add`, {
+  axios.post(`${REACT_APP_BACKEND_API}/cart/add`, {
     image: item.product_img,
     product_name: item.product_name,
     quantity: count,
@@ -391,7 +391,7 @@ const handleCart = (item) => {
           {/* Left: Image */}
           <div className="flex-1 flex justify-center items-center">
             <img
-              src={`http://localhost:5000/files/${product.product_img}`}
+              src={`${REACT_APP_BACKEND_API}/files/${product.product_img}`}
               alt={product.product_name}
               className="w-full max-w-sm h-auto rounded-lg object-contain"
             />

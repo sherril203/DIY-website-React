@@ -311,10 +311,10 @@ import { FaStar } from "react-icons/fa";
 import { FaCartShopping, FaCartArrowDown } from "react-icons/fa6";
 const Cups = ({ query }) => {
   const [cups, setCups] = useState([]);
-
+const REACT_APP_BACKEND_API = import.meta.env.VITE_REACT_APP_BACKEND_API;
   useEffect(() => {
     AOS.init({ duration: 2000, once: true });
-    axios.get(`${BACKEND_API}/getcategory/cups`)
+    axios.get(`${REACT_APP_BACKEND_API}/getcategory/cups`)
       .then(res => setCups(res.data.data))
       .catch(err => console.error(err));
   }, []);
@@ -325,7 +325,7 @@ const Cups = ({ query }) => {
   const handleCart = (item) => {
     const userData = JSON.parse(localStorage.getItem('user')); // assuming you stored login data
     const userId = userData?.userId || userData?.user?.userId;
-    axios.post(`${BACKEND_API}/cart/add` , {
+    axios.post(`${REACT_APP_BACKEND_API}/cart/add` , {
       image: item.product_img,
       product_name: item.product_name,
       quantity: 1,
@@ -356,7 +356,7 @@ const Cups = ({ query }) => {
           >
             <Link to={`/products/${item._id}`}>
               <img
-                src={`${BACKEND_API}/files/${item.product_img}`}
+                src={`${REACT_APP_BACKEND_API}/files/${item.product_img}`}
                 alt={item.product_name}
                 className="w-60 h-60 object-contain"
               />

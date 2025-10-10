@@ -173,9 +173,9 @@ const Kidspouch = () => {
   const [review, setReview] = useState('');
   const [reviews, setReviews] = useState([]);
   const { id } = useParams(); // ✅ Get product ID from URL
-
+const REACT_APP_BACKEND_API = import.meta.env.VITE_REACT_APP_BACKEND_API;
   useEffect(() => {
-    axios.get(`http://localhost:5000/getcategory/kids/${id}`)
+    axios.get(`${REACT_APP_BACKEND_API}/getcategory/kids/${id}`)
       .then(res => {
         setProduct(res.data);
       })
@@ -199,7 +199,7 @@ const Kidspouch = () => {
   const decrease = () => setCount(prev => (prev > 1 ? prev - 1 : 1));
 
   const handleCart = () => {
-    axios.post("http://localhost:5000/cart/add", {
+    axios.post(`${REACT_APP_BACKEND_API}/cart/add`, {
       image: product.product_img,
       product_name: product.product_name,
       quantity: count,
@@ -236,7 +236,7 @@ const Kidspouch = () => {
           {/* Left: Image */}
           <div className="flex-1 flex justify-center items-center">
             <img
-              src={`${BACKEND_API}/files/${product.product_img}`}
+              src={`${REACT_APP_BACKEND_API}/files/${product.product_img}`}
               alt={product.product_name}
               className="w-full max-w-sm h-auto rounded-lg"
             />

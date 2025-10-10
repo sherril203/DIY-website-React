@@ -13,7 +13,7 @@ const Quiling = () => {
   const product = [
     { product_img: quil, product_name: "Kits for Quiling Beginners", Price: 130 }
   ];
-
+const REACT_APP_BACKEND_API = import.meta.env.VITE_REACT_APP_BACKEND_API;
   const [count, setCount] = useState(1);
   const { cart, setcart } = useContext(CartContext)
   const [review, setReview] = useState('');
@@ -42,7 +42,7 @@ const handleCart = (item) => {
     return;
   }
 
-  axios.post(`${BACKEND_API}/cart/add`, {
+  axios.post(`${REACT_APP_BACKEND_API}/cart/add`, {
     image: item.product_img,
     product_name: item.product_name,
     quantity: count,
