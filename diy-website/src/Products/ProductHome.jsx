@@ -124,12 +124,12 @@ import Navbar from '../common/Navbar';
 const ProductHome = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-const BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
+
+  const BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
 
   const getProducts = async () => {
     try {
       const response = await axios.get(`${BACKEND_API}/getsome`);
-     
       const products = Array.isArray(response?.data?.data) ? response.data.data : [];
       setData(products);
     } catch (error) {
@@ -148,7 +148,7 @@ const BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
 
 
   const handleCart = (item) => {
-    const userData = JSON.parse(localStorage.getItem('user')); // assuming you stored login data
+    const userData = JSON.parse(localStorage.getItem('user'));
     const userId = userData?.userId || userData?.user?.userId;
     axios.post(`${BACKEND_API}/cart/add`, {
       image: item.product_img,
@@ -157,6 +157,7 @@ const BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
       price: item.product_price,
       userId,
     })
+
       .then(() => {
         toast.success("Product added to cart");
       })
@@ -168,7 +169,7 @@ const BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
 
   return (
     <div className="bg-stone-100 p-3">
-      <Navbar/>
+      <Navbar />
       <ToastContainer />
       <h2 className="text-center font-bold text-3xl p-3 text-stone-700" data-aos="zoom-in">
         Products
