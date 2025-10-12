@@ -12,7 +12,7 @@ import { FaStar } from "react-icons/fa";
 import { FaCartShopping, FaCartArrowDown } from "react-icons/fa6";
 const Frames = ({ query }) => {
   const [frames, setFrames] = useState([]);
-const REACT_APP_BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
+const VITE_API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
   useEffect(() => {
     AOS.init({ duration: 2000, once: true });
     axios.get(`${REACT_APP_BACKEND_API}/getcategory/photo_frames`)
@@ -26,7 +26,7 @@ const REACT_APP_BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
   const handleCart = (item) => {
     const userData = JSON.parse(localStorage.getItem('user')); // assuming you stored login data
     const userId = userData?.userId || userData?.user?.userId;
-    axios.post(`${REACT_APP_BACKEND_API}/cart/add` , {
+    axios.post(`${VITE_API_BACKEND_URL}/cart/add` , {
       image: item.product_img,
       product_name: item.product_name,
       quantity: 1,
