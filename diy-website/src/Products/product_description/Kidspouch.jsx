@@ -173,9 +173,9 @@ const Kidspouch = () => {
   const [review, setReview] = useState('');
   const [reviews, setReviews] = useState([]);
   const { id } = useParams(); // ✅ Get product ID from URL
-const REACT_APP_BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
+const VITE_API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
   useEffect(() => {
-    axios.get(`${REACT_APP_BACKEND_API}/getcategory/kids/${id}`)
+    axios.get(`${VITE_API_BACKEND_URL}/getcategory/kids/${id}`)
       .then(res => {
         setProduct(res.data);
       })
@@ -199,7 +199,7 @@ const REACT_APP_BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
   const decrease = () => setCount(prev => (prev > 1 ? prev - 1 : 1));
 
   const handleCart = () => {
-    axios.post(`${REACT_APP_BACKEND_API}/cart/add`, {
+    axios.post(`${VITE_API_BACKEND_URL}/cart/add`, {
       image: product.product_img,
       product_name: product.product_name,
       quantity: count,

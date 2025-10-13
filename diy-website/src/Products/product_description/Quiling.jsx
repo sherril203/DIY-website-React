@@ -13,7 +13,7 @@ const Quiling = () => {
   const product = [
     { product_img: quil, product_name: "Kits for Quiling Beginners", Price: 130 }
   ];
-const REACT_APP_BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
+const VITE_API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
   const [count, setCount] = useState(1);
   const { cart, setcart } = useContext(CartContext)
   const [review, setReview] = useState('');

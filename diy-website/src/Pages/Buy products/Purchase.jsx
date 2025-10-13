@@ -363,7 +363,7 @@ const Purchase = () => {
   const location = useLocation();
   const product = location.state?.product;
   const navigate = useNavigate();
-
+const VITE_API_BACKEND_URL= import.meta.env.VITE_API_BACKEND_URL;
   const [customize, setCustomize] = useState(false);
   const [customType, setCustomType] = useState('');
   const [paymentMode, setPaymentMode] = useState('');
@@ -409,7 +409,7 @@ const Purchase = () => {
 
     try {
       // Save purchase
-      await axios.post("http://localhost:5000/purchase", formData);
+      await axios.post(`${VITE_API_BACKEND_URL}/purchase`, formData);
       toast.success("Purchase saved successfully!");
 
       // Navigate to confirmation page

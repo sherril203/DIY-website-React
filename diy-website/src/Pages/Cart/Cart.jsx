@@ -351,7 +351,7 @@ import Navbar from "../../common/Navbar";
 const Cart = () => {
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
-  const BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
+const VITE_API_BACKEND_URL= import.meta.env.VITE_API_BACKEND_URL;
 
   const fetchCart = async () => {
     const userData = JSON.parse(localStorage.getItem("user"));
@@ -364,7 +364,7 @@ const Cart = () => {
     }
 
     try {
-      const response = await axios.get(`${BACKEND_API}/cart/get`, {
+      const response = await axios.get(`${VITE_API_BACKEND_URL}/cart/get`, {
         params: { userId }
       });
       const items = Array.isArray(response?.data?.data) ? response.data.data : [];
@@ -389,7 +389,7 @@ const Cart = () => {
     if (!window.confirm("Are you sure you want to clear the entire cart?")) return;
 
     try {
-      await axios.delete(`${BACKEND_API}/cart/clear`, { data: { userId } });
+      await axios.delete(`${VITE_API_BACKEND_URL}/cart/clear`, { data: { userId } });
       toast.success("Cart cleared successfully");
       setCart([]);
     } catch (error) {
@@ -410,7 +410,7 @@ const Cart = () => {
     if (!window.confirm("Remove this item from cart?")) return;
 
     try {
-      await axios.delete(`${BACKEND_API}/cart/remove/${id}`, {
+      await axios.delete(`${VITE_API_BACKEND_URL}/cart/remove/${id}`, {
         data: { userId }
       });
       toast.success("Item removed");
@@ -459,7 +459,7 @@ const Cart = () => {
                   src={
                     item.image.startsWith("http")
                       ? item.image
-                      : `${BACKEND_API}/files/${item.image}`
+                      : `${VITE_API_BACKEND_URL}/files/${item.image}`
                   }
                   alt={item.product_name}
                   className="w-64 h-64 object-contain rounded mb-3"

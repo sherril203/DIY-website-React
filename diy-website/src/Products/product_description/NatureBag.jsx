@@ -172,10 +172,10 @@ const NatureBag = () => {
   const [review, setReview] = useState('');
   const [reviews, setReviews] = useState([]);
   const { id } = useParams(); // ✅ For dynamic route
-const REACT_APP_BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
+const VITE_API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
   // ✅ Fetch product dynamically
   useEffect(() => {
-    axios.get(`${REACT_APP_BACKEND_API}/getcategory/bags/${id}`)
+    axios.get(`${VITE_API_BACKEND_URL}/getcategory/bags/${id}`)
       .then(res => {
         setProduct(res.data);
       })
@@ -210,7 +210,7 @@ const REACT_APP_BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
   const totalAmount = unitPrice * count;
 
   const handleCart = () => {
-    axios.post(`${REACT_APP_BACKEND_API}/cart/add` , {
+    axios.post(`${VITE_API_BACKEND_URL}/cart/add` , {
       image: product.product_img,
       product_name: product.product_name,
       quantity: count,
@@ -235,7 +235,7 @@ const REACT_APP_BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
           {/* Left: Image */}
           <div className="flex-1 flex justify-center items-center">
             <img
-              src={`http://localhost:5000/files/${product.product_img}`}
+              src={`${VITE_API_BACKEND_URL}/files/${product.product_img}`}
               alt={product.product_name}
               className="w-full max-w-sm h-auto rounded-lg"
             />

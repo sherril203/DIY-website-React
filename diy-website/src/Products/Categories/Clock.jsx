@@ -232,10 +232,10 @@ import { FaCartShopping, FaCartArrowDown } from "react-icons/fa6";
 const Clock = ({ query }) => {
   const [clock, setClock] = useState([]);
   const [loading, setLoading] = useState(true);
-const REACT_APP_BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
+const VITE_API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
   useEffect(() => {
     AOS.init({ duration: 2000, once: true });
-    axios.get(`${REACT_APP_BACKEND_API}/getcategory/clock`)
+    axios.get(`${VITE_API_BACKEND_URL}/getcategory/clock`)
       .then(res => setClock(res.data.data))
       .catch(() => toast.error("Failed to fetch clocks"))
       .finally(() => setLoading(false));
@@ -247,7 +247,7 @@ const REACT_APP_BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
   const handleCart = (item) => {
     const userData = JSON.parse(localStorage.getItem('user')); // assuming you stored login data
     const userId = userData?.userId || userData?.user?.userId;
-    axios.post(`${REACT_APP_BACKEND_API}/cart/add` , {
+    axios.post(`${VITE_API_BACKEND_URL}/cart/add` , {
       image: item.product_img,
       product_name: item.product_name,
       quantity: 1,
@@ -280,7 +280,7 @@ const REACT_APP_BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
           >
             <Link to={`/products/${item._id}`}>
               <img
-                src={`${REACT_APP_BACKEND_API}/files/${item.product_img}`}
+                src={`${VITE_API_BACKEND_URL}/files/${item.product_img}`}
                 alt={item.product_name}
                 className="w-60 h-60 object-contain"
               />

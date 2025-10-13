@@ -43,7 +43,7 @@ const handleCart = (item) => {
     return;
   }
 
-  axios.post(`${REACT_APP_BACKEND_API}/cart/add` , {
+  axios.post(`${VITE_API_BACKEND_URL}/cart/add` , {
     image: item.product_img,
     product_name: item.product_name,
     quantity: count,

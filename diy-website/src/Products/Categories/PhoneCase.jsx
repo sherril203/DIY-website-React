@@ -119,7 +119,7 @@ import axios from "axios";
 import { FaStar } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 
-const BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
+const VITE_API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
 
 
 const PhoneCase = ({ query }) => {
@@ -128,7 +128,7 @@ const PhoneCase = ({ query }) => {
 
   useEffect(() => {
     AOS.init({ duration: 2000, once: true });
-    axios.get(`${BACKEND_API}/getcategory/phone_case`)
+    axios.get(`${VITE_API_BACKEND_URL}/getcategory/phone_case`)
       .then((res) => {
         setCases(res.data.data);
         setLoading(false);
@@ -152,7 +152,7 @@ const PhoneCase = ({ query }) => {
       return;
     }
 
-    axios.post(`${BACKEND_API}/cart/add`, {
+    axios.post(`${VITE_API_BACKEND_URL}/cart/add`, {
       image: item.product_img,
       product_name: item.product_name,
       quantity: 1,
@@ -200,7 +200,7 @@ const PhoneCase = ({ query }) => {
           >
             <Link to={`/products/${item._id}`}>
               <img
-                src={`${BACKEND_API}/files/${item.product_img}`}
+                src={`${VITE_API_BACKEND_URL}/files/${item.product_img}`}
                 alt={item.product_name}
                 className="w-60 h-60 object-contain"
               />

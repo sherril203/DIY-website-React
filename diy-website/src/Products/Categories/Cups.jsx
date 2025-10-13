@@ -307,56 +307,93 @@ import { Link } from 'react-router';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
-import { FaStar } from "react-icons/fa";
-import { FaCartShopping, FaCartArrowDown } from "react-icons/fa6";
+import { FaStar } from 'react-icons/fa';
+import { FaCartShopping } from 'react-icons/fa6';
+
 const Cups = ({ query }) => {
+  const VITE_API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
+
+  // ✅ Fix: Define state for cups
   const [cups, setCups] = useState([]);
-const REACT_APP_BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
+  const [loading, setLoading] = useState(true); // optional improvement
+  const [error, setError] = useState(null);     // optional improvement
+
   useEffect(() => {
     AOS.init({ duration: 2000, once: true });
-    axios.get(`${REACT_APP_BACKEND_API}/getcategory/cups`)
-      .then(res => setCups(res.data.data))
-      .catch(err => console.error(err));
-  }, []);
 
-  const filtered = cups.filter(item =>
-    (item.product_name || '').toLowerCase().includes((query || '').toLowerCase())
-  );
-  const handleCart = (item) => {
-    const userData = JSON.parse(localStorage.getItem('user')); // assuming you stored login data
-    const userId = userData?.userId || userData?.user?.userId;
-    axios.post(`${REACT_APP_BACKEND_API}/cart/add` , {
-      image: item.product_img,
-      product_name: item.product_name,
-      quantity: 1,
-      price: item.product_price,
-      userId,
-    })
-      .then(() => {
-        toast.success("Product added to cart");
+    axios
+      .get(`${VITE_API_BACKEND_URL}/getcategory/cups`)
+      .then((res) => {
+        setCups(res.data.data);
+        setLoading(false);
       })
       .catch((err) => {
         console.error(err);
-        toast.error("Failed to add to cart");
+        setError('Failed to fetch cups');
+        setLoading(false);
       });
+  }, []);
+
+  // ✅ Filter logic with fallback if query is empty
+  const filtered = query
+    ? cups.filter((item) =>
+        (item.product_name || '').toLowerCase().includes(query.toLowerCase())
+      )
+    : cups;
+
+  const handleCart = (item) => {
+    try {
+      const userData = JSON.parse(localStorage.getItem('user') || '{}');
+      const userId = userData?.userId || userData?.user?.userId;
+
+      if (!userId) {
+        toast.error("Please log in to add items to the cart.");
+        return;
+      }
+
+      axios
+        .post(`${VITE_API_BACKEND_URL}/cart/add`, {
+          image: item.product_img,
+          product_name: item.product_name,
+          quantity: 1,
+          price: item.product_price,
+          userId,
+        })
+        .then(() => {
+          toast.success('Product added to cart');
+        })
+        .catch((err) => {
+          console.error(err);
+          toast.error('Failed to add to cart');
+        });
+    } catch (err) {
+      console.error(err);
+      toast.error('An unexpected error occurred');
+    }
   };
-  if (filtered.length === 0) return null;
+
+  // ✅ Loading & error state
+  if (loading) return <p className="text-center mt-8">Loading cups...</p>;
+  if (error) return <p className="text-center mt-8 text-red-500">{error}</p>;
+  if (filtered.length === 0) return <p className="text-center mt-8">No cups found.</p>;
 
   return (
-    <div >
+    <div>
       <ToastContainer />
-      <h2 className="text-center font-bold text-3xl mb-6 text-stone-700" data-aos="zoom-in">Cups</h2>
+      <h2 className="text-center font-bold text-3xl mb-6 text-stone-700" data-aos="zoom-in">
+        Cups
+      </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
         {filtered.map((item) => (
           <div
-            key={item._id || item.product_name} // ✅ Use unique key if _id exists
+            key={item._id || item.product_name}
             className="w-full max-w-xs bg-white p-6 rounded-2xl shadow-md flex flex-col items-center gap-3 transition-transform hover:scale-105"
             data-aos="fade-up"
           >
             <Link to={`/products/${item._id}`}>
               <img
-                src={`${REACT_APP_BACKEND_API}/files/${item.product_img}`}
+                src={`${VITE_API_BACKEND_URL}/files/${item.product_img}`}
                 alt={item.product_name}
                 className="w-60 h-60 object-contain"
               />
@@ -375,7 +412,7 @@ const REACT_APP_BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
             <div className="flex flex-col sm:flex-row gap-3 w-full mt-2">
               <button
                 onClick={() => handleCart(item)}
-                className=" bg-amber-500 text-white px-4  mx-auto rounded-lg hover:bg-amber-600 transition"
+                className="bg-amber-500 text-white px-4 py-2 mx-auto rounded-lg hover:bg-amber-600 transition"
               >
                 <FaCartShopping size={20} />
               </button>

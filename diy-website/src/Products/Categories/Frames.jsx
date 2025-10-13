@@ -15,7 +15,7 @@ const Frames = ({ query }) => {
 const VITE_API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
   useEffect(() => {
     AOS.init({ duration: 2000, once: true });
-    axios.get(`${REACT_APP_BACKEND_API}/getcategory/photo_frames`)
+    axios.get(`${VITE_API_BACKEND_URL}/getcategory/photo_frames`)
       .then(res => setFrames(res.data.data))
       .catch(err => console.error(err));
   }, []);
@@ -57,7 +57,7 @@ const VITE_API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
           >
             <Link to={`/products/${item._id}`}>
               <img
-                src={`${REACT_APP_BACKEND_API}/files/${item.product_img}`}
+                src={`${VITE_API_BACKEND_URL}/files/${item.product_img}`}
                 alt={item.product_name}
                 className="w-60 h-60 object-contain"
               />

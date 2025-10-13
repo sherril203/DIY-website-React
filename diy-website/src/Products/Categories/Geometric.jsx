@@ -116,10 +116,10 @@ import { FaStar } from "react-icons/fa";
 import { FaCartShopping, FaCartArrowDown } from "react-icons/fa6";
 const Geometric = ({ query }) => {
   const [decorItems, setDecorItems] = useState([]);
-const VITE_API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
+const  VITE_API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
   useEffect(() => {
     AOS.init({ duration: 2000, once: true });
-    axios.get(`${REACT_APP_BACKEND_API}/getcategory/geometric_decor`)
+    axios.get(`${ VITE_API_BACKEND_URL}/getcategory/geometric_decor`)
       .then((res) => setDecorItems(res.data.data))
       .catch((err) => console.error(err));
   }, []);
@@ -164,7 +164,7 @@ const VITE_API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
           >
             <Link to={`/products/${item._id}`}>
               <img
-                src={`${REACT_APP_BACKEND_API}/files/${item.product_img}`}
+                src={`${VITE_API_BACKEND_URL}/files/${item.product_img}`}
                 alt={item.product_name}
                 className="w-60 h-60 object-contain "
               />

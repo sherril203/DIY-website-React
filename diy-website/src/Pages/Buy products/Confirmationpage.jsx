@@ -26,7 +26,7 @@ const Confirmationpage = () => {
     //   alert("Please enter amount");
     //   return;
     // }
-
+const VITE_API_BACKEND_URL= import.meta.env.VITE_API_BACKEND_URL;
     if (!ScriptLoaded) {
       alert("Razorpay SDK not loaded yet");
       return;
@@ -41,7 +41,7 @@ const Confirmationpage = () => {
       handler: async function (response) {
         alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
         try {
-          await axios.post("http://localhost:5000/orders", {
+          await axios.post(`${VITE_API_BACKEND_URL}/orders`, {
             ...data,
             razorpay_payment_id: response.razorpay_payment_id,
           });

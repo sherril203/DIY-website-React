@@ -125,11 +125,11 @@ const ProductHome = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
+  const VITE_API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
 
   const getProducts = async () => {
     try {
-      const response = await axios.get(`${BACKEND_API}/getsome`);
+      const response = await axios.get(`${ VITE_API_BACKEND_URL}/getsome`);
       const products = Array.isArray(response?.data?.data) ? response.data.data : [];
       setData(products);
     } catch (error) {
@@ -150,7 +150,7 @@ const ProductHome = () => {
   const handleCart = (item) => {
     const userData = JSON.parse(localStorage.getItem('user'));
     const userId = userData?.userId || userData?.user?.userId;
-    axios.post(`${BACKEND_API}/cart/add`, {
+    axios.post(`${VITE_API_BACKEND_URL}/cart/add`, {
       image: item.product_img,
       product_name: item.product_name,
       quantity: 1,
@@ -190,7 +190,7 @@ const ProductHome = () => {
               <Link to={`/${item._id}`} className="w-full flex flex-col items-center">
                 {item.product_img ? (
                   <img
-                    src={`${BACKEND_API}/files/${item.product_img}`}
+                    src={`${VITE_API_BACKEND_URL}/files/${item.product_img}`}
                     alt={item.product_name}
                     className="w-50 h-50 object-contain mb-4 rounded"
                     loading="lazy"

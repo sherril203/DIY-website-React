@@ -171,9 +171,9 @@ const ImgCustomized = () => {
   const [review, setReview] = useState('');
   const [reviews, setReviews] = useState([]);
   const { id } = useParams();
-const REACT_APP_BACKEND_API = import.meta.env.VITE_API_BACKEND_URL;
+const  VITE_API_BACKEND_URL= import.meta.env.VITE_API_BACKEND_URL;
   useEffect(() => {
-    axios.get(`${REACT_APP_BACKEND_API}/getcategory/phone_case/${id}`)
+    axios.get(`${VITE_API_BACKEND_URL}/getcategory/phone_case/${id}`)
       .then(res => {
         setProduct(res.data);
       })
@@ -216,7 +216,7 @@ const handleCart = (item) => {
     return;
   }
 
-  axios.post(`${REACT_APP_BACKEND_API}/cart/add` , {
+  axios.post(`${ VITE_API_BACKEND_URL}/cart/add` , {
     image: product.product_img,
     product_name: product.product_name,
     quantity: count,
@@ -244,7 +244,7 @@ const handleCart = (item) => {
           {/* Left: Image */}
           <div className="flex-1 flex justify-center items-center">
             <img
-              src={`${REACT_APP_BACKEND_API}/files/${product.product_img}`}
+              src={`${ VITE_API_BACKEND_URL}/files/${product.product_img}`}
               alt={product.product_name}
               className="w-full max-w-sm h-auto rounded-lg"
             />

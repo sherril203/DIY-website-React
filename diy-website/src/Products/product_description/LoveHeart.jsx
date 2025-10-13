@@ -18,7 +18,7 @@ const LoveHeart = () => {
   const [count, setCount] = useState(1);
   const [review, setReview] = useState('');
   const [reviews, setReviews] = useState([]); // store all submitted reviews
-const REACT_APP_BACKEND_API =import.meta.env.VITE_API_BACKEND_URL;
+const VITE_API_BACKEND_URL =import.meta.env.VITE_API_BACKEND_URL;
   const handleReview = () => {
     if (!review.trim()) {
       toast.error("Review cannot be empty!");
@@ -42,7 +42,7 @@ const handleCart = (item) => {
     return;
   }
 
-  axios.post(`${REACT_APP_BACKEND_API}/cart/add` , {
+  axios.post(`${VITE_API_BACKEND_URL}/cart/add` , {
     image: item.product_img,
     product_name: item.product_name,
     quantity: count,
