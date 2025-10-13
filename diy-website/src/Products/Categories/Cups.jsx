@@ -374,7 +374,7 @@ const Cups = ({ query }) => {
 
   // ✅ Loading & error state
   if (loading) return <p className="text-center mt-8">Loading cups...</p>;
-  if (error) return <p className="text-center mt-8 text-red-500">{error}</p>;
+  if (error) return <p className="text-center mt-8 ">{error}</p>;
   if (filtered.length === 0) return <p className="text-center mt-8">No cups found.</p>;
 
   return (
