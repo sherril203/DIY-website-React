@@ -11,5 +11,7 @@ app.use(express.json());
 app.use(router);
 app.use('/files', express.static(path.join(__dirname, 'products')))
 const server = http.createServer(app);
-
+app.get('/', (req, res) => {
+  res.send('API is working!');
+});
 module.exports = server;
