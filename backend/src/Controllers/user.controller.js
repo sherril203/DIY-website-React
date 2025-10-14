@@ -30,7 +30,7 @@ const UserRegisterController = async (req, res) => {
 
     const existData = await SignModel.findOne({ email: userData.email });
     if (existData) {
-      return res.status(400).send({ message: "Email is already registered" });
+      return res.status(400).json({ message: "Email is already registered" });
     }
 
     const hashedPassword = await bcrypt.hash(userData.password, 10);
@@ -46,10 +46,10 @@ const UserRegisterController = async (req, res) => {
 
     await newUser.save();
 
-    return res.status(201).send({ message: "User registered successfully" });
+    return res.status(201).json({ message: "User registered successfully" });
 
   } catch (err) {
-    return res.status(500).send({ message: "Signup failed", error: err.message });
+    return res.status(500).json({ message: "Signup failed", error: err.message });
   }
 };
 // Login for user
@@ -93,18 +93,18 @@ const UserLoginController = async (req, res) => {
 
     const existData = await SignModel.findOne({ email });
     if (!existData) {
-      return res.status(404).send({ message: "You are not registered" });
+      return res.status(404).json({ message: "You are not registered" });
     }
 
     const matchedPassword = await bcrypt.compare(password, existData.password);
     if (!matchedPassword) {
-      return res.status(401).send({ message: "Invalid password" });
+      return res.status(401).json({ message: "Invalid password" });
     }
 
     const token = tokengenerator(existData._id);
 
     // ✅ Just return the stored userId
-    return res.status(200).send({
+    return res.status(200).json({
       message: "User login successfully",
       data: {
         token,
@@ -118,7 +118,7 @@ const UserLoginController = async (req, res) => {
     });
 
   } catch (err) {
-    return res.status(500).send({ message: "Login failed", error: err.message });
+    return res.status(500).json({ message: "Login failed", error: err.message });
   }
 };
 

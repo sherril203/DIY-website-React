@@ -193,12 +193,13 @@ const Login = () => {
 
       const token = response.data.data?.token;
       const user = response.data.data?.user;
+      console.log(user,"user")
 
       if (token && user) {
         // ✅ Save everything to localStorage
         localStorage.setItem('token', token);
         localStorage.setItem('user', JSON.stringify(user));
-        localStorage.setItem('userId', user._id); // ✅ THIS LINE IS CRUCIAL
+        localStorage.setItem('userId', user.id); // ✅ THIS LINE IS CRUCIAL
       } else {
         toast.error('Login response missing token or user data');
         return;

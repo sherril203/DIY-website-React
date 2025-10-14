@@ -9,7 +9,7 @@ import Navbar from '../../common/Navbar';
 
 const Orders = () => {
   const [data, setData] = useState([]);
-
+const VITE_API_BACKEND_URL= import.meta.env.VITE_API_BACKEND_URL;
 const getOrders = async () => {
   const userData = JSON.parse(localStorage.getItem("user"));
   const userId = userData?.userId || userData?.id;
@@ -20,7 +20,7 @@ const getOrders = async () => {
   }
 
   try {
-    const response = await axios.get("http://localhost:5000/getorders", {
+    const response = await axios.get(`${VITE_API_BACKEND_URL}/getorders`, {
       params: { userId }
     });
 

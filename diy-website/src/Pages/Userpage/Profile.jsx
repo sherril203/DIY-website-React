@@ -111,8 +111,7 @@ const Profile = () => {
             </Link>
             <button
               onClick={() => {
-                localStorage.removeItem("user");
-                localStorage.removeItem("token");
+                localStorage.clear();
                 window.location.href = "/";
               }}
               className="px-4 py-2 bg-gradient-to-l from-fuchsia-200 to-pink-300 rounded hover:opacity-90 transition"

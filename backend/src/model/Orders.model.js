@@ -14,10 +14,9 @@
 const mongoose = require("mongoose");
 const OrderSchema = new mongoose.Schema(
   {
-    userID:{type:String, unique:true},
     product_name: { type: String, required: true },
-    quantity: { type: Number, required: true },
     product_price: { type: Number, required: true },
+    quantity: { type: Number, required: true },
     customer_name: { type: String, required: true },
     customer_email: { type: String, required: true },
     mobile_no: { type: String, required: true },
@@ -28,7 +27,8 @@ const OrderSchema = new mongoose.Schema(
     status: {
       type: String,
       default: "Success",
-    },  
+    },
+    userId: { type: String, unique: true },
   },
   { timestamps: true }
 );

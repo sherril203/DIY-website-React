@@ -1,5 +1,5 @@
 const OrderModel = require('../model/Orders.model')
-const {ConfirmationMail }= require('../utils/mailService')
+const { ConfirmationMail } = require('../utils/mailService')
 //post 
 // const postOrder=async(req,res)=>{
 //     try{
@@ -37,12 +37,13 @@ const postOrder = async (req, res) => {
       mobile_no,
       address,
       payment_mode,
-      razorpay_payment_id
+      razorpay_payment_id,
+      userId,
     } = req.body;
-
     if (!razorpay_payment_id) {
       return res.status(400).send({ message: "Payment ID is missing" });
     }
+    console.log(req.body, "orderssadfg")
 
     // ✅ Save order
     const savedOrder = new OrderModel({
@@ -62,20 +63,20 @@ const postOrder = async (req, res) => {
     await savedOrder.save();
 
     // ✅ Send confirmation mail
-  const mailResult = await ConfirmationMail(
-  customer_email,
-  "Purchase Confirmation",
-  {
-    product_name,
-    quantity,
-    product_price,
-    payment_mode,
-    mobile_no,
-    address,
-    razorpay_payment_id: razorpay_payment_id || null,
-  },
-  customer_name
-);
+    const mailResult = await ConfirmationMail(
+      customer_email,
+      "Purchase Confirmation",
+      {
+        product_name,
+        quantity,
+        product_price,
+        payment_mode,
+        mobile_no,
+        address,
+        razorpay_payment_id: razorpay_payment_id || null,
+      },
+      customer_name
+    );
 
     if (!mailResult || mailResult.error) {
       console.error("Email failed:", mailResult?.error);
@@ -111,10 +112,10 @@ const getOrder = async (req, res) => {
   }
 };
 
- 
-const CancelOrder=async (req, res) => {
+
+const CancelOrder = async (req, res) => {
   try {
-    const id=req.params.orderId
+    const id = req.params.orderId
     const deleted = await OrderModel.findByIdAndDelete(id);
     if (!deleted) return res.status(404).send({ message: 'Order not found' });
     res.status(200).send({ message: 'Order deleted' });
@@ -123,4 +124,4 @@ const CancelOrder=async (req, res) => {
   }
 };
 
-module.exports = { postOrder, getOrder,CancelOrder }
+module.exports = { postOrder, getOrder, CancelOrder }

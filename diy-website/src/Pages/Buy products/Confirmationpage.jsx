@@ -13,12 +13,8 @@ const Confirmationpage = () => {
   const data = location.state; // formData passed from Purchase
   const [ScriptLoaded, setScriptLoaded] = useState(false);
   const navigate = useNavigate();
-  useEffect(() => {
-    AOS.init({
-      duration: 1000, // animation duration in ms
-      once: true,     // animation happens only once
-    });
-  }, []);
+  const userId = localStorage.getItem('userId');
+  console.log(userId,"userid")
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -26,7 +22,7 @@ const Confirmationpage = () => {
     //   alert("Please enter amount");
     //   return;
     // }
-const VITE_API_BACKEND_URL= import.meta.env.VITE_API_BACKEND_URL;
+    const VITE_API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
     if (!ScriptLoaded) {
       alert("Razorpay SDK not loaded yet");
       return;
@@ -43,6 +39,7 @@ const VITE_API_BACKEND_URL= import.meta.env.VITE_API_BACKEND_URL;
         try {
           await axios.post(`${VITE_API_BACKEND_URL}/orders`, {
             ...data,
+            userId : userId,
             razorpay_payment_id: response.razorpay_payment_id,
           });
           toast.success("Order saved successfully!");
@@ -70,6 +67,10 @@ const VITE_API_BACKEND_URL= import.meta.env.VITE_API_BACKEND_URL;
   };
 
   useEffect(() => {
+    AOS.init({
+      duration: 1000, // animation duration in ms
+      once: true,     // animation happens only once
+    });
     const script = document.createElement("script");
     script.src = "https://checkout.razorpay.com/v1/checkout.js";
     script.onload = () => setScriptLoaded(true);

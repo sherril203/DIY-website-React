@@ -263,7 +263,7 @@ const Navbar = () => {
     }, []);
 
     const handleLogout = () => {
-        localStorage.removeItem("user");
+        localStorage.clear();
         setIsLoggedIn(false);
         navigate("/login");
     };
