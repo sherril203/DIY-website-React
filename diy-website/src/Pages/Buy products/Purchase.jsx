@@ -410,13 +410,13 @@ const VITE_API_BACKEND_URL= import.meta.env.VITE_API_BACKEND_URL;
     try {
       // Save purchase
       await axios.post(`${VITE_API_BACKEND_URL}/purchase`, formData);
-      toast.success("Purchase saved successfully!");
+      // toast.success("Purchase saved successfully!");
 
       // Navigate to confirmation page
       navigate("/confirmation", { state: formData });
     } catch (err) {
       console.error("Error during purchase:", err);
-      toast.error("Error during purchase. Please try again.");
+      // toast.error("Error during purchase. Please try again.");
     }
   };
 

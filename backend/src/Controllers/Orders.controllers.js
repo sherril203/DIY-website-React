@@ -28,6 +28,8 @@ const { ConfirmationMail } = require('../utils/mailService')
 
 const postOrder = async (req, res) => {
   try {
+    console.log("Incoming order data:", req.body);
+
     const {
       product_name,
       quantity,
@@ -40,12 +42,13 @@ const postOrder = async (req, res) => {
       razorpay_payment_id,
       userId,
     } = req.body;
-    if (!razorpay_payment_id) {
+
+    // Check if payment id exists and is not empty
+    if (!razorpay_payment_id || razorpay_payment_id.trim() === "") {
       return res.status(400).send({ message: "Payment ID is missing" });
     }
-    console.log(req.body, "orderssadfg")
 
-    // ✅ Save order
+    // Create order document
     const savedOrder = new OrderModel({
       product_name,
       quantity,
@@ -57,42 +60,54 @@ const postOrder = async (req, res) => {
       payment_mode,
       razorpay_payment_id,
       status: "Success",
-      userId
+      userId,
     });
 
+    // Save order to DB
     await savedOrder.save();
 
-    // ✅ Send confirmation mail
-    const mailResult = await ConfirmationMail(
-      customer_email,
-      "Purchase Confirmation",
-      {
-        product_name,
-        quantity,
-        product_price,
-        payment_mode,
-        mobile_no,
-        address,
-        razorpay_payment_id: razorpay_payment_id || null,
-      },
-      customer_name
-    );
-
-    if (!mailResult || mailResult.error) {
-      console.error("Email failed:", mailResult?.error);
+    // Send confirmation email safely
+    let mailResult;
+    try {
+      mailResult = await ConfirmationMail(
+        customer_email,
+        "Purchase Confirmation",
+        {
+          product_name,
+          quantity,
+          product_price,
+          payment_mode,
+          mobile_no,
+          address,
+          razorpay_payment_id,
+        },
+        customer_name
+      );
+    } catch (emailErr) {
+      console.error("Email sending failed:", emailErr);
       return res.status(500).send({
-        message: "Order saved, but email failed",
+        message: "Order saved, but email failed to send",
         order: savedOrder,
       });
     }
 
+    if (!mailResult || mailResult.error) {
+      console.error("Email sending returned error:", mailResult?.error);
+      return res.status(500).send({
+        message: "Order saved, but email failed to send",
+        order: savedOrder,
+      });
+    }
+
+    // Success response
     return res.status(201).send({
       message: "Order saved and email sent",
       order: savedOrder,
     });
+
   } catch (err) {
     console.error("Error in postOrder:", err);
-    res.status(500).send({ message: "Server error" });
+    return res.status(500).send({ message: "Server error" });
   }
 };
 

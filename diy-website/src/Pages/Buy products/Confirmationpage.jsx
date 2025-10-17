@@ -14,57 +14,73 @@ const Confirmationpage = () => {
   const [ScriptLoaded, setScriptLoaded] = useState(false);
   const navigate = useNavigate();
   const userId = localStorage.getItem('userId');
-  console.log(userId,"userid")
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
-    // if (!data.product_price) {
-    //   alert("Please enter amount");
-    //   return;
-    // }
-    const VITE_API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
-    if (!ScriptLoaded) {
-      alert("Razorpay SDK not loaded yet");
-      return;
-    }
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    const options = {
-      key: "rzp_test_RIxDCEPrAengZM", // Test key
-      amount: data.product_price * 100, // in paise
-      currency: "INR",
-      name: "Artworld",
-      description: "Purchase Payment",
-      handler: async function (response) {
-        alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
-        try {
-          await axios.post(`${VITE_API_BACKEND_URL}/orders`, {
-            ...data,
-            userId : userId,
-            razorpay_payment_id: response.razorpay_payment_id,
-          });
-          toast.success("Order saved successfully!");
-          navigate("/success", { state: response.razorpay_payment_id });
-        } catch (err) {
-          console.error("Error saving order:", err);
-          toast.error("Order save failed. Please contact support.");
-        }
-      },
-      prefill: {
-        name: "Sherril",
-        email: "sherrilkumar@gmail.com",
-        contact: "9486907680",
-      },
-      notes: {
-        address: "Razorpay corporate office",
-      },
-      theme: {
-        color: "#F37254",
-      },
+  const VITE_API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
+
+  if (data.payment_mode === "cash") {
+    const cashOrderData = { 
+      ...data, 
+      userId, 
+      razorpay_payment_id: "cash_payment"  // Add dummy payment id here
     };
 
-    const rzp = new window.Razorpay(options);
-    rzp.open();
+    try {
+      await axios.post(`${VITE_API_BACKEND_URL}/orders`, cashOrderData);
+      toast.success("Order placed successfully with Cash on Delivery!");
+      navigate("/success", { state: "cash_payment" });
+    } catch (err) {
+      console.error("Error saving cash order:", err.response?.data || err.message);
+      toast.error("Failed to place cash order. Please try again.");
+    }
+    return;
+  }
+
+  if (!ScriptLoaded) {
+    alert("Razorpay SDK not loaded yet");
+    return;
+  }
+
+  const options = {
+    key: "rzp_test_RIxDCEPrAengZM",
+    amount: data.product_price * 100,
+    currency: "INR",
+    name: "Artworld",
+    description: "Purchase Payment",
+    handler: async function (response) {
+      alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
+      try {
+        await axios.post(`${VITE_API_BACKEND_URL}/orders`, {
+          ...data,
+          userId: userId,
+          razorpay_payment_id: response.razorpay_payment_id,
+        });
+        toast.success("Order saved successfully!");
+        navigate("/success", { state: response.razorpay_payment_id });
+      } catch (err) {
+        console.error("Error saving order:", err.response?.data || err.message);
+        toast.error("Order save failed. Please contact support.");
+      }
+    },
+    prefill: {
+      name: data.customer_name,
+      email: data.customer_email,
+      contact: data.mobile_no,
+    },
+    notes: {
+      address: "Razorpay corporate office",
+    },
+    theme: {
+      color: "#F37254",
+    },
   };
+
+  const rzp = new window.Razorpay(options);
+  rzp.open();
+};
+
 
   useEffect(() => {
     AOS.init({
