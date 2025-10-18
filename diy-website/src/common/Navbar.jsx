@@ -278,7 +278,7 @@ const Navbar = () => {
     };
 
     return (
-        <div className="fixed top-0 w-full z-30 bg-stone-100 shadow-lg">
+        <div className="fixed top-0 left-0 right-0 w-full bg-stone-100 shadow-lg z-30">
             <nav className="flex justify-between items-center p-4">
                 {/* Logo */}
                 <div className="font-extrabold text-stone-700 text-2xl flex items-center">
