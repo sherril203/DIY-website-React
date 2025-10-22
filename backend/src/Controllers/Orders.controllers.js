@@ -119,7 +119,10 @@ const getOrder = async (req, res) => {
       return res.status(400).send({ message: "User ID is required" });
     }
 
-    const showOrder = await OrderModel.find({ userId }).sort({ _id: -1 });
+    // const showOrder = await OrderModel.find({ userId }).sort({ _id: -1 });
+      const showOrder = await OrderModel.find({ userId })
+      .sort({ _id: -1 })
+      .populate("userId", "username email");
     return res.status(200).send({ showdata: showOrder });
   } catch (err) {
     console.error("Error in get data:", err);

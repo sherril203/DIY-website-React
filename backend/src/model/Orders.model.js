@@ -12,6 +12,7 @@
 // module.exports=OrderModel
 
 const mongoose = require("mongoose");
+
 const OrderSchema = new mongoose.Schema(
   {
     product_name: { type: String, required: true },
@@ -22,16 +23,21 @@ const OrderSchema = new mongoose.Schema(
     mobile_no: { type: String, required: true },
     address: { type: String, required: true },
     payment_mode: { type: String, required: true },
-    // Razorpay details
     razorpay_payment_id: { type: String },
     status: {
       type: String,
       default: "Success",
     },
-    userId: { type: String, unique: true },
+    userId: { 
+      // type: mongoose.Schema.Types.ObjectId, 
+      // ref: "Signup", 
+      type:String,
+      required: true 
+    },
   },
   { timestamps: true }
 );
 
-const OrderModel = mongoose.model("Order", OrderSchema);
+const OrderModel = mongoose.models.Order || mongoose.model("Order", OrderSchema);
 module.exports = OrderModel;
+

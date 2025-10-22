@@ -148,7 +148,9 @@ const getCartItems = async (req, res) => {
   }
 
   try {
-    const items = await CartModel.find({ userId });
+    // const items = await CartModel.find({ userId });
+    const items = await CartModel.find({ userId })
+      .populate("userId", "username email");
     return res.status(200).json({ data: items });
   } catch (error) {
     console.error("Error in getCartItems:", error);

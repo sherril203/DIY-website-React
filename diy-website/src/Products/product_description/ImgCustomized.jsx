@@ -258,7 +258,7 @@ const handleCart = (item) => {
                 <FaStar color="yellow" size={25} /> 3.0
               </h2>
               <h2 className='text-gray-600 text-xl'>Unit Price: ₹{unitPrice}</h2>
-              <h2 className='text-gray-600 text-xl'>Customization Available</h2>
+              {/* <h2 className='text-gray-600 text-xl'>Customization Available</h2> */}
           
 
               <div className='flex items-center gap-2 my-3'>

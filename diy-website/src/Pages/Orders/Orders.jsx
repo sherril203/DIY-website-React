@@ -6,57 +6,64 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from '../../common/Navbar';
 
+const VITE_API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
 
 const Orders = () => {
   const [data, setData] = useState([]);
-const VITE_API_BACKEND_URL= import.meta.env.VITE_API_BACKEND_URL;
-const getOrders = async () => {
-  const userData = JSON.parse(localStorage.getItem("user"));
-  const userId = userData?.userId || userData?.id;
 
-  if (!userId) {
-    toast.error("User not logged in");
-    return;
-  }
+  const getOrders = async () => {
+    let userData = null;
+    try {
+      userData = JSON.parse(localStorage.getItem("user"));
+    } catch (err) {
+      console.error("Failed to parse user data", err);
+    }
+    const userId = userData?.userId || userData?.id || userData?._id;
 
-  try {
-    const response = await axios.get(`${VITE_API_BACKEND_URL}/getorders`, {
-      params: { userId }
-    });
+    if (!userId) {
+      toast.error("User not logged in");
+      return;
+    }
 
-    const orders = Array.isArray(response?.data?.showdata) ? response.data.showdata : [];
-    setData(orders);
-  } catch (error) {
-    console.log("GET error:", error.message);
-    toast.error("Failed to fetch orders");
-    setData([]);
-  }
-};
+    try {
+      const response = await axios.get(`${VITE_API_BACKEND_URL}/api/getOrder`, {
+        params: { userId }
+      });
 
+      const orders = Array.isArray(response?.data?.showdata) ? response.data.showdata : [];
+      setData(orders);
+    } catch (error) {
+      console.log("GET error:", error.message);
+      toast.error("Failed to fetch orders");
+      setData([]);
+    }
+  };
 
   useEffect(() => {
     getOrders();
   }, []);
- const DeleteOrder = async (orderId) => {
-  if (!window.confirm('Are you sure you want to cancel this order?')) return;
 
-  try {
-    await axios.delete(`http://localhost:5000/getorders/${orderId}`);
-    toast.success('Order cancelled successfully');
-    setData(prevData => prevData.filter(order => order._id !== orderId));
-  } catch (error) {
-    toast.error('Failed to cancel order');
-    console.log('Delete error:', error.message);
-  }
-};
+  const DeleteOrder = async (orderId) => {
+    if (!window.confirm('Are you sure you want to cancel this order?')) return;
+
+    try {
+      // Fix: added `/api` in delete endpoint
+      await axios.delete(`${VITE_API_BACKEND_URL}/api/getOrder/${orderId}`);
+      toast.success('Order cancelled successfully');
+      setData(prevData => prevData.filter(order => order._id !== orderId));
+    } catch (error) {
+      toast.error('Failed to cancel order');
+      console.log('Delete error:', error.message);
+    }
+  };
 
   return (
-    <div className="bg-stone-100  ">
-      <ToastContainer/>
-      <Navbar/>
+    <div className="bg-stone-100">
+      <ToastContainer />
+      <Navbar />
       <h2 className="text-center font-bold text-3xl text-stone-700 p-5 mt-20">Orders</h2>
 
-      <div className=" mx-auto grid grid-cols-2 md:grid-cols-3 gap-6 mb-10 px-4">
+      <div className="mx-auto grid grid-cols-2 md:grid-cols-3 gap-6 mb-10 px-4">
         {data.length === 0 ? (
           <p className="col-span-full text-center text-gray-500">No orders found.</p>
         ) : (
@@ -72,9 +79,11 @@ const getOrders = async () => {
               <p className="text-gray-600"><strong>Mobile:</strong> {order.mobile_no}</p>
               <p className="text-gray-600"><strong>Address:</strong> {order.address}</p>
               <p className="text-gray-600"><strong>Payment Mode:</strong> {order.payment_mode}</p>
-              <p className="text-gray-600"><strong>Payment ID:</strong>{order.razorpay_payment_id}</p>
+              <p className="text-gray-600"><strong>Payment ID:</strong> {order.razorpay_payment_id}</p>
               <p className="text-gray-600"><strong>Status:</strong> {order.status}</p>
-              <button onClick={()=>DeleteOrder(order._id)} className='p-3 bg-red-300 rounded'>Cancel Order</button>
+              <button onClick={() => DeleteOrder(order._id)} className="p-3 bg-red-300 rounded">
+                Cancel Order
+              </button>
             </div>
           ))
         )}

@@ -33,9 +33,9 @@ router.delete('/deletecategory/:id', products.deleteproducts);
 router.post('/purchase',purchase.PostPurchase)
 router.get('/getpurchase',purchase.getPurchase)
 //orders route
-router.post('/orders',orders.postOrder)
-router.get('/getorders',orders.getOrder)
-router.delete('/getorders/:orderId',orders.CancelOrder) //cancel the order
+router.post('/api/orders', orders.postOrder);
+router.get('/api/orders', orders.getOrder);
+router.delete('/api/orders/:orderId', orders.CancelOrder);
 //razorpay
 //router.post("/payment/verify", verifyPayment);
 //Admin login and Register
