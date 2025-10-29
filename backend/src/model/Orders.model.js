@@ -12,7 +12,6 @@
 // module.exports=OrderModel
 
 const mongoose = require("mongoose");
-
 const OrderSchema = new mongoose.Schema(
   {
     product_name: { type: String, required: true },
@@ -24,16 +23,8 @@ const OrderSchema = new mongoose.Schema(
     address: { type: String, required: true },
     payment_mode: { type: String, required: true },
     razorpay_payment_id: { type: String },
-    status: {
-      type: String,
-      default: "Success",
-    },
-    userId: { 
-      // type: mongoose.Schema.Types.ObjectId, 
-      // ref: "Signup", 
-      type:String,
-      required: true 
-    },
+    status: {type: String,default: "Success"},
+    userId: { type:String,required: true },
   },
   { timestamps: true }
 );

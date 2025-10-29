@@ -1,31 +1,8 @@
 const OrderModel = require('../model/Orders.model')
 const { ConfirmationMail } = require('../utils/mailService')
-//post 
-// const postOrder=async(req,res)=>{
-//     try{
-//     const feeddata=req.body
-//     console.log(feeddata)
-//     const savedFeed=new OrderModel(feeddata)
-//     await savedFeed.save()
-//     // Send email
-//     // const { name, email, ...restof } = req.body;
-//     // console.log(name,email,restof);
-//     // const mailResult = await ConfirmationMail(email,"purchase confirmation",restof);
-//     //  if (!mailResult) {
-//     //   console.error("Email failed:", mailResult.error);
-//     //   return res.status(500).send({
-//     //     message: "Product not purchased",
-//     //     data: stored_data,
-//     //   });
-//     // }
-//     res.status(201).send({message:"product confirmation submitted"})
-//     }
-//     catch(err){
-//         res.status(500).send({message:"confirmation error error"})
-//     }
-// }
 
 
+//post
 const postOrder = async (req, res) => {
   try {
     console.log("Incoming order data:", req.body);
@@ -115,14 +92,16 @@ const getOrder = async (req, res) => {
   try {
     const { userId } = req.query;
 
+
     if (!userId) {
       return res.status(400).send({ message: "User ID is required" });
     }
-
+console.log(userId)
     // const showOrder = await OrderModel.find({ userId }).sort({ _id: -1 });
-      const showOrder = await OrderModel.find({ userId })
-      .sort({ _id: -1 })
-      .populate("userId", "username email");
+      const showOrder = await OrderModel.find({ userId : userId});
+      // .sort({ _id: -1 })
+      // .populate("userId", "username email");
+        console.log(showOrder)
     return res.status(200).send({ showdata: showOrder });
   } catch (err) {
     console.error("Error in get data:", err);
@@ -133,13 +112,20 @@ const getOrder = async (req, res) => {
 
 const CancelOrder = async (req, res) => {
   try {
-    const id = req.params.orderId
-    const deleted = await OrderModel.findByIdAndDelete(id);
-    if (!deleted) return res.status(404).send({ message: 'Order not found' });
-    res.status(200).send({ message: 'Order deleted' });
+    const id = req.params.orderId;
+    // Update order status instead of deleting
+    const cancelled = await OrderModel.findByIdAndUpdate(
+      id,
+      { status: 'Cancelled' },
+      { new: true } // return updated document
+    );
+    if (!cancelled) return res.status(404).send({ message: 'Order not found' });
+    res.status(200).send({ message: 'Order cancelled', order: cancelled });
   } catch (err) {
+    console.error('CancelOrder error:', err);
     res.status(500).send({ error: 'Server error' });
   }
 };
+
 
 module.exports = { postOrder, getOrder, CancelOrder }

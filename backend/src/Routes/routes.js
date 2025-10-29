@@ -34,7 +34,7 @@ router.post('/purchase',purchase.PostPurchase)
 router.get('/getpurchase',purchase.getPurchase)
 //orders route
 router.post('/api/orders', orders.postOrder);
-router.get('/api/orders', orders.getOrder);
+router.get('/api/getOrders', orders.getOrder);
 router.delete('/api/orders/:orderId', orders.CancelOrder);
 //razorpay
 //router.post("/payment/verify", verifyPayment);
