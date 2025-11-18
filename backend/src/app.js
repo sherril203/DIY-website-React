@@ -33,4 +33,4 @@ app.get('/', (req, res) => {
   res.send('API is working!');
 });
 
-module.exports = app;  // ✅ Export the Express app, not the server
+module.exports = app;  
