@@ -36,7 +36,7 @@ const UserRegisterController = async (req, res) => {
 const UserLoginController = async (req, res) => {
   try {
     const { email, password } = req.body;
-
+console.log(req.body)
     const existData = await SignModel.findOne({ email });
     if (!existData) {
       return res.status(404).json({ message: "You are not registered" });
