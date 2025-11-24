@@ -265,7 +265,7 @@ const Navbar = () => {
     const handleLogout = () => {
         localStorage.clear();
         setIsLoggedIn(false);
-        navigate("/login");
+        navigate("/");
     };
 
     const handleSelect = (e) => {
