@@ -132,6 +132,7 @@ const ProductHome = () => {
       const response = await axios.get(`${ VITE_API_BACKEND_URL}/getsome`);
       const products = Array.isArray(response?.data?.data) ? response.data.data : [];
       setData(products);
+      console.log(VITE_API_BACKEND_URL)
     } catch (error) {
       console.error("GET error:", error.message);
       toast.error("Failed to load products");

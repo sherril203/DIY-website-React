@@ -171,20 +171,25 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from '../common/Navbar';
 
+
 const Dummy = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [review, setReview] = useState('');
   const [reviews, setReviews] = useState([]);
   const [count, setCount] = useState(1);
+const BaseUrl = process.env.VITE_API_BACKEND_URL;
+
 
   const getProducts = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:5000/getsome/category/${id}`); // ✅ FIXED URL
+      const response = await axios.get(`${BaseUrl}/getsome/category/${id}`); // ✅ FIXED URL
       setProduct(response?.data?.data);
+      console.log(BaseUrl);
     } catch (error) {
       console.error(error);
     }
+    
   };
 
   useEffect(() => {
@@ -216,7 +221,7 @@ const Dummy = () => {
       return;
     }
 
-    axios.post("http://localhost:5000/cart/add", {
+    axios.post(`cart/add`, {
       image: item.product_img,
       product_name: item.product_name,
       quantity: count,
@@ -245,7 +250,7 @@ const Dummy = () => {
           {/* Left: Image */}
           <div className="flex-1 flex justify-center items-center">
             <img
-              src={`http://localhost:5000/files/${product.product_img}`}
+              src={`${BaseUrl}/files/${product.product_img}`}
               alt={product.product_name}
               className="w-full max-w-sm h-auto rounded-lg"
             />
