@@ -77,10 +77,10 @@ const postOrder = async (req, res) => {
     // }
 
     // // Success response
-    // return res.status(201).send({
-    //   message: "Order saved and email sent",
-    //   order: savedOrder,
-    // });
+    return res.status(201).send({
+      message: "Order saved ",
+      order: savedOrder,
+    });
 
   } catch (err) {
     console.error("Error in postOrder:", err);
