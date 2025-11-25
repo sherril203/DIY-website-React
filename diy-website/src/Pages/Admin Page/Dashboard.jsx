@@ -3,10 +3,10 @@ import axios from "axios";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
-
+const VITE_API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
   const getProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/getproducts");
+      const response = await axios.get(`${VITE_API_BACKEND_URL}/getproducts`);
       const products = Array.isArray(response?.data?.data) ? response.data.data : [];
       setData(products);
     } catch (error) {

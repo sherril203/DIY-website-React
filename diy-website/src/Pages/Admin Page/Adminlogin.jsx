@@ -132,7 +132,7 @@ import 'aos/dist/aos.css';
 
 const AdminLogin = () => {
   const navigate = useNavigate();
-
+const VITE_API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
   const [formData, setFormData] = useState({ email: '', password: '' });
 
   useEffect(() => {
@@ -147,7 +147,7 @@ const AdminLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/adminlogin', formData);
+      const response = await axios.post(`${VITE_API_BACKEND_URL}/adminlogin`, formData);
 
       console.log('Admin Login Success:', response.data);
 

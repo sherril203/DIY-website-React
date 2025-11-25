@@ -7,6 +7,7 @@ import {useEffect} from 'react'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 const AdminSign = () => {
+  const VITE_API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
    useEffect(() => {
       AOS.init({ duration: 2000, once: true }); 
     }, []);
@@ -32,7 +33,7 @@ const handleSubmit = async (e) => {
   console.log("Submitting form:", formData);  
 
   try {
-    const response = await axios.post('http://localhost:5000/adminRegister', formData);
+    const response = await axios.post(`${VITE_API_BACKEND_URL}/adminRegister`, formData);
     console.log('Signup success:', response.data);
 
     toast.success("Signup successful! Redirecting to login...", {

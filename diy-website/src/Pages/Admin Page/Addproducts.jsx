@@ -14,7 +14,7 @@ const AddProducts = () => {
     quantity: "",
     product_price: "",
   });
-
+const VITE_API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
   // Input change handler
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -48,7 +48,7 @@ const AddProducts = () => {
     formData.append("product_price", formdata.product_price);
 
     try {
-      const response = await axios.post("http://localhost:5000/productinfo", formData, {
+      const response = await axios.post(`${VITE_API_BACKEND_URL}/productinfo`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 

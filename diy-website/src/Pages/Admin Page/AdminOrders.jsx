@@ -3,10 +3,10 @@ import axios from "axios";
 
 const AdminOrders = () => {
  const [data, setData] = useState([]);
-
+const VITE_API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
   const getOrders = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/getorders"); 
+      const response = await axios.get(`${VITE_API_BACKEND_URL}/getorders`); 
       const orders = Array.isArray(response?.data?.showdata) ? response.data.showdata : [];
       setData(orders);
     } catch (error) {
