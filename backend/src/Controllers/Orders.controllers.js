@@ -44,43 +44,43 @@ const postOrder = async (req, res) => {
     await savedOrder.save();
 
     // Send confirmation email safely
-    let mailResult;
-    try {
-      mailResult = await ConfirmationMail(
-        customer_email,
-        "Purchase Confirmation",
-        {
-          product_name,
-          quantity,
-          product_price,
-          payment_mode,
-          mobile_no,
-          address,
-          razorpay_payment_id,
-        },
-        customer_name
-      );
-    } catch (emailErr) {
-      console.error("Email sending failed:", emailErr);
-      return res.status(500).send({
-        message: "Order saved, but email failed to send",
-        order: savedOrder,
-      });
-    }
+    // let mailResult;
+    // try {
+    //   mailResult = await ConfirmationMail(
+    //     customer_email,
+    //     "Purchase Confirmation",
+    //     {
+    //       product_name,
+    //       quantity,
+    //       product_price,
+    //       payment_mode,
+    //       mobile_no,
+    //       address,
+    //       razorpay_payment_id,
+    //     },
+    //     customer_name
+    //   );
+    // } catch (emailErr) {
+    //   console.error("Email sending failed:", emailErr);
+    //   return res.status(500).send({
+    //     message: "Order saved, but email failed to send",
+    //     order: savedOrder,
+    //   });
+    // }
 
-    if (!mailResult || mailResult.error) {
-      console.error("Email sending returned error:", mailResult?.error);
-      return res.status(500).send({
-        message: "Order saved, but email failed to send",
-        order: savedOrder,
-      });
-    }
+    // if (!mailResult || mailResult.error) {
+    //   console.error("Email sending returned error:", mailResult?.error);
+    //   return res.status(500).send({
+    //     message: "Order saved, but email failed to send",
+    //     order: savedOrder,
+    //   });
+    // }
 
-    // Success response
-    return res.status(201).send({
-      message: "Order saved and email sent",
-      order: savedOrder,
-    });
+    // // Success response
+    // return res.status(201).send({
+    //   message: "Order saved and email sent",
+    //   order: savedOrder,
+    // });
 
   } catch (err) {
     console.error("Error in postOrder:", err);
