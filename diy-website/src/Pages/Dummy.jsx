@@ -180,7 +180,7 @@ const Dummy = () => {
 
   const getProducts = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:5000/getsome/:category/${id}`); // ✅ FIXED URL
+      const response = await axios.get(`http://localhost:5000/getsome/category/${id}`); // ✅ FIXED URL
       setProduct(response?.data?.data);
     } catch (error) {
       console.error(error);

@@ -72,7 +72,7 @@ router.get('/getcategory/photo_frames/:id', category.getproductsById );
 //product display in home page
 router.post('/postsome',upload.single('product_img'),product.postSomeProduct)
 router.get('/getsome',product.getSomeProduct)
-router.get('/getsome/:category/:id',product.getProductById)
+router.get('/getsome/category/:id',product.getProductById)
 //cart
 router.post('/cart/add', cartController.addToCart);
 router.get('/cart/get', cartController.getCartItems);
