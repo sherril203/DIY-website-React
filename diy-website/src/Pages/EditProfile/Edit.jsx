@@ -134,7 +134,7 @@ const Edit = () => {
     // mobile: '',
     // address: ''
   });
-
+const VITE_API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
   useEffect(() => {
     AOS.init({ duration: 2000, once: true });
 
@@ -165,7 +165,7 @@ const Edit = () => {
 
       // ✅ Make API call with token in headers
       const response = await axios.put(
-        `http://localhost:5000/user/${savedUser.id}`, // your backend route
+        `${VITE_API_BACKEND_URL}/user/${savedUser.id}`, // your backend route
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
