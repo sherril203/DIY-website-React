@@ -178,8 +178,7 @@ const Dummy = () => {
   const [review, setReview] = useState('');
   const [reviews, setReviews] = useState([]);
   const [count, setCount] = useState(1);
-const BaseUrl = process.env.VITE_API_BACKEND_URL;
-
+const BaseUrl = import.meta.env.VITE_API_BACKEND_URL;
 
   const getProducts = async (id) => {
     try {

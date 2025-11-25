@@ -40,13 +40,16 @@ const Confirmationpage = () => {
 
     try {
       const res = await axios.post(`${VITE_API_BACKEND_URL}/api/orders`, cashOrderData);
-      if (res.data?.emailError) {
-        toast.warn("Order placed with Cash on Delivery. Email failed to send.");
+      if (res.data) {
+     
+          toast.success("Order placed successfully with Cash on Delivery!");
+          navigate("/success", { state: "cash_payment" });
+          return;
       } else {
-        toast.success("Order placed successfully with Cash on Delivery!");
+         toast.warn("Order placed with Cash on Delivery. Email failed to send.");
       }
 
-      navigate("/success", { state: "cash_payment" });
+      
     } catch (err) {
       console.error("Error saving cash order:", {
         status: err.response?.status,

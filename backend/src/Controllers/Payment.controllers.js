@@ -16,30 +16,26 @@ const verifyPayment = async (req, res) => {
       return res.status(400).send({ message: "Payment verification failed" });
     }
 
-    // Save purchase
-    const storedPurchase = new purchaseModel(purchaseData);
-    await storedPurchase.save();
-
-    // Save order
-    const storedOrder = new OrderModel({
+    const [savedPurchase, savedOrder] = await Promise.all([
+    purchaseModel.create(purchaseData),
+    OrderModel.create({
       ...purchaseData,
       razorpay_order_id,
       razorpay_payment_id,
-    });
-    await storedOrder.save();
-
-    // Send email
-    await ConfirmationMail(
-      purchaseData.customer_email,
-      "Purchase Confirmation",
-      purchaseData
-    );
-
+    }),
+  ]);
+  //  // Send email
+    // await ConfirmationMail(
+    //   purchaseData.customer_email,
+    //   "Purchase Confirmation",
+    //   purchaseData
+    // );
     res.status(200).send({
       message: "Payment verified, order saved, email sent",
-      purchase: storedPurchase,
-      order: storedOrder,
+      purchase: savedPurchase,
+      order: savedOrder,
     });
+   
   } catch (err) {
     console.error("Verify payment error:", err);
     res.status(500).send({ message: "Error verifying payment" });

@@ -11,7 +11,7 @@ const Signup = () => {
       AOS.init({ duration: 2000, once: true }); 
     }, []);
   const navigate = useNavigate();
-
+const VITE_API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -32,7 +32,7 @@ const handleSubmit = async (e) => {
   console.log("Submitting form:", formData);  
 
   try {
-    const response = await axios.post('http://localhost:5000/userRegister', formData);
+    const response = await axios.post(`${VITE_API_BACKEND_URL}/userRegister`, formData);
     console.log('Signup success:', response.data);
 
     toast.success("Signup successful! Redirecting to login...", {
