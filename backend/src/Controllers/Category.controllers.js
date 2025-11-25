@@ -25,7 +25,7 @@ const postCategory = async (req, res) => {
 // Assuming you have categoryModel or Product model with a field 'category'
 const getcategory = async (req, res) => {
   try {
-    const categoryName = req.params.id; // e.g., 'bags'
+    const categoryName = req.params.category; // e.g., 'bags'
     const showcategory = await categoryModel.find({ category: categoryName }).sort({ _id: 1 });
     res.status(200).send({ data: showcategory });
   } catch (err) {
