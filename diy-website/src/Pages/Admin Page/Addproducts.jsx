@@ -89,7 +89,7 @@ const VITE_API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
       }
 
       const response = await axios.put(
-        `http://localhost:5000/updateproducts/${formdata._id}`,
+        `${VITE_API_BACKEND_URL}/updateproducts/${formdata._id}`,
         formDataToSend,
         {
           headers: {
@@ -137,7 +137,7 @@ const VITE_API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
   // Delete product
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/deleteproducts/${id}`);
+      await axios.delete(`h${VITE_API_BACKEND_URL}/deleteproducts/${id}`);
       setData((prev) => prev.filter((item) => item._id !== id));
       toast.success("Product deleted successfully!");
     } catch (error) {
@@ -149,7 +149,7 @@ const VITE_API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL;
   // Fetch products on mount
   const getProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/getproducts");
+      const response = await axios.get(`${VITE_API_BACKEND_URL}/getproducts`);
       const products = Array.isArray(response?.data?.data) ? response.data.data : [];
       setData(products);
     } catch (error) {
